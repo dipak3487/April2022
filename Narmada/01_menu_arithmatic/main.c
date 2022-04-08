@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include<stdio.h>
+<<<<<<< HEAD
 
 
 int add(int n1, int n2)
@@ -37,16 +37,30 @@ int main()
     printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
     int choice, num, i;
     int n1, n2, res1,res2,res3,res4,x,y,z;
+=======
+#include<stdlib.h>
+int main()
+{
+    printf("\n\n\t\tTeam Narmada\n\n\n");
+    int choice, num, i, num1, c;
+>>>>>>> e0e92a19f8df3b5983d8af8449d1fa7f19cbad3f
     unsigned long int fact;
     while(1)
     {
         printf("1. Factorial \n");
         printf("2. Prime\n");
         printf("3. Odd\\Even\n");
+<<<<<<< HEAD
 	printf("4. Addition\n");
 	printf("5. Subtraction\n");
 	printf("6. Multiplication\n");
 	printf("7. Divide\n");
+=======
+	printf("4. Add\n");
+	printf("5. Sub\n");
+	printf("6. Mul\n");
+	printf("7. Div\n");
+>>>>>>> e0e92a19f8df3b5983d8af8449d1fa7f19cbad3f
         printf("8. Exit\n\n\n");
         printf("Enter your choice :  ");
         scanf("%d",&choice);
@@ -97,6 +111,7 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
+<<<<<<< HEAD
             case 4:
 		printf("Enter two number = ");
 		scanf("%d %d", &n1, &n2);
@@ -125,6 +140,40 @@ int main()
 
 
 
+=======
+	    case 4:
+		printf("Enter num:\n");
+		scanf("%d",&num);
+		printf("Enter num1:\n");
+		scanf("%d",&num1);
+		c=num+num1;
+			printf("\n\n%d is Addition\n\n",c);
+		break;
+	    case 5:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+		scanf("%d",&num1);
+                c=num-num1;
+                        printf("\n\n%d is Sub\n\n",c);
+                break;
+	    case 6:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+                scanf("%d",&num1);
+                c=num*num1;
+                        printf("\n\n%d is Mul\n\n",c);
+	   case 7:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+                scanf("%d",&num1);
+                c=num/num1;
+                        printf("\n\n%d is Div\n\n",c);		
+
+        
+>>>>>>> e0e92a19f8df3b5983d8af8449d1fa7f19cbad3f
             case 8:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
@@ -132,4 +181,5 @@ int main()
     }
     printf("\n\n\t\t\tCoding is Fun !\n\n\n");
     return 0;
+
 }
