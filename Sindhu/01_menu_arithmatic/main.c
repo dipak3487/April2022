@@ -25,22 +25,16 @@ divide(int n1, int n2)
 }
 
 
-void printMenu()
-{
-	printf("For addition print 1\n");
-	printf("For subtraction print 2\n");
-	printf("For muliplication print 3\n");
-	printf("For division print 4\n");
-	printf("Enter your choice :  ");
-        scanf("%d",&choice);
-
-
-}
-
 int main()
 {
     printf("\n\n\t\tSindhu - Menu driven program 01\n\n\n");
     int choice, n1,n2, i;
+    printf("For addition print 1\n");
+        printf("For subtraction print 2\n");
+        printf("For muliplication print 3\n");
+        printf("For division print 4\n");
+        printf("Enter your choice :  ");
+        scanf("%d",&choice);
    
 
     while(1)
