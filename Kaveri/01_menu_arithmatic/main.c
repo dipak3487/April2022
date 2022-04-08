@@ -5,12 +5,12 @@
 
 int add(int n1, int n2)
 {
-
+  return (n1+n2);
 }
 
 int subtract(int n1, int n2)
 {
-
+	return (n1 - n2);
 }
 
 
@@ -37,13 +37,15 @@ int main()
     printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
     int choice, num, i;
     unsigned long int fact;
-
+    int l,m;
     while(1)
     {
         printf("1. Factorial \n");
         printf("2. Prime\n");
         printf("3. Odd\\Even\n");
-        printf("4. Exit\n\n\n");
+        printf("4. add\n\n\n");
+	printf("5. subtract\n\n\n");
+	printf("0. exit\n\n\n");
         printf("Enter your choice :  ");
         scanf("%d",&choice);
         
@@ -93,8 +95,17 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
-        
             case 4:
+		printf("enter the numbers to add");
+		scanf("%d %d",&l,&m);
+		printf("\n\n the sum is %d\n\n",add(l,m));
+		break;
+	    case 5:
+		printf("enter the numbers to subtract");
+		scanf("%d %d ,&l,&m");
+		printf("\n\n subtraction is %d\n\n", subtract(l,m));
+		break;
+            case 0:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }

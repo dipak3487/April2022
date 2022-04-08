@@ -1,41 +1,9 @@
-#include <stdlib.h>
 #include<stdio.h>
-
-
-
-int add(int n1, int n2)
-{
-
-}
-
-int subtract(int n1, int n2)
-{
-
-}
-
-
-int multiply(int n1, int n2)
-{
-
-}
-
-int divide(int n1, int n2)
-{
-
-}
-
-
-void printMenu()
-{
-	//printf
-	//printf
-	//printf
-}
-
+#include<stdlib.h>
 int main()
 {
-    printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
-    int choice, num, i;
+    printf("\n\n\t\tTeam Narmada\n\n\n");
+    int choice, num, i, num1, c;
     unsigned long int fact;
 
     while(1)
@@ -43,7 +11,11 @@ int main()
         printf("1. Factorial \n");
         printf("2. Prime\n");
         printf("3. Odd\\Even\n");
-        printf("4. Exit\n\n\n");
+	printf("4. Add\n");
+	printf("5. Sub\n");
+	printf("6. Mul\n");
+	printf("7. Div\n");
+        printf("8. Exit\n\n\n");
         printf("Enter your choice :  ");
         scanf("%d",&choice);
         
@@ -93,12 +65,44 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
+	    case 4:
+		printf("Enter num:\n");
+		scanf("%d",&num);
+		printf("Enter num1:\n");
+		scanf("%d",&num1);
+		c=num+num1;
+			printf("\n\n%d is Addition\n\n",c);
+		break;
+	    case 5:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+		scanf("%d",&num1);
+                c=num-num1;
+                        printf("\n\n%d is Sub\n\n",c);
+                break;
+	    case 6:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+                scanf("%d",&num1);
+                c=num*num1;
+                        printf("\n\n%d is Mul\n\n",c);
+	   case 7:
+		printf("Enter num:\n");
+                scanf("%d",&num);
+                printf("Enter num1:\n");
+                scanf("%d",&num1);
+                c=num/num1;
+                        printf("\n\n%d is Div\n\n",c);		
+
         
-            case 4:
+            case 8:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }
     }
     printf("\n\n\t\t\tCoding is Fun !\n\n\n");
     return 0;
+
 }
