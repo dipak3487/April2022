@@ -66,13 +66,13 @@ int main()
                 printf("Enter the two Number:\n");
                 scanf("%d %d",&n1,&n2);
                 add = n1 + n2;
-                printf("ADD :%d\n",add);
+                printf("ADDITION :%d\n",add);
                 break;
            case 5:
                 printf("Enter the two Number:\n");
                 scanf("%d %d",&n1,&n2);
                  sub = n1 - n2;
-                printf("SUB :%d\n",sub);
+                printf("SUBSTRACTION :%d\n",sub);
                  break;
 
            case 6:
