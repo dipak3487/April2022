@@ -57,9 +57,7 @@ int main()
             case 2:
                 printf("Enter the  numbers for subtraction:\n");
                 scanf("%d %d", &n1,&n2);
-                
-                
-                printf("\n The result is %d",subtract(n1,n2));
+             	printf("\n The result is %d",subtract(n1,n2));
         
             case 3:
                 printf("Enter number:\n");
@@ -74,7 +72,6 @@ int main()
             case 4:
                 printf("Enter numbers to divide:\n");
                 scanf("%d %d", &n1,&n2);
-                
                 printf("\n The result is %d\n",divide(n1,n2));
                 break;
 
