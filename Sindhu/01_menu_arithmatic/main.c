@@ -76,7 +76,6 @@ int main()
                 break;
 
             case 5:
-                printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }
     }
