@@ -41,7 +41,7 @@ int main()
 {
     printf("\n\n\t\tSindhu - Menu driven program 01\n\n\n");
     int choice, n1,n2, i;
-    unsigned long int fact;
+   
 
     while(1)
     {
@@ -76,8 +76,15 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
-        
+
             case 4:
+                printf("Enter numbers to divide:\n");
+                scanf("%d %d", &n1,&n2);
+                
+                printf("\n The result is %d\n",divide(n1,n2));
+                break;
+
+            case 5:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }
