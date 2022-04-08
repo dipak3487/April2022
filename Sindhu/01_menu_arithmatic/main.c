@@ -80,6 +80,5 @@ int main()
                 exit(0);    // terminates the complete program execution
         }
     }
-    printf("\n\n\t\t\tCoding is Fun !\n\n\n");
-    return 0;
+   
 }
