@@ -1,27 +1,30 @@
 #include <stdlib.h>
 #include<stdio.h>
 
-
+int sum,sub,mul,dvid;
 
 int add(int n1, int n2)
 {
-return n1+n2;
+	sum=n1+n2;
+	printf("addition of the numbers:%d\n",sum);
 }
 
 int subtract(int n1, int n2)
 {
-
+	sub=n1-n2;
+	printf("subtraction of the numbers:%d\n",sub);
 }
-
-
+ 
 int multiply(int n1, int n2)
 {
-
+	mul=n1*n2;
+	printf("multiplication of the numbers:%d\n",mul);
 }
 
 int divide(int n1, int n2)
 {
-
+	dvid=n1/n2;
+	printf("division of the numbers:%d\n",dvid);
 }
 
 
@@ -34,8 +37,8 @@ void printMenu()
 
 int main()
 {
-    printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
-    int choice, num, i;
+    printf("\n\n\t\tSharayu - Menu driven program 01\n\n\n");
+    int choice, num, i,n1,n2;
     unsigned long int fact;
 
     while(1)
@@ -43,7 +46,11 @@ int main()
         printf("1. Factorial \n");
         printf("2. Prime\n");
         printf("3. Odd\\Even\n");
-        printf("4. Exit\n\n\n");
+	printf("4. Addition\n");
+	printf("5. subtraction\n");
+	printf("6. multiplication\n");
+	printf("7. division\n");
+        printf("8. Exit\n\n\n");
         printf("Enter your choice :  ");
         scanf("%d",&choice);
         
@@ -93,10 +100,41 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
-        
-            case 4:
+	case 4:
+		printf("enter the First number:\n");
+		scanf("%d", &n1);
+		printf("enter the second number:\n");
+                scanf("%d", &n2);
+		add(n1,n2);
+		
+		break;
+	case 5:
+		printf("enter the First number:\n");
+                scanf("%d", &n1);
+                printf("enter the second number:\n");
+                scanf("%d", &n2);
+                subtract(n1,n2);
+		break;
+	case 6:
+		printf("enter the First number:\n");
+                scanf("%d", &n1);
+                printf("enter the second number:\n");
+                scanf("%d", &n2);
+                multiply(n1,n2);
+		break;
+	case 7:
+		printf("enter the First number:\n");
+                scanf("%d", &n1);
+                printf("enter the second number:\n");
+                scanf("%d", &n2);
+                divide(n1,n2);
+		break;
+	case 8:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
+                break;
+
+
         }
     }
     printf("\n\n\t\t\tCoding is Fun !\n\n\n");
