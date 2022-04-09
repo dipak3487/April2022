@@ -1,7 +1,5 @@
 
 
-
-
 #include <stdlib.h>
 #include<stdio.h>
 
@@ -116,11 +114,11 @@ int main()
                 printf("\n\n multiply is %d\n\n", divide(l,m));
                 break;
           case 0:
-                printf("\n\n\t\t\tCoding is Fun !\n\n\n");
+                printf("\n\n\t\t\texit !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }
     }
-    printf("\n\n\t\t\tCoding is Fun !\n\n\n");
+    printf("\n\n\t\t\tCoding is fun !\n\n\n");
     return 0;
 
 }
