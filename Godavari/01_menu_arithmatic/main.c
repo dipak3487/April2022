@@ -1,39 +1,9 @@
-#include <stdlib.h>
 #include<stdio.h>
-
-
-
-int add(int n1, int n2)
-{
-
-}
-
-int subtract(int n1, int n2)
-{
-
-}
-
-
-int multiply(int n1, int n2)
-{
-
-}
-
-int divide(int n1, int n2)
-{
-
-}
-
-
-void printMenu()
-{
-	//printf
-	//printf
-	//printf
-}
+#include<stdlib.h>
 
 int main()
 {
+<<<<<<< HEAD
     printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
     int choice, num, i;
     unsigned long int fact;
@@ -103,3 +73,47 @@ int main()
     return 0;
 }
 
+=======
+   int i,a,b,ch;
+ while(1)
+ {
+   printf("HELLO AND WELCOME\n");
+   printf("\t1:ADD\n\t2:Subtract\n\t3:Multiply\n\t4:Divide\n\t5:Exit\n");
+   printf("Enter the  choice \n");
+   scanf("%d",&ch);
+
+   switch(ch)
+     {
+          case 1:printf("enter the two nos a \n");
+                 scanf("%d\n%d",&a,&b);
+                    i=a+b;
+                printf(" Addition is %d ",i);
+         break;
+
+         case 2:printf("enter the two nos a\n");
+                scanf("%d\n%d",&a,&b);
+                 i=a-b;
+               printf(" Subtraction  is %d ",i);
+         break;
+         case 3:printf("enter the two nos\n");
+                scanf("%d\n%d",&a,&b);
+                 i=a *b;
+               printf(" Multiply  is %d ",i);
+        break;
+         case 4:printf("enter the two nos\n");
+                scanf("%d\n%d",&a,&b);
+                 i=a/b;
+               printf(" Divide is %d ",i);
+        break;
+
+
+         case 5 :
+                 printf("END of project\n");
+                    exit(0);
+         break;
+
+     }
+  }
+   return 0;
+ }
+>>>>>>> 9a8cb8725b93158e20418d8a1f4f56908d3aee08

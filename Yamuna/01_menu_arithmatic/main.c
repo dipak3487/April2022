@@ -1,49 +1,26 @@
-#include <stdlib.h>
+#include<stdlib.h>
 #include<stdio.h>
 
 
-
-int add(int n1, int n2)
-{
-
-}
-
-int subtract(int n1, int n2)
-{
-
-}
-
-
-int multiply(int n1, int n2)
-{
-
-}
-
-int divide(int n1, int n2)
-{
-
-}
-
-
-void printMenu()
-{
-	//printf
-	//printf
-	//printf
-}
-
 int main()
 {
-    printf("\n\n\t\tGanga - Menu driven program 01\n\n\n");
+    printf("\n\n\t\tYamuna @Omkar - Menu driven program 01\n\n\n");
     int choice, num, i;
     unsigned long int fact;
+	int a; 
+	int b;
+	int res;
 
     while(1)
     {
         printf("1. Factorial \n");
         printf("2. Prime\n");
         printf("3. Odd\\Even\n");
-        printf("4. Exit\n\n\n");
+        printf("4. Add\n");
+	printf("5. Subtract\n");
+	printf("6. Multiply\n");
+	printf("7. Divided\n");
+        printf("8. Exit\n\n\n");
         printf("Enter your choice :  ");
         scanf("%d",&choice);
         
@@ -93,8 +70,40 @@ int main()
                 else
                     printf("\n\n%d is an Odd number\n\n",num);
                 break;
+		
+	    case 4:
+		printf("Enter numbers to add:\n");
+		scanf("%d %d", &a , &b);
+		
+		res = a+b;
+		printf("addition of two nos is : %d\n", res);
+		break;
+
+	    case 5:
+                printf("Enter numbers to subtract:\n");
+                scanf("%d %d", &a , &b);
+
+                res = a-b;
+                printf("subtraction of two nos is : %d \n", res);
+		break;
+
+	    case 6:
+                printf("Enter numbers to Multiply:\n");
+                scanf("%d %d", &a , &b);
+
+                res = a*b;
+                printf("Multiplication of two nos is : %d \n", res);
+		break;
+
+	    case 7:
+                printf("Enter numbers to div:\n");
+                scanf("%d %d", &a , &b);
+
+                res = a/b;
+                printf("division of two nos is : %d\n", res);
+
         
-            case 4:
+            case 8:
                 printf("\n\n\t\t\tCoding is Fun !\n\n\n");
                 exit(0);    // terminates the complete program execution
         }
