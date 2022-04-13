@@ -1,43 +1,62 @@
 #include <stdlib.h>
 #include<stdio.h>
+
+int takeUserInput(char *message)
+{
+	int userInput = 0;
+	printf("%s", message);
+	scanf("%d", &userInput);
+	return userInput;
+}
+	
 int main()
 {
-	int a, b, c, d, e, f, g, h;
+	//int a, b, c, d, e, f, g, h;
+	unsigned char ans = 0;
 
-	printf("a) Want admission in next grade? : "); 
-	scanf("%d", &a);
-	printf("b) You passed in math? : ");
-	scanf("%d", &b);
-	printf("c) You passed in Pysics? : ");
-	scanf("%d", &c);
-	printf("d) You passed in Chemistry? : ");
-	scanf("%d", &d);
-	printf("e) You passed in Biology? : ");
-	scanf("%d", &e);
-	printf("f) You passed in English? : ");
-	scanf("%d", &f);
-	printf("g) You passed in History? : ");
-	scanf("%d", &g);
-	printf("h) You passed in Arts? : ");
-	scanf("%d", &h);
+	ans = takeUserInput("a) Want admission in next grade? : "); 
 
-	printf("Your answers are:\n");
-	printf("Ans (a) = %d\n", a);
-	printf("Ans (b) = %d\n", b);
-	printf("Ans (c) = %d\n", c);
-	printf("Ans (d) = %d\n", d);
-	printf("Ans (e) = %d\n", e);
-	printf("Ans (f) = %d\n", f);
-	printf("Ans (g) = %d\n", g);
+	ans <<=1;
+	ans |= takeUserInput("b) You passed in math? : ");
 	
-	if( a & b & c & d & e & f & g & h)
+	ans <<=1;
+	ans |= takeUserInput("c) You passed in Pysics? : ");
+
+	ans <<=1;
+	ans |= takeUserInput("d) You passed in Chemistry? : ");
+
+	ans <<=1;
+	ans |= takeUserInput("e) You passed in Biology? : ");
+
+	ans <<=1;
+	ans |= takeUserInput("f) You passed in English? : ");
+
+	ans <<=1;
+	ans |= takeUserInput("g) You passed in History? : ");
+
+	ans <<=1;
+	ans |= takeUserInput("h) You passed in Arts? : ");
+
+
+	printf("Your answers are: %x \n", ans);
+	
+	//allow if all passed.
+	//if(0xff == ans)
+
+	//student should be intrested and should pass maths and physics
+	// xxxx xxxx
+	// 111x xxxx <= give admission
+	// 1110 0000 
+	// e0
+
+	if( (ans & 0xe0) == 0xe0 )
 	{
-		printf("You got the admission!\n");
-	}
-	else
-	{
-		printf("You haven't got the admission...\n");
-	}
+        printf("You got the admission!\n");
+    }
+    else
+    {
+        printf("You haven't got the admission...\n");
+    }
 
 
 	return EXIT_SUCCESS;
