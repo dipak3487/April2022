@@ -36,7 +36,7 @@ int main()
                 printf("passed in Arts?\t\t");
                 scanf("%d",&g);
 
-
+	printf("==================================\n");
         printf("Your answers are:\n");
         printf("%d\n",a);
         printf("%d\n",b);
@@ -49,11 +49,11 @@ int main()
 
         if(a&&b&&c&&d&&e&&f&&g==1)
 {
-         printf("You got the admission, Congratulations");
+         printf("You got the admission, Congratulations\n");
 }
         else
 {
-        printf("You could not get the admission, Sorry");
+        printf("You could not get the admission, Sorry\n");
 }
 
 
