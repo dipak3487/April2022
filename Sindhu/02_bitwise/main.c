@@ -32,10 +32,6 @@ int main()
 	{
 		printf("want admission in next grade enter 1\n");
 	}
-	if((a==1)&&(b==0)||(c==1)||(d==1)||(e==1)||(f==1)||(g==1)||(h==1))
-	{
-		printf("you got admission\n");
-	}
 
 	return 0;
 }
