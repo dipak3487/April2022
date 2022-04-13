@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 /*Aditya Kalbhor
-
+  Renuka Waghmare
 */
+
 
  int main()
 {
@@ -27,4 +30,5 @@
     if()
  return 0;
 }
+>>>>>>> ebfbf7260163f428d2fe09e921e04bd809744a44
 
