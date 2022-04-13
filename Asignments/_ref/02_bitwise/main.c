@@ -51,23 +51,7 @@ int main()
 	// 1110 0000 
 	// e0
 
-	//if( (ans & 0xe0) == 0xe0 )	// maths and pysics must pass.
-
-					  // a==1 && (b+c+d+e+f+g+h) >= 6)
-	
-	//mask = 1;
-	// xxxx xxxx
-	// 0000 0001
-	// 0000 0010
-
-	for(int i=0; i<7; i++)
-	{
-		if(ans & mask) passCount++;
-		mask <<= 1;
-	}
-	printf("passCount=%d\n",passCount);
-
-	if(0xff == ans || ((0x80&ans) && (6 >= passCount) ))
+	if( (ans & 0xe0) == 0xe0 )	// maths and pysics must pass.
 	{
         printf("You got the admission!\n");
     }
