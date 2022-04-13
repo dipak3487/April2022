@@ -1,6 +1,13 @@
 #include <stdlib.h>
 #include<stdio.h>
 
+//student should be intrested and should pass maths and physics
+// xxxx xxxx
+// 111x xxx1 <= give admission
+// 1110 0001 
+// e1
+#define MASK 0xe1
+
 int takeUserInput(char *message)
 {
 	int userInput = 0;
@@ -45,13 +52,7 @@ int main()
 	//allow if all passed.
 	//if(0xff == ans)
 
-	//student should be intrested and should pass maths and physics
-	// xxxx xxxx
-	// 111x xxxx <= give admission
-	// 1110 0000 
-	// e0
-
-	if( (ans & 0xe0) == 0xe0 )	// maths and pysics must pass.
+	if( (ans & MASK) == MASK )	// maths and pysics and Arts must pass.
 	{
         printf("You got the admission!\n");
     }
