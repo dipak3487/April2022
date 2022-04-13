@@ -1,6 +1,6 @@
 /*Aditya Kalbhor
 
-*/
+/*Renuka Waghmare
 
  int main()
 {
