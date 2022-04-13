@@ -9,6 +9,14 @@ Aishwarya
 
 #include<stdio.h>
 
+
+int takeUserInput(char *message)
+{
+	int userInput = 0;
+	printf("%s", message);
+	scanf("%d", &userInput);
+	return userInput;
+}
 int main()
 {
 	printf("\n\n\n\t\t This program is from team Narmada\n\n\n\n");
@@ -50,6 +58,19 @@ int main()
 	{
 		printf("You did not get the admission\n");
 	}
+
+	//allow failure in one subject
+
+/*	if((a==1) && ((b+c+d+e+f+g+h)) >=  6)
+	{
+		printf("You got the admission\n");
+	}
+
+	else
+	{
+		printf("You did not get the admission\n");
+	}*/
+
 	return 0;
 }
 
