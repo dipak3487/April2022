@@ -1,16 +1,21 @@
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 /*Aditya Kalbhor
+<<<<<<< HEAD
+ * Pramod Tidke
+
+=======
   Renuka Waghmare
+>>>>>>> 475ba4ea44518e37b4ea38e87f4848c77a1dae21
 */
 
-<<<<<<< HEAD
-*/
+//<<<<<<< HEAD
+
 #include<stdio.h>
 #include<stdlib.h>
-=======
+//=======
 
->>>>>>> 475ba4ea44518e37b4ea38e87f4848c77a1dae21
+//>>>>>>> 475ba4ea44518e37b4ea38e87f4848c77a1dae21
  int main()
 {
 
@@ -45,5 +50,5 @@
 
  return 0;
 }
->>>>>>> ebfbf7260163f428d2fe09e921e04bd809744a44
+//>>>>>>> ebfbf7260163f428d2fe09e921e04bd809744a44
 
