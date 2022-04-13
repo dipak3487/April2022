@@ -1,16 +1,3 @@
-/*
-Team kaveri
-
-chaitanya
-Kodari Suresh
-Madduri Raghuram
-Piyush
-Renu Shantaram Wagh
-*/
-
-
-
-
 #include<stdio.h>
 
 int main()
@@ -47,9 +34,5 @@ int main()
         }
 
         return 0;
-
 }
-
- 
-
 
