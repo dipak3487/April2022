@@ -10,13 +10,13 @@ Aishwarya
 #include<stdio.h>
 
 
-int takeUserInput(char *message)
+/*int takeUserInput(char *message)
 {
 	int userInput = 0;
 	printf("%s", message);
 	scanf("%d", &userInput);
 	return userInput;
-}
+}*/
 int main()
 {
 	printf("\n\n\n\t\t This program is from team Narmada\n\n\n\n");
