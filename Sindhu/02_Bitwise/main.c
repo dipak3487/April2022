@@ -10,30 +10,30 @@ int main()
         int n,a,b,c,d,e,f,g;
 
         printf("Hii.!!,Want an admission in the next grade? :\n");
-	printf("Please enter, 0- YES and 1- NO\n");       
+	printf("Please enter, 1 for YES and 0 for NO\n");       
         scanf("%d",&n);
 
 	if(n==1)
         {
-                printf("passed in maths?");
+                printf("passed in maths?\t");
                 scanf("%d",&a);
 
-                 printf("passed in Physics?");
+                 printf("passed in Physics?\t");
                 scanf("%d",&b);
 
-                 printf("passed in Chemistry?");
+                 printf("passed in Chemistry?\t");
                 scanf("%d",&c);
 
-                 printf("passed in Biology?");
+                 printf("passed in Biology?\t");
                 scanf("%d",&d);
 
-                 printf("passed in English?");
+                 printf("passed in English?\t");
                 scanf("%d",&e);
 
-                printf("passed in History?");
+                printf("passed in History?\t");
                 scanf("%d",&f);
 
-                printf("passed in Arts?");
+                printf("passed in Arts?\t\t");
                 scanf("%d",&g);
 
 
