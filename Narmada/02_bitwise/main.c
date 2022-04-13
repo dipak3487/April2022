@@ -32,7 +32,7 @@ int main()
         scanf("%d", &h);
 
 
-	printf("Your answers are :\n\");
+	printf("Your answers are :\n");
 	printf("Ans (a) =%d\n ", a);
         printf("Ans (b) =%d\n ", b);
         printf("Ans (c) =%d\n ", c);
