@@ -9,7 +9,7 @@ int main()
 {
         int n,a,b,c,d,e,f,g;
 
-        printf("Want admission in the next grade? :\n");
+        printf("Hii.!!,Want an admission in the next grade? :\n");
 	printf("Please enter, 0- YES and 1- NO\n");       
         scanf("%d",&n);
 
