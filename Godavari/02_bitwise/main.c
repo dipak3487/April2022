@@ -1,7 +1,8 @@
 /*Aditya Kalbhor
 
-/*Renuka Waghmare
-
+*/
+#include<stdio.h>
+#include<stdlib.h>
  int main()
 {
 
@@ -23,8 +24,17 @@
   scanf("%d",&h);
   printf("You passed in Arts?\n");
   scanf("%d",&i);
+ 
+    if((((((((a&b)&c)&d)&e)&f)&g)&h)&i)
+         {
+                    printf("YOU can go to next grade....!!!");
+         }
+        else
+         {
+              printf("YOu can not go to next grade");
+         }        
 
-    if()
+
  return 0;
 }
 
