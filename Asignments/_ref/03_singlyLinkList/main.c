@@ -6,12 +6,11 @@ typedef struct node {
 	struct node *next;
 }Node;
 
-int takeData()
+void takeData(Node *p)
 {
-	int data;
 	printf("\nEnter integer: ");
-	scanf("%d", &data);
-	return data;
+	scanf("%d", &(p->data) );
+	return;
 }
 
 int main()
@@ -25,7 +24,7 @@ int main()
 	
 	head = malloc(sizeof(Node) );
 	head->next = NULL;
-	head->data = takeData();
+	takeData(head);
 	p = head;
 
 	while(N > 1)
@@ -34,7 +33,7 @@ int main()
 		p->next = malloc(sizeof(Node) );
 		p = p->next;
 		p->next = NULL;
-		p->data = takeData();
+		takeData(p);
 		N--;
 	}
 
