@@ -82,5 +82,8 @@ imap <F8> <ESC>:!ctags -Rf .tags<CR>i<RIGHT>
 map <F9> :!./program<CR>
 imap <F9> <ESC>:!./program<CR>i<RIGHT>
 
+map <F10> :se nu!<CR>
+imap <F10> <ESC>:se nu!<CR>i<RIGHT>
+
 
 let &tags=".tags"
