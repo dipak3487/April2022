@@ -13,14 +13,29 @@ void takeData(Node *p)
 	return;
 }
 
+int printList(Node *head)
+{
+	Node *p;
+	p = head;
+	while(p != NULL)
+	{
+		printf("[%d]->",  p->data);
+		p = p->next;
+	}
+	printf("NULL\n");
+
+	return 0;
+}
+
 int main()
 {
 	Node *head = NULL;
 	Node *p = NULL;
-	int N = 0;
+	Node *newNode = NULL;
+	int N = 0, total=0;
 
 	printf("How many nodes you want: "); scanf("%d", &N);
-
+	total = N;
 	
 	head = malloc(sizeof(Node) );
 	head->next = NULL;
@@ -38,13 +53,35 @@ int main()
 	}
 
 
+	printList(head);
+
+
+
+	printf("Where you want to insert new node: [0-%d]", total);
+	scanf("%d", &N);
+	newNode = malloc(sizeof(Node));
+	newNode->next = NULL;
+	takeData(newNode);
+
 	p = head;
-	while(p != NULL)
+	while(N > 1)
 	{
-		printf("[%d]->",  p->data);
-		p = p->next;
+		p=p->next;
+		N--;
 	}
-	printf("NULL\n");
+
+	if(N)	//if not zero'th gap
+	{
+		newNode->next = p->next;
+		p->next = newNode;
+	}
+	else	// if zero'th gap
+	{
+		newNode->next = head;
+		head = newNode;
+	}
+
+	printList(head);
 
 	return 0;
 }
