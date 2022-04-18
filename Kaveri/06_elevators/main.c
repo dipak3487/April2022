@@ -12,6 +12,17 @@ State currentState;
 
 int takeFloors()
 {
+	int F;
+	printf("enter the no.of floors ");
+	scanf("%d",F);
+	if(F<0 ||F>99)
+	{
+		takeFloors();
+	}
+	else{
+		printf("the no.of.floors are",F);
+	}
+//	return F;
 	//take number of floors available (1..99) in totalFloors
 	//print message
 	//take input
