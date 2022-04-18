@@ -9,18 +9,19 @@ typedef struct Command {
 int currentFloor;
 int totalFloors;
 State currentState;
+Command *head = NULL;
 
 int takeFloors()
 {
 	int F;
 	printf("enter the no.of floors ");
-	scanf("%d",F);
+	scanf("%d",&F);
 	if(F<0 ||F>99)
 	{
 		takeFloors();
 	}
 	else{
-		printf("the no.of.floors are",F);
+		printf("the no.of.floors are%d",F);
 	}
 //	return F;
 	//take number of floors available (1..99) in totalFloors
@@ -35,12 +36,12 @@ int takeFloors()
 int printDetails()
 {
 
-    Node *p;
+        printf("\n The current floor number is: %d \t current state is %d \n", currentFloor,currentState);
+	Command *p = NULL;
     p = head;
     while(p != NULL)
     {
 
-        printf("\n The current floor number is: %d \t current state is %c \n", currentFloor,currentState);
 
 		printf("\n The list of (current and pending) commands is: %d", p->data);
 		p = p->next;
@@ -57,17 +58,18 @@ int printDetails()
 
 int takeCommands()
 {
-	Command *head = NULL;
     Command *p = NULL;
     Command *newNode = NULL;
     int N = 0, total=0;
 
     printf("How many commands  you want: "); scanf("%d", &N);
     total = N;
-
-    head = malloc(sizeof(Command) );
-    head->next = NULL;
-    scanf("%d",&(p->data)); // takeData(head);
+	if(head ==NULL)
+	{
+		head = malloc(sizeof(Command) );
+		head->next = NULL;
+		scanf("%d",&(head->data)); // takeData(head);
+	}
     p = head;
 
     while(N > 1)
@@ -80,6 +82,16 @@ int takeCommands()
         // takeData(p);
         N--;
     }
+	p = head;
+	while(p != NULL)
+    {
+        printf("[%d]->",  p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+
+    return 0;
+
 	
 //    p = head;
 //	head = head->next;
@@ -97,6 +109,40 @@ int takeCommands()
 
 int processCommand()
 {
+
+	Command *l;
+	int p = head->data;
+	int TargetFloor;
+	TargetFloor = p%100;
+	while(TargetFloor != currentFloor)
+	{
+	 if(currentFloor !=TargetFloor)
+	 {
+		if(currentFloor < TargetFloor)
+		{
+			currentFloor=+1;
+			currentState = UP;
+		}
+		else
+		{
+			currentFloor= currentFloor-1;
+			currentState = DOWN;
+		}
+	 }
+	}
+	if(currentFloor == TargetFloor)
+	{
+		currentState=0;
+		l= head;
+		head=head->next;
+		l->next =NULL;
+		free(l);
+		l=NULL;
+	}
+	printDetails();
+	
+
+
 	//take the first node (take value of head, change head)
 	//command = head->data
 
