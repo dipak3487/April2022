@@ -12,27 +12,22 @@ State currentState;
 int takeFloors(int m)
 {
         //take number of floors available (1..99) in totalFloors
-        int totalfloors[10]={1,2,3,4,5,6,7,8,9,10};
-          int i;
 
          //print messag
            //   printf("ENter the number from 1 to 99\n");
            //  scanf("%d\n",&m);
             //take input
             //validate the input (1..99)
-           for(int i=1;i<10;i++)
-            {
-                if(totalfloors[i] == m )
-             {
-              printf("-----valid input:-\n");
-                break;
-             }
-            }
-                   if(i == 10||i>10)
-         {
-                 printf("------Value is incorrect-----\n");
-          }
-
+            int F;
+	printf("enter the no.of floors ");
+	scanf("%d",F);
+	if(F<0 ||F>99)
+	{
+		takeFloors();
+	}
+	else{
+		printf("the no.of.floors are",F);
+	}
         //retake input if required.
   return 0;
 }
@@ -52,8 +47,18 @@ int printDetails()
 
 int takeCommands()
 {
-   {
-        //print how many commands you want to provide
+   
+  {
+   
+         Node *p;
+         p = head;
+    while(p != NULL)
+    {
+        printf("\n The current floor number is: %d \t current state is %c \n", currentFloor,currentState);
+		printf("\n The list of (current and pending) commands is: %d", p->data);
+		p = p->next;
+    }
+       //print how many commands you want to provide
         //OR
         //4 203 105 7 100 => first number will tell how many commands we should read.
 
@@ -66,7 +71,27 @@ int takeCommands()
 
 int processCommandnt()
 {
-        //take the first node (take value of head, change head)
+         	Command *head = NULL;
+    Command *p = NULL;
+    Command *newNode = NULL;
+    int N = 0, total=0;
+    printf("How many commands  you want: "); scanf("%d", &N);
+    total = N;
+    head = malloc(sizeof(Command) );
+    head->next = NULL;
+    scanf("%d",&(p->data)); // takeData(head);
+    p = head;
+    while(N > 1)
+    {
+        p->next = malloc(sizeof(Command) );
+        p = p->next;
+        p->next = NULL;
+		scanf("%d",&(p->data));
+        // takeData(p);
+        N--;
+    }
+
+          //take the first node (take value of head, change head)
         //command = head->data
 
         //targetFloor = (take target floor from command)
