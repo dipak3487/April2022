@@ -23,6 +23,20 @@ int takeFloors()
 
 int printDetails()
 {
+
+    Node *p;
+    p = head;
+    while(p != NULL)
+    {
+
+        printf("\n The current floor number is: %d \t current state is %c \n", currentFloor,currentState);
+
+		printf("\n The list of (current and pending) commands is: %d", p->data);
+		p = p->next;
+
+    }
+
+
 	//print current floor number, current state, list of (current and pending) commands.
 	//e.g.
 	//Floor: 0, State: UP, Commands: 203, 105, 7, 100
