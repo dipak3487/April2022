@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+#include<stdlib.h>
 typedef enum State { Idle=0, UP, DOWN} State;
 typedef struct Command {
 	int data;
@@ -10,7 +10,7 @@ int currentFloor;
 int totalFloors;
 State currentState;
 
-int takeFloors();
+int takeFloors()
 {
 	//take number of floors available (1..99) in totalFloors
 	//print message
@@ -32,7 +32,36 @@ int printDetails()
 
 int takeCommands()
 {
-	//print how many commands you want to provide
+	Command *head = NULL;
+    Command *p = NULL;
+    Command *newNode = NULL;
+    int N = 0, total=0;
+
+    printf("How many commands  you want: "); scanf("%d", &N);
+    total = N;
+
+    head = malloc(sizeof(Command) );
+    head->next = NULL;
+    scanf("%d",&(p->data)); // takeData(head);
+    p = head;
+
+    while(N > 1)
+    {
+
+        p->next = malloc(sizeof(Command) );
+        p = p->next;
+        p->next = NULL;
+		scanf("%d",&(p->data));
+        // takeData(p);
+        N--;
+    }
+	
+//    p = head;
+//	head = head->next;
+//	p->next = NULL;
+//	free(p);
+    
+    //print how many commands you want to provide
 	//OR
 	//4 203 105 7 100 => first number will tell how many commands we should read. 
 
