@@ -83,5 +83,15 @@ int main()
 
 	printList(head);
 
+	printf("After removing head, the list looks like: \n");
+
+	p = head;
+	head = head->next;
+	p->next = NULL;
+	free(p);
+	p = NULL;
+
+	printList(head);
+
 	return 0;
 }
