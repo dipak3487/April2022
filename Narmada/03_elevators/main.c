@@ -22,8 +22,8 @@ int takeFloors()
 	scanf("%d", &totalFloors);//take input
 	if(totalFloors >= 0 && totalFloors <= 99){
 		printf("Enter Current Floor number\n"); scanf("%d", &(p->currentFloor));
-        printf("Enter CurrentState\n"); scanf("%s", &(p->currentState));
-        printf("Enter Commands\n"); scanf("%d", &(p->data));
+	        printf("Enter CurrentState\n"); scanf("%s", &(p->currentState));
+        	printf("Enter Commands\n"); scanf("%d", &(p->data));
 		
 	}
 	else{
