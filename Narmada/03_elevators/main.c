@@ -63,11 +63,15 @@ int takecommands()
 
 	printf("How many commands you want: "); scanf("%d", &N);
 	total = N;
+
+	if(head == NULL)
+	{
 	
-	head = malloc(sizeof(Command) );
-	head->next = NULL;
-	scanf("%d", &(head->data));
-	p = head;
+		head = malloc(sizeof(Command) );
+		head->next = NULL;
+		scanf("%d", &(head->data));
+		p = head;
+	}
 
 	while(N > 1)
 	{
@@ -98,8 +102,8 @@ int processcommand()
 {
 	//take the first node (take value of head, change head)
 	//command = head->data
-	Command *p;
-	p = head->data;
+	Command *t;
+	int p = head->data;
 	int targetFloor;
 	targetFloor = currentFloor%100;
 	//targetfloor = (take target floor from command)
@@ -128,11 +132,11 @@ int processcommand()
 	if(targetFloor == currentFloor)
 	{
 		currentState = Idle;
-		p = head;
+		t = head;
 		head = head->next;
-		p->next = NULL;
-		free(p);
-		p = NULL;	//remove current command. it is done. //head = head ->next, but make sure you free up memory. 
+		t->next = NULL;
+		free(t);
+		t = NULL;	//remove current command. it is done. //head = head ->next, but make sure you free up memory. 
 	}
 	printDetails();	//print the current state. by calling printdetails()
 	return 0;
