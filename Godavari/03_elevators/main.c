@@ -41,7 +41,7 @@ int printDetails()
         {
                 printf("%03d ",  p->data);
                 p = p->next;
-                        p = p->next;
+
         }
         printf("]\n");
 
