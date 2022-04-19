@@ -46,6 +46,18 @@ int printDetails()
 	return 0;
 }
 
+int takeCommand()
+{
+	int c = -1;
+
+	while(c < 0 || c/100 > 2 || c%100 > totalFloors)
+	{
+		if( -1 != c) printf("Valid range: [0-%d, 100-%d, 200-%d]. \n", totalFloors, 100+totalFloors, 200+totalFloors);
+		scanf("%d", &c);
+	}
+	return c;
+}
+
 int takeCommands()
 {
 	int N = 0;
@@ -61,7 +73,8 @@ int takeCommands()
 
 	head = malloc(sizeof(Command) );
 	head->next = NULL;
-	scanf("%d", &(head->data));	//TODO: Validation 
+	//scanf("%d", &(head->data));	//TODO: Validation 
+	head->data = takeCommand();
 	p = head;
 
 	while(N > 1)
@@ -70,7 +83,8 @@ int takeCommands()
 		p->next = malloc(sizeof(Command) );
 		p = p->next;
 		p->next = NULL;
-		scanf("%d", &(p->data));
+		//scanf("%d", &(p->data));
+		p->data = takeCommand();
 		N--;
 	}
 
