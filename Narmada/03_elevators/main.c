@@ -1,8 +1,9 @@
-
-#include<stdlib.h>
 #include<stdio.h>
+#include <stdlib.h>
 
 typedef enum State { Idle=0, UP, DOWN} State;
+char strState [3][5] = { "Idle", "UP", "DOWN" };
+
 typedef struct Command {
 	int data;
 	struct Command *next;
@@ -15,63 +16,66 @@ Command *head;
 
 int takeFloors()
 {
-	//take number of floors available (1..99) in totalFloors
-	printf("Enter the floor number from 1 to 99\n");	//print message
-	scanf("%d", &totalFloors);//take input
-	if(totalFloors >= 0 && totalFloors <= 99){
-		printf("This is the right Floor!!!\n");		
+	totalFloors = 0;
+	while(totalFloors < 1 || totalFloors > 99)
+	{
+		printf("How tall is your building (1-99): "); 
+		scanf("%d", &totalFloors);
 	}
-	else{
-		printf("Floor Number doesn't exist\n");
-		exit(0);
-
-	}                          //validate the input (1..99)
-	//retake input if required.
 	return 0;
 }
 
 
 int printDetails()
 {
-	//print current floor number, current state, list of (current and pending) commands.
-	
-	printf("Floor: %d,  State:%s\n", currentFloor, currentState);
-	
 	Command *p;
+	//print current floor number, current state, list of (current and pending) commands.
+	//e.g.
+	//Floor: 0, State: UP, Commands: 203, 105, 7, 100
+	//currentFloor, currentState, head
+	printf("\t[%d]-[%s]:\t[ ", currentFloor, strState[currentState]);
+
 	p = head;
 	while(p != NULL)
 	{
-		//printf("Enter Current Floor number\n"); scanf("%d", &(p->currentFloor));
-                //printf("Enter CurrentState\n"); scanf("%s", &(p->currentState));
-                //printf("Enter Commands\n"); scanf("%d", &(p->data));
-//		printf("The list of (current and pending) commands:%d");
+		printf("%03d ",  p->data);
 		p = p->next;
 	}
-	//e.g.
-	//floor: 0, state: up, commands: 203, 105, 7, 100
+	printf("]\n");
 
 	return 0;
 }
 
-int takecommands()
+int takeCommand()
 {
-	//print how many commands you want to provide
+	int c = -1;
 
-	Command *p = NULL;
-	Command *newNode = NULL;
-	int N = 0, total=0;
-
-	printf("How many commands you want: "); scanf("%d", &N);
-	total = N;
-
-	if(head == NULL)
+	while(c < 0 || c/100 > 2 || c%100 > totalFloors)
 	{
-	
-		head = malloc(sizeof(Command) );
-		head->next = NULL;
-		scanf("%d", &(head->data));
-		p = head;
+		if( -1 != c) printf("Valid range: [0-%d, 100-%d, 200-%d]. \n", totalFloors, 100+totalFloors, 200+totalFloors);
+		scanf("%d", &c);
 	}
+	return c;
+}
+
+int takeCommands()
+{
+	int N = 0;
+	Command *p;
+
+	//print how many commands you want to provide
+	//OR
+	//4 203 105 7 100 => first number will tell how many commands we should read. 
+	printf("Commands for elevator (-1 to exit) : ");
+	scanf("%d", &N);
+
+	if(N<1) exit(EXIT_SUCCESS);
+
+	head = malloc(sizeof(Command) );
+	head->next = NULL;
+	//scanf("%d", &(head->data));	//TODO: Validation 
+	head->data = takeCommand();
+	p = head;
 
 	while(N > 1)
 	{
@@ -79,85 +83,107 @@ int takecommands()
 		p->next = malloc(sizeof(Command) );
 		p = p->next;
 		p->next = NULL;
-		scanf("%d", &(p->data));
+		//scanf("%d", &(p->data));
+		p->data = takeCommand();
 		N--;
 	}
 
-	p = head;
-	while(p != NULL)
-	{
-        	printf("[%d]->",  p->data);
-        	p = p->next;
-	}
-
-	//or
-	//4 203 105 7 100 => first number will tell how many commands we should read. 
-
-	//take all inputs in the list. 
-	//hint: link list initial filling logic
 	return 0;
 }
 
-int processcommand()
+int processCommand()
 {
+	int command = 0;
+	int targetFloor = 0;
+	Command *p = NULL;
+
+
 	//take the first node (take value of head, change head)
 	//command = head->data
-	Command *t;
-	int p = head->data;
-	int targetFloor;
-	targetFloor = currentFloor%100;
-	//targetfloor = (take target floor from command)
+	command = head->data;
+
+	//targetFloor = (take target floor from command)
+	targetFloor = command%100;
 
 	//if current floor != target floor
 		// change floor by one. 
 		//change state respectively
-	while(targetFloor != currentFloor)
-	{
-		if(targetFloor > currentFloor)
-		{
-			currentFloor += 1;
-			currentState = UP;
-		}
-		else if(targetFloor < currentFloor)
-		{
-			currentFloor -= 1;
-			currentState = DOWN;
-		}
-		else{
-			currentState = Idle;
-		}
-	} 
 	//else
 		//change state to idle
-	if(targetFloor == currentFloor)
+		//remove current command. It is done. //head = head ->next, but make sure you free up memory. 
+
+	if(currentFloor < targetFloor)
+	{
+		//elevator should go UP.
+		currentFloor++;
+		currentState = UP;
+	}
+	else if(currentFloor > targetFloor)
+	{
+		currentFloor--;
+		currentState = DOWN;
+	}
+	else
 	{
 		currentState = Idle;
-		t = head;
+		
+		p = head;
 		head = head->next;
-		t->next = NULL;
-		free(t);
-		t = NULL;	//remove current command. it is done. //head = head ->next, but make sure you free up memory. 
+		p->next = NULL;
+		free(p);
+		p = NULL;
+
 	}
-	printDetails();	//print the current state. by calling printdetails()
+
+	//we know:
+	//		- the current floor
+	//		- the direction of the elevator
+	//		- pending commands
+	//We can decide the state. depending on the current direction and pending commands.
+
+	//if state == UP && pending commands contain 100+currentFloor, 
+	//	Change the state to idle
+	//	remove the [100+currentFloor] node
+	//	sleep(1)
+	//	printDetails();
+	//	Change the state back to UP
+	//if state == DOWN && pending commands contain 200+currentFloor, do the same thing. 
+	//if pending commands contain currentfloor   ==> someone from elevator want to go out on the current floor. 
+	//idle. let the person from the elevator go out. 
+	// continue in same direction.  
+	//searchNode(int data)	// 0 or N, if found N times, return N, if not found, return 0
+	//deleteNode(int N)	//delete all nodes which contains data == N
+	//
+	printDetails();
+
+	//print the current state. by calling printDetails()
 	return 0;
 }
 
 
 int main()
 {
-	takeFloors();	//take number of floors available (0..99) in totalfloors
+	takeFloors();	//take number of floors available (0..99) in totalFloors
 
 	printDetails();
 
 	while(1)
 	{
 		//if no pending commands, ask for it
-			takecommands();
-		//else do nothing here. 
+		if(NULL == head)
+		{
+			takeCommands();
+		}
+		else
+		{
+			//else do nothing here. 
+		}
 
 		//process the current command
-		processcommand();
+		processCommand();
+		sleep(1);
 	}
 
 	return 0;
 }
+
