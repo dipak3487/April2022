@@ -1,6 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<unistd.h>
 typedef enum State { Idle=0, UP, DOWN} State;
+char strState [3][5] = { "Idle", "UP", "DOWN" };
+
 typedef struct Command {
 	int data;
 	struct Command *next;
@@ -9,45 +12,49 @@ typedef struct Command {
 int currentFloor;
 int totalFloors;
 State currentState;
-Command *head = NULL;
+Command *head;
 
+//int takeFloors();
 int takeFloors()
 {
-	int F;
-	printf("enter the no.of floors ");
-	scanf("%d",&F);
-	if(F<0 ||F>99)
+	totalFloors = 0;
+	while(totalFloors < 1 || totalFloors > 99)
+	{
+		printf("How tall is your building (1-99): "); 
+		scanf("%d", &totalFloors);
+	}
+	return 0;
+
+/*	if(totalFloors<0 ||totalFloors>99)
 	{
 		takeFloors();
 	}
 	else{
-		printf("the no.of.floors are%d",F);
-	}
-//	return F;
+		printf("the no.of.floors are%d",&totalFloors);
+	}*/
 	//take number of floors available (1..99) in totalFloors
 	//print message
 	//take input
 	//validate the input (1..99)
 	//retake input if required.
-	return 0;
+	
 }
 
 
 int printDetails()
 {
 
-        printf("\n The current floor number is: %d \t current state is %d \n", currentFloor,currentState);
-	Command *p = NULL;
+	Command *p;
+     //   printf("\n The current floor number is: %d \t current state is %d \n", currentFloor,currentState);
+	printf("\t[%d]-[%s]:\t[ ", currentFloor, strState[currentState]);
     p = head;
     while(p != NULL)
     {
-
-
-		printf("\n The list of (current and pending) commands is: %d", p->data);
+		printf(" %03d", p->data);
 		p = p->next;
 
     }
-
+	printf("]\n");
 
 	//print current floor number, current state, list of (current and pending) commands.
 	//e.g.
@@ -55,20 +62,32 @@ int printDetails()
 
 	return 0;
 }
+int takeCommand()
+{
+	int c = -1;
 
+	while(c < 0 || c/100 > 2 || c%100 > totalFloors)
+	{
+		if( -1 != c) printf("Valid range: [0-%d, 100-%d, 200-%d]. \n", totalFloors, 100+totalFloors, 200+totalFloors);
+		scanf("%d", &c);
+	}
+	return c;
+}
 int takeCommands()
 {
     Command *p = NULL;
-    Command *newNode = NULL;
-    int N = 0, total=0;
+    int N = 0;
 
-    printf("How many commands  you want: "); scanf("%d", &N);
-    total = N;
+    printf("How many commands  you want:(-1 to exit): ");
+	scanf("%d", &N);
+
+    if(N<1) exit(EXIT_SUCCESS);
+
 	if(head ==NULL)
 	{
 		head = malloc(sizeof(Command) );
 		head->next = NULL;
-		scanf("%d",&(head->data)); // takeData(head);
+		head->data =takeCommand();
 	}
     p = head;
 
@@ -78,18 +97,19 @@ int takeCommands()
         p->next = malloc(sizeof(Command) );
         p = p->next;
         p->next = NULL;
-		scanf("%d",&(p->data));
+		p->data = takeCommand();
+		//scanf("%d",&(p->data));
         // takeData(p);
         N--;
     }
-	p = head;
+/*	p = head;
 	while(p != NULL)
     {
         printf("[%d]->",  p->data);
         p = p->next;
     }
     printf("NULL\n");
-
+*/
     return 0;
 
 	
@@ -104,40 +124,36 @@ int takeCommands()
 
 	//take all inputs in the list. 
 	//Hint: Link list initial filling logic
-	return 0;
 }
 
 int processCommand()
 {
 
-	Command *l;
-	int p = head->data;
-	int TargetFloor;
-	TargetFloor = p%100;
-	while(TargetFloor != currentFloor)
-	{
-	 if(currentFloor !=TargetFloor)
-	 {
-		if(currentFloor < TargetFloor)
+	int command = 0;
+	int TargetFloor=0;
+	Command *p=NULL;
+	
+	command = head->data;
+	
+	TargetFloor = command%100;
+	if(currentFloor < TargetFloor)
 		{
-			currentFloor=+1;
 			currentState = UP;
+			currentFloor++;
 		}
-		else
+		else if(currentFloor >TargetFloor)
 		{
-			currentFloor= currentFloor-1;
 			currentState = DOWN;
+			currentFloor--;
 		}
-	 }
-	}
 	if(currentFloor == TargetFloor)
 	{
 		currentState=0;
-		l= head;
+		p= head;
 		head=head->next;
-		l->next =NULL;
-		free(l);
-		l=NULL;
+		p->next =NULL;
+		free(p);
+		p=NULL;
 	}
 	printDetails();
 	
@@ -168,12 +184,19 @@ int main()
 
 	while(1)
 	{
+		if (NULL == head)
+		{
+
 		//if no pending commands, ask for it
 			takeCommands();
+		}
+		else{
+		}
 		//else do nothing here. 
-
+//			printDetails();
 		//process the current command
 		processCommand();
+		sleep(1);
 	}
 
 	return 0;
