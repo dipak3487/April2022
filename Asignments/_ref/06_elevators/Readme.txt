@@ -1,3 +1,16 @@
+v01: serve commands in sequence. no matter what. 
+	take commands only after the current batch of commands are served. 
+
+v02: serve the commands on the same floor if possible. 
+	not required to take user inputs (additional command) after letting the person in. 
+
+v03: take the input after the person enters into the elevator.
+
+v04: Keep the direction unchanged as long as possible.
+
+
+
+
 Elevator has:
 //	- Capacity
 	- Number of floors
@@ -13,27 +26,6 @@ procecssNextCommand()
 returnNextCommand();	//just return what is next command. 
 
 
-
-
-
-[F,S](C1, C2..)
-[F,S](C1, C2..)
-[F,S](C1, C2..)
-
-
-
-[0, I] (E7)
-[1, U] (E7)
-[2, U] (E7)
-[3, U] (E7)
-[4, U] (E7)
-[5, U] (E7)
-[6, U] (E7)
-[7, U] (E7)
-[7, I] ()
-
-
-
 Inside Elevator (Elevator pannel) E0, E1, .. E7
 On each floor, there are 2 buttons: Up, Down. F2Up, F3Down
 
@@ -42,6 +34,9 @@ Input from user:
 XX  => elevator input (E1..E99)
 1XX => 105 => 1-> UP, XX= floor XX Input.  5th floor Up, F5UP
 2XX => 205 => 2-> Down, XX=floor number. 5th floor Down, F5Down
+
+0 I
+103, 9, 105, 203, 103, 8, 108, 209
 
 
 number of floors: 25
@@ -79,38 +74,33 @@ Floor: 0, State: Idle, Commands:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-getchar()
-
-
-main
-{
-	while(1)
-	{
-		getchar() ==> variable. 
-		print variable
-		sleep(1);
-	}
-
-
-
+        [0]-[Idle]:     [ ]
+Commands for elevator (-1 to exit) : 5 7 203 105 210 115
+        [1]-[UP]:       [ 007 203 105 210 115 ]
+        [2]-[UP]:       [ 007 203 105 210 115 ]
+        [3]-[UP]:       [ 007 203 105 210 115 ]
+        [4]-[UP]:       [ 007 203 105 210 115 ]
+        [5]-[UP]:       [ 007 203 105 210 115 ]
+        [5]-[Idle]:     [ 007 203 105 210 115 ]
+Hey 5th, where you want to go? {008}	 
+        [6]-[UP]:       [ 007 203 105 210 115 008 ]
+        [7]-[UP]:       [ 007 203 105 210 115 008 ]
+        [7]-[Idle]:     [ 203 105 210 115 008 ]
+        [7]-[UP]:       [ 203 105 210 115 008 ]
+        [8]-[UP]:       [ 203 105 210 115 008 ]
+        [9]-[Idle]:     [ 203 210 115 ]
+        [10]-[Idle]:     [ 203 210 115 ]
+        [10]-[Idle]:     [ 203 210 115 ]
+        [10]-[Idle]:     [ 203 210 115 ]
+        [15]-[UP]:     [ 203 210 115 ]
+        [15]-[Idle]:     [ 203 210 ]
+Hey 15th, where you want to go? {010}	 
+        [15]-[Down]:     [ 203 210 010 ]
+        [10]-[Down]:     [ 203 ]
+Hey 10th, where you want to go? {01}	 
+        [10]-[Down]:     [ 203 001]
+        [3]-[Down]:     [ 001]
+Hey 3th, where you want to go? {05}	 
+        [2]-[Down]:     [ 001 005]
+        [1]-[Down]:     [ 001 005]
+        [1]-[Idle]:     [ 005]
