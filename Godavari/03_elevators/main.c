@@ -1,3 +1,4 @@
+\\ navaneetha \\	
 #include<stdio.h>
 #include<stdlib.h>
 typedef enum State { Idle=0, UP, DOWN} State;
@@ -146,4 +147,4 @@ int main()
         return 0;
 }
 
- 
+
