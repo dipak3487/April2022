@@ -155,6 +155,23 @@ int processCommand()
 		free(p);
 		p=NULL;
 	}
+	
+	int searchCommand(struct Command* head, int item)
+	{
+    struct Command* current = head;  // Initialize current
+    int index = 0;
+    // traverse till then end of the linked list
+    while (current != NULL)
+    {
+        if (current->data == item){
+            return index;
+        }
+        current = current->next;
+        index++;
+    }
+    return -1;
+	}
+
 	printDetails();
 	
 
