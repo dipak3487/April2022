@@ -142,13 +142,52 @@ int processCommand()
 	//We can decide the state. depending on the current direction and pending commands.
 
 	//if state == UP && pending commands contain 100+currentFloor, 
-	//	Change the state to idle
-	//	remove the [100+currentFloor] node
-	//	sleep(1)
-	//	printDetails();
-	//	Change the state back to UP
+        //      Change the state to idle
+        //      remove the [100+currentFloor] node
+        //      sleep(1)
+        //      printDetails();
+        //      Change the state back to UP
+
+
+	if(currentState == UP && command == 100+currentFloor)
+	{
+		currentState = Idle;
+		p = head;
+		head = head->next;
+		p->next = NULL;
+		free(p);
+		p = NULL;
+		sleep(1);
+		printDetails();
+		currentState = UP;
+	}
 	//if state == DOWN && pending commands contain 200+currentFloor, do the same thing. 
-	//if pending commands contain currentfloor   ==> someone from elevator want to go out on the current floor. 
+	if(currentState == DOWN && command == 200+currentFloor)
+	{
+		currentState = Idle;
+                p = head;
+                head = head->next;
+                p->next = NULL;
+                free(p);
+                p = NULL;
+                sleep(1);
+                printDetails();
+                currentState = DOWN;
+	}
+	//if pending commands contain currentfloor   ==> someone from elevator want to go out on the current floor.
+
+	if(command == currentFloor)
+	{
+		currentState = Idle;
+                p = head;
+                head = head->next;
+                p->next = NULL;
+                free(p);
+                p = NULL;
+                sleep(1);
+                printDetails();
+          //      currentState = DOWN;
+	} 
 	//idle. let the person from the elevator go out. 
 	// continue in same direction.  
 	//searchNode(int data)	// 0 or N, if found N times, return N, if not found, return 0
