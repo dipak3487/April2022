@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include<stdio.h>
 #include <stdlib.h>
 
@@ -134,6 +135,27 @@ int processCommand()
 		p = NULL;
 
 	}
+	
+	//we know:
+	//		- the current floor
+	//		- the direction of the elevator
+	//		- pending commands
+	//We can decide the state. depending on the current direction and pending commands.
+
+	//if state == UP && pending commands contain 100+currentFloor, 
+	//	Change the state to idle
+	//	remove the [100+currentFloor] node
+	//	sleep(1)
+	//	printDetails();
+	//	Change the state back to UP
+	//if state == DOWN && pending commands contain 200+currentFloor, do the same thing. 
+	//if pending commands contain currentfloor   ==> someone from elevator want to go out on the current floor. 
+	//idle. let the person from the elevator go out. 
+	// continue in same direction.  
+	//searchNode(int data)	// 0 or N, if found N times, return N, if not found, return 0
+	//deleteNode(int N)	//delete all nodes which contains data == N
+	//
+
 
 	printDetails();
 
@@ -162,6 +184,8 @@ int main()
 
 		//process the current command
 		processCommand();
+
+		sleep(1);
 	}
 
 	return 0;
