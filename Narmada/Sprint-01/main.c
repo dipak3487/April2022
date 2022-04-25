@@ -4,7 +4,7 @@ int main()
 {
     printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
     int choice, num, i;
-    unsigned long int fact;
+ 
 
     while(1)
     {
