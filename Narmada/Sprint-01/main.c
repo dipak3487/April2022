@@ -5,7 +5,7 @@ int main()
 {
 	
     printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
-    char number[14];
+    char num[14];
     int choice;
     char str[1024];
 
@@ -40,17 +40,29 @@ int main()
 
 			while (fgets(str,1024, fp) != NULL) {
 				printf("%s", str);
+				/*if(strstr(str,"7981020367")){
+					printf("found\n");
+				}
+				else{
+					printf("not found\n");
+				}*/
     			}
 			printf("\n\nChoose your number: ");
-			scanf("%s", &number);
-		
-		
-                        if(strstr(fp, number) == 0){
-				printf("\t\nNumber found in the list\n\n\n");
-			}
-			else{
-				printf("Invalid number\n");
+			scanf("%s", &num);
+		//	printf(number);
+			fseek(fp, 0, SEEK_SET);
+	
+			while (fgets(str,1024, fp) != NULL) {
+                      
+              
+                      		if((strstr(str, num))){
+					printf("\t\nNumber found in the list\n\n\n");
+					break;
+				}
+				else{
+					printf("Invalid number\n");
 			
+				}
 			}
 			fclose(fp);
 			break;
