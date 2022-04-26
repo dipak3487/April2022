@@ -1,10 +1,13 @@
 #include<stdio.h>
-#include <stdlib.h>
+#include<string.h>
+#include<stdlib.h>
 int main()
 {
+	
     printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
-    int choice, num, i;
- 
+    char number[14];
+    int choice;
+    char str[1024];
 
     while(1)
     {
@@ -18,8 +21,8 @@ int main()
         
         switch(choice)
 	{
-		case 1:
-			/*Option 1: Read number list from Numbers.list        e eee
+		case 1:;
+			/*Option 1: Read number list from Numbers.list 
 			1.a. Number1
 			1.b. Number2
 			.
@@ -28,6 +31,29 @@ int main()
 			On selection of (a..y), select the number and show the main menu. 
 			On selection of z, keep the current number and show the main menu.*/
 
+			FILE *fp = fopen("sample.txt", "r");
+			if(fp == NULL)
+			{
+				printf("Error: could not open file\n");
+				return(1);
+			}
+
+			while (fgets(str,1024, fp) != NULL) {
+				printf("%s", str);
+    			}
+			printf("\n\nChoose your number: ");
+			scanf("%s", &number);
+		
+		
+                        if(strstr(fp, number) == 0){
+				printf("\t\nNumber found in the list\n\n\n");
+			}
+			else{
+				printf("Invalid number\n");
+			
+			}
+			fclose(fp);
+			break;
 
 
 		case 2:
