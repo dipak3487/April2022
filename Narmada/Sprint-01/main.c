@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<stdbool.h>
 int main()
 {
 	
@@ -8,6 +9,7 @@ int main()
     char num[14];
     int choice;
     char str[1024];
+	
 
     while(1)
     {
@@ -40,29 +42,31 @@ int main()
 
 			while (fgets(str,1024, fp) != NULL) {
 				printf("%s", str);
-				/*if(strstr(str,"7981020367")){
-					printf("found\n");
-				}
-				else{
-					printf("not found\n");
-				}*/
     			}
 			printf("\n\nChoose your number: ");
 			scanf("%s", &num);
-		//	printf(number);
+		
 			fseek(fp, 0, SEEK_SET);
-	
+			bool x = false;
 			while (fgets(str,1024, fp) != NULL) {
                       
               
                       		if((strstr(str, num))){
-					printf("\t\nNumber found in the list\n\n\n");
+					//printf("\t\nNumber found in the list\n\n\n");
+					x = true;
 					break;
 				}
 				else{
-					printf("Invalid number\n");
+					//printf("Invalid number\n");
+					x = false;
 			
 				}
+			}
+			if(x == true){
+				printf("Number found in the list\n\n");
+			}
+			else{
+				printf("Invalid Number\n\n");
 			}
 			fclose(fp);
 			break;
