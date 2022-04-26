@@ -36,7 +36,7 @@ void take_input(person *p);
 // Program starts here.
 int main()
 {
-  start();
+    start();
     return 0;
 }
 
