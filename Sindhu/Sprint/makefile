@@ -1,4 +1,4 @@
-cc=gcc      // this is the variable which is used in the target.
+cc=gcc  
 MAKE=make
 RM =rm
 
