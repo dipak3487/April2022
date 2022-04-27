@@ -2,12 +2,15 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdbool.h>
+#include<unistd.h>
+#include<time.h>
+
 int main()
 {
 	
     printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
     char num[14], num1[14];
-    int choice;
+    int choice,a,b,c;
     char str[1024];
 	
 
@@ -43,7 +46,7 @@ int main()
 			while (fgets(str,1024, fp) != NULL) {
 				for(int cols = 0; cols<8; cols++){
 					//char s[1024];
-					fscanf(fp, "%s", &str);
+					fscanf(fp, "%s", str);
 					if(cols == 0){
 						printf("%s\n", str);
 					}
@@ -52,31 +55,27 @@ int main()
 			
     			}
 			printf("\n\nChoose your number: ");
-			scanf("%s", &num);
+			scanf("%s", num);
 		
 			fseek(fp, 0, SEEK_SET);
 			bool x = false;
 			while (fgets(str,1024, fp) != NULL) {
                       
-              
-                      		if((strstr(str, num))){
-					//printf("\t\nNumber found in the list\n\n\n");
+              			if((strstr(str, num))){
 					x = true;
 					break;
 				}
 				else{
-					//printf("Invalid number\n");
 					x = false;
 			
 				}
 			}
 			if(x == true){
 				printf("Number found in the list\n\n");
-				//printf("Choose second number:");
-				//scanf("%s", &num1);
+
 			}
 			else{
-				printf("Invalid Number\n\n");
+				printf("Invalid Number!!Try Again..\n\n");
 			}
 			fclose(fp);
 			break;
@@ -96,20 +95,8 @@ int main()
 			
 			printf("You selected %s as your number:\n", num);
 
-			/*while (fgets(str,1024, fp) != NULL) {
-                                for(int cols = 0; cols<4; cols++){
-                                        //char s[1024];
-                                        fscanf(fp, "%s", &str);
-                                        if(cols == 0){
-                                                printf("%s\n", str);
-                                        }
-                                }
-                                //printf("%s", str);
-
-                        }*/
-
-			printf("Choose another number from the list to dial:");
-			scanf("%s", &num1);
+			printf("\n\nChoose another number from the list to dial:");
+			scanf("%s", num1);
 			//printf(num1);
 
 			fseek(fp, 0, SEEK_SET);
@@ -118,23 +105,37 @@ int main()
 
 
                                 if((strstr(str, num1))){
-                                       //printf("\t\nNumber found in the list\n\n\n");
                                         y = true;
                                         break;
                                 }
                                 else{
-                                        //printf("Invalid number\n");
                                         y = false;
 
                                 }
                         }
                         if(y == true){
-                                printf("Number found in the list\n\n");
-                                //printf("Choose second number:");
-                                //scanf("%s", &num1);
-                        }
+                                printf("\nNumber found in the list\n\n");
+				
+				srand(time(NULL));
+				a = rand() % 10;
+                                printf("DIALING...\n\n");
+                        	sleep(a);
+				srand(time(NULL));
+				b = rand() % 10;
+                        	printf("RINGING...\n\n");
+                        	sleep(b);
+				if(b>5){
+					printf("Ring No Answer\n\n\n");
+				}
+				else{
+					srand(time(NULL));
+					c = rand() % 60;
+                        		printf("CONNECTED...\n\n");
+					sleep(c);
+                       		 }
+			}
                         else{
-                                printf("Invalid Number\n\n");
+                                printf("Invalid Number!! Try Again..\n\n");
                         }
 			fclose(fp);
 			break;

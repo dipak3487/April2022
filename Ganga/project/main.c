@@ -203,7 +203,10 @@ void search_person()
     system("clear");
    // long int phone;
     char name[30];
+char str[30];
+
     printf("Enter Name of the person you want to search : ");
+   //scanf("%[^\n]s",str);
     scanf("%s",&name);
 
     FILE *fp;
@@ -216,11 +219,16 @@ void search_person()
     }
     else
     {
-       int flag = 0;
+       int flag = 0,d;
         person p;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-            if((strcmp(p.name,name )==0))
+        for(d=0;d<strlen(str);d++) 
+	{
+	
+if((((strcmp(p.name,name)==0))||((str[d]>='a')&&(str[d]<='z'))||((str[d]>='A')&&(str[d]<='Z')))||(str[d]==' '))
+      
+          //  if((strcmp(p.name,name )==0))
             {
                 printf("  NAME\t\t\t\t   ADDRESS\t\t    PHONE NO\t\t    EMAIL\n");
                 printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -246,7 +254,7 @@ void search_person()
             }
             else continue;
              fflush(stdin);
-        }
+        }}
         if(flag == 0) 
         {
             
@@ -264,9 +272,9 @@ void search_person()
 void remove_person()
 {
     system("clear");
-    long int phone;
-    printf("Enter Phone number of the person you want to remove from phonebook : ");
-    scanf("%ld",&phone);
+    char name [50];
+    printf("Enter  Name  of the person you want to remove from phonebook : ");
+    scanf("%s",&name);
 
     FILE *fp,*temp;
     fp = fopen("phonebook_db", "rb");
@@ -283,8 +291,9 @@ void remove_person()
         int flag = 0;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-            if(p.mble_no == phone)
-            {
+            
+	 if((strcmp(p.name,name )==0)) 
+           {
                 system("clear");
                 printf("Person removed successfully\n");
                 flag = 1;
@@ -295,7 +304,7 @@ void remove_person()
         if(flag == 0)
         {
             system("clear");
-            printf("No record found for %d number\n",phone);
+            printf("No record found for %s name\n",name);
         }
         fclose(fp);
         fclose(temp);
@@ -313,9 +322,9 @@ void update_person()
 {
 
     system("clear");
-    long int phone;
-    printf("Enter Phone number of the person you want to update details : ");
-    scanf("%ld",&phone);
+    char name[50];
+    printf("Enter Name of the person you want to update details : ");
+    scanf("%s",&name);
 
     FILE *fp,*temp;
     fp = fopen("phonebook_db", "rb");
@@ -332,7 +341,7 @@ void update_person()
         person p;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-            if(p.mble_no == phone) 
+            if((strcmp(p.name,name )==0)) 
             {   
                 take_input(&p);
                 fwrite(&p, sizeof(p), 1, temp);
@@ -346,7 +355,7 @@ void update_person()
         if(flag == 0)
         {
             system("clear");
-            printf("No record found for %d number\n",phone);
+            printf("No record found for %s name\n",name);
         }
         fclose(fp);
         fclose(temp);

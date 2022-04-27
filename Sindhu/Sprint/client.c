@@ -6,7 +6,10 @@
 #include<unistd.h>
 #include<arpa/inet.h>
 
-int connection(char * str)
+
+
+
+int displaySim(char * str)
 {
 	char *ip = "127.0.0.1";
         int port = 5566;
@@ -16,7 +19,6 @@ int connection(char * str)
         socklen_t addr_size;
         char buffer[1024];    //transfer info from client and server for that we need variable to store those information
         int n;
-
         sock = socket(AF_INET, SOCK_STREAM, 0);
         if(sock < 0)
         {
@@ -32,6 +34,12 @@ int connection(char * str)
 
         connect(sock, (struct sockaddr*)&addr, sizeof(addr));
         printf("connected to server.\n");
+        
+        bzero(buffer,1024);
+        strcpy(buffer, "Display Sim");
+        printf("client: %s\n",buffer);
+        send(sock, buffer, strlen(buffer), 0);
+        sleep(0.1);
 
         bzero(buffer,1024);
         strcpy(buffer, str);
@@ -51,18 +59,19 @@ int connection(char * str)
 
 int main()
 {
-
-    int choice, n1, count=0,i;
-    char  str[50];
     
-    while(1)
+    int choice, count=0,i;
+    char str[50];
+    
+    
+        while(1)
     {
         printf("1.Select ICCID  \n");
         printf("2.Query SIM profile \n");
         printf("3.Display SIM profile \n");
         printf("4.Exit \n\n\n");
         printf("Enter your choice :  ");
-        scanf("%d",&choice);
+        scanf("%d", &choice);
 
         switch(choice)
         {
@@ -75,23 +84,32 @@ int main()
                        if(str[0]=='8'&&str[1]=='9')
                        {
                            printf("Valid number \n");
-                           connection(str);
                        }
                      	else 
                           printf("Invalid number\n");
                    }
                    break;
 
-            case 2:printf("enter the iccid no which u want to delete:");
-                   scanf("%d",&n1);
+            case 2:printf("enter the iccid no which u want to Display sim :");
+                   scanf("%s",str);
                    break;
 
-            case 3:
+            case 3:printf("enter the iccid no which u want to Display sim :\n");
+                   scanf("%s",str);
+                   i= strlen(str);
+                   if(i>=18&&i<=22)
+                   {
+                       if(str[0]=='8'&&str[1]=='9')
+                       {
+                           displaySim(str);
+                       }
+                     	else 
+                          printf("Invalid number\n");
+                   }                         		   
                    break;
 
             case 4:exit(0);
         }
-
-        return 0;
     }
+    return 0;
 }
