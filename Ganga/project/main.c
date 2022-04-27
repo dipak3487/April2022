@@ -4,7 +4,7 @@
         3) remove a contact.
         4) search details of any contact number.
         5) update details of any contact.
-        6) delete whole phonebook (delete all contacts present in phonebook).
+        6) delete selected contact from  phonebook.
 */
 
 #include <stdio.h>
@@ -41,7 +41,7 @@ int main()
 }
 
 // This function will start our program.
-void start()
+int start()
 {
     int choice;
     while(1)
