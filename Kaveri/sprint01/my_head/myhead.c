@@ -1,60 +1,43 @@
-//c program to print given number of lines from beginning of a file
-//file name and number of lines must be supply as command line argument
-
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h> 
- 
-int main(int argc, char * argv[])
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
 {
-    FILE    *   fp;             // file pointer
-    char    *   line = NULL;
-    int         len  = 0;
- 
-    int cnt = 0;
-	char n=0;
-	//char check="n";
- 
-    if( argc < 3)
+    FILE *myfile;
+    char content[200];
+    int max = 0 ;
+	int N;
+
+    // Open file
+    myfile = fopen(argv[1], "r");
+    if (myfile == NULL)
     {
-        printf("Insufficient Arguments!!!\n");
-        printf("Please use \"program-name file-name N\" format.\n");
-        return -1;
+        printf("Cannot open file \n");
+        exit(0);
     }
- 
-    // open file
-    fp = fopen(argv[1],"r");
- 
-    // checking for file is exist or not
-    if( fp == NULL )
-    {
-        printf("\n%s file can not be opened !!!\n",argv[1]);
-        return 1;   
-    }
- 
-    // read lines from file one by one
-    while (getline(&line, &len, fp) != -1)
-    {
-		//if(atoi(argv[2])== -n)
-		if(strcmp(argv[2],"-n")==0)
+    // Read the first 10 lines from file
+    fgets(content, 200, myfile);
+    
+	if(argv[2] == NULL)
+	{
+		N = 10;
+	}
+	else
+	{
+
+		N = atoi(argv[2]);
+	}
 
 
-{
-        cnt++;
-        if ( cnt > atoi(argv[3]) )
+	while (content != EOF)
+    {
+        max++;
+        if (max > N)
             break;
-        
-        printf("%s",line); fflush(stdout);
-		}
-		else
-		{
-			printf("error");
-}
+        printf("%s", content);
+        fgets(content, 200, myfile);
     }
-     
-    // close file
-    fclose(fp);
- 
+	fclose(myfile);
     return 0;
 }
-
+       
