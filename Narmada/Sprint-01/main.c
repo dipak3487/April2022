@@ -4,10 +4,7 @@
 #include<stdbool.h>
 #include<unistd.h>
 #include<time.h>
-<<<<<<< HEAD
-=======
 
->>>>>>> c1a3e7c3ca256c167046d2db8ad645f0cd95a68c
 int main()
 {
 	
