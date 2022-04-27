@@ -77,7 +77,8 @@ int start()
                 break;           
             default :
                 system("clear");
-                printf("Thanks for using phonebook visit again : )\n");
+                printf("## Thanks for using Telephone Directory visit again ## \n");
+		
                 getchar();
                 getchar();
                 exit(1);
@@ -90,7 +91,7 @@ void print_menu()
 {
     system("clear");
     printf("\t\t************************************************************************\n");
-    printf("\t\t*                  Welcome TO My Telephone Directory                   *\n");
+    printf("\t\t*                  Welcome TO  Telephone Directory                   *\n");
     printf("\t\t************************************************************************\n\n");
     printf("\t\t\t1) List Record\n\n");
     printf("\t\t\t2) Add User\n\n");
@@ -165,7 +166,7 @@ void list_record()
     {
         person p;
         printf("\n\t\t\t\t******************************************************************************\n");
-        printf("\t\t\t\t*                  Here is all records listed in phonebook                   *\n");
+        printf("\t\t\t\t*                  Here is all records listed in Telephone Directory           *\n");
         printf("\t\t\t\t******************************************************************************\n\n\n");
         printf("  NAME\t\t\t\t   ADDRESS\t\t    PHONE NO\t\t      EMAIL\n");
         printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -200,9 +201,10 @@ void list_record()
 void search_person()
 {
     system("clear");
-    long int phone;
-    printf("Enter Phone number of the person you want to search : ");
-    scanf("%ld",&phone);
+   // long int phone;
+    char name[30];
+    printf("Enter Name of the person you want to search : ");
+    scanf("%s",&name);
 
     FILE *fp;
     fp = fopen("phonebook_db", "rb");
@@ -214,19 +216,19 @@ void search_person()
     }
     else
     {
-        int flag = 0;
+       int flag = 0;
         person p;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-            if(p.mble_no == phone)
+            if((strcmp(p.name,name )==0))
             {
                 printf("  NAME\t\t\t\t   ADDRESS\t\t    PHONE NO\t\t    EMAIL\n");
                 printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
                 int i;
-                int len1 = 40 - strlen(p.name);
+               int len1 = 40 - strlen(p.name);
                 int len2 = 19 - strlen(p.address);
                 int len3 = 15;
-               // int len4 = 21 - strlen(p.sex);
+               
                 printf("%s",p.name);
                 for(i=0;i<len1;i++) printf(" ");
 
@@ -243,11 +245,12 @@ void search_person()
                 break;
             }
             else continue;
-            // fflush(stdin);
+             fflush(stdin);
         }
         if(flag == 0) 
         {
-            system("clear");
+            
+	system("clear");
             printf("Person is not in the Phonebook\n");
         }
         fflush(stdin);
