@@ -4,7 +4,6 @@
 #include<stdbool.h>
 #include<unistd.h>
 #include<time.h>
-
 int main()
 {
 	
@@ -44,7 +43,7 @@ int main()
 			}
 
 			while (fgets(str,1024, fp) != NULL) {
-				for(int cols = 0; cols<8; cols++){
+				for(int cols = 0; cols<4; cols++){
 					//char s[1024];
 					fscanf(fp, "%s", str);
 					if(cols == 0){
@@ -128,10 +127,16 @@ int main()
 					printf("Ring No Answer\n\n\n");
 				}
 				else{
+					time_t start_t, end_t;
+        				double diff_t;
 					srand(time(NULL));
 					c = rand() % 60;
                         		printf("CONNECTED...\n\n");
+					time(&start_t);	
 					sleep(c);
+					time(&end_t);
+					diff_t = difftime(end_t, start_t);
+        				printf("Your Call Duration is: %f\n\n", diff_t);
                        		 }
 			}
                         else{
@@ -143,12 +148,65 @@ int main()
 
 		case 3:
 			/*Option 3: should display current rate plan, expiry date for <CurrentChoice> mobile number. */
+	
+			fopen("sample.txt", "r");
+			if(fp == NULL)
+                        {
+                                printf("Error: could not open file\n");
+                                return(1);
+                        }
+			fseek(fp, 0, SEEK_SET);
+			while (fgets(str,1024, fp) != NULL) {
+			
+				if((strstr(str, num))){
+                                	for(int cols = 0; cols<4; cols++)
+					{
+                                        	fscanf(fp, "%s", str);
+						if(cols == 1 || cols == 2)
+						{
+							printf("\n\n Your result is:");
+                                        		printf("%s", str);
+					
+						}
+                              		}
+				}
+			}
+
+			printf("\n\n\n");
+			fclose(fp);
+			break;
 
 
 		case 4:
 
 			//Option 4: should display available balance for <CurrentChoice> Mobile number.
-   
+			fopen("sample.txt", "r");
+                        if(fp == NULL)
+                        {
+                                printf("Error: could not open file\n");
+                                return(1);
+                        }
+
+                       // fseek(fp, 0, SEEK_SET);
+                        while (fgets(str,1024, fp) != NULL) {
+                                if((strstr(str, num)))
+                                {
+                                        for(int cols = 0; cols<4; cols++)
+                                        {
+                                        //char s[1024];
+                                                fscanf(fp, "%s", str);
+                                                if(cols == 3)
+                                                {
+							printf("\n\nAvailable balance is:");
+                                                        printf("%s", str);
+                                        
+                                                }
+                                        }
+                                }
+                        }
+			printf("\n\n\n");
+                        fclose(fp);
+                        break;
 
 		case 5:
 			exit(0);
