@@ -3,12 +3,13 @@
 #include<stdlib.h>
 #include<stdbool.h>
 #include<unistd.h>
+#include<time.h>
 int main()
 {
 	
     printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
     char num[14], num1[14];
-    int choice;
+    int choice,a,b,c;
     char str[1024];
 	
 
@@ -113,13 +114,25 @@ int main()
                         }
                         if(y == true){
                                 printf("\nNumber found in the list\n\n");
+				
+				srand(time(NULL));
+				a = rand() % 10;
                                 printf("DIALING...\n\n");
-                        	sleep(5);
+                        	sleep(a);
+				srand(time(NULL));
+				b = rand() % 10;
                         	printf("RINGING...\n\n");
-                        	sleep(5);
-                        	printf("CONNECTED...\n\n");
-				sleep(45);
-                        }
+                        	sleep(b);
+				if(b>5){
+					printf("Ring No Answer\n\n\n");
+				}
+				else{
+					srand(time(NULL));
+					c = rand() % 60;
+                        		printf("CONNECTED...\n\n");
+					sleep(c);
+                       		 }
+			}
                         else{
                                 printf("Invalid Number!! Try Again..\n\n");
                         }
