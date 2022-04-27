@@ -14,7 +14,6 @@ int main()
         socklen_t addr_size;
         char buffer[1024];    //transfer info from client and server for that we need variable to store those information
         int n;
-
         server_sock = socket(AF_INET,SOCK_STREAM,0);
         if(server_sock < 0)
         {
@@ -43,36 +42,44 @@ int main()
                 addr_size = sizeof(client_addr);
                 client_sock =accept(server_sock, (struct sockaddr*)&client_addr, &addr_size);
                 printf("client connected,\n");
-                 bzero(buffer, 1024);
+                
+                bzero(buffer, 1024);
+                recv(client_sock, buffer, sizeof(buffer), 0);
+                printf("client: %s\n", buffer);
+                
+      		int value = strcmp(buffer,"Display Sim");  
+   		if(value == 0) {                
+                bzero(buffer, 1024);
                 recv(client_sock, buffer, sizeof(buffer), 0);
                 printf("client: %s\n", buffer);
 
-
 		//Read ICCID file
-		char source[] = "/home/adi/bitwise/April2022/Sindhu/Sprint/ICCID";
+		char source[] = "/home/adi/bitwise/April2022/Sindhu/Sprint/ICCID/ICCID";
 		char end[] = ".conf";
 		strcat(buffer, end);
     		strcat(source, buffer);
     		printf("Filepath: %s\n", source);
 		FILE* ptr;
     		char ch;
-    		ptr = fopen(source, "a+");
+    		ptr = fopen(source, "r");
     		if (NULL == ptr) {
-        		printf("file can't be opened \n");
+        		bzero(buffer,1024);
+                	strcpy(buffer, "ICCID Number Not Found in Database.");
+                	send(client_sock,buffer,strlen(buffer), 0);
     		}
     		else{
-    			printf("content of this file are \n");
-    			while (!feof(ptr)) {
-        			ch = fgetc(ptr);
-        			printf("%c", ch);
-    			}
+    			bzero(buffer,1024);
+    			char readfile[50];
+    			while (fgets(readfile, 50, ptr) != NULL) {
+        			strcat(buffer, readfile);
+        		}
     			fclose(ptr);
+                	send(client_sock,buffer,strlen(buffer), 0);
     		}
-
-                bzero(buffer,1024);
-                strcpy(buffer, "HI THIS IS SERVER.HAVE A NICE DAY!!! ");
-                printf("server: %s\n", buffer);
-                send(client_sock,buffer,strlen(buffer), 0);
+    	   }
+    	   else{
+    	   	printf("lo \n");
+    	   }
 
                 close(client_sock);
                 printf("client disconnected.\n");
