@@ -13,7 +13,7 @@ int main(int argc,char* argv[])
     fp = fopen(argv[1], "r");
 
     if (fp == NULL) {
-        perror("the file you requested is not here.");
+        perror("tail: cannot open '%s' for reading: No such file or directory", argv[1]);
         exit(EXIT_FAILURE);
     }
 
@@ -23,6 +23,11 @@ int main(int argc,char* argv[])
 	{
 		N = 10;
 	}
+	else if(strcmp(argv[2],"-n")==0)
+	{
+		N = atoi(argv[3]);
+	}
+
 	else
 	{
 		N = atoi(argv[2]);
