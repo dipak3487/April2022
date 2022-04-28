@@ -1,0 +1,5 @@
+Linux provides several options for renaming files,
+ including using the GUI and multiple dedicated terminal commands.
+
+ This makes it relatively easy to rename individual files,
+ but it can be challenging to rename multiple files at once..
