@@ -1,43 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[])  //The parameters to main represent the command line parameters
 {
-    FILE *myfile;
+    FILE *myfile; //pointing to txt file
     char content[200];
     int max = 0 ;
-	int N;
+    int N;
 
     // Open file
     myfile = fopen(argv[1], "r");
-    if (myfile == NULL)
+
+    if (myfile == NULL)      // check content of the file is null or not
     {
         printf("Cannot open file \n");
         exit(0);
     }
-    // Read the first 10 lines from file
-    fgets(content, 200, myfile);
-    
-	if(argv[2] == NULL)
-	{
-		N = 10;
-	}
-	else
-	{
+    //Read the first 10 lines from file
+    fgets(content, 200, myfile); //library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
 
-		N = atoi(argv[2]);
-	}
+    if(argv[2] == NULL) // check the second argument is avilable or not
+    {
+        N = 10;
+    }
 
+    else if(strcmp(argv[2],"-n")==0) // check whether "-n" is valibale at second orgument or not
+    {
 
-	while (content != EOF)
+        N = atoi(argv[3]); // pass the value of third argument to the integer N
+    }
+
+    else // direct value given in second argument 
+    {
+
+        N = atoi(argv[2]); // pass the value of second argument to the integer N
+    }while (*content != EOF) // run while loop until EOF appear
     {
         max++;
-        if (max > N)
+        if (max > N)  // check required lines are reached or not. if reached then break the loop.
             break;
         printf("%s", content);
-        fgets(content, 200, myfile);
+        fgets(content, 200, myfile);//library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
     }
-	fclose(myfile);
+    fclose(myfile); //close the file
     return 0;
 }
-       
