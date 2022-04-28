@@ -14,7 +14,7 @@ int main(int argc, char *argv[])  //The parameters to main represent the command
 
     if (myfile == NULL)      // check content of the file is null or not
     {
-        printf("Cannot open file \n");
+        printf("head: cannot open %s for reading: No such file or directory \n", argv[1]);
         exit(0);
     }
     //Read the first 10 lines from file
