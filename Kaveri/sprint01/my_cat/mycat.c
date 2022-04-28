@@ -15,7 +15,7 @@ int main(int argc,char*argv[])
 	fdold = open(argv[1], O_RDONLY);
 	if(fdold==-1)
 	{
-		printf("cannot open file");
+		printf("cat: %s. No such file or directory\n",argv[1]);
 		exit(1);
 	}
 	while((count = read(fdold,buffer,sizeof(buffer)))>0)
