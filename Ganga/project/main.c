@@ -1,12 +1,3 @@
-/*
-        1) view all contacts.
-        2) add a contact.
-        3) remove a contact.
-        4) search details of any contact number.
-        5) update details of any contact.
-        6) delete selected contact from  phonebook.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -223,12 +214,12 @@ char str[30];
         person p;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-        for(d=0;d<strlen(str);d++) 
-	{
+  //      for(d=0;d<strlen(str);d++) 
+//	{
 	
-if((((strcmp(p.name,name)==0))||((str[d]>='a')&&(str[d]<='z'))||((str[d]>='A')&&(str[d]<='Z')))||(str[d]==' '))
+//if((((strcmp(p.name,name)==0))||((str[d]>='a')&&(str[d]<='z'))||((str[d]>='A')&&(str[d]<='Z')))||(str[d]==' '))
       
-          //  if((strcmp(p.name,name )==0))
+            if((strcmp(p.name,name )==0))
             {
                 printf("  NAME\t\t\t\t   ADDRESS\t\t    PHONE NO\t\t    EMAIL\n");
                 printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -254,7 +245,7 @@ if((((strcmp(p.name,name)==0))||((str[d]>='a')&&(str[d]<='z'))||((str[d]>='A')&&
             }
             else continue;
              fflush(stdin);
-        }}
+        }
         if(flag == 0) 
         {
             
@@ -365,5 +356,4 @@ void update_person()
         printf("Press any key to continue....\n");
     }
 }
-
 
