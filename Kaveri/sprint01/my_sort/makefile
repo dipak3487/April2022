@@ -1,9 +1,9 @@
-my_sort: my_sort.o
-	gcc -o my_sort my_sort.o
+mysort: mysort.o
+	gcc -o mysort mysort.o
 
-my_sort.o: my_sort.c
-	gcc -c my_sort.c
+mysort.o: mysort.c
+	gcc -c mysort.c
 
 clean:
-	 rm my_sort.o my_sort
+	 rm mysort.o mysort
 
