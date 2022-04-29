@@ -186,6 +186,9 @@ int main() {
          price = (tele[3][2]-tele[2][3])/100.00;
         printf("BSNL to VI - RS %.2f \n",price);
     }
+    else{
+        printf("Data Not Found\n");
+    }
 
     return 0;
 }
