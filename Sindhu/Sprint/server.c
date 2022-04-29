@@ -44,7 +44,7 @@ int main()
                 printf("client connected,\n");
                 
                 //Read ICCID file
-		char source[] = "/home/adi/bitwise/April2022/Sindhu/Sprint/ICCID/ICCID";
+		char source[] = "ICCID/ICCID";
 		char end[] = ".conf";
 
 		                
