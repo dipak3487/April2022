@@ -13,7 +13,7 @@ int main(int argc,char* argv[])
     fp = fopen(argv[1], "r");
 
     if (fp == NULL) {
-        perror("tail: cannot open '%s' for reading: No such file or directory", argv[1]);
+        printf("tail: cannot open '%s' for reading: No such file or directory", argv[1]);
         exit(EXIT_FAILURE);
     }
 

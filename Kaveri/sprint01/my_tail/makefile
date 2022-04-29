@@ -1,9 +1,9 @@
-my_tail: my_tail.o
-	gcc -o my_tail my_tail.o
+mytail: mytail.o
+	gcc -o mytail mytail.o
 
-my_tail.o: my_tail.c
-	gcc -c my_tail.c
+mytail.o: mytail.c
+	gcc -c mytail.c
 
 clean:
-	rm my_tail.o my_tail
+	rm mytail.o mytail
 
