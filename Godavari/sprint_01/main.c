@@ -102,8 +102,6 @@ int main() {
             strftime(yr, sizeof(yr), "%Y", ts);
             int end_m = atoi(mon);    //str into integer
             int end_y = atoi(yr);
-              
-            
 
 
             //check end time is in given month,year
@@ -111,30 +109,27 @@ int main() {
             DiffTime = (Etime - Stime);                                 
             tele[A_network][B_network] =  tele[A_network][B_network] + (DiffTime*perSec);   
             }    
-           //printf("%d",A_network);
-           // printf("%d",B_network);
+           
         }
-        
+        printf("\nBefore Settlement :\n");
+
+        printf("Airtel to Jio- %d\n",tele[0][1]);
+        printf("Jio to Airtel- %d\n",tele[1][0]);
+        printf("Airtel to Vi- %d\n",tele[0][2]);
+        printf("Vi to Airtel- %d\n",tele[2][0]);
+        printf("Airtel to BSNL- %d\n",tele[0][3]);
+        printf("BSNL to Airtel- %d\n",tele[3][0]);
+        printf("Jio to Vi- %d\n",tele[1][2]);
+        printf("vi to Jio- %d\n",tele[2][1]);
+        printf("Jio to BSNL- %d\n",tele[1][3]);
+        printf("BSNL to Jio- %d\n",tele[3][1]);
+        printf("Vi to BSNL- %d\n",tele[2][3]);
+        printf("BSNL to Vi- %d\n",tele[3][2]);
         // Close the file
         fclose(fp);
     }
-    printf("\nBefore Settelment :\n");
 
-    printf("Airtel to Jio- %d\n",tele[0][1]);
-    printf("Jio to Airtel- %d\n",tele[1][0]);
-    printf("Airtel to Vi- %d\n",tele[0][2]);
-    printf("Vi to Airtel- %d\n",tele[2][0]);
-    printf("Airtel to BSNL- %d\n",tele[0][3]);
-    printf("BSNL to Airtel- %d\n",tele[3][0]);
-    printf("Jio to VI- %d\n",tele[1][2]);
-    printf("Vi to Jio- %d\n",tele[2][1]);
-    printf("Jio to BSNL- %d\n",tele[1][3]);
-    printf("BSNL to Jio- %d\n",tele[3][1]);
-    printf("Vi to BSNL- %d\n",tele[2][3]);
-    printf("BSNL to Vi- %d\n",tele[3][2]);
-
-          
-    printf("\nAfter Settelment :\n");
+    printf("\nAfter Settlement :\n");
     float price ;
 
     // fetch result 
@@ -143,8 +138,8 @@ int main() {
     // } else if Airtel to Jio < Jio to Airtel {
     //     then -> Jio need to pay Airtel requried amount 
     // }
-     
-     
+
+
     if (tele[0][1] > tele[1][0]) {
          price = (tele[0][1]-tele[1][0])/100.00;            // /100.00 (to convert into Rs)
         printf("Airtel to Jio - RS %.2f \n",price);
@@ -185,11 +180,10 @@ int main() {
     } else if (tele[2][3] < tele[3][2]) {
          price = (tele[3][2]-tele[2][3])/100.00;
         printf("BSNL to VI - RS %.2f \n",price);
+    }else
+    {
+    printf("Data Not Found\n");
     }
-    else{
-        printf("Data Not Found\n");
-    }
-
     return 0;
 }
 
