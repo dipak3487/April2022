@@ -9,7 +9,7 @@
 
 
 
-int displaySim(char * str)
+int displaySim(int choice, char * str)
 {
 	char *ip = "127.0.0.1";
         int port = 5566;
@@ -36,7 +36,10 @@ int displaySim(char * str)
         printf("connected to server.\n");
         
         bzero(buffer,1024);
-        strcpy(buffer, "Display Sim");
+        if(choice == 3)
+            strcpy(buffer, "Display Sim");
+        else if(choice == 2)
+            strcpy(buffer, "Query Sim");
         printf("client: %s\n",buffer);
         send(sock, buffer, strlen(buffer), 0);
         sleep(0.1);
@@ -66,10 +69,17 @@ int main()
     
         while(1)
     {
-        printf("1.Select ICCID  \n");
-        printf("2.Query SIM profile \n");
-        printf("3.Display SIM profile \n");
-        printf("4.Exit \n\n\n");
+	printf("\t\t\t|------------------------|\n");    
+	printf("\t\t\t|          MENU          |\n");     
+        printf("\t\t\t|------------------------|\n");
+        printf("\t\t\t|1.Select ICCID          | \n");
+	printf("\t\t\t|------------------------|\n");        
+        printf("\t\t\t|2.Query SIM profile     |\n");
+        printf("\t\t\t|------------------------|\n");
+        printf("\t\t\t|3.Display SIM profile   |\n");
+      	printf("\t\t\t|------------------------|  \n");
+        printf("\t\t\t|4.Exit                  |\n");
+        printf("\t\t\t|------------------------| \n");
         printf("Enter your choice :  ");
         scanf("%d", &choice);
 
@@ -78,34 +88,30 @@ int main()
             case 1:printf("enter the iccid no:\n");
                    scanf("%s",str);
                    i= strlen(str);
-                   //printf("%d\n",i);
+                    //printf("%d\n",i);
                    if(i>=18&&i<=22)
                    {
                        if(str[0]=='8'&&str[1]=='9')
                        {
-                           printf("Valid number \n");
-                       }
+                           printf("Valid number:-> \n 1.Select ICCID (%s)\n",str);
+                           printf("----------------------------------------------\n");
+                       } 
                      	else 
-                          printf("Invalid number\n");
+                          printf("Invalid number , number shopuls start with 89\n");
                    }
+                   else
+                    printf("Invalid number no enter no between 18 to 22\n");
+                   
+                   
                    break;
 
-            case 2:printf("enter the iccid no which u want to Display sim :");
-                   scanf("%s",str);
+            case 2:  displaySim(choice, str);
+                     printf("----------------------------------------------\n");
+                    
                    break;
 
-            case 3:printf("enter the iccid no which u want to Display sim :\n");
-                   scanf("%s",str);
-                   i= strlen(str);
-                   if(i>=18&&i<=22)
-                   {
-                       if(str[0]=='8'&&str[1]=='9')
-                       {
-                           displaySim(str);
-                       }
-                     	else 
-                          printf("Invalid number\n");
-                   }                         		   
+            case 3:  displaySim(choice, str);
+              			printf("----------------------------------------------\n");
                    break;
 
             case 4:exit(0);

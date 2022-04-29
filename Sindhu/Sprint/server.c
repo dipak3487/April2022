@@ -43,24 +43,25 @@ int main()
                 client_sock =accept(server_sock, (struct sockaddr*)&client_addr, &addr_size);
                 printf("client connected,\n");
                 
-                bzero(buffer, 1024);
-                recv(client_sock, buffer, sizeof(buffer), 0);
-                printf("client: %s\n", buffer);
-                
-      		int value = strcmp(buffer,"Display Sim");  
-   		if(value == 0) {                
-                bzero(buffer, 1024);
-                recv(client_sock, buffer, sizeof(buffer), 0);
-                printf("client: %s\n", buffer);
-
-		//Read ICCID file
+                //Read ICCID file
 		char source[] = "/home/adi/bitwise/April2022/Sindhu/Sprint/ICCID/ICCID";
 		char end[] = ".conf";
-		strcat(buffer, end);
+
+		                
+                bzero(buffer, 1024);
+                recv(client_sock, buffer, sizeof(buffer), 0);
+                printf("client: %s\n", buffer);
+                                                
+      		int value = strcmp(buffer,"Display Sim");  
+       	if(value == 0) 
+   	    	{                
+                bzero(buffer, 1024);
+                recv(client_sock, buffer, sizeof(buffer), 0);
+                printf("client: %s\n", buffer);
+                strcat(buffer, end);
     		strcat(source, buffer);
     		printf("Filepath: %s\n", source);
 		FILE* ptr;
-    		char ch;
     		ptr = fopen(source, "r");
     		if (NULL == ptr) {
         		bzero(buffer,1024);
@@ -76,10 +77,33 @@ int main()
     			fclose(ptr);
                 	send(client_sock,buffer,strlen(buffer), 0);
     		}
-    	   }
-    	   else{
-    	   	printf("lo \n");
-    	   }
+    	     }
+    	      else 
+    	      {
+    	   	 bzero(buffer, 1024);
+                recv(client_sock, buffer, sizeof(buffer), 0);
+                printf("client: %s\n", buffer);
+                char message[] = "ICCID Number ";
+                strcat(message, buffer);
+                strcat(buffer, end);
+    		strcat(source, buffer);
+    		printf("Filepath: %s\n", source);
+		FILE* ptr;
+    		ptr = fopen(source, "r");
+    		if (NULL == ptr) {
+        		bzero(buffer,1024);
+        		strcat(message, " Not Found in Database.");
+                	strcpy(buffer, message);
+                	send(client_sock,buffer,strlen(buffer), 0);
+    		}
+    		else
+    		{
+    			bzero(buffer,1024);
+    			strcat(message, " Found in Database.");
+                	strcpy(buffer, message);
+                	send(client_sock,buffer,strlen(buffer), 0);
+    		}
+    	      }
 
                 close(client_sock);
                 printf("client disconnected.\n");
