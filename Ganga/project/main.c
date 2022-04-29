@@ -97,7 +97,7 @@ void add_person()
 {
     system("clear");
     FILE *fp;
-    fp = fopen("phonebook_db", "ab+");
+    fp = fopen("info.txt", "ab+");
     if (fp == NULL)
     {
         printf("Error in file opening, Plz try again !\n");
@@ -145,7 +145,7 @@ void list_record()
 {
     system("clear");
     FILE *fp;
-    fp = fopen("phonebook_db", "rb");
+    fp = fopen("info.txt", "rb");
     if (fp == NULL)
     {
         printf("Error in file opening, Plz try again !\n");
@@ -204,7 +204,7 @@ char str[30];
     scanf("%s",&name);
 
     FILE *fp;
-    fp = fopen("phonebook_db", "rb");
+    fp = fopen("info.txt", "rb");
     if (fp == NULL)
     {
         printf("Error in file opening, Plz try again !\n");
@@ -273,11 +273,11 @@ void remove_person()
 {
     system("clear");
     char name [50];
-    printf("Enter  Name  of the person you want to remove from phonebook : ");
+    printf("Search  Name  of the person you want to remove from phonebook : ");
     scanf("%s",&name);
 
     FILE *fp,*temp;
-    fp = fopen("phonebook_db", "rb");
+    fp = fopen("info.txt", "rb");
     temp = fopen("temp","wb+");
     if (fp == NULL)
     {
@@ -289,10 +289,74 @@ void remove_person()
     else
     {
         person p;
-        int flag = 0;
+        int flag = 0,d;
         while (fread(&p, sizeof(p), 1, fp) == 1)
         {
-  if((strcmp(p.name,name )==0))
+        for(d=0;d<strlen(name);d++)
+          if((strcmp(p.name,name )==0))
+
+           {
+                printf("NAME\t\t\t\t        First Mob_NO\t\t       Second Mob_No                   EMAIL\n");
+                printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
+               int i;
+	 int len1 = 40 - strlen(p.name);
+                //int len2 = 19 - strlen(p.address);
+                int len2 = 15;
+               int len3 = 15;
+                printf("%s",p.name);
+                for(i=0;i<len1;i++) printf(" ");
+
+                //printf("%s",p.address);
+                //for(i=0;i<len2;i++) printf(" ");
+                printf("%ld",p.mble_no);
+               for(i=0;i<len2;i++) printf(" ");
+
+                 printf("%ld",p.mob);
+                 for(i=0;i<len3;i++) printf(" ");
+
+
+                printf("%s",p.mail);
+
+                printf("\n");
+
+                flag = 1;
+                break;
+            }
+            else continue;
+             fflush(stdin);
+        }if(flag == 0)
+        {
+
+          system("clear");
+            printf("Person is not in the Phonebook\n");
+        }
+//      else
+  //      {
+       fflush(stdin);
+   //  fclose(fp);
+         //printf("\n\nPress any key to continue....\n");
+      //  }
+
+   }
+    printf("Enter  Name  of the person you want to remove from phonebook : ");
+    scanf("%s",&name);
+
+   // FILE *fp,*temp;
+     fp = fopen("info.txt", "rb");
+    temp = fopen("temp","wb+");
+    if (fp == NULL)
+    {
+
+        printf("Error in file opening, Plz try again !\n");
+        printf("Press any key to continue....\n");
+        return;
+     }
+     else
+     {
+        person p; int flag = 0;
+        while (fread(&p, sizeof(p), 1, fp) == 1)
+        {
+         if((strcmp(p.name,name )==0))
            {
                 system("clear");
                 printf("Person removed successfully\n");
@@ -308,14 +372,15 @@ void remove_person()
         }
         fclose(fp);
         fclose(temp);
-        remove("phonebook_db");
-        rename("temp","phonebook_db");
+        remove("info.txt");
+        rename("temp","info.txt");
         fflush(stdin);
         printf("Press any key to continue....\n");
 
     }
 
 }
+
 
 // This function will update contact information.
 void update_person()
@@ -325,7 +390,7 @@ void update_person()
     scanf("%s",&name);
 
     FILE *fp,*temp;
-    fp = fopen("phonebook_db", "rb");
+    fp = fopen("info.txt", "rb");
     temp = fopen("temp","wb+");
     if (fp == NULL)
     {
@@ -356,11 +421,10 @@ void update_person()
         }
         fclose(fp);
         fclose(temp);
-        remove("phonebook_db");
-        rename("temp","phonebook_db");
+        remove("info.txt");
+        rename("temp","info.txt");
         fflush(stdin);
         printf("Press any key to continue....\n");
     }
 }
-
 
