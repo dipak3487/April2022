@@ -224,7 +224,7 @@ char str[30];
     // if((((strcmp(p.name,name)==0))||((str[d]>='a')&&(str[d]<='z'))||((str[d]>='A')&&(str[d]<='Z')))||(str[d]==' '))
 
 
-        if((strcmp(p.name,name )==0))
+        if((strstr(p.name,name )!=NULL))
             {
                 printf("NAME\t\t\t\t        First Mob_NO\t\t       Second Mob_No                   EMAIL\n");
                 printf("---------------------------------------------------------------------------------------------------------------------------------------------\n");
