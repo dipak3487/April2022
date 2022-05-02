@@ -60,7 +60,7 @@ int main()
 	for(i = 0; i<20; i++){
 		printf("Mobile -> %lld\t Current Plan-> %s\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
 	}
-	
+
 	
 
     while(1)
@@ -84,49 +84,12 @@ int main()
 			1.z. Back
 			On selection of (a..y), select the number and show the main menu. 
 			On selection of z, keep the current number and show the main menu.*/
-
-			FILE *fp = fopen("sample.txt", "r");
-			if(fp == NULL)
-			{
-				printf("Error: could not open file\n");
-				return(1);
+			for(i = 0; i < 20; i++){
+		       		printf("Mobile -> %lld\n", values[i].mobile);
 			}
-
-			while (fgets(str,1024, fp) != NULL) {
-				for(int cols = 0; cols<4; cols++){
-					//char s[1024];
-					fscanf(fp, "%s", str);
-					if(cols == 0){
-						printf("%s\n", str);
-					}
-				}
-				//printf("%s", str);
-			
-    			}
 			printf("\n\nChoose your number: ");
 			scanf("%s", num);
 		
-			fseek(fp, 0, SEEK_SET);
-			bool x = false;
-			while (fgets(str,1024, fp) != NULL) {
-                      
-              			if((strstr(str, num))){
-					x = true;
-					break;
-				}
-				else{
-					x = false;
-			
-				}
-			}
-			if(x == true){
-				printf("Number found in the list\n\n");
-
-			}
-			else{
-				printf("Invalid Number!!Try Again..\n\n");
-			}
-			fclose(fp);
 			break;
 
 
