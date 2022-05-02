@@ -4,6 +4,15 @@
 #include<stdbool.h>
 #include<unistd.h>
 #include<time.h>
+
+typedef struct Data{
+	long long mobile;
+	char rate[5];
+	char exp_date[15];
+	int balance;
+}dict;
+
+
 int main()
 {
 	
@@ -11,6 +20,47 @@ int main()
     char num[14], num1[14];
     int choice,a,b,c;
     char str[1024];
+    FILE *fp = fopen("sample.csv", "r");
+    	if(fp == NULL){
+	    printf("\nError in opening the file\n");
+	    return 0;
+	}
+	int row_count = 0;
+	int field_count = 0;
+	dict values[29];
+	int total;
+	int i = 0;
+	while(fgets(str,1024,fp)){
+		field_count = 0;
+		row_count++;
+		if(row_count ==1)
+			continue;
+
+		char *field = strtok(str,",");
+		while(field){
+			if(field_count == 0)
+				values[i].mobile = atol(field);
+
+			if(field_count == 1)
+				strcpy(values[i].rate, field);
+
+			if(field_count == 2)
+				strcpy(values[i].exp_date, field);
+	
+			if(field_count == 3)
+				values[i].balance = atol(field);
+
+
+			field = strtok(NULL, ",");
+			field_count++;
+		}
+		i++;
+	}
+
+	for(i = 0; i<20; i++){
+		printf("Mobile -> %lld\t Current Plan-> %s\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
+	}
+	
 	
 
     while(1)
