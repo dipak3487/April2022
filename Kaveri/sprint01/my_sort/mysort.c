@@ -11,6 +11,7 @@ unsigned long int lineCountFile(const char *filename)
     int c;
     if(fp == NULL){
         fclose(fp);
+
         return 0;
     }
     while((c=fgetc(fp)) != EOF )
