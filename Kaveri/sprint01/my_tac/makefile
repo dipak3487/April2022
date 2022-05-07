@@ -1,10 +1,10 @@
-mytac3: mytac3.o
-	gcc -o mytac3 mytac3.o
+mytac: mytac.o
+	gcc -o mytac mytac.o
 
-mytac3.o: mytac3.c
-	gcc -c mytac3.c
+mytac.o: mytac.c
+	gcc -c mytac.c
 
 clean:
-	rm mytac3 mytac3.o
+	rm mytac mytac.o
 
 
