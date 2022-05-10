@@ -5,7 +5,8 @@
 #include<unistd.h>
 #include<time.h>
 
-typedef struct Data{
+typedef struct Data
+{
 	long long mobile;
 	int rate;
 	char exp_date[15];
@@ -21,7 +22,8 @@ int main()
 	int index_a, index_b;
 	char str[1024];
 	FILE *fp = fopen("sample.csv", "r");
-	if(fp == NULL){
+	if(fp == NULL)
+	{
 		printf("\nError in opening the file\n");
 		return 0;
 	}
@@ -31,7 +33,8 @@ int main()
 	int totalRecords = 0;
 	int total;
 	int i = 0;
-	while(fgets(str,1024,fp)){
+	while(fgets(str,1024,fp))
+	{
 		field_count = 0;
 		row_count++;
 		if(row_count ==1)
@@ -59,10 +62,6 @@ int main()
 	}
 	totalRecords = i+1;
 
-	//for(i = 0; i<20; i++){
-	//printf("Mobile -> %lld\t Current Plan-> %d\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
-	//}
-
 
 	while(1)
 	{
@@ -77,7 +76,8 @@ int main()
 		switch(choice)
 		{
 			case 1:
-				for(i = 0; i < 20; i++){
+				for(i = 0; i < 20; i++)
+				{
 					printf("%2d -> %lld\n", i, values[i].mobile);
 				}
 
@@ -89,8 +89,10 @@ int main()
 				}
 				printf("\n Your number is: %lld, Index: %d\n", values[index_a].mobile, index_a);
 				break;
+
 			case 2:
-				for(i = 0; i < 20; i++){
+				for(i = 0; i < 20; i++)
+				{
 					printf("%2d -> %lld\n", i, values[i].mobile);
 				}
 
@@ -108,7 +110,6 @@ int main()
 					printf("You don't have enough balance! Please do recharge your number.\n");
 					continue;
 				}
-				//take randome interval
 
 				srand(time(NULL));
 				a = rand() % 10;
@@ -118,10 +119,12 @@ int main()
 				b = rand() % 10;
 				printf("RINGING...\n\n");
 				sleep(b);
-				if(b>50){
+				if(b>50)
+				{
 					printf("Ring No Answer\n\n\n");
 				}
-				else{
+				else
+				{
 					time_t start_t, end_t;
 					int diff_t;
 					srand(time(NULL));
@@ -133,7 +136,6 @@ int main()
 					diff_t = (int) end_t - start_t;
 					printf("Your Call Duration is: %d second\n\n", diff_t);
 					values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
-					//TODO: convert it into integer: values[index_a].rate);
 					printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
 					printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
 				        FILE *fp = fopen("sample.csv", "w");
@@ -159,7 +161,5 @@ int main()
 				exit(0);
 		}
 	}
-
-
 	return 0;
 }
