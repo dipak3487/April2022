@@ -41,7 +41,8 @@ int main()
 			continue;
 
 		char *field = strtok(str,",");
-		while(field){
+		while(field)
+		{
 			if(field_count == 0)
 				values[i].mobile = atol(field);
 
