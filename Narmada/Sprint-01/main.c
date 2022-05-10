@@ -7,7 +7,7 @@
 
 typedef struct Data{
 	long long mobile;
-	char rate[5];
+	int rate;
 	char exp_date[15];
 	int balance;
 }dict;
@@ -15,19 +15,20 @@ typedef struct Data{
 
 int main()
 {
-	
-    printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
-    char num[14], num1[14];
-    int choice,a,b,c;
-    char str[1024];
-    FILE *fp = fopen("sample.csv", "r");
-    	if(fp == NULL){
-	    printf("\nError in opening the file\n");
-	    return 0;
+
+	printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
+	int choice,a,b,c;
+	int index_a, index_b;
+	char str[1024];
+	FILE *fp = fopen("sample.csv", "a+");
+	if(fp == NULL){
+		printf("\nError in opening the file\n");
+		return 0;
 	}
 	int row_count = 0;
 	int field_count = 0;
 	dict values[29];
+	int totalRecords = 0;
 	int total;
 	int i = 0;
 	while(fgets(str,1024,fp)){
@@ -42,11 +43,11 @@ int main()
 				values[i].mobile = atol(field);
 
 			if(field_count == 1)
-				strcpy(values[i].rate, field);
+				values[i].rate = atol(field);
 
 			if(field_count == 2)
 				strcpy(values[i].exp_date, field);
-	
+
 			if(field_count == 3)
 				values[i].balance = atol(field);
 
@@ -56,176 +57,102 @@ int main()
 		}
 		i++;
 	}
+	totalRecords = i+1;
 
-	for(i = 0; i<20; i++){
-		printf("Mobile -> %lld\t Current Plan-> %s\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
-	}
+	//for(i = 0; i<20; i++){
+	//printf("Mobile -> %lld\t Current Plan-> %d\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
+	//}
 
-	
 
-    while(1)
-    {
-        printf("1. Choose your number \n");
-        printf("2. Dial a number\n");
-        printf("3. See rating, Expiry\n");
-	printf("4. See Available Balance\n");
-	printf("5. Exit\n\n\n");
-        printf("Enter your option here: ");
-        scanf("%d",&choice);
-        
-        switch(choice)
+	while(1)
 	{
-		case 1:;
-			/*Option 1: Read number list from Numbers.list 
-			1.a. Number1
-			1.b. Number2
-			.
-			.
-			1.z. Back
-			On selection of (a..y), select the number and show the main menu. 
-			On selection of z, keep the current number and show the main menu.*/
-			for(i = 0; i < 20; i++){
-		       		printf("Mobile -> %lld\n", values[i].mobile);
-			}
-			printf("\n\nChoose your number: ");
-			scanf("%s", num);
-		
-			break;
+		printf("1. Choose your number \n");
+		printf("2. Dial a number\n");
+		printf("3. See rating, Expiry\n");
+		printf("4. See Available Balance\n");
+		printf("5. Exit\n\n\n");
+		printf("Enter your option here: ");
+		scanf("%d",&choice);
+
+		switch(choice)
+		{
+			case 1:
+				for(i = 0; i < 20; i++){
+					printf("%2d -> %lld\n", i, values[i].mobile);
+				}
+
+				index_a = -1;
+				while(index_a < 0 || index_a > 19)
+				{
+					printf("\n\nChoose the index of your number: [0 to 20] :  ");
+					scanf("%d", &index_a);
+				}
+				printf("\n Your number is: %lld, Index: %d\n", values[index_a].mobile, index_a);
+				break;
+			case 2:
+				for(i = 0; i < 20; i++){
+					printf("%2d -> %lld\n", i, values[i].mobile);
+				}
+
+				index_b = -1;
+
+				while(index_b < 0 || index_b > 19)
+				{
+					printf("\n\nChoose the index of B_PARTY number: [0 to 20] :  ");
+					scanf("%d", &index_b);
+				}
 
 
-		case 2:;
+				if(values[index_a].balance < 0)
+				{
+					printf("You don't have enough balance! Please do recharge your number.\n");
+					continue;
+				}
+				//take randome interval
 
-      			/*option 2: Read number list from Numbers.list
-			2.a. Number1
-			2.b. Number2
-			.
-			.
-			2.z. Back
-			On selection of (a..y), print: DIALING.. (sleep for 0-3 seconds), RINGING (0-5 seconds), CONNECTED (for 1-			  60 seconds or till balance is available). HANGUP on any key press and back to the main menu. Try to fit RN			    A (Ring No Answer) if RINGING for > 4 seconds (i.e. for 5 seconds), then go RNA, return.
-			printf("4. \n");*/
-			fopen("sample.txt", "r");
-			
-			printf("You selected %s as your number:\n", num);
-
-			printf("\n\nChoose another number from the list to dial:");
-			scanf("%s", num1);
-			//printf(num1);
-
-			fseek(fp, 0, SEEK_SET);
-			bool y = false;
-                        while (fgets(str,1024, fp) != NULL) {
-
-
-                                if((strstr(str, num1))){
-                                        y = true;
-                                        break;
-                                }
-                                else{
-                                        y = false;
-
-                                }
-                        }
-                        if(y == true){
-                                printf("\nNumber found in the list\n\n");
-				
 				srand(time(NULL));
 				a = rand() % 10;
-                                printf("DIALING...\n\n");
-                        	sleep(a);
+				printf("\n[%d][%lld] is DIALING... %lld\n\n", index_a, values[index_a].mobile, values[index_b].mobile);
+				sleep(a);
 				srand(time(NULL));
 				b = rand() % 10;
-                        	printf("RINGING...\n\n");
-                        	sleep(b);
-				if(b>5){
+				printf("RINGING...\n\n");
+				sleep(b);
+				if(b>50){
 					printf("Ring No Answer\n\n\n");
 				}
 				else{
 					time_t start_t, end_t;
-        				double diff_t;
+					int diff_t;
 					srand(time(NULL));
-					c = rand() % 60;
-                        		printf("CONNECTED...\n\n");
-					time(&start_t);	
+					c = rand() % 40;
+					printf("CONNECTED...\n\n");
+					start_t = time(NULL);
 					sleep(c);
-					time(&end_t);
-					diff_t = difftime(end_t, start_t);
-        				printf("Your Call Duration is: %f\n\n", diff_t);
-                       		 }
-			}
-                        else{
-                                printf("Invalid Number!! Try Again..\n\n");
-                        }
-			fclose(fp);
-			break;
-
-
-		case 3:
-			/*Option 3: should display current rate plan, expiry date for <CurrentChoice> mobile number. */
-	
-			fopen("sample.txt", "r");
-			if(fp == NULL)
-                        {
-                                printf("Error: could not open file\n");
-                                return(1);
-                        }
-			fseek(fp, 0, SEEK_SET);
-			while (fgets(str,1024, fp) != NULL) {
-			
-				if((strstr(str, num))){
-                                	for(int cols = 0; cols<4; cols++)
-					{
-                                        	fscanf(fp, "%s", str);
-						if(cols == 1 || cols == 2)
-						{
-							printf("\n\n Your result is:");
-                                        		printf("%s", str);
-					
-						}
-                              		}
+					end_t = time(NULL);
+					diff_t = (int) end_t - start_t;
+					printf("Your Call Duration is: %d\n\n", diff_t);
+					values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
+					//TODO: convert it into integer: values[index_a].rate);
+					printf("Your call cost is %d\n", (diff_t * values[index_a].rate));
+					//fprintf(fp, "%d\n\n", values[index_a].balance);
+					printf("Your remaining balance is %d:\n\n", values[index_a].balance); 
 				}
-			}
+				break;
 
-			printf("\n\n\n");
-			fclose(fp);
-			break;
+			case 3:
+				printf("Your current rate is [%d] and expiry date for your plan is[%s]\n\n", values[index_a].rate, values[index_a].exp_date);
+				break;
 
+			case 4:
+				printf("Your Available Balance is [%d]\n\n", values[index_a].balance);
+				break;
 
-		case 4:
-
-			//Option 4: should display available balance for <CurrentChoice> Mobile number.
-			fopen("sample.txt", "r");
-                        if(fp == NULL)
-                        {
-                                printf("Error: could not open file\n");
-                                return(1);
-                        }
-
-                       // fseek(fp, 0, SEEK_SET);
-                        while (fgets(str,1024, fp) != NULL) {
-                                if((strstr(str, num)))
-                                {
-                                        for(int cols = 0; cols<4; cols++)
-                                        {
-                                        //char s[1024];
-                                                fscanf(fp, "%s", str);
-                                                if(cols == 3)
-                                                {
-							printf("\n\nAvailable balance is:");
-                                                        printf("%s", str);
-                                        
-                                                }
-                                        }
-                                }
-                        }
-			printf("\n\n\n");
-                        fclose(fp);
-                        break;
-
-		case 5:
-			exit(0);
+			case 5:
+				exit(0);
+		}
 	}
 
 
-    }
-    return 0;
+	return 0;
 }
