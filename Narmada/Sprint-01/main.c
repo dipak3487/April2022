@@ -86,8 +86,14 @@ int main()
 				{
 					printf("\n\nChoose the index of your number: [0 to 20] :  ");
 					scanf("%d", &index_a);
+				
+					if (index_a > 19)
+					{
+						printf("\n\n Enter your choice smaller than 20");
+					}	
 				}
-				printf("\n Your number is: %lld, Index: %d\n", values[index_a].mobile, index_a);
+
+				printf("\n Your number is: %lld", values[index_a].mobile);
 				break;
 
 			case 2:
@@ -102,6 +108,10 @@ int main()
 				{
 					printf("\n\nChoose the index of B_PARTY number: [0 to 20] :  ");
 					scanf("%d", &index_b);
+					if (index_b > 19)
+					{
+						printf("\n\n Enter your choice smaller than 20");
+					}
 				}
 
 
