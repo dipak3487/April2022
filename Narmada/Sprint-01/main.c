@@ -20,7 +20,7 @@ int main()
 	int choice,a,b,c;
 	int index_a, index_b;
 	char str[1024];
-	FILE *fp = fopen("sample.csv", "a+");
+	FILE *fp = fopen("sample.csv", "r");
 	if(fp == NULL){
 		printf("\nError in opening the file\n");
 		return 0;
@@ -131,12 +131,19 @@ int main()
 					sleep(c);
 					end_t = time(NULL);
 					diff_t = (int) end_t - start_t;
-					printf("Your Call Duration is: %d\n\n", diff_t);
+					printf("Your Call Duration is: %d second\n\n", diff_t);
 					values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
 					//TODO: convert it into integer: values[index_a].rate);
-					printf("Your call cost is %d\n", (diff_t * values[index_a].rate));
-					//fprintf(fp, "%d\n\n", values[index_a].balance);
-					printf("Your remaining balance is %d:\n\n", values[index_a].balance); 
+					printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
+					printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
+				        FILE *fp = fopen("sample.csv", "w");
+					for(i = 0; i<20; i++)
+					{
+						if(values[index_a].mobile)
+						{
+							fprintf(fp, "%lld,%d,%s,%d\n", values[i].mobile, values[i].rate, values[i].exp_date, values[i].balance);
+						}
+					}	
 				}
 				break;
 
