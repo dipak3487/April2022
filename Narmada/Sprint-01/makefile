@@ -7,3 +7,5 @@ main.o : main.c
 clear :
 	rm program main.o
 
+install:
+	sudo cp -rf program /usr/local/bin/
