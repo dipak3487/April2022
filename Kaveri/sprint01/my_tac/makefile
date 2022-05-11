@@ -6,5 +6,6 @@ mytac.o: mytac.c
 
 clean:
 	rm mytac mytac.o
-
+install:
+	sudo cp -rf mytac /usr/local/bin/
 

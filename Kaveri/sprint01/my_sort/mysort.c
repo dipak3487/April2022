@@ -65,6 +65,7 @@ int main(int argc, char **argv)
 	else if(strcmp(argv[1],"-version") == 0)
 	{
 		printf("mysort version2 by team kaveri \n");
+		exit(0);
 	}
 	else
 	{		

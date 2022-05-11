@@ -6,3 +6,5 @@ mycat.o: mycat.c
 
 clean:
 	rm mycat mycat.o
+install:
+	sudo cp -rf mycat /usr/local/bin/
