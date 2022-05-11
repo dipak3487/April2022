@@ -7,3 +7,6 @@ mysort.o: mysort.c
 clean:
 	 rm mysort.o mysort
 
+install:
+	sudo cp -rf mysort /usr/local/bin/
+
