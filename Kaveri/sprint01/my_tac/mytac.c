@@ -24,12 +24,12 @@ int main(int argc, char **argv)
  if(!fh)
  {
 	 printf("mytac: failed to open %s for reading: No such file or directory\n",argv[k]);
-	 exit(1);
+	 exit(0);
  }  
  if(fstat(fileno(fh), &st))
  {
 	 perror(argv[1]);
-	 exit(1);
+	 exit(0);
  } 
  p = malloc(st.st_size);    
  fread(p, sizeof(char), st.st_size, fh);  
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
 
  }
  k++;
+free(p);
 }
  return 0;    
 }

@@ -10,8 +10,6 @@ unsigned long int lineCountFile(const char *filename)
     unsigned long int linecount = 0;
     int c;
     if(fp == NULL){
-        fclose(fp);
-
         return 0;
     }
     while((c=fgetc(fp)) != EOF )
@@ -72,7 +70,7 @@ int main(int argc, char **argv)
 		fileIN = fopen(argv[1], "r");
 		in = argv[1];
 	}
-	char *arr[200];
+//	char *arr[200];
 	FILE *fp;
     if(!fileIN)
     {
@@ -98,6 +96,12 @@ int main(int argc, char **argv)
     sortfile(array, linecount);
 	if(strcmp(argv[1],"-o") == 0)
 		fp =fopen(argv[3],"w");
+
+		if(fp == NULL)
+		{
+			printf("written file must be entered");
+			exit(0);
+		}
     for(i=0; i<linecount; i++)
     {
 		if(strcmp(argv[1],"-o") == 0)
@@ -106,11 +110,11 @@ int main(int argc, char **argv)
 		}
 		else if(strcmp(argv[1],"-r") == 0)
 		{
-			printf("%s \n",array[linecount-i]);
+			printf("%s ",array[(linecount-1)-i]);
 		}
 		else
 		{
-			printf("%s \n", array[i]);
+			printf("%s ", array[i]);
 		}
     }
     fclose(fileIN);
