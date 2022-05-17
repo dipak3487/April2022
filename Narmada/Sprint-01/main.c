@@ -118,8 +118,8 @@ int main()
 			        strftime(todayDateStr, strlen("DD-MMM-YYYY ")+1,"%d-%m-%Y ",timeinfo);
 				//printf("%s\n", todayDateStr );
 				//printf("%s\n",values[index_a].exp_date);
-				int result = strcmp(values[index_a].exp_date, todayDateStr);
-				if(result>0)
+				int res = strcmp(values[index_a].exp_date, todayDateStr);
+				if(res>0)
 				{
 					srand(time(NULL));
 					a = rand() % 10;
