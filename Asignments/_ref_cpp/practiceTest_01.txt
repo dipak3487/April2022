@@ -1,0 +1,103 @@
+Create a Parking class with required features. Use this class in your program to achieve the following requirement: 
+
+Develop a parking solution (menu driven program) for parking owners providing the following features:
+Current parking availability (Available/FULL)
+Serve the incoming vehicles either allow the entry or give proper message if the parking is full.
+Display 'which' slots are available for parking, let driver choose the slot and choose the best way to reach to the slot. 
+Serve the outgoing vehicles
+	a. display the list of parked vehicles
+	b. let user select the vehicle which want to exit the premises
+	c. display the charge (1 second = 10 rupees for sedan, 1 second = 5 rupees for hatchback, 1 second = 20 rupees for taxies)
+Show the money collection so far. 
+Show the vehicles served so far
+Search for the vehicle based on its number in the parking
+
+Parking area should display the slots in this way: 
+Slot number is displayed if the slot is vacant and can be used.
+'X' should be displayed if the slot is occupied.
+
+e.g.
+
+1	2	3	X	5	
+
+X	7	X	9	X
+
+11	12	X	14	15
+
+X	17	X	X	X
+
+
+class parking
+{
+	vector<std::string> slots;
+	vector<long long int> parkTime;
+	vector<int> vehicleType;
+	int totalCollection;
+	int totalVehicleServed;
+
+
+	slots[3] = ""; //available
+	slots[3] = "MH12AB1213";	//parked
+
+	display()
+	{
+		for(i=0 ; i< slots.size; i++)
+		{
+			if(slots[i].length < 1)	//vaccant
+				cout << i << "\t";
+			else
+				cout << "X\t";
+		
+			if(i%5 == 0) cout << std::endl;
+		}
+	}
+
+	exitParking()
+	{
+		for(i=0 ; i< slots.size; i++)
+		{
+			if((slots[i].length > 1) // not vaccant
+			{
+				cout << i << ". " << slots[i] << endl;
+			}
+		}
+
+		cout << "enter your vehicle index: ";
+		cin << index;
+
+		slots[index] = "";
+
+		exit time = time(NULL);
+
+		total parking duration = exitTime - parkTime[index];
+		charge = duration*10;
+
+		//update the db:
+		totalCollection += charge;
+		totalVehicleServed++;
+
+	}
+
+
+
+show availability
+Entry
+Exit
+Total collection
+Total vehicles served
+Exit
+
+Show availability:
+parking is <FULL/Available>
+
+Entry:
+<display slots>
+1   2   3   X   5
+
+X   7   X   9   X
+
+11  12  X   14  15
+
+X   17  X   X   X
+Choose the slot [1-20] : 
+

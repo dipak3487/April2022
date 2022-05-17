@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
  if(strcmp(argv[1],"-help") == 0)
  {
-	 printf("tac - concatenate and print files in reverse \n tac [OPTION]... [FILE].. \n Write each FILE to standard output, last line first \n With no FILE, or when FILE is -, read standard input. \n --help display this help and exit \n --version  output version information and exit ");
+	 printf("mytac - concatenate and print files in reverse \n mytac [OPTION]... [FILE].. \n Write each FILE to standard output, last line first \n With no FILE, or when FILE is -, read standard input. \n -help display this help and exit \n -version  output version information and exit ");
 	exit(0);
  }
  if(strcmp(argv[1],"-version") == 0)
@@ -24,15 +24,16 @@ int main(int argc, char **argv)
  if(!fh)
  {
 	 printf("mytac: failed to open %s for reading: No such file or directory\n",argv[k]);
-	 exit(1);
+	 exit(0);
  }  
  if(fstat(fileno(fh), &st))
  {
 	 perror(argv[1]);
-	 exit(1);
- } 
- p = malloc(st.st_size);    
- fread(p, sizeof(char), st.st_size, fh);  
+	 exit(0);
+ }
+// printf("size of st %ld",st.st_size);
+ p = malloc(st.st_size*2);    
+ fread(p, sizeof(char), (st.st_size*2), fh);  
  fclose(fh);                     
  q = p + st.st_size;
  *q = '\0'; 
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
 
  }
  k++;
+free(p);
 }
  return 0;    
 }

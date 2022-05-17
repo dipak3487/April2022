@@ -5,6 +5,8 @@
 #include <time.h>
 #include <unistd.h>
 
+//# include <sys/types.h>
+//# include <sys/local.h>
 int main() {
     
    
@@ -18,7 +20,8 @@ int main() {
 
 
     printf("Enter File No: ");
-    scanf("%d", &file);
+   
+   scanf("%d", &file);
     
     printf("\nEnter Cost of per sec ( in paise):");
     scanf("%f", &perSec);

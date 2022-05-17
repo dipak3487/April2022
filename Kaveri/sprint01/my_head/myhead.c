@@ -12,31 +12,31 @@ int main(int argc, char *argv[])
 FILE *myfile; //pointing to txt file
     char content[200]; //char array of size 200
     int max = 0 ;
-    int N;
+    int N=0;
 ////////////////////////////////////////////////////
-FILE *myfile2;
-    char content2[200];
+	FILE *myfile2;
+    char content2[200]="";
     int max2 = 0 ;
-    int N2;
-    int i = 0, j;
-    char d;
+    int N2=0;
+    int i = 0, j=0;
+    char d='\0';
  //////////////////////////////////////////////////
 	FILE *fptr;
-	FILE *fn;
+	//FILE *fn;
     char filename[200], c;
     int max3=0;
 	int temp=0;
-	char file2name[200],k;
+	//char file2name[200],k;
 	FILE *fp;
-	char file3name[200],m;
+	//char file3name[200],m;
 //////////////////////////////////////////////////////
     FILE *fptrr;
-	FILE *fn1;
+	//FILE *fn1;
     char filename4[200], r;
     int max4=0;
 
     int opt;
-    char version,help;
+    //char version,help;
    
     int Line = 0,Byte=0;
 
@@ -61,7 +61,7 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
                     Byte = 1;
                 break;
                 case 'a':
-                    printf("head  (Team Kaveri) version 2 \n written by Team Kaveri");
+                    printf("myhead  (Team Kaveri) version 2 \n written by Team Kaveri");
                     exit(0);
                 break;
                 case 'q':
@@ -71,23 +71,26 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
                     H=1;
                 break;
                 case 'h':
-				printf("Usage: head [OPTION]... [FILE]... \n print the first NUM lines of each FILE to standard output. \n Mandatory arguments to long options are mandatory for short options too. \n -c, --bytes=[+]NUM output the first NUM bytes;\n -n, --lines=[+]NUM output the first NUM lines, instead of the first 10 lines \n -q, --quiet, --silent never output headers giving file name \n -v, --verbose always prints headers giving file names.\n -h  display this help and exit \n -a   output version information and exit. \n");
+				printf("Usage: myhead [OPTION]... [FILE]... \n print the first NUM lines of each FILE to standard output. \n Mandatory arguments to long options are mandatory for short options too. \n -c, --bytes=[+]NUM output the first NUM bytes;\n -n, --lines=[+]NUM output the first NUM lines, instead of the first 10 lines \n -q, --quiet, --silent never output headers giving file name \n -v, --verbose always prints headers giving file names.\n -h  display this help and exit \n -a   output version information and exit. \n");
                     exit(0);
                 break;
                 default:
-                printf(" Try 'head --help' for more information.\n");
+                printf(" Try 'myhead -h' for more information.\n");
                 break;
             }
 }
+# ifndef S_SPLINT_S
 if(H == 1)
 {
-
-	fptrr = fopen(argv[2], "r");// passing one argument. file in read only mode.
-        printf("==> %s <==\n",argv[2]);
+	int k = argc;
+	for(int i=2;i<k;i++)
+	{
+	fptrr = fopen(argv[i], "r");// passing one argument. file in read only mode.
+        printf("==> %s <==\n",argv[i]);
     
     if (fptrr == NULL)
     {
-        printf("head: cannot open %s for reading: No such file or directory \n", argv[2]);
+        printf("head: cannot open %s for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
 
@@ -101,9 +104,12 @@ if(H == 1)
         printf("%s", filename4);
 		
 	}
+	max4=0;
+	memset(filename4,0,sizeof(filename4));
 fclose(fptrr);
 }
-
+}
+# endif
 if (Line == 1)
 {
     // Open file
@@ -117,13 +123,15 @@ if (Line == 1)
     //Read the first 10 lines from file
     fgets(content, 200, myfile); //library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
 
-
+	
     N = atoi(argv[2]);
     while (*content != EOF) // run while loop until EOF appear
     {
         max++;
- if (max > N)  // check required lines are reached or not. if reached then break the loop.
-            break;
+		if (max > N)  // check required lines are reached or not. if reached then break the loop.
+         {
+			 break;
+		 }
         printf("%s", content);
         fgets(content, 200, myfile);//library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
     }
@@ -132,7 +140,7 @@ if (Line == 1)
 }
 if(Byte ==1)
 {
-myfile2 = fopen(argv[3], "r");
+	myfile2 = fopen(argv[3], "r");
     if (myfile2 == NULL)
     {
         printf("Cannot open file \n");
@@ -141,39 +149,35 @@ myfile2 = fopen(argv[3], "r");
         N = atoi(argv[2]);
     // Loop to read required byte
     // of file
-    for (i = 0, j = 0; i <= N
-           && d != EOF;
-         i++) {
-
-        // Skip the bytes not required
+    for (i = 0, j = 0; i <= N && d != EOF; i++)
+	{
+       // Skip the bytes not required
            if (i >= 1)
            {
-         content2[j]=d;
-            j++;
-       }
-
+			     content2[j]=d;
+				j++;
+		   }
         // Get the characters
          d = fgetc(myfile2);
     }
 
     // Print the bytes as string
     printf("%s", content2);
-
- fclose(myfile2);
-
+    fclose(myfile2);
     return 0;
 }
+# ifndef S_SPLINT_S
 if(NH ==1)
 {
     //print("qqqqqqqqqqq");
-
-
-    fptr = fopen(argv[2], "r");// passing one argument. file in read only mode.
+ for(int i=2;i<argc;i++)
+    {
+     fptr = fopen(argv[i], "r");// passing one argument. file in read only mode.
       //  printf("==> %s <==\n",argv[1]);
     
     if (fptr == NULL)
     {
-        printf("head: cannot open '%s' for reading: No such file or directory \n", argv[2]);
+        printf("head: cannot open '%s' for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
 
@@ -186,8 +190,13 @@ if(NH ==1)
 //	    fgets(filename, 100, fptr);
 		
 	}
-fclose(fptr);
-	fn = fopen(argv[3], "r");// passing one argument. file in read only mode.
+	max=0;
+	memset(filename,0,sizeof(filename));
+	fclose(fptr);
+  }
+}
+
+	/*fn = fopen(argv[3], "r");// passing one argument. file in read only mode.
        // printf("==> %s <==\n",argv[2]);
     
     if (fn == NULL)
@@ -227,18 +236,21 @@ fclose(fptr);
           printf("%s", file3name);
       }
      fclose(fp);
+*/
 
-}
 
 //printf("%d %d %d",Line,Byte,argc);
-if(argc == 2)
+if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
 {
+	int z=argc;
+    for(int i=1;i<z;i++)
+    {
     // Open file
-    myfile = fopen(argv[1], "r");// passing one argument. file in read only mode.
+    myfile = fopen(argv[i], "r");// passing one argument. file in read only mode.
 
     if (myfile == NULL)      // check content of the file is null or not
     {
-        printf("head: cannot open %s for reading: No such file or directory \n", argv[1]);
+        printf("head: cannot open %s for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
     //Read the first 10 lines from file
@@ -257,8 +269,12 @@ if(argc == 2)
 		max++;
        // fgets(content, 200, myfile);//library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
     }
+    max=0;
+   memset(content,0,sizeof(content));
     fclose(myfile); //close the file
 //	printf("shubham");
-    return 0;	
+ }
 }
-}    
+# endif
+   return 0;	
+}
