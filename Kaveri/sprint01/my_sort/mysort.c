@@ -6,7 +6,8 @@
 
 unsigned long int lineCountFile(const char *filename)
 {
-    FILE *fp = fopen(filename, "r");
+    FILE *fp;
+	fp= fopen(filename, "r");
     unsigned long int linecount = 0;
     int c;
     if(fp == NULL){
@@ -45,19 +46,14 @@ int main(int argc, char **argv)
 {
     FILE *fileIN; 
 	char *in;
-	if(strcmp(argv[1],"-o") == 0)
+	if(strcmp(argv[1],"-o") == 0 || strcmp(argv[1],"-r") == 0)
 	{ 
 		fileIN = fopen(argv[2], "r");
 		in =argv[2];
 	}
-	else if(strcmp(argv[1],"-r") == 0)
-	{
-		fileIN = fopen(argv[2], "r");
-        in =argv[2];
-	}
 	else if(strcmp(argv[1],"-help") == 0)
 	{
-		printf("sort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
+		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
 		exit(0);
 	}
 	else if(strcmp(argv[1],"-version") == 0)
@@ -82,7 +78,7 @@ int main(int argc, char **argv)
     
 
     char **array = (char**)malloc(linecount * sizeof(char*));
-    char singleline[MAX_LINE];
+    char singleline[MAX_LINE]="";
 
     int i = 0;
     while(fgets(singleline, MAX_LINE, fileIN) != NULL)
@@ -95,13 +91,14 @@ int main(int argc, char **argv)
 
     sortfile(array, linecount);
 	if(strcmp(argv[1],"-o") == 0)
-		fp =fopen(argv[3],"w");
-
+	{
+		fp =fopen(argv[3],"w+");
 		if(fp == NULL)
 		{
 			printf("written file must be entered");
 			exit(0);
 		}
+	}
     for(i=0; i<linecount; i++)
     {
 		if(strcmp(argv[1],"-o") == 0)

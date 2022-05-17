@@ -12,14 +12,14 @@ int main(int argc, char *argv[])
 FILE *myfile; //pointing to txt file
     char content[200]; //char array of size 200
     int max = 0 ;
-    int N;
+    int N=0;
 ////////////////////////////////////////////////////
-FILE *myfile2;
-    char content2[200];
+	FILE *myfile2;
+    char content2[200]="";
     int max2 = 0 ;
-    int N2;
-    int i = 0, j;
-    char d;
+    int N2=0;
+    int i = 0, j=0;
+    char d='\0';
  //////////////////////////////////////////////////
 	FILE *fptr;
 	//FILE *fn;
@@ -61,7 +61,7 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
                     Byte = 1;
                 break;
                 case 'a':
-                    printf("head  (Team Kaveri) version 2 \n written by Team Kaveri");
+                    printf("myhead  (Team Kaveri) version 2 \n written by Team Kaveri");
                     exit(0);
                 break;
                 case 'q':
@@ -71,11 +71,11 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
                     H=1;
                 break;
                 case 'h':
-				printf("Usage: head [OPTION]... [FILE]... \n print the first NUM lines of each FILE to standard output. \n Mandatory arguments to long options are mandatory for short options too. \n -c, --bytes=[+]NUM output the first NUM bytes;\n -n, --lines=[+]NUM output the first NUM lines, instead of the first 10 lines \n -q, --quiet, --silent never output headers giving file name \n -v, --verbose always prints headers giving file names.\n -h  display this help and exit \n -a   output version information and exit. \n");
+				printf("Usage: myhead [OPTION]... [FILE]... \n print the first NUM lines of each FILE to standard output. \n Mandatory arguments to long options are mandatory for short options too. \n -c, --bytes=[+]NUM output the first NUM bytes;\n -n, --lines=[+]NUM output the first NUM lines, instead of the first 10 lines \n -q, --quiet, --silent never output headers giving file name \n -v, --verbose always prints headers giving file names.\n -h  display this help and exit \n -a   output version information and exit. \n");
                     exit(0);
                 break;
                 default:
-                printf(" Try 'head --help' for more information.\n");
+                printf(" Try 'myhead -h' for more information.\n");
                 break;
             }
 }
@@ -123,13 +123,15 @@ if (Line == 1)
     //Read the first 10 lines from file
     fgets(content, 200, myfile); //library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
 
-
+	
     N = atoi(argv[2]);
     while (*content != EOF) // run while loop until EOF appear
     {
         max++;
- if (max > N)  // check required lines are reached or not. if reached then break the loop.
-            break;
+		if (max > N)  // check required lines are reached or not. if reached then break the loop.
+         {
+			 break;
+		 }
         printf("%s", content);
         fgets(content, 200, myfile);//library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
     }
@@ -138,7 +140,7 @@ if (Line == 1)
 }
 if(Byte ==1)
 {
-myfile2 = fopen(argv[3], "r");
+	myfile2 = fopen(argv[3], "r");
     if (myfile2 == NULL)
     {
         printf("Cannot open file \n");
@@ -147,26 +149,21 @@ myfile2 = fopen(argv[3], "r");
         N = atoi(argv[2]);
     // Loop to read required byte
     // of file
-    for (i = 0, j = 0; i <= N
-           && d != EOF;
-         i++) {
-
-        // Skip the bytes not required
+    for (i = 0, j = 0; i <= N && d != EOF; i++)
+	{
+       // Skip the bytes not required
            if (i >= 1)
            {
-         content2[j]=d;
-            j++;
-       }
-
+			     content2[j]=d;
+				j++;
+		   }
         // Get the characters
          d = fgetc(myfile2);
     }
 
     // Print the bytes as string
     printf("%s", content2);
-
- fclose(myfile2);
-
+    fclose(myfile2);
     return 0;
 }
 # ifndef S_SPLINT_S
