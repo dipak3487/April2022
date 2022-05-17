@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINE 1000
+#define MAX_LINE 4096
 
 unsigned long int lineCountFile(const char *filename)
 {
-    FILE *fp = fopen(filename, "r");
+    FILE *fp;
+	fp= fopen(filename, "r");
     unsigned long int linecount = 0;
     int c;
     if(fp == NULL){
-        fclose(fp);
         return 0;
     }
     while((c=fgetc(fp)) != EOF )
@@ -41,16 +41,36 @@ void sortfile(char **array, int linecount)
     }
 }
 
+
 int main(int argc, char **argv)
 {
-    char *in = argv[1]; 
-
     FILE *fileIN; 
-
-    fileIN = fopen(in, "r");
+	char *in;
+	if(strcmp(argv[1],"-o") == 0 || strcmp(argv[1],"-r") == 0)
+	{ 
+		fileIN = fopen(argv[2], "r");
+		in =argv[2];
+	}
+	else if(strcmp(argv[1],"-help") == 0)
+	{
+		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
+		exit(0);
+	}
+	else if(strcmp(argv[1],"-version") == 0)
+	{
+		printf("mysort version2 by team kaveri \n");
+		exit(0);
+	}
+	else
+	{		
+		fileIN = fopen(argv[1], "r");
+		in = argv[1];
+	}
+//	char *arr[200];
+	FILE *fp;
     if(!fileIN)
     {
-		printf("sort: cannot read: %s: No such file or directory\n",argv[1]);
+		printf("mysort cannont read %s: no such file or directory",argv[1]);
         exit(0);
     }
 
@@ -58,7 +78,7 @@ int main(int argc, char **argv)
     
 
     char **array = (char**)malloc(linecount * sizeof(char*));
-    char singleline[MAX_LINE];
+    char singleline[MAX_LINE]="";
 
     int i = 0;
     while(fgets(singleline, MAX_LINE, fileIN) != NULL)
@@ -70,15 +90,34 @@ int main(int argc, char **argv)
     }
 
     sortfile(array, linecount);
-
+	if(strcmp(argv[1],"-o") == 0)
+	{
+		fp =fopen(argv[3],"w+");
+		if(fp == NULL)
+		{
+			printf("written file must be entered");
+			exit(0);
+		}
+	}
     for(i=0; i<linecount; i++)
     {
-        printf("%s\n", array[i]);
+		if(strcmp(argv[1],"-o") == 0)
+		{
+			fputs(array[i],fp);
+		}
+		else if(strcmp(argv[1],"-r") == 0)
+		{
+			printf("%s ",array[(linecount-1)-i]);
+		}
+		else
+		{
+			printf("%s ", array[i]);
+		}
     }
-
-
     fclose(fileIN);
- 
+	if(strcmp(argv[1],"-o") == 0)
+		fclose(fp);
+
 
     for(i=0; i<linecount; i++)
     {

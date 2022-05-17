@@ -7,7 +7,7 @@
 
 typedef struct Data{
 	long long mobile;
-	int rate;
+	char rate[5];
 	char exp_date[15];
 	int balance;
 }dict;
@@ -17,6 +17,7 @@ int main()
 {
 
 	printf("\n\n\t\tTelecom OCS(Online Charging System)-- Team Narmada\n\n\n");
+	char num[14], num1[14];
 	int choice,a,b,c;
 	int index_a, index_b;
 	char str[1024];
@@ -43,7 +44,7 @@ int main()
 				values[i].mobile = atol(field);
 
 			if(field_count == 1)
-				values[i].rate = atol(field);
+				strcpy(values[i].rate, field);
 
 			if(field_count == 2)
 				strcpy(values[i].exp_date, field);
@@ -60,7 +61,7 @@ int main()
 	totalRecords = i+1;
 
 	//for(i = 0; i<20; i++){
-	//printf("Mobile -> %lld\t Current Plan-> %d\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
+	//printf("Mobile -> %lld\t Current Plan-> %s\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
 	//}
 
 
@@ -125,40 +126,17 @@ int main()
 					time_t start_t, end_t;
 					int diff_t;
 					srand(time(NULL));
-					c = rand() % 40;
+					c = rand() % 10;
 					printf("CONNECTED...\n\n");
 					start_t = time(NULL);
 					sleep(c);
 					end_t = time(NULL);
 					diff_t = (int) end_t - start_t;
-					printf("Your Call Duration is: %d second\n\n", diff_t);
-					values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
-					//TODO: convert it into integer: values[index_a].rate);
-					printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
-					printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
-				        FILE *fp = fopen("sample.csv", "w");
-					fprintf(fp, "Mobile No.,Curr_plan,Exp_Date,Avl_Balance\n");
-					for(i = 0; i < 20; i++)
-					{
-						if(values[index_a].mobile)
-						{
-							fprintf(fp, "%lld,%d,%s,%d\n", values[i].mobile, values[i].rate, values[i].exp_date, values[i].balance);
-						
-						}
-					}	
+					printf("Your Call Duration is: %d\n\n", diff_t);
+					values[index_a].balance = values[index_a].balance - (diff_t * 1);	//TODO: convert it into integer: values[index_a].rate);
+					printf("Your remaining balance is: 
 				}
 				break;
-
-			case 3:
-				printf("Your current rate is [%d] and expiry date for your plan is[%s]\n\n", values[index_a].rate, values[index_a].exp_date);
-				break;
-
-			case 4:
-				printf("Your Available Balance is [%d]\n\n", values[index_a].balance);
-				break;
-
-			case 5:
-				exit(0);
 		}
 	}
 

@@ -12,17 +12,16 @@ int main() {
    
     int month,year,file;
     float perSec;
-    char filename[20];
-
-    printf("Enter File Name : ");
-    scanf("%s",filename);
     
+    printf("Enter 1 for telecom.csv\n");
+    printf("Enter 2 for tele.csv\n");
+    printf("Enter 3 for tel.csv\n");
 
 
 
-//     printf("Enter File No: ");
+    printf("Enter File No: ");
    
-//    scanf("%d", &file);
+   scanf("%d", &file);
     
     printf("\nEnter Cost of per sec ( in paise):");
     scanf("%f", &perSec);
@@ -37,23 +36,23 @@ int main() {
     int tele[4][4]= {};
     FILE* fp;
 
-    // if(file==1)
-    // {
+    if(file==1)
+    {
         
-    //       fp = fopen("telecom.csv", "r");
-    // }
-    // else if(file==2)
-    // {
-    //       fp = fopen("tele.csv", "r");
-    // }
-    //  else if(file==3)
-    //  {
-    //     fp = fopen("tel.csv", "r"); 
-    //  }
-    // else
-    //     printf("No file");
+          fp = fopen("telecom.csv", "r");
+    }
+    else if(file==2)
+    {
+          fp = fopen("tele.csv", "r");
+    }
+     else if(file==3)
+     {
+        fp = fopen("tel.csv", "r"); 
+     }
+    else
+        printf("No file");
      
-    fp = fopen(filename, "r"); 
+    
                    
               
 
@@ -61,8 +60,8 @@ int main() {
     /* else (!file){
      printf("Can't open file\n");
      }*/
-//  if(file==1||file==2||file==3)
-//      {
+ if(file==1||file==2||file==3)
+     {
         // Here we have taken size of
         // array 1024 
         char buffer[1024];
@@ -162,10 +161,10 @@ int main() {
         printf("BSNL to Vi- %d\n",tele[3][2]);
         // Close the file
         fclose(fp);
-    // }
-    // else{
-    //     printf("No file");
-    // }
+    }
+    else{
+        printf("No file");
+    }
 
     printf("\nAfter Settlement :\n");
     float price ;

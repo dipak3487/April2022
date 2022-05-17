@@ -7,3 +7,7 @@ main.o : main.c
 clear :
 	rm program main.o
 
+install :
+	sudo cp -rf sample.csv /usr/local/bin
+	sudo cp -rf program /usr/local/bin/
+	

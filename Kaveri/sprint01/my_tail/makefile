@@ -6,4 +6,6 @@ mytail.o: mytail.c
 
 clean:
 	rm mytail.o mytail
+install: 
+	sudo cp -rf mytail /usr/local/bin/
 
