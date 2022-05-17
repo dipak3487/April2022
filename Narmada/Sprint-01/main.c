@@ -110,43 +110,59 @@ int main()
 				}
 				//take randome interval
 
-				srand(time(NULL));
-				a = rand() % 10;
-				printf("\n[%d][%lld] is DIALING... %lld\n\n", index_a, values[index_a].mobile, values[index_b].mobile);
-				sleep(a);
-				srand(time(NULL));
-				b = rand() % 10;
-				printf("RINGING...\n\n");
-				sleep(b);
-				if(b>50){
-					printf("Ring No Answer\n\n\n");
-				}
-				else{
-					time_t start_t, end_t;
-					int diff_t;
+				char todayDateStr[100];
+				time_t rawtime;
+				struct tm *timeinfo;
+		                time ( &rawtime );
+				timeinfo = localtime ( &rawtime );
+			        strftime(todayDateStr, strlen("DD-MMM-YYYY ")+1,"%d-%m-%Y ",timeinfo);
+				//printf("%s\n", todayDateStr );
+				//printf("%s\n",values[index_a].exp_date);
+				int s = strcmp(values[index_a].exp_date, todayDateStr);
+				if(s>0)
+				{
 					srand(time(NULL));
-					c = rand() % 40;
-					printf("CONNECTED...\n\n");
-					start_t = time(NULL);
-					sleep(c);
-					end_t = time(NULL);
-					diff_t = (int) end_t - start_t;
-					printf("Your Call Duration is: %d second\n\n", diff_t);
-					values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
-					//TODO: convert it into integer: values[index_a].rate);
-					printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
-					printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
-				        FILE *fp = fopen("sample.csv", "w");
-					fprintf(fp, "Mobile No.,Curr_plan,Exp_Date,Avl_Balance\n");
-					for(i = 0; i < 20; i++)
-					{
-						if(values[index_a].mobile)
+					a = rand() % 10;
+					printf("\n[%d][%lld] is DIALING... %lld\n\n", index_a, values[index_a].mobile, values[index_b].mobile);
+					sleep(a);
+					srand(time(NULL));
+					b = rand() % 10;
+					printf("RINGING...\n\n");
+					sleep(b);
+					if(b>50){
+						printf("Ring No Answer\n\n\n");
+					}
+					else{
+						time_t start_t, end_t;
+						int diff_t;
+						srand(time(NULL));
+						c = rand() % 40;
+						printf("CONNECTED...\n\n");
+						start_t = time(NULL);
+						sleep(c);
+						end_t = time(NULL);
+						diff_t = (int) end_t - start_t;
+						printf("Your Call Duration is: %d second\n\n", diff_t);
+						values[index_a].balance = values[index_a].balance - (diff_t * values[index_a].rate);
+						//TODO: convert it into integer: values[index_a].rate);
+						printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
+						printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
+				        	FILE *fp = fopen("sample.csv", "w");
+						fprintf(fp, "Mobile No.,Curr_plan,Exp_Date,Avl_Balance\n");
+						for(i = 0; i < 20; i++)
 						{
-							fprintf(fp, "%lld,%d,%s,%d\n", values[i].mobile, values[i].rate, values[i].exp_date, values[i].balance);
+							if(values[index_a].mobile)
+							{
+								fprintf(fp, "%lld,%d,%s,%d\n", values[i].mobile, values[i].rate, values[i].exp_date, values[i].balance);
 						
-						}
-					}	
+							}
+						}	
+					}
 				}
+				else {
+					printf("Sorry! Your plan is expired! Please recharge your number to make a call.\n\n");
+				}
+
 				break;
 
 			case 3:
