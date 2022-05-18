@@ -171,6 +171,7 @@ int main()
 
 			case 4:
 				printf("Your Available Balance is [%d]\n\n", values[index_a].balance);
+				fclose(fp);
 				break;
 
 			case 5:
