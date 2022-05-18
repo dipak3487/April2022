@@ -90,7 +90,7 @@ if(H == 1)
     
     if (fptrr == NULL)
     {
-        printf("head: cannot open %s for reading: No such file or directory \n", argv[i]);
+        printf("myhead: cannot open %s for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
 
