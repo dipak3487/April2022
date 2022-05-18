@@ -147,7 +147,7 @@ int main()
 						//TODO: convert it into integer: values[index_a].rate);
 						printf("Your call cost is: %d paisa\n", (diff_t * values[index_a].rate));
 						printf("Your remaining balance is: %d paisa\n\n", values[index_a].balance);
-				        	FILE *fp = fopen(" ../data/sample.csv", "w");
+				        	FILE *fp = fopen("../data/sample.csv", "w");
 						fprintf(fp, "Mobile No.,Curr_plan,Exp_Date,Avl_Balance\n");
 						for(i = 0; i < 20; i++)
 						{
