@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+//#include <sys/types.h>
+//#include <sys/stat.h>
+//#include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -16,15 +16,15 @@ FILE *myfile; //pointing to txt file
 ////////////////////////////////////////////////////
 	FILE *myfile2;
     char content2[200]="";
-    int max2 = 0 ;
-    int N2=0;
+//    int max2 = 0 ;
+//    int N2=0;
     int i = 0, j=0;
     char d='\0';
  //////////////////////////////////////////////////
 	FILE *fptr;
 	//FILE *fn;
-    char filename[200], c;
-    int max3=0;
+    char filename[200];// c;
+    //int max3=0;
 	int temp=0;
 	//char file2name[200],k;
 	FILE *fp;
@@ -32,7 +32,7 @@ FILE *myfile; //pointing to txt file
 //////////////////////////////////////////////////////
     FILE *fptrr;
 	//FILE *fn1;
-    char filename4[200], r;
+    char filename4[200];// r;
     int max4=0;
 
     int opt;
