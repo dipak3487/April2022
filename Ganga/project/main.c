@@ -262,8 +262,13 @@ printf("\t\t Name:- %s\n",p.name);
 
 
 printf("\t\t First_No:- %ld\n",p.mble_no);
+if(p.mob == 0)
+{
+printf("\t\t Second_No:- \n");
+}
+else{
 printf("\t\t Second_No:- %ld\n",p.mob);
-
+}
 printf("\t\t Email_ID:- %s\n",p.mail);
 
 
