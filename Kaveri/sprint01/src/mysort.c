@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 	}
 	else if(strcmp(argv[1],"-help") == 0)
 	{
-		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
+		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n -r -reverse reverse the result of comparisons \n --help display this help and exit \n --version output version information and exit \n ");
 		exit(0);
 	}
 	else if(strcmp(argv[1],"-version") == 0)
