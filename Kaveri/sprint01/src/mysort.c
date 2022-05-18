@@ -6,10 +6,10 @@
 
 unsigned long int lineCountFile(const char *filename)
 {
-    FILE *fp;
+    FILE *fp=NULL;
 	fp= fopen(filename, "r");
     unsigned long int linecount = 0;
-    int c;
+    int c=0;
     if(fp == NULL){
         return 0;
     }
@@ -24,8 +24,8 @@ unsigned long int lineCountFile(const char *filename)
 
 void sortfile(char **array, int linecount)
 {
-    int i, j;
-    char t[MAX_LINE];
+    int i=0, j=0;
+    char t[MAX_LINE]="";
 
     for(i=1;i<linecount;i++)
     {
@@ -44,8 +44,8 @@ void sortfile(char **array, int linecount)
 
 int main(int argc, char **argv)
 {
-    FILE *fileIN; 
-	char *in;
+    FILE *fileIN=NULL; 
+	char *in=NULL;
 	if(strcmp(argv[1],"-o") == 0 || strcmp(argv[1],"-r") == 0)
 	{ 
 		fileIN = fopen(argv[2], "r");
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 		in = argv[1];
 	}
 //	char *arr[200];
-	FILE *fp;
+	FILE *fp=NULL;
     if(!fileIN)
     {
 		printf("mysort cannont read %s: no such file or directory",argv[1]);

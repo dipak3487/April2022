@@ -7,19 +7,19 @@
 
 int main(int argc, char *argv[])
 {
-    FILE *fp, *fptr;
-    int fd,read_byte;
+    FILE *fp=NULL, *fptr=NULL;
+    int fd=0,read_byte=0;
     int count = 0;
-    int opt;
-	int linecount;
+    int opt=0;
+	int linecount=0;
 	//char version,help;
-    FILE *in;
-    long int pos;
-    char s[200];
-    int N;
+    FILE *in= NULL;
+    long int pos=0;
+    char s[200]="";
+    int N=0;
 	int Line = 0,Byte=0;
     //char ch;
-    char l[21];
+    char l[21]="";
     //int cnt = 0, O=0;
 	int H = 0;
 	int NH = 0;
@@ -107,7 +107,7 @@ if(H == 1)
 if (Line == 1)
 {
    linecount=0;
-   int c;
+   int c=0;
    fp =fopen(argv[3],"r");
    if (fp == NULL) {
         printf("tail: cannot open '%s' for reading: No such file or directory", argv[3]);
@@ -159,7 +159,7 @@ if(NH == 1)
 {
  	N= 10;
  	linecount = 0;
-	int c;
+	int c=0;
 	{
 		for(int i=2;i<argc;i++)
 		{
@@ -206,7 +206,7 @@ if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
 {
 	N =10;
 	linecount = 0;
-	int c;
+	int c=0;
 	for(int i=1;i<argc;i++)
 	{
 	in =fopen(argv[i],"r");

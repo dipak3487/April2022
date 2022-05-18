@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	 exit(0);
  }
  struct stat st;       
- char *p, *q;                
+ char *p=NULL, *q=NULL;                
  int k=1;
  while(k < argc)
 {
