@@ -22,13 +22,13 @@ int main()
 	char str[1024];
 	FILE *fp = fopen("../data/sample.csv", "r");
 	if(fp == NULL){
-		printf("\nError in opening the file\n");
+		printf("\nError in opening the sample.csv file\n");
 		return 0;
 	}
 	int row_count = 0;
 	int field_count = 0;
 	dict values[29];
-	int totalRecords = 0;
+	//int totalRecords = 0;
 	int total;
 	int i = 0;
 	while(fgets(str,1024,fp)){
@@ -57,7 +57,7 @@ int main()
 		}
 		i++;
 	}
-	totalRecords = i+1;
+	//totalRecords = i+1;
 
 	//for(i = 0; i<20; i++){
 	//printf("Mobile -> %lld\t Current Plan-> %d\t Exp_date-> %s\t Avl_Balance -> %d\n", values[i].mobile, values[i].rate, values[i].exp_date,values[i].balance);
@@ -108,7 +108,7 @@ int main()
 					printf("You don't have enough balance! Please do recharge your number.\n");
 					continue;
 				}
-				//take randome interval
+				//take current date of system to check with plan expiry date
 
 				char todayDateStr[100];
 				time_t rawtime;
@@ -118,9 +118,10 @@ int main()
 			        strftime(todayDateStr, strlen("DD-MMM-YYYY ")+1,"%d-%m-%Y ",timeinfo);
 				//printf("%s\n", todayDateStr );
 				//printf("%s\n",values[index_a].exp_date);
-				int res = strcmp(values[index_a].exp_date, todayDateStr);
-				if(res>0)
+				int result = strcmp(values[index_a].exp_date, todayDateStr); //comparing today date and the plan expiry date
+				if(result>0)
 				{
+					//generating random time interval for placing the call using srand and rand
 					srand(time(NULL));
 					a = rand() % 10;
 					printf("\n[%d][%lld] is DIALING... %lld\n\n", index_a, values[index_a].mobile, values[index_b].mobile);
@@ -156,7 +157,8 @@ int main()
 								fprintf(fp, "%lld,%d,%s,%d\n", values[i].mobile, values[i].rate, values[i].exp_date, values[i].balance);
 						
 							}
-						}	
+						}
+						fclose(fp);	
 					}
 				}
 				else {
