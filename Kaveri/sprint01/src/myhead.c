@@ -6,40 +6,37 @@
 #include <string.h>
 #include <stdlib.h>
 #include <getopt.h>
-
 int main(int argc, char *argv[])
 {
-FILE *myfile=NULL; //pointing to txt file
-    char content[200]=""; //char array of size 200
+FILE *myfile; //pointing to txt file
+    char content[200]; //char array of size 200
     int max = 0 ;
     int N=0;
 ////////////////////////////////////////////////////
-	FILE *myfile2=NULL;
+	FILE *myfile2;
     char content2[200]="";
 //    int max2 = 0 ;
 //    int N2=0;
     int i = 0, j=0;
     char d='\0';
  //////////////////////////////////////////////////
-	FILE *fptr=NULL;
+	FILE *fptr;
 	//FILE *fn;
-    char filename[200]="";// c;
+    char filename[200];// c;
     //int max3=0;
 	int temp=0;
 	//char file2name[200],k;
-	FILE *fp=NULL;
+	FILE *fp;
 	//char file3name[200],m;
 //////////////////////////////////////////////////////
-    FILE *fptrr=NULL;
+    FILE *fptrr;
 	//FILE *fn1;
-    char filename4[200]="";// r;
+    char filename4[200];// r;
     int max4=0;
-
-    int opt=0;
+    int opt;
     //char version,help;
    
     int Line = 0,Byte=0;
-
     int H = 0;
     int NH = 0;
     static struct option long_options[] = {
@@ -87,9 +84,10 @@ if(H == 1)
 	{
 	fptrr = fopen(argv[i], "r");// passing one argument. file in read only mode.
         printf("==> %s <==\n",argv[i]);
-    
+
     if (fptrr == NULL)
     {
+        printf("head: cannot open %s for reading: No such file or directory \n", argv[i]);
         printf("myhead: cannot open %s for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
@@ -114,7 +112,6 @@ if (Line == 1)
 {
     // Open file
     myfile = fopen(argv[3], "r");// passing one argument. file in read only mode.
-
     if (myfile == NULL)      // check content of the file is null or not
     {
         printf("head: cannot open %s for reading: No such file or directory \n", argv[3]);
@@ -122,7 +119,6 @@ if (Line == 1)
     }
     //Read the first 10 lines from file
     fgets(content, 200, myfile); //library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
-
 	
     N = atoi(argv[2]);
     while (*content != EOF) // run while loop until EOF appear
@@ -160,7 +156,6 @@ if(Byte ==1)
         // Get the characters
          d = fgetc(myfile2);
     }
-
     // Print the bytes as string
     printf("%s", content2);
     fclose(myfile2);
@@ -180,7 +175,6 @@ if(NH ==1)
         printf("head: cannot open '%s' for reading: No such file or directory \n", argv[i]);
         exit(0);
     }
-
     while (NULL != fgets(filename, 200, fptr))
     {
       if (max > 9)  // check required lines are reached or not. if reached then break the loop.
@@ -195,7 +189,6 @@ if(NH ==1)
 	fclose(fptr);
   }
 }
-
 	/*fn = fopen(argv[3], "r");// passing one argument. file in read only mode.
        // printf("==> %s <==\n",argv[2]);
     
@@ -204,7 +197,6 @@ if(NH ==1)
     //    printf("Cannot open file \n");
         exit(0);
     }
-
     while (NULL != fgets(file2name,200, fn))
     {
       if (temp > 9)  // check required lines are reached or not. if reached then break the loop.
@@ -216,7 +208,6 @@ if(NH ==1)
 		
 	}
 	fclose(fn);
-
 	temp = 0;
 	fp = fopen(argv[4], "r");// passing one argument. file in read only mode.
         //  printf("==> %s <==\n",argv[1]);
@@ -237,8 +228,6 @@ if(NH ==1)
       }
      fclose(fp);
 */
-
-
 //printf("%d %d %d",Line,Byte,argc);
 if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
 {
@@ -247,7 +236,6 @@ if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
     {
     // Open file
     myfile = fopen(argv[i], "r");// passing one argument. file in read only mode.
-
     if (myfile == NULL)      // check content of the file is null or not
     {
         printf("head: cannot open %s for reading: No such file or directory \n", argv[i]);
@@ -255,7 +243,6 @@ if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
     }
     //Read the first 10 lines from file
 //30.04.22    fgets(content, 200, myfile); //library function fgets(); reads a line from the specified stream and stores it into the string pointed to.
-
     N = 9;
 //    while (*content != EOF) // run while loop until EOF appear
 	while (NULL != fgets(content, 200, myfile))
