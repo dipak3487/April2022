@@ -1,70 +1,42 @@
-#include <curses.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
 
-//# include <sys/types.h>
-//# include <sys/local.h>
-int main() {
+
+int main()
+ {
+       
+     int month,year;
+     float perSec;
+     char filename[20];
+
+     printf("Enter File Name : ");
+     scanf("%s",filename);
     
-   
-    int month,year,file;
-    float perSec;
-    
-    printf("Enter 1 for telecom.csv\n");
-    printf("Enter 2 for tele.csv\n");
-    printf("Enter 3 for tel.csv\n");
 
 
 
-    printf("Enter File No: ");
-   
-   scanf("%d", &file);
-    
-    printf("\nEnter Cost of per sec ( in paise):");
-    scanf("%f", &perSec);
 
-    printf("Enter Month (01-12) :");
-    scanf("%d", &month);
-    printf("Enter Year :");
-    scanf("%d", &year);
     
-    
-  
-    int tele[4][4]= {};
-    FILE* fp;
+     printf("\nEnter Cost of per sec ( in paise):");
+     scanf("%f", &perSec);
 
-    if(file==1)
-    {
-        
-          fp = fopen("telecom.csv", "r");
-    }
-    else if(file==2)
-    {
-          fp = fopen("tele.csv", "r");
-    }
-     else if(file==3)
-     {
-        fp = fopen("tel.csv", "r"); 
-     }
-    else
-        printf("No file");
+     printf("Enter Month (01-12) :");
+     scanf("%d", &month);
+     printf("Enter Year :");
+     scanf("%d", &year);
+    
+     int tele[4][4]= {};
+      FILE* fp;
+
+    
      
-    
+     fp = fopen(filename, "r"); 
                    
-              
-
- 
-    /* else (!file){
-     printf("Can't open file\n");
-     }*/
- if(file==1||file==2||file==3)
-     {
-        // Here we have taken size of
-        // array 1024 
-        char buffer[1024];
+     char buffer[1024];
  
         int row = 0;
         int column = 0;
@@ -83,7 +55,8 @@ int main() {
             // Splitting the data
             char* value = strtok(buffer, ", ");
             int A_network, B_network , DiffTime, Stime,Etime;
-            while (value) {
+            while (value) 
+            {
 
                 // Column 3 Start Time
                 if (column == 2) {
@@ -96,7 +69,8 @@ int main() {
                 }
 
                 // Column 5 - A_Network
-                if (column == 4) {
+                if (column == 4) 
+                {
                     if (strcmp(value, "Airtel") == 0){                     //assign a values to networks
                         A_network = 0;
                     }else if (strcmp(value, "Jio") == 0) {
@@ -109,7 +83,8 @@ int main() {
                 }
 
                 // Column 5 - B_Network
-                if (column == 5) {
+                if (column == 5)
+                {
                     if (strcmp(value, "Airtel") == 0){
                         B_network = 0;
                     }else if (strcmp(value, "Jio") == 0) {
@@ -125,7 +100,6 @@ int main() {
                 value = strtok(NULL, ",");
                 column++;
             }
-
             // convert timestamp into time 
             struct tm  *ts;
             char   mon[80];
@@ -139,9 +113,10 @@ int main() {
 
 
             //check end time is in given month,year
-            if(month==end_m && year==end_y){
-            DiffTime = (Etime - Stime);                                 
-            tele[A_network][B_network] =  tele[A_network][B_network] + (DiffTime*perSec);   
+            if(month==end_m && year==end_y)
+            {
+              DiffTime = (Etime - Stime);                                 
+              tele[A_network][B_network] =  tele[A_network][B_network] + (DiffTime*perSec);   
             }    
            
         }
@@ -161,21 +136,18 @@ int main() {
         printf("BSNL to Vi- %d\n",tele[3][2]);
         // Close the file
         fclose(fp);
-    }
-    else{
-        printf("No file");
-    }
+    
 
-    printf("\nAfter Settlement :\n");
-    float price ;
+      printf("\nAfter Settlement :\n");
+      float price ;
 
-    // fetch result 
-    // example if Airtel to Jio > Jio to Airtel {
-    //     then -> Airtel need to pay Jio requried amount 
-    // } else if Airtel to Jio < Jio to Airtel {
-    //     then -> Jio need to pay Airtel requried amount 
-    // }
-
+     // fetch result 
+     // example if Airtel to Jio > Jio to Airtel {
+     //     then -> Airtel need to pay Jio requried amount 
+     // } else if Airtel to Jio < Jio to Airtel {
+     //     then -> Jio need to pay Airtel requried amount 
+     // }
+ 
 
     if (tele[0][1] > tele[1][0]) {
          price = (tele[0][1]-tele[1][0])/100.00;            // /100.00 (to convert into Rs)
@@ -218,9 +190,8 @@ int main() {
          price = (tele[3][2]-tele[2][3])/100.00;
         printf("BSNL to VI - RS %.2f \n",price);
     }else
-   /* {
+   {
     printf("Data Not Found\n");
-    }*/
+    }
     return 0;
 }
-
