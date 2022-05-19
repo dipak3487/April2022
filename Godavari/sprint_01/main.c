@@ -29,7 +29,7 @@ int main()
      printf("Enter Year :");
      scanf("%d", &year);
     
-     int tele[4][4]= {};
+     int tele[4][4];
       FILE* fp;
 
     
