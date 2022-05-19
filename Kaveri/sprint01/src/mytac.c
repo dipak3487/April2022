@@ -31,7 +31,6 @@ int main(int argc, char **argv)
 	 perror(argv[1]);
 	 exit(0);
  }
-// printf("size of st %ld",st.st_size);
  p = malloc(st.st_size*2);    
  fread(p, sizeof(char), (st.st_size*2), fh);  
  fclose(fh);                     

@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 		fileIN = fopen(argv[1], "r");
 		in = argv[1];
 	}
-//	char *arr[200];
 	FILE *fp=NULL;
     if(!fileIN)
     {

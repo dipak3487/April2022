@@ -34,7 +34,6 @@ while((opt = getopt_long(argc, argv, "ah:",long_options,NULL)) != -1)
 	o=strlen(argv[1]);
    if(o > 1)
    {
-	//printf("%d",argc);
 	while(k < argc)
 	{
 	int fdold=0;
@@ -44,17 +43,14 @@ while((opt = getopt_long(argc, argv, "ah:",long_options,NULL)) != -1)
 	if(fdold==-1)
 	{
 		printf("mycat: %s. No such file or directory\n",argv[k]);
-		//exit(1);
 	}
 	while((count = read(fdold,buffer,sizeof(buffer)))>0)
 	{
 		printf("%s",buffer);
-		//printf("$");
 		memset(buffer,0,sizeof(buffer));
 	}
 	close(fdold);
 	k++;	
 	}
   }
-	//exit(0);
 }
