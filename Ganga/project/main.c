@@ -96,9 +96,9 @@ exit(1);
 void print_menu()
 {
 system("clear");
-printf("\t\t**********\n");
-printf("\t\t* Welcome TO Telephone Directory *\n");
-printf("\t\t**********\n\n");
+printf("\t\t********************************************\n");
+printf("\t\t*** Welcome TO Telephone Directory ***\n");
+printf("\t\t********************************************\n\n");
 printf("\t\t\t1) List Record\n\n");
 printf("\t\t\t2) Add User\n\n");
 printf("\t\t\t3) Search User\n\n");
@@ -184,9 +184,9 @@ return;
 else
 {
 person p;
-printf("\n\t\t\t\t**************\n");
-printf("\t\t\t\t* Here is all records listed in Telephone Directory \n");
-printf("\t\t\t\t*************\n\n\n");
+printf("\n\t\t\t\t**********************************************************\n");
+printf("\t\t\t\t*** Here is all records listed in Telephone Directory ***\n");
+printf("\t\t\t\t************************************************************\n\n\n");
 while (fread(&p, sizeof(p), 1, fp) == 1)
 {
 printf("\t\t\t\t\t\t Name:- %s\n",p.name);
