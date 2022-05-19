@@ -1,3 +1,32 @@
+/*
+
+	Filename: mysort.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the sorted file the user gave as input 
+
+
+*/
+
+/*
+	function name: linecountfile(const char *filename)
+
+	created on: 25th Apr 2022
+
+	Description: counts the number of lines in a file
+
+*/
+/*
+	function name: sortfile(char **array, int linecount)
+
+	created on: 25th Apr 2022
+
+	Description: sorts the lines in an array
+
+	
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,7 +82,7 @@ int main(int argc, char **argv)
 	}
 	else if(strcmp(argv[1],"-help") == 0)
 	{
-		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
+		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n -r -reverse reverse the result of comparisons \n --help display this help and exit \n --version output version information and exit \n ");
 		exit(0);
 	}
 	else if(strcmp(argv[1],"-version") == 0)
@@ -66,7 +95,6 @@ int main(int argc, char **argv)
 		fileIN = fopen(argv[1], "r");
 		in = argv[1];
 	}
-//	char *arr[200];
 	FILE *fp=NULL;
     if(!fileIN)
     {

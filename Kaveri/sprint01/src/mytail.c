@@ -1,3 +1,15 @@
+/*
+
+	Filename: mytail.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the last 'n' number of lines from the input file(s) based on the parameters.
+
+
+
+*/
+
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -12,15 +24,12 @@ int main(int argc, char *argv[])
     int count = 0;
     int opt=0;
 	int linecount=0;
-	//char version,help;
     FILE *in= NULL;
     long int pos=0;
     char s[200]="";
     int N=0;
 	int Line = 0,Byte=0;
-    //char ch;
     char l[21]="";
-    //int cnt = 0, O=0;
 	int H = 0;
 	int NH = 0;
     static struct option long_options[] = {
@@ -63,7 +72,7 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
 if(H == 1)
 {
    linecount=0;
-   int c;
+   int c=0;
   N =10;
   int k = argc;
   for(int i=2;i<k;i++)
@@ -148,7 +157,7 @@ if(Byte ==1)
                }
                N = atoi(argv[2]);
                lseek(fd, -N, SEEK_END);
-               read_byte = read(fd, l, N); // Read 20 bytes
+               read_byte = read(fd, l, N); // Read N bytes
                l[read_byte] = '\0';
                printf("%s\n", l);
                close(fd);
@@ -200,7 +209,6 @@ if(NH == 1)
 	}
 }
 # endif
-//printf("%d %d %d",Line,Byte,argc);
 # ifndef S_SPLINT_S
 if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
 {

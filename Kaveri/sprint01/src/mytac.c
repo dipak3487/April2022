@@ -1,3 +1,14 @@
+/*
+
+	Filename: mytac.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the file(s) from last line to first line
+
+
+*/
+
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <sys/stat.h> 
@@ -31,7 +42,6 @@ int main(int argc, char **argv)
 	 perror(argv[1]);
 	 exit(0);
  }
-// printf("size of st %ld",st.st_size);
  p = malloc(st.st_size*2);    
  fread(p, sizeof(char), (st.st_size*2), fh);  
  fclose(fh);                     
