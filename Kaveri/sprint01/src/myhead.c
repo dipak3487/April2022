@@ -1,8 +1,7 @@
 /*
 	Filename : myhead.c
-	Created On : 22nd April 2022
-	Description : This file contains the source code to print the first 'n'
-				  lines as per the input provided by the user.
+	Created On : 25th April 2022
+	Description : This file contains the source code to print the first 'n' lines as per the input provided by the user.
 */
 
 
