@@ -1,3 +1,13 @@
+/*
+
+	FIlename: mycat.c
+
+	created on:25th Apr 2022
+
+	Description: prints the file(s) from first line to last line 
+
+
+*/
 #include<fcntl.h>
 #include<stdio.h>
 #include<stdlib.h>

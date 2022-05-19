@@ -1,3 +1,32 @@
+/*
+
+	Filename: mysort.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the sorted file the user gave as input 
+
+
+*/
+
+/*
+	function name: linecountfile(const char *filename)
+
+	created on: 25th Apr 2022
+
+	Description: counts the number of lines in a file
+
+*/
+/*
+	function name: sortfile(char **array, int linecount)
+
+	created on: 25th Apr 2022
+
+	Description: sorts the lines in an array
+
+	
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,3 +1,15 @@
+/*
+
+	Filename: mytail.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the last 'n' number of lines from the input file(s) based on the parameters.
+
+
+
+*/
+
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
