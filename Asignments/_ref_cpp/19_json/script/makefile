@@ -2,10 +2,11 @@
 	g++ -o ../bin/program ../obj/main.o ../obj/Config.o -ljsoncpp
 
 ../obj/main.o: ../src/main.cpp
-	g++ -g -c ../src/main.cpp -ljsoncpp
+	mkdir ../obj/
+	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp -I../include/ -I../src/
 
 ../obj/Config.o: ../src/Config.cpp
-	g++ -g -c ../src/Config.cpp -ljsoncpp
+	g++ -g -o ../obj/Config.o -c ../src/Config.cpp -ljsoncpp -I../include/ -I../src/
 
 clean:
 	rm ../obj/main.o ../obj/Config.o ../bin/program 

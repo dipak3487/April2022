@@ -8,13 +8,13 @@ class Config
 	Json::Value configRoot;
 	
 	private:
-	bool readConfig();
 
 	public:
+	bool readConfig();
 	Config(std::string configFilePath);
 	Config();
 	bool setFilePath(std::string path);
 
 	std::string getLogfilePath();
 
-}
+};

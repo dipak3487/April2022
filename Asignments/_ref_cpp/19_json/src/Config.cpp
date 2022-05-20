@@ -1,3 +1,5 @@
+#include<iostream>
+#include<fstream>
 #include "Config.h"
 
 bool Config::setFilePath(std::string path)
@@ -6,18 +8,22 @@ bool Config::setFilePath(std::string path)
 	return true;
 }
 
-int Config::readConfig()
+bool Config::readConfig()
 {
-	std::ifstream ifs(configFilePath);
+	std::ifstream ifs(filePath);
 
 	Json::Reader jr;
 
 	jr.parse(ifs, configRoot);
 
-	return 0;
+	return true;
 }
 
 std::string Config::getLogfilePath()
 {
-	return configRoot["logfile"].toString();
+	return configRoot["logfile"].asString();
 }
+
+Config::Config() : filePath("../config/config.json") {};
+
+Config::Config(std::string path) : filePath(path) {};

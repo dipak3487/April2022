@@ -6,7 +6,6 @@
 #include "Config.h"
 
 Config config;
-std::string configFilePath = "config.json";
 
 int parseCommandLine(int argc, char* argv[])
 {
@@ -40,6 +39,7 @@ int parseCommandLine(int argc, char* argv[])
 
 int main(int argc, char *argv[])
 {
+
 
 	parseCommandLine(argc, argv);
 
