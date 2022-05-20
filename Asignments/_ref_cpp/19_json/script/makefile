@@ -9,4 +9,4 @@
 	g++ -g -o ../obj/Config.o -c ../src/Config.cpp -ljsoncpp -I../include/ -I../src/
 
 clean:
-	rm ../obj/main.o ../obj/Config.o ../bin/program 
+	rm -rf ../obj ../bin/program
