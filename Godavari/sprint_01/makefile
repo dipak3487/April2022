@@ -1,7 +1,7 @@
 program:main.o
 	gcc -o program main.o
 main.o:main.c
-	gcc -c main.c
+	gcc -c main.c -Wall
 clean: 
 	rm main.o program
 

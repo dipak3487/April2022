@@ -1,3 +1,14 @@
+/*
+
+	Filename: mytac.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the file(s) from last line to first line
+
+
+*/
+
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <sys/stat.h> 
@@ -7,7 +18,7 @@ int main(int argc, char **argv)
 {
  if(strcmp(argv[1],"-help") == 0)
  {
-	 printf("tac - concatenate and print files in reverse \n tac [OPTION]... [FILE].. \n Write each FILE to standard output, last line first \n With no FILE, or when FILE is -, read standard input. \n --help display this help and exit \n --version  output version information and exit ");
+	 printf("mytac - concatenate and print files in reverse \n mytac [OPTION]... [FILE].. \n Write each FILE to standard output, last line first \n With no FILE, or when FILE is -, read standard input. \n -help display this help and exit \n -version  output version information and exit ");
 	exit(0);
  }
  if(strcmp(argv[1],"-version") == 0)
@@ -16,7 +27,7 @@ int main(int argc, char **argv)
 	 exit(0);
  }
  struct stat st;       
- char *p, *q;                
+ char *p=NULL, *q=NULL;                
  int k=1;
  while(k < argc)
 {
@@ -30,9 +41,9 @@ int main(int argc, char **argv)
  {
 	 perror(argv[1]);
 	 exit(0);
- } 
- p = malloc(st.st_size);    
- fread(p, sizeof(char), st.st_size, fh);  
+ }
+ p = malloc(st.st_size*2);    
+ fread(p, sizeof(char), (st.st_size*2), fh);  
  fclose(fh);                     
  q = p + st.st_size;
  *q = '\0'; 

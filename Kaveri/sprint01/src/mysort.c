@@ -1,3 +1,32 @@
+/*
+
+	Filename: mysort.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the sorted file the user gave as input 
+
+
+*/
+
+/*
+	function name: linecountfile(const char *filename)
+
+	created on: 25th Apr 2022
+
+	Description: counts the number of lines in a file
+
+*/
+/*
+	function name: sortfile(char **array, int linecount)
+
+	created on: 25th Apr 2022
+
+	Description: sorts the lines in an array
+
+	
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,9 +35,10 @@
 
 unsigned long int lineCountFile(const char *filename)
 {
-    FILE *fp = fopen(filename, "r");
+    FILE *fp=NULL;
+	fp= fopen(filename, "r");
     unsigned long int linecount = 0;
-    int c;
+    int c=0;
     if(fp == NULL){
         return 0;
     }
@@ -23,8 +53,8 @@ unsigned long int lineCountFile(const char *filename)
 
 void sortfile(char **array, int linecount)
 {
-    int i, j;
-    char t[MAX_LINE];
+    int i=0, j=0;
+    char t[MAX_LINE]="";
 
     for(i=1;i<linecount;i++)
     {
@@ -43,21 +73,16 @@ void sortfile(char **array, int linecount)
 
 int main(int argc, char **argv)
 {
-    FILE *fileIN; 
-	char *in;
-	if(strcmp(argv[1],"-o") == 0)
+    FILE *fileIN=NULL; 
+	char *in=NULL;
+	if(strcmp(argv[1],"-o") == 0 || strcmp(argv[1],"-r") == 0)
 	{ 
 		fileIN = fopen(argv[2], "r");
 		in =argv[2];
 	}
-	else if(strcmp(argv[1],"-r") == 0)
-	{
-		fileIN = fopen(argv[2], "r");
-        in =argv[2];
-	}
 	else if(strcmp(argv[1],"-help") == 0)
 	{
-		printf("sort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n --help display this help and exit \n --version output version information and exit \n ");
+		printf("usage: mysort [OPTION]... [FILE]... \n Write sorted concatenation of all FILE(s) to standard output. \n With no FILE, or when FILE is -, read standard input. \n -o, --output=FILE \n write result to FILE instead of standard output \n -r -reverse reverse the result of comparisons \n --help display this help and exit \n --version output version information and exit \n ");
 		exit(0);
 	}
 	else if(strcmp(argv[1],"-version") == 0)
@@ -70,8 +95,7 @@ int main(int argc, char **argv)
 		fileIN = fopen(argv[1], "r");
 		in = argv[1];
 	}
-//	char *arr[200];
-	FILE *fp;
+	FILE *fp=NULL;
     if(!fileIN)
     {
 		printf("mysort cannont read %s: no such file or directory",argv[1]);
@@ -82,7 +106,7 @@ int main(int argc, char **argv)
     
 
     char **array = (char**)malloc(linecount * sizeof(char*));
-    char singleline[MAX_LINE];
+    char singleline[MAX_LINE]="";
 
     int i = 0;
     while(fgets(singleline, MAX_LINE, fileIN) != NULL)
@@ -95,13 +119,14 @@ int main(int argc, char **argv)
 
     sortfile(array, linecount);
 	if(strcmp(argv[1],"-o") == 0)
-		fp =fopen(argv[3],"w");
-
+	{
+		fp =fopen(argv[3],"w+");
 		if(fp == NULL)
 		{
 			printf("written file must be entered");
 			exit(0);
 		}
+	}
     for(i=0; i<linecount; i++)
     {
 		if(strcmp(argv[1],"-o") == 0)

@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/pramod/April2022/Godavari/sprint_01'
+gcc -c main.c -Wall
+gcc -o program main.o
+make: Leaving directory '/home/pramod/April2022/Godavari/sprint_01'
+ 

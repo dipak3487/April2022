@@ -1,3 +1,15 @@
+/*
+
+	Filename: mytail.c
+
+	created on: 25th Apr 2022
+
+	Description: prints the last 'n' number of lines from the input file(s) based on the parameters.
+
+
+
+*/
+
 #include<stdio.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -7,20 +19,17 @@
 
 int main(int argc, char *argv[])
 {
-    FILE *fp, *fptr;
-    int fd,read_byte;
+    FILE *fp=NULL, *fptr=NULL;
+    int fd=0,read_byte=0;
     int count = 0;
-    int opt;
-	int linecount;
-	//char version,help;
-    FILE *in;
-    long int pos;
-    char s[200];
-    int N;
+    int opt=0;
+	int linecount=0;
+    FILE *in= NULL;
+    long int pos=0;
+    char s[200]="";
+    int N=0;
 	int Line = 0,Byte=0;
-    //char ch;
-    char l[21];
-    //int cnt = 0, O=0;
+    char l[21]="";
 	int H = 0;
 	int NH = 0;
     static struct option long_options[] = {
@@ -42,7 +51,7 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
 					Byte = 1;
 				break;
 				case 'a':
-					printf("Tail  (Team Kaveri) version 2 \n written by Team Kaveri\n");
+					printf("Mytail  (Team Kaveri) version 2 \n written by Team Kaveri\n");
 					exit(0);
 				break;
 				case 'q':
@@ -52,18 +61,18 @@ while((opt = getopt_long(argc, argv, "ncahqv:",long_options,NULL)) != -1)
 					H=1;
 				break;
 				case 'h':
-					printf("Usage: tail [OPTION]... [FILE]... \n Print the last 10 lines of each FILE to standard output. \n Mandatory arguments to long options are mandatory for short options too. \n c, --bytes=[+]NUM       output the last NUM bytes;\n-n, --lines=[+]NUM       output the last NUM lines, instead of the last 10 lines \n -q, --quiet, --silent    never output headers giving file name \n  -v, --verbose            always output headers giving file names.\n -h  display this help and exit \n -a   output version information and exit.\n ");
+					printf("Usage: mytail [OPTION]... [FILE]... \n Print the last 10 lines of each FILE to standard output.\t With more than one FILE, precede each with a header giving the file name \n Mandatory arguments to long options are mandatory for short options too. \n c, --bytes=[+]NUM       output the last NUM bytes;\n-n, --lines=[+]NUM       output the last NUM lines, instead of the last 10 lines \n -q, --quiet, --silent    never output headers giving file name \n  -v, --verbose            always output headers giving file names.\n -h  display this help and exit \n -a   output version information and exit.\n ");
 					exit(0);
 				break;				
 				default:
-					printf("Try './mytail --h' for more information.");
+					printf("Try 'mytail -h' for more information.");
 			}
 }
 # ifndef S_SPLINT_S
 if(H == 1)
 {
    linecount=0;
-   int c;
+   int c=0;
   N =10;
   int k = argc;
   for(int i=2;i<k;i++)
@@ -107,7 +116,7 @@ if(H == 1)
 if (Line == 1)
 {
    linecount=0;
-   int c;
+   int c=0;
    fp =fopen(argv[3],"r");
    if (fp == NULL) {
         printf("tail: cannot open '%s' for reading: No such file or directory", argv[3]);
@@ -148,7 +157,7 @@ if(Byte ==1)
                }
                N = atoi(argv[2]);
                lseek(fd, -N, SEEK_END);
-               read_byte = read(fd, l, N); // Read 20 bytes
+               read_byte = read(fd, l, N); // Read N bytes
                l[read_byte] = '\0';
                printf("%s\n", l);
                close(fd);
@@ -159,7 +168,7 @@ if(NH == 1)
 {
  	N= 10;
  	linecount = 0;
-	int c;
+	int c=0;
 	{
 		for(int i=2;i<argc;i++)
 		{
@@ -200,17 +209,19 @@ if(NH == 1)
 	}
 }
 # endif
-//printf("%d %d %d",Line,Byte,argc);
-if(argc == 2)
+# ifndef S_SPLINT_S
+if(NH != 1 && H !=1 && Line !=1 && Byte != 1)
 {
 	N =10;
 	linecount = 0;
-	int c;
-	in =fopen(argv[1],"r");
+	int c=0;
+	for(int i=1;i<argc;i++)
+	{
+	in =fopen(argv[i],"r");
 	if (in == NULL) {
-        printf("mytail: cannot open '%s' for reading: No such file or directory", argv[1]);
+        printf("mytail: cannot open '%s' for reading: No such file or directory", argv[i]);
         exit(EXIT_FAILURE);
-    }
+    		}
     	while((c=fgetc(in)) != EOF )
 				{
 					if(c == '\n')
@@ -233,7 +244,10 @@ if(argc == 2)
     while (fgets(s, sizeof(s), in) != NULL) {
         printf("%s", s);
     }
+    memset(s,0,sizeof(s));
 	fclose(in);
+   }
 }
+# endif
 return 0;
 }
