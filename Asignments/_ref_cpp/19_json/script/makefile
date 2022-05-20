@@ -1,4 +1,5 @@
 ../bin/program: ../obj/main.o ../obj/Config.o
+	mkdir ../bin/
 	g++ -o ../bin/program ../obj/main.o ../obj/Config.o -ljsoncpp
 
 ../obj/main.o: ../src/main.cpp
@@ -9,4 +10,4 @@
 	g++ -g -o ../obj/Config.o -c ../src/Config.cpp -ljsoncpp -I../include/ -I../src/
 
 clean:
-	rm -rf ../obj ../bin/program
+	rm -rf ../obj/main.o ../obj/Config.o ../bin/program
