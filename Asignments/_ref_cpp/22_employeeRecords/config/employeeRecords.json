@@ -1,0 +1,21 @@
+{
+	"EmployeeRecords": [{
+			"name": "first last",
+			"empCode": "E001",
+			"salary": 1000,
+			"title": "Manager"
+		},
+		{
+			"name": "second last",
+			"empCode": "E001",
+			"salary": 1000,
+			"title": "Manager"
+		},
+		{
+			"name": "third last",
+			"empCode": "E001",
+			"salary": 1000,
+			"title": "Manager"
+		}
+	]
+}
