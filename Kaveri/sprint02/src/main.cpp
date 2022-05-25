@@ -19,6 +19,7 @@ int main(int argc,char* argv[])
 
 	config.readConfig();
 	config.readRecords();
+
 	while(1)
 	{
 		cout<<"1.create new employee details"<<endl;
@@ -49,8 +50,8 @@ int main(int argc,char* argv[])
 				break;
 			case 6:
 				config.printpayslip();
+				break;
 			case 7:
-				cout<<"EXIT"<<endl;
 				exit(0);
 		}
 	}

@@ -16,7 +16,9 @@ bool Config::readOneRecord()
 	emp.empCode = oneEmp["empCode"].asString();
 	emp.salary = oneEmp["salary"].asInt();
 	emp.title = oneEmp["title"].asString();
-    records.push_back(emp);
+
+
+	records.push_back(emp);
 
     return true;
 }
@@ -77,7 +79,8 @@ bool Config::saverecordinjson()
 		content.append(e.salary);
 		content.append(e.title);
 		//content.append("}");
-	}	root["EmployeeRecords"]=content;
+	}	
+	root["EmployeeRecords"]=content;
 	
 //		std::cout <<"updated json"<< root.toStyledString()<<std::endl;
 	Json::StreamWriterBuilder builder;
@@ -112,17 +115,63 @@ int Config::editRecord()
 }
 int Config::createRecord()
 {
+	Employee create;
+	create.name = "Rahul dravid";
+	create.empCode = "E1006";
+	create.salary = 24555;
+	create.title = "Assistant Manager";
 
+
+	records.push_back(create);
+
+
+	/*for(auto it=records.begin(); it!=records.end(); it++)
+	{
+		Employee &e = *it;
+				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+	}*/
+
+	saverecordinjson();
+	
 return 0;
 
 }
 int Config::deleteRecord()
 {
+	std::string code;
+
+    std::cout<<"enter the empCode of the employee"<<std::endl;
+    std::cin>>code;
+
+	for(auto it=records.begin(); it!=records.end(); it++)
+	{
+		
+		Employee &e = *it;
+		if(e.empCode == code)
+		{
+			records.erase(it);
+		}
+	}
+	/*for(auto it=records.begin(); it!=records.end(); it++)
+	{
+		Employee &e = *it;
+				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+	}*/
+	saverecordinjson();
+
 return 0;
 
 }
 int Config::editpayroll()
 {
+	int tax=0;
+	for(auto it=records.begin(); it!=records.end(); it++)
+	{
+		Employee &e = *it;
+		
+	}
 return 0;
 
 }
