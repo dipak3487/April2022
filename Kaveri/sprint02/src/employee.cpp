@@ -65,29 +65,28 @@ int Config::searchRecord()
 }
 bool Config::saverecordinjson()
 {
-/*	Json::Value root, content(Json::arrayValue);
-//	Json::Value emp;
-	content.append(records["name"]);
-	content.append(records["empCode"]);
-	content.append(records["salary"]);
-	content.append(records["title"]);
-	root["EmployeeRecords"]=content;
-	std::cout << root.toStyledString()<<std::endl;*/
-	/*
+	Json::Value root, content(Json::arrayValue);
+
+	Json::Value emp;
+	for(auto it=records.begin(); it!=records.end(); it++)
+	{
+		Employee &e = *it;
+		//content.append("{");
+		content.append(e.name);
+		content.append(e.empCode);
+		content.append(e.salary);
+		content.append(e.title);
+		//content.append("}");
+	}	root["EmployeeRecords"]=content;
+	
+//		std::cout <<"updated json"<< root.toStyledString()<<std::endl;
 	Json::StreamWriterBuilder builder;
 	builder["commentStyle"] = "None";
 	builder["indentation"] = "   ";
 	std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 	std::ofstream outputFileStream("../config/test.json");
-	//Json::Value jsonrecords;
-	Json::Value myvect content(Json::arrayValue);;
-	for(auto it=records.begin(); it!=records.end(); it++)
-	{
-		Employee &e = *it;
-		myvect.append(it->records);
-	}
-	writer->write(myvect, &outputFileStream);
-*/
+	writer->write(root, &outputFileStream);
+
     return true;
 }
 int Config::editRecord()
@@ -113,6 +112,7 @@ int Config::editRecord()
 }
 int Config::createRecord()
 {
+
 return 0;
 
 }
