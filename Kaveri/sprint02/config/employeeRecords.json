@@ -1,0 +1,28 @@
+{
+    "EmployeeRecords": [{
+            "name": "first last",
+            "empCode": "E1002",
+            "salary": 20000,
+            "title": "Analyst"
+        },
+        {
+            "name": "second last",
+            "empCode": "E1003",
+            "salary": 30000,
+            "title": "Manager"
+        },
+        {
+            "name": "third last",
+            "empCode": "E1004",
+            "salary": 50000,
+            "title": "SeniorManager"
+        },
+        {
+            "name": "fourth last",
+            "empCode": "E1005",
+            "salary": 24000,
+            "title": "Assistant Manager"
+        }
+    ]
+}
+
