@@ -8,7 +8,21 @@ void user_login();
 void add_record();
 void search_record();
 void View_allData();
-void set Data();
+
+
+class Vaccine
+{
+	int age;
+	int temperature;
+	int bloodPressure;
+	int date_of_dose1[100];
+	int date_of_dose2[100];
+	char citizenship_number;
+	char gender;
+	char name[100];
+	char mobileNumber[100];
+	char vaccine[100];
+	
 
 
 int main()
