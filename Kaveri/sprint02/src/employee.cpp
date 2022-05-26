@@ -68,22 +68,22 @@ int Config::searchRecord()
 }
 bool Config::saverecordinjson()
 {
-	Json::Value root, content(Json::arrayValue);
+	Json::Value root, content;
 
 	Json::Value emp;
 	for(auto it=records.begin(); it!=records.end(); it++)
 	{
+		
 		Employee &e = *it;
-		//content.append("{");
-		content.append(e.name);
-		content.append(e.empCode);
-		content.append(e.salary);
-		content.append(e.title);
-		//content.append("}");
+		content.clear();	
+		content["name"] = e.name;
+		content["empCode"]= e.empCode;
+		content["salary"]=e.salary;
+		content["title"]=e.title;
+		root["EmployeeRecords"].append(content);
 	}	
-	root["EmployeeRecords"]=content;
 	
-		std::cout << root.toStyledString()<<std::endl;
+	//	std::cout << root.toStyledString()<<std::endl;
 	Json::StreamWriterBuilder builder;
 	builder["commentStyle"] = "None";
 	builder["indentation"] = "   ";
