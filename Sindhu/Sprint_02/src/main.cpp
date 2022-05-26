@@ -42,7 +42,7 @@ void menu()
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\n\t\t01: Add New Record"<<endl;
 	cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t03: Search for Citizen Records"<<endl;  
+    cout<<"\n\t\t03: Search for Citizen Records"<<endl;
 	cout<<"\n\t\t04: View All Data"<<endl;
     cout<<"\n\t\t05: Exit"<<endl;
 }
