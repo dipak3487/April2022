@@ -3,6 +3,7 @@
 #include<cstring>
 #include "employee.h"
 #include<memory>
+
 bool Config::setFilePath(std::string path)
 {
     filePath = path;
@@ -82,7 +83,7 @@ bool Config::saverecordinjson()
 	}	
 	root["EmployeeRecords"]=content;
 	
-//		std::cout <<"updated json"<< root.toStyledString()<<std::endl;
+		std::cout << root.toStyledString()<<std::endl;
 	Json::StreamWriterBuilder builder;
 	builder["commentStyle"] = "None";
 	builder["indentation"] = "   ";
@@ -125,13 +126,15 @@ int Config::createRecord()
 	records.push_back(create);
 
 
-	/*for(auto it=records.begin(); it!=records.end(); it++)
+/*	for(auto i=records.cbegin(); i!=records.cend(); i++)
 	{
-		Employee &e = *it;
-				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
-	}*/
+		Employee &e = *i;
+		std::cout << *i <<std::endl;
+		//std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+				//std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+	}
 
+*/
 	saverecordinjson();
 	
 return 0;
@@ -166,18 +169,63 @@ return 0;
 }
 int Config::editpayroll()
 {
-	int tax=0;
+	int INCOME_TAX = 0;
+	int PROVISION_FUND =0;
+	int INSURANCE = 0;
+	int NET_PAY = 0;
+	std::string code;
+
+    std::cout<<"enter the empCode of the employee"<<std::endl;
+    std::cin>>code;
+
+	int salary = 0;
 	for(auto it=records.begin(); it!=records.end(); it++)
 	{
 		Employee &e = *it;
-		
+		if(e.empCode == code)
+		{
+			 salary = e.salary;
+			 std::cout<<"salary \n"<<e.salary<<std::endl;
+			 if(salary < 21000)
+			 {
+			//	#define INCOME_TAX = 0;
+					INCOME_TAX = 0;
+			 }
+			 else if(salary > 21000 && salary <42000)
+			 {
+				 INCOME_TAX = 0.05 * salary;
+			 }
+			 else if(salary > 42000 && salary < 84000)
+			 {
+				 INCOME_TAX = 0.20 * salary;
+			 }
+			 else if(salary > 84000)
+			 {
+				 INCOME_TAX = 0.30 * salary;
+			 }
+			 else
+			 {
+				 std::cout<<"edit the salary. salary is defined wrong"<<std::endl;
+			 }
+			 PROVISION_FUND = 0.12 * salary;
+
+			 INSURANCE = 0.0475 * salary;
+		NET_PAY = salary - (INSURANCE + PROVISION_FUND + INCOME_TAX);
+		std::cout << "The net salary the employee receives is \n" << NET_PAY << std::endl;
+		printpayslip(salary,INCOME_TAX,PROVISION_FUND,INSURANCE,NET_PAY);
+		}
 	}
 return 0;
 
 }
-int Config::printpayslip()
+int Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
 {
 
+		std::cout << "The base salary of the employee: \t" << salary << std::endl;
+		std::cout << "The income tax of  the employee: \t" << INCOME_TAX << std::endl;
+		std::cout << "The provision fund the employee: \t" << PROVISION_FUND << std::endl;
+		std::cout << "The insurance of the employee:  \t" << INSURANCE << std::endl;
+		std::cout << "The net salary the employee receives is \t" << NET_PAY << std::endl;
 return 0;
 }
 
