@@ -49,13 +49,13 @@ void Vaccine::getData(){
 
     cout<<"\n\t\t Enter the  age:- ";
     cin>>age;
-        //fflush(stdin);
+        
     cout<<"\n\t\t Enter the  B.P. :-  ";
     cin>>bloodPressure;
 
     cout<<"\n\t\t Enter the Body temperature:-  ";
     cin>>temperature;
-        //fflush(stdin);
+        
 	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
     cin>>Medical_conditions;
 
