@@ -62,6 +62,8 @@ map ,v :sp $HOME/.vimrc<CR><C-W>_ " edit my .vimrc file in a split
 map ,V :source $HOME/.vimrc<CR><Left> " update the system settings from my vimrc file
 
 
+map <S-F2> :wa<CR>
+
 map <F2> :w<CR>
 imap <F2> <ESC>:w<CR>i<RIGHT>
 
@@ -72,15 +74,22 @@ map <F4> :%s/<C-R>=expand("<cword>")<CR>/<C-R>=expand("<cword>")<CR>/cg<Left><Le
 imap <F4> <esc>:%s/<C-R>=expand("<cword>")<CR>/<C-R>=expand("<cword>")<CR>/cg<Left><Left><Left>
 
 "comments start with double quote, till end of line
-map <F5> :!make<CR>
-imap <F5> <ESC>:!make<CR>i<RIGHT>
+map <F5> :!(cd script && make)<CR>
+imap <F5> <ESC>:!(cd script && make)<CR>i<RIGHT>
+
+
+map <F6> :tabprevious<CR>
+imap <F6> <ESC>:tabprevious<CR>i<RIGHT>
+
+map <F7> :tabnext<CR>
+imap <F7> <ESC>:tabnext<CR>i<RIGHT>
 
 
 map <F8> :!ctags -Rf .tags<CR>
 imap <F8> <ESC>:!ctags -Rf .tags<CR>i<RIGHT>
 
-map <F9> :!./program<CR>
-imap <F9> <ESC>:!./program<CR>i<RIGHT>
+map <F9> :!./bin/program -c ./config/myconfig.json<CR>
+imap <F9> <ESC>:!./bin/program -c ./config/myconfig.json<CR>i<RIGHT>
 
 map <F10> :se nu!<CR>
 imap <F10> <ESC>:se nu!<CR>i<RIGHT>
