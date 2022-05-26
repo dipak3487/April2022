@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include <iostream>
 #include <string.h>
+#include<sstream>
 #include <cstring>
 #include <set>
 using namespace std;
@@ -9,17 +10,18 @@ using namespace std;
 
 class Vaccine
 {
-	int age;
-	int temperature;
-	int bloodPressure;
-	int date_of_dose1[100];
-	int date_of_dose2[100];
-	char aadhar_no[100];
-	char gender;
-	char name[100];
-	char mobileNumber[100];
-	char vaccine[100];
-	char Medical_conditions[100];
+	private:
+		int age;
+		int temperature;
+		int bloodPressure;
+		int date_of_dose1[100];
+		int date_of_dose2[100];
+		string aadhar_no;
+		char gender;
+		string name;
+		string mobileNumber;
+		string vaccine;
+		char Medical_conditions[100];
 
 	public:
 		void getData();//takes data from the user
@@ -54,13 +56,13 @@ void Vaccine::getData(){
 	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
 	cout<<"\n\t\t Enter Name :-  ";
-    gets(name);
-	if(name.strlen==0){
+    getline (std::cin,name);
+	if(name.length()==0){
         cout<<"Name cannot be blank"<<endl;}
 
     cout<<"\n\t\t Enter Aadhaar no :-  ";
-    gets(aadhar_no);
-	if(aadhar_no.strlen==0){
+    getline (std::cin,aadhar_no);
+	if(aadhar_no.length()==0){
         cout<<"Aadhaar Number cannot be blank"<<endl;}
 
 	cout<<"\n\t\t Enter the gender (M|F) :-  ";
@@ -79,11 +81,11 @@ void Vaccine::getData(){
     cin>>Medical_conditions;
 
     cout<<"\n\t\t Enter the  Mobile number :- ";
-    gets(mobileNumber);
+    getline(std::cin,mobileNumber);
 
     cout<<"\n\t\t Enter the vaccine injected :- ";
-    gets(vaccine);
-	if(vaccine.strlen==0){
+    getline (std::cin,vaccine);
+	if(vaccine.length()==0){
         cout<<"Vaccine injected cannot be blank"<<endl;}
 
 }
@@ -108,7 +110,7 @@ void Vaccine::showData()
 
 int main()
 {
-	int choice = -1;
+	int choice = -1,ch=1;
 	do
 	{
 	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
@@ -116,6 +118,6 @@ int main()
     cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
     cout<<"\n\t\t\t\t\tEnter User name and Password\n";
     cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
-	}while(choice!=0);
+	}while(ch!=1);
 	return 0;
 }
