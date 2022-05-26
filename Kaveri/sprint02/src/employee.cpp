@@ -1,15 +1,33 @@
+/*
+
+filename: employee.cpp
+created on: 25th May2022
+Description: executes the files which are asked in main.cpp
+
+
+*/
 #include<iostream>
 #include<fstream>
 #include<cstring>
+#include<sstream>
 #include "employee.h"
 #include<memory>
-
+/*
+filename : setFilePath
+created on : 25th May 2022
+Description: sets the input path to the filePath
+*/
 bool Config::setFilePath(std::string path)
 {
     filePath = path;
     return true;
 }
+/*
+filename : readOneRecord
+created on : 25th May 2022
+Description: reads one record and append it to records vector.
 
+*/
 bool Config::readOneRecord()
 {
 
@@ -23,11 +41,14 @@ bool Config::readOneRecord()
 
     return true;
 }
-
+/*
+filename : readRecords
+created on : 25th May 2022
+Description: takes the records from json value and ask the readOneRecord function to append them into records vector 
+*/
 bool Config::readRecords()
 {
     const Json::Value EmpRecords = configRoot["EmployeeRecords"];
-    // Iterate over the sequence elements.
     for ( int index = 0; index < EmpRecords.size(); ++index )
     {
         oneEmp = EmpRecords[index];
@@ -35,6 +56,11 @@ bool Config::readRecords()
     }
     return true;
 }
+/*
+filename : readConfig
+created on : 25th May 2022
+Description: takes the input file from filepath and parse it to a json value
+*/
 bool Config::readConfig()
 {
     std::ifstream ifs(filePath);
@@ -45,7 +71,12 @@ bool Config::readConfig()
 
     return true;
 }
-int Config::searchRecord()
+/*
+filename : searchRecord
+created on : 25th May 2022
+Description: searches for an employee record based on the empCode of the employee 
+*/
+bool Config::searchRecord()
 {
 	std::string str1;
 
@@ -64,8 +95,13 @@ int Config::searchRecord()
 				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
 		}
 	}
-	return 0;
+	return true;
 }
+/*
+filename : saverecordinjson
+created on : 25th May 2022
+Description: saves the records vector in json file 
+*/
 bool Config::saverecordinjson()
 {
 	Json::Value root, content;
@@ -93,7 +129,12 @@ bool Config::saverecordinjson()
 
     return true;
 }
-int Config::editRecord()
+/*
+filename : editRecord
+created on : 25th May 2022
+Description: edits an employee record based on the empCode of the employee 
+*/
+bool Config::editRecord()
 {
 	std::string code;
 	std::string string1;
@@ -135,12 +176,19 @@ int Config::editRecord()
 		}
 	}
 	saverecordinjson();
-	return 0;
+	return true;
 }
-int Config::createRecord()
+/*
+filename : createRecord
+created on : 25th May 2022
+Description: creates a new employee record when a new employee is added  
+*/
+bool Config::createRecord()
 {
+	std::string name;
 	Employee create;
 	std::cout <<"name of the employee is: \t"<< std::endl;
+	std::getline(std::cin,create.name);
 	std::cin>>create.name;
 	std::cout<<"the salary of the employee is: \t"<<std::endl;
 	std::cin>>create.salary;
@@ -149,16 +197,23 @@ int Config::createRecord()
 	std::cout<<"the code of the employee is: \t"<<std::endl;
 	std::cin>>create.empCode;
 
+//	create.name = "Renu Wagh";
+
 
 	records.push_back(create);
 
 
 	saverecordinjson();
 	
-return 0;
+return true;
 
 }
-int Config::deleteRecord()
+/*
+filename : deleteRecord
+created on : 25th May 2022
+Description: delete an employee record based on the empCode of the employee 
+*/
+bool Config::deleteRecord()
 {
 	std::string code;
 
@@ -176,10 +231,15 @@ int Config::deleteRecord()
 	}
 	saverecordinjson();
 
-return 0;
+return true;
 
 }
-int Config::editpayroll()
+/*
+filename : getpayrolldetails
+created on : 25th May 2022
+Description: gets the payroll details of an employee and asks the printpayslip function to print all the payroll details of that employee 
+*/
+bool Config::getpayrolldetails()
 {
 	int INCOME_TAX = 0;
 	int PROVISION_FUND =0;
@@ -197,7 +257,7 @@ int Config::editpayroll()
 		if(e.empCode == code)
 		{
 			 salary = e.salary;
-			 std::cout<<"salary \n"<<e.salary<<std::endl;
+			 //std::cout<<"salary \n"<<e.salary<<std::endl;
 			 if(salary < 21000)
 			 {
 					INCOME_TAX = 0;
@@ -222,14 +282,19 @@ int Config::editpayroll()
 
 			 INSURANCE = 0.0475 * salary;
 		NET_PAY = salary - (INSURANCE + PROVISION_FUND + INCOME_TAX);
-		std::cout << "The net salary the employee receives is \n" << NET_PAY << std::endl;
+		//std::cout << "The net salary the employee receives is \n" << NET_PAY << std::endl;
 		printpayslip(salary,INCOME_TAX,PROVISION_FUND,INSURANCE,NET_PAY);
 		}
 	}
-return 0;
+return true;
 
 }
-int Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
+/*
+filename : printpayslip
+created on : 25th May 2022
+Description: prints the all the payrolldetails based on the values given from getpayrollfunction 
+*/
+bool Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
 {
 
 		std::cout << "The base salary of the employee: \t" << salary << std::endl;
@@ -237,7 +302,7 @@ int Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURA
 		std::cout << "The provision fund the employee: \t" << PROVISION_FUND << std::endl;
 		std::cout << "The insurance of the employee:  \t" << INSURANCE << std::endl;
 		std::cout << "The net salary the employee receives is \t" << NET_PAY << std::endl;
-return 0;
+return true;
 }
 
 Config::Config()
