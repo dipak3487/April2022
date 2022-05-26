@@ -32,7 +32,24 @@ class Vaccine
     	void view_all();//view the entire Citizen database
 		void view_vaccine();//operations on the vaccine inventory
 };
-	
+
+void menu()
+{
+    
+    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t MAIN MENU";
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\n\t\t01: Add New Record"<<endl;
+	cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t03: Search for Citizen Records"<<endl;  
+	cout<<"\n\t\t04: View All Data"<<endl;
+    cout<<"\n\t\t05: Exit"<<endl;
+}
+
+
+
+
 void Vaccine::getData(){
 	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
