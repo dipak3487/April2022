@@ -1,2 +1,2 @@
-project: main.cpp
-	g++ main.cpp function.cpp Vehicle.cpp Car.cpp Truck.cpp Bookings.cpp -o compiled
+project: ../src/main.cpp
+	g++ ../src/main.cpp ../src/function.cpp ../src/Vehicle.cpp ../src/Car.cpp ../src/Truck.cpp ../src/Bookings.cpp -o ../bin/program
