@@ -1,3 +1,6 @@
+#ifndef _EMPLOYEE_H
+#define _EMPLOYEE_H
+
 #include<jsoncpp/json/json.h>
 
 class Employee
@@ -36,8 +39,9 @@ class Config
 	int deleteRecord();
 	bool saverecordinjson();
 	int printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
-	int editpayroll();
+	int getpayrolldetails();
   //  std::string getLogfilePath();
 
 };
 
+#endif

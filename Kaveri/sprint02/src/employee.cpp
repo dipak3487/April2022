@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<cstring>
+#include<sstream>
 #include "employee.h"
 #include<memory>
 
@@ -139,8 +140,10 @@ int Config::editRecord()
 }
 int Config::createRecord()
 {
+	std::string name;
 	Employee create;
 	std::cout <<"name of the employee is: \t"<< std::endl;
+	std::getline(std::cin,create.name);
 	std::cin>>create.name;
 	std::cout<<"the salary of the employee is: \t"<<std::endl;
 	std::cin>>create.salary;
@@ -148,6 +151,8 @@ int Config::createRecord()
 	std::cin>>create.title;
 	std::cout<<"the code of the employee is: \t"<<std::endl;
 	std::cin>>create.empCode;
+
+//	create.name = "Renu Wagh";
 
 
 	records.push_back(create);
@@ -179,7 +184,7 @@ int Config::deleteRecord()
 return 0;
 
 }
-int Config::editpayroll()
+int Config::getpayrolldetails()
 {
 	int INCOME_TAX = 0;
 	int PROVISION_FUND =0;
