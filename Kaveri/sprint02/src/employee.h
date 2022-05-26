@@ -1,5 +1,4 @@
 #include<jsoncpp/json/json.h>
-#include<vector>
 
 class Employee
 {
@@ -36,7 +35,7 @@ class Config
 	int searchRecord();
 	int deleteRecord();
 	bool saverecordinjson();
-	int printpayslip();
+	int printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
 	int editpayroll();
   //  std::string getLogfilePath();
 

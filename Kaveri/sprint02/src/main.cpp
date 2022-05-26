@@ -27,8 +27,7 @@ int main(int argc,char* argv[])
 		cout<<"3.delete employee details"<<endl;
 		cout<<"4.search employee details"<<endl;
 		cout<<"5.edit payroll records for employee"<<endl;
-		cout<<"6.Display the complete payslip of an employee"<<endl;
-		cout<<"7.EXIT"<<endl;
+		cout<<"6.EXIT"<<endl;
 		cout<<"enter your choice"<<endl;
 		cin>>choice;
 		switch(choice)
@@ -49,10 +48,10 @@ int main(int argc,char* argv[])
 				config.editpayroll();
 				break;
 			case 6:
-				config.printpayslip();
-				break;
-			case 7:
 				exit(0);
+			default:
+				cout<<"Please enter 1/2/3/4/5/6 only "<<endl;
+		//		exit(0);
 		}
 	}
 	return 0;
