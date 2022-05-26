@@ -7,6 +7,41 @@
 #include "Account.h"
 using namespace std;
 
+bool write_account()
+{
+	account ac;
+	ofstream outFile;
+	outFile.open("account.dat",ios::binary|ios::app);
+	ac.create_account();
+	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+	outFile.close();
+}
+
+bool display_sp(int n)
+{
+	account ac;
+	bool flag=false;
+	ifstream inFile;
+	inFile.open("account.dat",ios::binary);
+	if(!inFile)
+	{
+		cout<<"File could not be open !! Press any Key...";
+		return;
+	}
+	cout<<"\n\t\t\tBALANCE DETAILS\n";
+    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	{
+		if(ac.retacno()==n)
+		{
+			ac.show_account();
+			flag=true;
+		}
+	}
+    inFile.close();
+	if(flag==false)
+		cout<<"\n\n\t\t\tAccount number does not exist";
+return true;
+}
 bool modify_Account(int n)
 {
 	bool found=false;
