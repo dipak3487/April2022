@@ -17,6 +17,7 @@ class Vaccine
 	char name[100];
 	char mobileNumber[100];
 	char vaccine[100];
+	char Medical_conditions[100];
 
 	public:
 		void getData();
@@ -24,12 +25,47 @@ class Vaccine
 		void showData();
 		void showList();
 		void search_Data();
-		void search_by_citizenship_no();
+		void search_by_aadhar_no();
     	void search_by_vaccine();
     	void view_all();
 		void view_vaccine();
 };
 	
+void Vaccine::getData(){
+	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
+	cout<<"-----------------------------------------------------------------------";
+	cout<<"\n\t\t Enter Name :-  ";
+    gets(name);
+	if(name.length()==0){
+        cout<<"Name cannot be blank"<<endl;}
+
+    cout<<"\n\t\t Enter Aadhaar no :-  ";
+    gets(aadhar_no);
+	if(aadhar_no.length()==0){
+        cout<<"Aadhaar Number cannot be blank"<<endl;}
+
+	cout<<"\n\t\t Enter the gender (M|F) :-  ";
+    cin>>gender;
+
+    cout<<"\n\t\t Enter the  age:- ";
+    cin>>age;
+        //fflush(stdin);
+    cout<<"\n\t\t Enter the  B.P. :-  ";
+    cin>>bloodPressure;
+
+    cout<<"\n\t\t Enter the Body temperature:-  ";
+    cin>>temperature;
+        //fflush(stdin);
+	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
+    cin>>Medical_conditions;
+
+    cout<<"\n\t\t Enter the  Mobile number :- ";
+    gets(mobileNumber);
+
+    cout<<"\n\t\t Enter the vaccine injected :- ";
+    gets(vaccine);
+	if(vaccine.length()==0){
+        cout<<"Vaccine injected cannot be blank"<<endl;}
 
 
 int main()
