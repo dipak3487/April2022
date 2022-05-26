@@ -1,3 +1,10 @@
+/*
+
+    Filename : main.cpp
+    Created On : 25th May 2022
+    Description : This file takes the input file and calls the functions the user wants to implement. 
+
+*/
 #include<iostream>
 #include<fstream>
 
@@ -6,7 +13,12 @@
 using namespace std;
 
 Config config;
+/*
+	function name: parsecommandline
+	created on: 25th May 2022
+	Description: takes argument 1 (argv[1]) as input and calls the function to parse the input file.
 
+*/
 int parsecommandline(int argc,char* argv[])
 {
 	config.setFilePath(argv[1]);

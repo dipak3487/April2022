@@ -1,3 +1,9 @@
+/*
+	Filename : employee.h
+    Created On : 25th May 2022
+    Description : creates the classes and functions and define which files/variable can be accesssed from outside the file  
+
+*/
 #ifndef _EMPLOYEE_H
 #define _EMPLOYEE_H
 
@@ -33,13 +39,13 @@ class Config
     bool setFilePath(std::string path);
     bool readRecords();
     bool readOneRecord();
-	int editRecord();//will update vector record
-	int createRecord();
-	int searchRecord();
-	int deleteRecord();
+	bool editRecord();//will update vector record
+	bool createRecord();
+	bool searchRecord();
+	bool deleteRecord();
 	bool saverecordinjson();
-	int printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
-	int getpayrolldetails();
+	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
+	bool getpayrolldetails();
   //  std::string getLogfilePath();
 
 };
