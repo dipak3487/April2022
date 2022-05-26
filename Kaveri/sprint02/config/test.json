@@ -1,29 +1,17 @@
 {
    "EmployeeRecords" : 
    [
-      "{",
-      "first last",
+      "Sachin Ramesh Tendulkar",
       "E1002",
       20000,
       "Analyst",
-      "}",
-      "{",
-      "second last",
+      "verender Sehwag",
       "E1003",
       30000,
       "Manager",
-      "}",
-      "{",
-      "raja",
-      "E1004",
-      50000,
-      "SeniorManager",
-      "}",
-      "{",
-      "fourth last",
+      "Virat Kohli",
       "E1005",
       24000,
-      "Assistant Manager",
-      "}"
+      "Assistant Manager"
    ]
 }

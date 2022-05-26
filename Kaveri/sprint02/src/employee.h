@@ -1,4 +1,5 @@
 #include<jsoncpp/json/json.h>
+#include<vector>
 
 class Employee
 {
@@ -7,7 +8,8 @@ public:
 	std::string empCode;
     int salary;
     std::string title;
-    Employee() : name(""), empCode(""), salary(0), title("") {}
+
+    Employee() : name(""), empCode(""), salary(0), title("")  {}
 };
 
 class Config
@@ -30,7 +32,7 @@ class Config
     bool readRecords();
     bool readOneRecord();
 	int editRecord();//will update vector record
-	int createRecord();//create rec
+	int createRecord();
 	int searchRecord();
 	int deleteRecord();
 	bool saverecordinjson();
