@@ -11,7 +11,7 @@ void carmenu(Car list[])
 {
     int num=1;
     cout<<"\t\t\t----------------------------------------------\n";
-    cout<<"\t\t\tWelcome to the OOP car rental Company ,Choose the car would like from the menu : "<<endl<<flush;
+    cout<<"\t\t\tWelcome to the Narmada Car Rental Services ,Choose the car would like from the menu : "<<endl<<flush;
 
     // for loop to display the cars that the user can choose from
     for (int i = 0; i < 10; i++)
@@ -63,7 +63,7 @@ void start_truckload(Truck list[])
 void truckmenu(Truck Truck_list[])
 {
     cout<<"\t\t\t----------------------------------------------\n";
-    cout<<"\t\t\tWelcome to the OOP truck rental company ,Choose the truck size you would like from the menu : "<<endl<<flush;
+    cout<<"\t\t\tWelcome to the Narmada Car Rental Services ,Choose the truck size you would like from the menu : "<<endl<<flush;
     cout<<"\t\t\tAll sizes are in cubic meters"<<endl;
     int num=1;
 
