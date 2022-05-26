@@ -64,7 +64,7 @@ int Config::searchRecord()
 				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
 		}
 	}
-	return 1;
+	return 0;
 }
 bool Config::saverecordinjson()
 {
@@ -96,7 +96,9 @@ bool Config::saverecordinjson()
 int Config::editRecord()
 {
 	std::string code;
-
+	std::string string1;
+	std::string string2;
+	std::string string3;
     std::cout<<"enter the empCode of the employee"<<std::endl;
     std::cin>>code;
 
@@ -106,9 +108,30 @@ int Config::editRecord()
 		Employee &e = *it;
 		if(e.empCode == code)
 		{
-			std::cout<<"change the name"<<std::endl;
-			std::cin>>e.name; 
-		//	e.name="c++";	
+			std::cout<<"do you want to change the name:"<<e.name<<std::endl;
+			std::cout<<"enter yes or no"<<std::endl;
+			std::cin>>string1;
+			if(string1 == "yes")
+			{
+				std::cout<<"change the name"<<std::endl;
+				std::cin>>e.name; 
+			}
+			std::cout<<"do you want to change the salary:"<<e.salary<<std::endl;
+			std::cout<<"enter yes or no"<<std::endl;
+			std::cin>>string2;
+			if(string2 == "yes")
+			{
+				std::cout<<"change the salary"<<std::endl;
+				std::cin>>e.salary; 
+			}
+			std::cout<<"do you want to change the title:"<<e.title<<std::endl;
+			std::cout<<"enter yes or no"<<std::endl;
+			std::cin>>string3;
+			if(string3 == "yes")
+			{
+				std::cout<<"change the title"<<std::endl;
+				std::cin>>e.title; 
+			}
 		}
 	}
 	saverecordinjson();
@@ -117,24 +140,19 @@ int Config::editRecord()
 int Config::createRecord()
 {
 	Employee create;
-	create.name = "Rahul dravid";
-	create.empCode = "E1006";
-	create.salary = 24555;
-	create.title = "Assistant Manager";
+	std::cout <<"name of the employee is: \t"<< std::endl;
+	std::cin>>create.name;
+	std::cout<<"the salary of the employee is: \t"<<std::endl;
+	std::cin>>create.salary;
+	std::cout<<"the title of the employee is: \t"<<std::endl;
+	std::cin>>create.title;
+	std::cout<<"the code of the employee is: \t"<<std::endl;
+	std::cin>>create.empCode;
 
 
 	records.push_back(create);
 
 
-/*	for(auto i=records.cbegin(); i!=records.cend(); i++)
-	{
-		Employee &e = *i;
-		std::cout << *i <<std::endl;
-		//std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-				//std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
-	}
-
-*/
 	saverecordinjson();
 	
 return 0;
@@ -156,12 +174,6 @@ int Config::deleteRecord()
 			records.erase(it);
 		}
 	}
-	/*for(auto it=records.begin(); it!=records.end(); it++)
-	{
-		Employee &e = *it;
-				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
-	}*/
 	saverecordinjson();
 
 return 0;
@@ -188,7 +200,6 @@ int Config::editpayroll()
 			 std::cout<<"salary \n"<<e.salary<<std::endl;
 			 if(salary < 21000)
 			 {
-			//	#define INCOME_TAX = 0;
 					INCOME_TAX = 0;
 			 }
 			 else if(salary > 21000 && salary <42000)
