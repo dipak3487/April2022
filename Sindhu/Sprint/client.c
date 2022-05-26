@@ -63,7 +63,7 @@ int displaySim(int choice, char * str)
 int main()
 {
     
-    int choice, count=0,i;
+    int choice,i;
     char str[50];
     
     
