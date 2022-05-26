@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include <iostream>
 #include <string.h>
+#include <cstring>
+
 using namespace std;
 
 
@@ -12,7 +14,7 @@ class Vaccine
 	int bloodPressure;
 	int date_of_dose1[100];
 	int date_of_dose2[100];
-	char citizenship_number;
+	char aadhar_no;
 	char gender;
 	char name[100];
 	char mobileNumber[100];
@@ -35,13 +37,13 @@ void Vaccine::getData(){
 	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
 	cout<<"\n\t\t Enter Name :-  ";
-    gets(name);
-	if(name.length()==0){
+    fgets(name);
+	if(name.strlen==0){
         cout<<"Name cannot be blank"<<endl;}
 
     cout<<"\n\t\t Enter Aadhaar no :-  ";
     gets(aadhar_no);
-	if(aadhar_no.length()==0){
+	if(aadhar_no.strlen==0){
         cout<<"Aadhaar Number cannot be blank"<<endl;}
 
 	cout<<"\n\t\t Enter the gender (M|F) :-  ";
@@ -64,10 +66,10 @@ void Vaccine::getData(){
 
     cout<<"\n\t\t Enter the vaccine injected :- ";
     gets(vaccine);
-	if(vaccine.length()==0){
+	if(vaccine.strlen==0){
         cout<<"Vaccine injected cannot be blank"<<endl;}
 
-
+}
 int main()
 {
 	int choice = -1;
