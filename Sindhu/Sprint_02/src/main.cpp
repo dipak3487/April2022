@@ -28,8 +28,8 @@ class Vaccine
 		void showList();//data list returned when searched
 		void search_Data();//data search function
 		void search_by_aadhar_no();
-    	void search_by_vaccine();
-    	void view_all();//view the entire Citizen database
+		void search_by_vaccine();
+		void view_all();//view the entire Citizen database
 		void view_vaccine();//operations on the vaccine inventory
 };
 
@@ -111,12 +111,8 @@ int main()
 	int choice = -1;
 	do
 	{
-		cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
-    
-    
-    B:
-    system("cls");
-    cout<<"  \n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
+	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    cout<<"\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
     cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
     cout<<"\n\t\t\t\t\tEnter User name and Password\n";
     cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
