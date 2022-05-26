@@ -22,15 +22,15 @@ class Vaccine
 	char Medical_conditions[100];
 
 	public:
-		void getData();
-		void addNew_Record();
-		void showData();
-		void showList();
-		void search_Data();
+		void getData();//takes data from the user
+		void addNew_Record();//data is added to the  database
+		void showData();//display data
+		void showList();//data list returned when searched
+		void search_Data();//data search function
 		void search_by_aadhar_no();
     	void search_by_vaccine();
-    	void view_all();
-		void view_vaccine();
+    	void view_all();//view the entire Citizen database
+		void view_vaccine();//operations on the vaccine inventory
 };
 	
 void Vaccine::getData(){
