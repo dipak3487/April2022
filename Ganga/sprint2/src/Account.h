@@ -17,12 +17,12 @@ class Account
 	int balance;
 	char type;
 public:
-	void createAccount();
-	void showAccount() const;
-	void modify();
-	void deposit(int);
-	void draw(int);
-	void report() const;
+	bool createAccount();
+	bool showAccount() const;
+	bool modify();
+	bool deposit(int);
+	bool draw(int);
+	bool report() const;
 	int getAccountNumber() const;
 	int getBalance() const;
 	char getType() const;

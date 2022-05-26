@@ -1,10 +1,10 @@
 #ifndef __Bank_h
 #define __Bank_h
-
+#include <string>
 class Bank
 {
 
-	private:
+	public:
 	std::string dbFilePath;
 	Account ac;
 

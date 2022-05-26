@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void Account::createAccount()
+bool Account::createAccount()
 {
 //	system("CLS");
 	cout<<"\n\t\t\tEnter the Account No. : ";
@@ -18,7 +18,7 @@ void Account::createAccount()
 	cout<<"\n\n\t\t\tAccount Created..";
 }
 
-void Account::showAccount() const
+bool Account::showAccount() const
 {
 	cout<<"\n\t\t\tAccount No. : "<<accountNumber;
 	cout<<"\n\t\t\tAccount Holder Name : ";
@@ -28,7 +28,7 @@ void Account::showAccount() const
 }
 
 
-void Account::modify()
+bool Account::modify()
 {
 	cout<<"\n\t\t\tAccount No. : "<<accountNumber;
 	cout<<"\n\t\t\tModify Account Holder Name : ";
@@ -42,17 +42,17 @@ void Account::modify()
 }
 
 
-void Account::deposit(int x)
+bool Account::deposit(int x)
 {
 	balance+=x;
 }
 
-void Account::draw(int x)
+bool Account::draw(int x)
 {
 	balance-=x;
 }
 
-void Account::report() const
+bool Account::report() const
 {
 	cout<<accountNumber<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<balance<<endl;
 }
