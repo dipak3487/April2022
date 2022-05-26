@@ -1,11 +1,11 @@
-../bin/program: ../obj/main.o ../obj/Config.o
-	g++ -o ../bin/program ../obj/main.o ../obj/Config.o -ljsoncpp
+../bin/program: ../obj/main.o ../obj/Account.o
+	g++ -o ../bin/program ../obj/main.o ../obj/Account.o -ljsoncpp
 
 ../obj/main.o: ../src/main.cpp
-	g++ -g -c ../src/main.cpp -ljsoncpp
+	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp
 
-../obj/Config.o: ../src/Config.cpp
-	g++ -g -c ../src/Config.cpp -ljsoncpp
+../obj/Account.o: ../src/Account.cpp
+	g++ -g -o ../obj/Account.o -c ../src/Account.cpp -ljsoncpp
 
 clean:
-	rm ../obj/main.o ../obj/Config.o ../bin/program 
+	rm ../obj/main.o ../obj/Account.o ../bin/program 
