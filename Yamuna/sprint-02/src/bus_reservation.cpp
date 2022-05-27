@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-//bus_2
-
-=======
->>>>>>> 4303e7bf9402794348481cad5d22fc326a877265
 #include <conio.h>
 #include <cstdio>
 #include <iostream>

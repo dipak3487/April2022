@@ -16,6 +16,7 @@ bool Account::createAccount()
 	cout<<"\n\t\t\tEnter The Initial amount : ";
 	cin>>balance;
 	cout<<"\n\n\t\t\tAccount Created..";
+	return true;
 }
 
 bool Account::showAccount() const
@@ -25,7 +26,9 @@ bool Account::showAccount() const
 	cout<<name;
 	cout<<"\n\t\t\tType of Account : "<<type;
 	cout<<"\n\t\t\tBalance amount : "<<balance;
+	return true;
 }
+
 
 
 bool Account::modify()
@@ -39,23 +42,28 @@ bool Account::modify()
 	type=toupper(type);
 	cout<<"\n\t\t\tModify Balance amount : ";
 	cin>>balance;
+	return true;
 }
 
 
 bool Account::deposit(int x)
 {
 	balance+=x;
+	return true;
 }
 
 bool Account::draw(int x)
 {
 	balance-=x;
+	return true;
 }
 
 bool Account::report() const
 {
 	cout<<accountNumber<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<balance<<endl;
+return true;
 }
+
 
 int Account::getAccountNumber() const
 {

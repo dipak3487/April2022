@@ -6,7 +6,7 @@ class Bank
 
 	public:
 	std::string dbFilePath;
-	Account ac;
+
 
 	public:
 
@@ -19,6 +19,6 @@ class Bank
 	bool display_all();
 	bool deposit_withdraw(int, int);
 
-}
+};
 
 #endif
