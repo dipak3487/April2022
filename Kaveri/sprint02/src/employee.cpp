@@ -12,6 +12,7 @@ Description: executes the files which are asked in main.cpp
 #include<sstream>
 #include "employee.h"
 #include<memory>
+#include<bits/stdc++.h>
 
 /*
 filename : setFilePath
@@ -201,45 +202,17 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-/*	std::string name;
-
-	Employee create;
-
-	std::cout <<"Name of the Employee is: \t"<< std::endl;
-	
-	while(std::getline(std::cin,create.name))
-	{
-		if(name.empty()){
-	//std::getline(std::cin,create.name);
-		break;
-	}
-
-	records.push_back(name);
-	//std::cin>>create.name;
-}
-	
-	for(std::string &s:records){
-		std::cout << records << std::endl;
-
-		}
-
-*/  
-	Employee create;
 
 	std::string name;
 
 	std::cout<<"Name of the Employee is: \t"<<std::endl;
-	getline(std::cin,create.name);
-	if(name.length()==0)
-	{
-		std::cout << "name cannt be blank"<<std::endl;
-		}
-	std::cin>>create.name;
+	std::getline(std::cin,create.name);
+	
+	// Ignore to the end of file
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max());
 
-
-
-
-//////////////////////////////////////////////
+	// Ignore to the end of line
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
 //	std::cout<<"Name of the Employee is: \t"<<std::endl;
