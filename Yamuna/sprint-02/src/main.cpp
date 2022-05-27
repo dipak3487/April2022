@@ -4,7 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 
-using namespace std;
+using namespace std; //manoj modified this
 
 static int t = 0;
 
