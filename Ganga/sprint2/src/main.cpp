@@ -3,11 +3,11 @@
 #include<cctype>
 #include<iomanip>
 #include<stdlib.h>
-#include"Bank.h"
+#include "Bank.h"
 #include "Account.h"
 
 using namespace std;
-
+//program start here//
 int main()
 {
 
@@ -16,6 +16,7 @@ int main()
 	Bank bank;
 
 	do
+	// this will print main menu//	
 	{
 
 	cout<<"\n\n\t\t\t\t======================\n";
