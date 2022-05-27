@@ -1,7 +1,6 @@
 #ifndef SQL_H_INCLUDED
 #define SQL_H_INCLUDED
-
-#include <mysql.h>
+#include<mysql/mysql.h>
 
 using namespace std;
 

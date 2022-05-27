@@ -1,6 +1,6 @@
 
 ../bin/program: ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o
-	g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../sql.o ../hotelManager.o
+	g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --libs`
 
 ../obj/main.o: ../src/main.cpp
 		#mkdir ../obj/
