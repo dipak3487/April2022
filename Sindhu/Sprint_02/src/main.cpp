@@ -18,13 +18,13 @@ int main()
 	{
 		cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
     
-    getch();
+    getc();
     B:
     system("cls");
     cout<<"  \n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
     cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
     cout<<"\n\t\t\t\t\tEnter User name and Password\n";
     cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
-
+     }
 	return 0;
 }
