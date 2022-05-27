@@ -4,30 +4,34 @@ filename: employee.cpp
 created on: 25th May2022
 Description: executes the files which are asked in main.cpp
 
-
 */
+
 #include<iostream>
 #include<fstream>
 #include<cstring>
 #include<sstream>
 #include "employee.h"
 #include<memory>
+
 /*
 filename : setFilePath
 created on : 25th May 2022
 Description: sets the input path to the filePath
 */
+
 bool Config::setFilePath(std::string path)
 {
     filePath = path;
     return true;
 }
+
 /*
 filename : readOneRecord
 created on : 25th May 2022
 Description: reads one record and append it to records vector.
 
 */
+
 bool Config::readOneRecord()
 {
 
@@ -41,11 +45,13 @@ bool Config::readOneRecord()
 
     return true;
 }
+
 /*
 filename : readRecords
 created on : 25th May 2022
 Description: takes the records from json value and ask the readOneRecord function to append them into records vector 
 */
+
 bool Config::readRecords()
 {
     const Json::Value EmpRecords = configRoot["EmployeeRecords"];
@@ -56,11 +62,13 @@ bool Config::readRecords()
     }
     return true;
 }
+
 /*
 filename : readConfig
 created on : 25th May 2022
 Description: takes the input file from filepath and parse it to a json value
 */
+
 bool Config::readConfig()
 {
     std::ifstream ifs(filePath);
@@ -71,11 +79,13 @@ bool Config::readConfig()
 
     return true;
 }
+
 /*
 filename : searchRecord
 created on : 25th May 2022
 Description: searches for an employee record based on the empCode of the employee 
 */
+
 bool Config::searchRecord()
 {
 	std::string str1;
@@ -97,11 +107,13 @@ bool Config::searchRecord()
 	}
 	return true;
 }
+
 /*
 filename : saverecordinjson
 created on : 25th May 2022
 Description: saves the records vector in json file 
 */
+
 bool Config::saverecordinjson()
 {
 	Json::Value root, content;
@@ -129,11 +141,13 @@ bool Config::saverecordinjson()
 
     return true;
 }
+
 /*
 filename : editRecord
 created on : 25th May 2022
 Description: edits an employee record based on the empCode of the employee 
 */
+
 bool Config::editRecord()
 {
 	std::string code;
@@ -178,11 +192,13 @@ bool Config::editRecord()
 	saverecordinjson();
 	return true;
 }
+
 /*
 filename : createRecord
 created on : 25th May 2022
 Description: creates a new employee record when a new employee is added  
 */
+
 bool Config::createRecord()
 {
 	std::string name;
@@ -208,11 +224,13 @@ bool Config::createRecord()
 return true;
 
 }
+
 /*
 filename : deleteRecord
 created on : 25th May 2022
 Description: delete an employee record based on the empCode of the employee 
 */
+
 bool Config::deleteRecord()
 {
 	std::string code;
@@ -234,11 +252,13 @@ bool Config::deleteRecord()
 return true;
 
 }
+
 /*
 filename : getpayrolldetails
 created on : 25th May 2022
 Description: gets the payroll details of an employee and asks the printpayslip function to print all the payroll details of that employee 
 */
+
 bool Config::getpayrolldetails()
 {
 	int INCOME_TAX = 0;
@@ -289,11 +309,13 @@ bool Config::getpayrolldetails()
 return true;
 
 }
+
 /*
 filename : printpayslip
 created on : 25th May 2022
 Description: prints the all the payrolldetails based on the values given from getpayrollfunction 
 */
+
 bool Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
 {
 
