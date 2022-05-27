@@ -4,7 +4,7 @@
 #include <cstring>
 #include <cstdlib>
 
-using namespace std; //manoj modified this
+using namespace std; //bike ride
 
 static int t = 0;
 
