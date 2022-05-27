@@ -3,7 +3,7 @@
 #include <string.h>
 #include<sstream>
 #include <cstring>
-#include <set>
+#include <sqlite3.h>
 using namespace std;
 
 
@@ -55,15 +55,15 @@ void menu()
 void Vaccine::getData(){
 	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
-	cout<<"\n\t\t Enter Name :-  ";
+	 
+   
+    cout<<"\n\t\t Enter Name :-  ";
     getline (std::cin,name);
-	if(name.length()==0){
-        cout<<"Name cannot be blank"<<endl;}
+	
 
     cout<<"\n\t\t Enter Aadhaar no :-  ";
     getline (std::cin,aadhar_no);
-	if(aadhar_no.length()==0){
-        cout<<"Aadhaar Number cannot be blank"<<endl;}
+	
 
 	cout<<"\n\t\t Enter the gender (M|F) :-  ";
     cin>>gender;
@@ -81,14 +81,38 @@ void Vaccine::getData(){
     cin>>Medical_conditions;
 
     cout<<"\n\t\t Enter the  Mobile number :- ";
-    getline(std::cin,mobileNumber);
+    cin>>mobileNumber;
 
     cout<<"\n\t\t Enter the vaccine injected :- ";
-    getline (std::cin,vaccine);
-	if(vaccine.length()==0){
-        cout<<"Vaccine injected cannot be blank"<<endl;}
+   cin>>vaccine;
+
+
 
 }
+
+void Vaccine::addNew()
+{
+
+	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
+
+command=temp.str();
+ rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+   
+   if( rc != SQLITE_OK ){
+      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   } else {
+      fprintf(stdout, "Records created successfully\n");
+
+
+    sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
+  
+    
+   }
+   sqlite3_close(db);
+   return 0;
+}
+
 
 
 void Vaccine::showData()
@@ -96,8 +120,8 @@ void Vaccine::showData()
 
     cout<<"\t\t\t\t DETAILS  ";
     cout<<"\n\t\t\t---------------------------------------------------------------------\n\n";
-  	cout<<"\t\t Name is: "<<name<<endl;
-   	cout<<"\t\t Aadhar number is: "<<aadhar_no<<endl;
+    cout<<"\t\t Name is: "<<name<<endl;
+    cout<<"\t\t Aadhar number is: "<<aadhar_no<<endl;
     cout<<"\t\t Age is "<<age<<endl;
     cout<<"\t\t Gender is : "<<gender<<endl;
     cout<<"\t\t Blood pressure is :"<<bloodPressure<<endl;
@@ -108,9 +132,22 @@ void Vaccine::showData()
     
 }
 
-int main()
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+   int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
+
+int main(int argc, char** argv)
 {
-	int choice = -1,ch=1;
+
+	Vaccine obj;
+	obj.getData();
+
+	int choice = -1, ch=1;
 	do
 	{
 	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;

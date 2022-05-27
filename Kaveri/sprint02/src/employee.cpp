@@ -12,6 +12,7 @@ Description: executes the files which are asked in main.cpp
 #include<sstream>
 #include "employee.h"
 #include<memory>
+#include<bits/stdc++.h>
 
 /*
 filename : setFilePath
@@ -201,16 +202,31 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
+
 	std::string name;
-	Employee create;
-	std::cout <<"name of the employee is: \t"<< std::endl;
+
+	std::cout<<"Name of the Employee is: \t"<<std::endl;
 	std::getline(std::cin,create.name);
-	std::cin>>create.name;
-	std::cout<<"the salary of the employee is: \t"<<std::endl;
+	
+	// Ignore to the end of file
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max());
+
+	// Ignore to the end of line
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+//	std::cout<<"Name of the Employee is: \t"<<std::endl;
+//	std::cin>>create.name;
+
+
+
+	std::cout<<"Salary of the Employee is: \t"<<std::endl;
 	std::cin>>create.salary;
-	std::cout<<"the title of the employee is: \t"<<std::endl;
+
+	std::cout<<"Title of the Employee is: \t"<<std::endl;
 	std::cin>>create.title;
-	std::cout<<"the code of the employee is: \t"<<std::endl;
+
+	std::cout<<"Code of the Employee is: \t"<<std::endl;
 	std::cin>>create.empCode;
 
 //	create.name = "Renu Wagh";
