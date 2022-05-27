@@ -1,5 +1,3 @@
-//bus_2
-
 #include <conio.h>
 #include <cstdio>
 #include <iostream>
