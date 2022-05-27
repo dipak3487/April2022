@@ -37,36 +37,36 @@ int main()
 		switch(ch)
 		{
 		case '1':
-		//	system("clear");
-			bank.write_Account();
+			system("clear");
+			void writeAccount();
 			break;
 		case '2':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			deposit_withdraw(num, 1);
+			void deposit(int num);
 			break;
 		case '3':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			deposit_withdraw(num, 2);
+			void depositwithdraw(int num);
 			break;
 		case '4':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			display_sp(num);
+			void displaysp(int num);
 			break;
 		case '5':
-			display_all();
+			void displayall();
 			break;
 		case '6':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			delete_Account(num);
+			void delete_Account(int num);
 			break;
 		 case '7':
 		 	system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			modify_Account(num);
+			void modify_Account(int num);
 			break;
 		 case '8':
 		 	system("clear");
