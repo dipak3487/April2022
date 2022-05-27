@@ -201,16 +201,59 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-	std::string name;
+/*	std::string name;
+
 	Employee create;
-	std::cout <<"name of the employee is: \t"<< std::endl;
-	std::getline(std::cin,create.name);
+
+	std::cout <<"Name of the Employee is: \t"<< std::endl;
+	
+	while(std::getline(std::cin,create.name))
+	{
+		if(name.empty()){
+	//std::getline(std::cin,create.name);
+		break;
+	}
+
+	records.push_back(name);
+	//std::cin>>create.name;
+}
+	
+	for(std::string &s:records){
+		std::cout << records << std::endl;
+
+		}
+
+*/  
+	Employee create;
+
+	std::string name;
+
+	std::cout<<"Name of the Employee is: \t"<<std::endl;
+	getline(std::cin,create.name);
+	if(name.length()==0)
+	{
+		std::cout << "name cannt be blank"<<std::endl;
+		}
 	std::cin>>create.name;
-	std::cout<<"the salary of the employee is: \t"<<std::endl;
+
+
+
+
+//////////////////////////////////////////////
+
+
+//	std::cout<<"Name of the Employee is: \t"<<std::endl;
+//	std::cin>>create.name;
+
+
+
+	std::cout<<"Salary of the Employee is: \t"<<std::endl;
 	std::cin>>create.salary;
-	std::cout<<"the title of the employee is: \t"<<std::endl;
+
+	std::cout<<"Title of the Employee is: \t"<<std::endl;
 	std::cin>>create.title;
-	std::cout<<"the code of the employee is: \t"<<std::endl;
+
+	std::cout<<"Code of the Employee is: \t"<<std::endl;
 	std::cin>>create.empCode;
 
 //	create.name = "Renu Wagh";
