@@ -6,6 +6,7 @@
 #include<cctype>
 #include<iomanip>
 #include<stdlib.h>
+#include "Bank.h"
 using namespace std;
 
 

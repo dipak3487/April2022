@@ -7,33 +7,33 @@
 #include "Account.h"
 using namespace std;
 
-bool write_account()
+void writeAccount()
 {
-	account ac;
+	Account ac;
 	ofstream outFile;
-	outFile.open("account.dat",ios::binary|ios::app);
-	ac.create_account();
-	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+	outFile.open("account.txt",ios::binary|ios::app);
+	ac.createAccount();
+	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));
 	outFile.close();
 }
 
-bool display_sp(int n)
+bool displaysp(int n)
 {
-	account ac;
+	Account ac;
 	bool flag=false;
 	ifstream inFile;
-	inFile.open("account.dat",ios::binary);
+	inFile.open("account.txt",ios::binary);
 	if(!inFile)
 	{
 		cout<<"File could not be open !! Press any Key...";
-		return;
+		return 0;
 	}
 	cout<<"\n\t\t\tBALANCE DETAILS\n";
-    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Account)))
 	{
-		if(ac.retacno()==n)
+		if(ac.getAccountNumber()==n)
 		{
-			ac.show_account();
+			ac.showAccount();
 			flag=true;
 		}
 	}
@@ -42,15 +42,16 @@ bool display_sp(int n)
 		cout<<"\n\n\t\t\tAccount number does not exist";
 return true;
 }
-bool modify_Account(int n)
+bool modifyAccount(int n)
 {
 	bool found=false;
 	fstream File;
-    File.open("Account.txt",ios::binary|ios::in|ios::out);
+	Account ac;
+    File.open("account.txt",ios::binary|ios::in|ios::out);
 	if(!File)
 	{
 		cout<<"File could not be open !! Press any Key...";
-		return;
+		return 0;
 	}
 	while(!File.eof() && found==false)
 	{
@@ -75,15 +76,16 @@ bool modify_Account(int n)
 
 
 
-bool delete_Account(int n)
+bool deleteAccount(int n)
 {
+	Account ac;
 	ifstream inFile;
 	ofstream outFile;
-	inFile.open("Account.txt",ios::binary);
+	inFile.open("account.txt",ios::binary);
 	if(!inFile)
 	{
 		cout<<"File could not be open !! Press any Key...";
-		return;
+		return 0;
 	}
 	outFile.open("Temp.txt",ios::binary);
 	inFile.seekg(0,ios::beg);
@@ -96,22 +98,23 @@ bool delete_Account(int n)
 	}
     inFile.close();
 	outFile.close();
-	remove("Account.txt");
+	remove("account.txt");
 	rename("Temp.txt","Account.txt");
 	cout<<"\n\nRecord Deleted ..";
 	return true;
 }
 
 
-bool display_all()
+bool displayall()
 {
-//	system("clear");
+	system("clear");
+	Account ac;
 	ifstream inFile;
-	inFile.open("Account.txt",ios::binary);
+	inFile.open("account.txt",ios::binary);
 	if(!inFile)
 	{
 		cout<<"File could not be open !! Press any Key...";
-		return;
+		return 0;
 	}
 	cout<<"\n\n\t\tACCOUNT HOLDER LIST\n\n";
 	cout<<"====================================================\n";
@@ -126,16 +129,17 @@ bool display_all()
 }
 
 
-bool deposit_withdraw(int n, int option)
+bool depositwithdraw(int n, int option)
 {
 	int amt;
+	Account ac;
 	bool found=false;
 	fstream File;
-    File.open("Account.txt", ios::binary|ios::in|ios::out);
+    File.open("account.txt", ios::binary|ios::in|ios::out);
 	if(!File)
 	{
 		cout<<"File could not be open !! Press any Key...";
-		return;
+		return 0;
 	}
 	while(!File.eof() && found==false)
 	{
@@ -173,7 +177,3 @@ bool deposit_withdraw(int n, int option)
 		cout<<"\n\n\t\t\tRecord Not Found ";
 	return true;
 }
-
-
-
-
