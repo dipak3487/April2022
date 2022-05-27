@@ -3,7 +3,7 @@
 #include <string.h>
 #include<sstream>
 #include <cstring>
-#include <set>
+#include <sqlite3.h>
 using namespace std;
 
 
@@ -96,8 +96,8 @@ void Vaccine::showData()
 
     cout<<"\t\t\t\t DETAILS  ";
     cout<<"\n\t\t\t---------------------------------------------------------------------\n\n";
-  	cout<<"\t\t Name is: "<<name<<endl;
-   	cout<<"\t\t Aadhar number is: "<<aadhar_no<<endl;
+    cout<<"\t\t Name is: "<<name<<endl;
+    cout<<"\t\t Aadhar number is: "<<aadhar_no<<endl;
     cout<<"\t\t Age is "<<age<<endl;
     cout<<"\t\t Gender is : "<<gender<<endl;
     cout<<"\t\t Blood pressure is :"<<bloodPressure<<endl;
@@ -108,9 +108,107 @@ void Vaccine::showData()
     
 }
 
-int main()
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+   int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
+
+int main(int argc, char** argv)
 {
-	int choice = -1,ch=1;
+int age;
+		int temperature;
+		int bloodPressure;
+		int date_of_dose1[100];
+		int date_of_dose2[100];
+		string aadhar_no;
+		char gender;
+		string name;
+		string mobileNumber;
+		string vaccine;
+		char Medical_conditions[100];
+
+    sqlite3* db;
+    char* zErrMsg=0;
+    int rc;
+    char *sql;
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+    string query = "SELECT * FROM CITIZEN_RECORDS;";
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+      return(0);
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+   
+
+
+   //sql="INSERT INTO CITIZEN_RECORDS (NAME,AADHARCARD_NO,AGE,GENDER,B.P.,BODY_TEMP,MEDICAL_CONDITION,MOBILE_NUMBER,VACCINE_INJECTED) "  \
+         "VALUES (''Paul',2345678987654,22,'M',123,22,'NN',345678765456,'cc'); "
+   
+   
+cout<<"\n\t\t Enter Name :-  ";
+    getline (std::cin,name);
+	//if(name.length()==0){
+        //cout<<"Name cannot be blank"<<endl;}
+
+    cout<<"\n\t\t Enter Aadhaar no :-  ";
+    getline (std::cin,aadhar_no);
+	//if(aadhar_no.length()==0){
+        //cout<<"Aadhaar Number cannot be blank"<<endl;}
+
+	cout<<"\n\t\t Enter the gender (M|F) :-  ";
+    cin>>gender;
+
+    cout<<"\n\t\t Enter the  age:- ";
+    cin>>age;
+        
+    cout<<"\n\t\t Enter the  B.P. :-  ";
+    cin>>bloodPressure;
+
+    cout<<"\n\t\t Enter the Body temperature:-  ";
+    cin>>temperature;
+        
+	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
+    cin>>Medical_conditions;
+
+    cout<<"\n\t\t Enter the  Mobile number :- ";
+    cin>>mobileNumber;
+
+    cout<<"\n\t\t Enter the vaccine injected :- ";
+   cin>>vaccine;
+	//if(vaccine.length()==0){
+        //cout<<"Vaccine injected cannot be blank"<<endl;}
+
+	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
+//temp.str("");
+command=temp.str();
+ rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+   
+   if( rc != SQLITE_OK ){
+      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   } else {
+      fprintf(stdout, "Records created successfully\n");
+
+
+    sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
+  
+    
+   }
+   sqlite3_close(db);
+   return 0;
+
+
+
+
+	int choice = -1, ch=1;
 	do
 	{
 	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;

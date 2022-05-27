@@ -10,7 +10,10 @@
 #include "hotelManager.h"
 #include "sql.h"
 #include<mysql/mysql.h>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73144e7752046bcd6eb764e5a5200f80e7fe78e3
 using namespace std;
 
 //done

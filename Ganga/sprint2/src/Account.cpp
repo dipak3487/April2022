@@ -1,7 +1,7 @@
 #include "Account.h"
 
 using namespace std;
-
+//this function will get the details for creating account// 
 bool Account::createAccount()
 {
 //	system("CLS");
@@ -18,7 +18,7 @@ bool Account::createAccount()
 	cout<<"\n\n\t\t\tAccount Created..";
 	return true;
 }
-
+// this function will display the created account//
 bool Account::showAccount() const
 {
 	cout<<"\n\t\t\tAccount No. : "<<accountNumber;
@@ -30,7 +30,7 @@ bool Account::showAccount() const
 }
 
 
-
+//this function will modify the account data//
 bool Account::modify()
 {
 	cout<<"\n\t\t\tAccount No. : "<<accountNumber;
@@ -45,36 +45,36 @@ bool Account::modify()
 	return true;
 }
 
-
+// this function will display balance//
 bool Account::deposit(int x)
 {
 	balance+=x;
 	return true;
 }
-
+// this function is use to withdraw money//
 bool Account::draw(int x)
 {
 	balance-=x;
 	return true;
 }
-
+// to display all the records//
 bool Account::report() const
 {
 	cout<<accountNumber<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<balance<<endl;
 return true;
 }
 
-
+// to get account number//
 int Account::getAccountNumber() const
 {
 	return accountNumber;
 }
-
+// to get balance//
 int Account::getBalance() const
 {
 	return balance;
 }
-
+// to get type of account//
 char Account::getType() const
 {
 	return type;

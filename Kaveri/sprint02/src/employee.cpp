@@ -12,6 +12,7 @@ Description: executes the files which are asked in main.cpp
 #include<sstream>
 #include "employee.h"
 #include<memory>
+#include<bits/stdc++.h>
 
 /*
 filename : setFilePath
@@ -201,22 +202,49 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
+	//Employee create;
 	std::string name;
-	Employee create;
-	std::cout <<"name of the employee is: \t"<< std::endl;
-	std::getline(std::cin,create.name);
-	std::cin>>create.name;
-	std::cout<<"the salary of the employee is: \t"<<std::endl;
-	std::cin>>create.salary;
-	std::cout<<"the title of the employee is: \t"<<std::endl;
-	std::cin>>create.title;
-	std::cout<<"the code of the employee is: \t"<<std::endl;
-	std::cin>>create.empCode;
+	std::string empCode;
+	int salary;
+	std::string title;
+/*
+	std::cout<<"First name of the Employee is: \t"<<std::endl;
+	std::cin>>firstname;
+	std::cout<<"last name of the Employee is: \t"<<std::endl;
+	std::cin>>lastname;
+*/
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Name: ";		std::getline(std::cin,name);
+	std::cout << " Salary: ";	std::cin >> salary;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Title: ";	std::getline(std::cin,title);
+	
+	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+//	create.name = firstname + " " + lastname;
+//	std::cout<<"Name of the Employee is: \t"<<std::endl;
+//	std::cin>>create.name;
+
+
+/*
+	std::cout<<"Salary of the Employee is: \t"<<std::endl;
+	std::cin>>create.salary;
+
+	std::cout<<"Title of the Employee is: \t"<<std::endl;
+	std::cin>>create.title;
+
+	std::cout<<"Code of the Employee is: \t"<<std::endl;
+	std::cin>>create.empCode;
+	
+	
+	*/
 //	create.name = "Renu Wagh";
 
 
-	records.push_back(create);
+	//records.push_back(create);
+	records.push_back(Employee(name, empCode, salary, title));
 
 
 	saverecordinjson();
