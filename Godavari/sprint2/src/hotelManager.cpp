@@ -9,7 +9,7 @@
 #include "Room.h"
 #include "hotelManager.h"
 #include "sql.h"
-
+#include<mysql/mysql.h>
 using namespace std;
 
 //done
