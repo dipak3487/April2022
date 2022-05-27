@@ -6,7 +6,7 @@
 #include<stdlib.h>
 #include "Account.h"
 using namespace std;
-
+// This function will add bank account.
 void writeAccount()
 {
 	Account ac;
@@ -16,7 +16,7 @@ void writeAccount()
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));
 	outFile.close();
 }
-
+//this function will display account information
 bool displaysp(int n)
 {
 	Account ac;
@@ -42,6 +42,7 @@ bool displaysp(int n)
 		cout<<"\n\n\t\t\tAccount number does not exist";
 return true;
 }
+// This function will modify account 
 bool modifyAccount(int n)
 {
 	bool found=false;
@@ -75,7 +76,7 @@ bool modifyAccount(int n)
 }
 
 
-
+// This function will Delete Account.
 bool deleteAccount(int n)
 {
 	Account ac;
@@ -104,7 +105,7 @@ bool deleteAccount(int n)
 	return true;
 }
 
-
+// This function will Display All accounts.
 bool displayall()
 {
 	system("clear");
@@ -128,7 +129,7 @@ bool displayall()
 	return true;
 }
 
-
+// This function will Deposite Amount into account.
 bool depositwithdraw(int n, int option)
 {
 	int amt;

@@ -7,7 +7,7 @@
 #include "Account.h"
 
 using namespace std;
-
+// Program starts here.
 int main()
 {
 
@@ -17,7 +17,7 @@ int main()
 
 	do
 	{
-
+             // This will print main menu.
 	cout<<"\n\n\t\t\t\t======================\n";
 	cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
 	cout<<"\n\t\t\t\t======================\n";
