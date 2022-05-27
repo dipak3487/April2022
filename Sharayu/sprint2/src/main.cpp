@@ -1,10 +1,16 @@
+//***************************************************************
+//                   HEADER FILE USED IN PROJECT
+//****************************************************************
+
 #include<iostream>
 #include<fstream>
 #include<iomanip>
 using namespace std;
 
 
-
+//***************************************************************
+//                   CLASS USED IN PROJECT
+//****************************************************************
 
 class student
 {
@@ -25,11 +31,11 @@ public:
 void student::calculate()
 {
 	per=(p_marks+c_marks+m_marks+e_marks+cs_marks)/5.0;
-	if(per>=85)
+	if(per>=60)
 		grade='A';
-	else if(per>=75)
-		grade='B';
 	else if(per>=50)
+		grade='B';
+	else if(per>=33)
 		grade='C';
 	else
 		grade='F';
@@ -80,8 +86,9 @@ int  student::retrollno() const
 }
 
 
-
-
+//***************************************************************
+//    	function declaration
+//****************************************************************
 
 void write_student();	//write the record in binary file
 void display_all();	//read all records from binary file
@@ -94,9 +101,9 @@ void intro();		//display welcome screen
 void entry_menu();	//display entry menu on screen
 
 
-
-
-
+//***************************************************************
+//    	THE MAIN FUNCTION OF PROGRAM
+//****************************************************************
 
 
 int main()
@@ -107,7 +114,7 @@ int main()
 	intro();
 	do
 	{
-		system("cls");
+//		system("clear");
 		cout<<"\n\n\n\tMAIN MENU";
 		cout<<"\n\n\t01. RESULT MENU";
 		cout<<"\n\n\t02. ENTRY/EDIT MENU";
@@ -128,7 +135,9 @@ int main()
 	return 0;
 }
 
-
+//***************************************************************
+//    	function to write in file
+//****************************************************************
 
 void write_student()
 {
@@ -143,8 +152,9 @@ void write_student()
 	cin.get();
 }
 
-
-
+//***************************************************************
+//    	function to read all records from file
+//****************************************************************
 
 void display_all()
 {
@@ -169,7 +179,9 @@ void display_all()
 	cin.get();
 }
 
-
+//***************************************************************
+//    	function to read specific record from file
+//****************************************************************
 
 void display_sp(int n)
 {
@@ -199,9 +211,9 @@ void display_sp(int n)
 	cin.get();
 }
 
-
-
-
+//***************************************************************
+//    	function to modify record of file
+//****************************************************************
 
 void modify_student(int n)
 {
@@ -239,9 +251,9 @@ void modify_student(int n)
 	cin.get();
 }
 
-
-
-
+//***************************************************************
+//    	function to delete record of file
+//****************************************************************
 
 void delete_student(int n)
 {
@@ -274,9 +286,9 @@ void delete_student(int n)
 	cin.get();
 }
 
-
-
-
+//***************************************************************
+//    	function to display all students grade report
+//****************************************************************
 
 void class_result()
 {
@@ -292,7 +304,7 @@ void class_result()
 	}
 	cout<<"\n\n\t\tALL STUDENTS RESULT \n\n";
 	cout<<"==========================================================\n";
-	cout<<"R.No       Name        P   C   M   E   CS   %per   Grade"<<endl;
+	cout<<"R.No       Name        P   C   M   E   CS   %age   Grade"<<endl;
 	cout<<"==========================================================\n";
 	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
 	{
@@ -303,23 +315,22 @@ void class_result()
 	inFile.close();
 }
 
-
-
-
+//***************************************************************
+//    	function to display result menu
+//****************************************************************
 
 void result()
 {
 	char ch;
 	int rno;
-//	system("cls");
+//	system("clear");
 	cout<<"\n\n\n\tRESULT MENU";
 	cout<<"\n\n\n\t1. Class Result";
 	cout<<"\n\n\t2. Student Report Card";
 	cout<<"\n\n\t3. Back to Main Menu";
 	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
 	cin>>ch;
-	//system("cls");
-
+//	system("clear");
 	switch(ch)
 	{
 	case '1' :	class_result(); break;
@@ -330,25 +341,29 @@ void result()
 	}
 }
 
-
-
+//***************************************************************
+//    	INTRODUCTION FUNCTION
+//****************************************************************
 
 void intro()
 {
 	cout<<"\n\n\n\t\t  STUDENT";
-	cout<<"\n\n\t\tREPORT CARD";
+	cout<<"\n\n\t\tREPORT MANAGEMENT SYSTEM";
 	cout<<"\n\n\t\t  PROJECT";
-	cout<<"\n\n\n\tMADE BY : SHARAYU TEAM";
+	cout<<"\n\n\n\tMADE BY : TEAM SHARAYU";
+//	cout<<"\n\t : ";
 	cin.get();
 }
 
-
+//***************************************************************
+//    	ENTRY / EDIT MENU FUNCTION
+//****************************************************************
 
 void entry_menu()
 {
 	char ch;
 	int num;
-       //system("cls");
+//	system("clear");
 	cout<<"\n\n\n\tENTRY MENU";
 	cout<<"\n\n\t1.CREATE STUDENT RECORD";
 	cout<<"\n\n\t2.DISPLAY ALL STUDENTS RECORDS";
@@ -358,7 +373,7 @@ void entry_menu()
 	cout<<"\n\n\t6.BACK TO MAIN MENU";
 	cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
 	cin>>ch;
-	//system("cls");
+//	system("clear");
 	switch(ch)
 	{
 	case '1':	write_student(); break;
@@ -373,3 +388,7 @@ void entry_menu()
 	default:	cout<<"\a"; entry_menu();
 	}
 }
+
+//***************************************************************
+//    			END OF PROJECT
+//***************************************************************
