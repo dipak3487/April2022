@@ -170,7 +170,10 @@ bool Config::editRecord()
 			if(string1 == "yes")
 			{
 				std::cout<<"change the name"<<std::endl;
-				std::cin>>e.name; 
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << " Name: ";		std::getline(std::cin,e.name);
+
+			//	std::cin>>e.name; 
 			}
 			std::cout<<"do you want to change the salary:"<<e.salary<<std::endl;
 			std::cout<<"enter yes or no"<<std::endl;
@@ -186,7 +189,9 @@ bool Config::editRecord()
 			if(string3 == "yes")
 			{
 				std::cout<<"change the title"<<std::endl;
-				std::cin>>e.title; 
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << " title: ";		std::getline(std::cin,e.title);
+				//std::cin>>e.title; 
 			}
 		}
 	}
@@ -213,14 +218,23 @@ bool Config::createRecord()
 	std::cout<<"last name of the Employee is: \t"<<std::endl;
 	std::cin>>lastname;
 */
+	while(1)
+	{
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << " Name: ";		std::getline(std::cin,name);
+
 	std::cout << " Salary: ";	std::cin >> salary;
+	while(salary<10000)
+	{
+		std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
+		std::cin>>salary;
+	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << " Title: ";	std::getline(std::cin,title);
-	
+	break;
+	}
 	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 //	create.name = firstname + " " + lastname;
