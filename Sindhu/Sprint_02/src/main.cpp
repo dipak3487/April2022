@@ -211,11 +211,24 @@ command=temp.str();
 	int choice = -1, ch=1;
 	do
 	{
+<<<<<<< HEAD
+		cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    
+    getc();
+    B:
+    system("cls");
+    cout<<"  \n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
+    cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
+    cout<<"\n\t\t\t\t\tEnter User name and Password\n";
+    cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
+     }
+=======
 	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
     cout<<"\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
     cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
     cout<<"\n\t\t\t\t\tEnter User name and Password\n";
     cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
 	}while(ch!=1);
+>>>>>>> c11ca685f2e7968b415dc95469a7b2549e6d6e81
 	return 0;
 }
