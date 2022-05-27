@@ -202,25 +202,33 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-	Employee create;
-	std::string firstname;
-	std::string lastname;
+	//Employee create;
+	std::string name;
+	std::string empCode;
+	int salary;
+	std::string title;
 /*
 	std::cout<<"First name of the Employee is: \t"<<std::endl;
 	std::cin>>firstname;
 	std::cout<<"last name of the Employee is: \t"<<std::endl;
 	std::cin>>lastname;
 */
-	std::getline(std::cin,create.name);
-	
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Name: ";		std::getline(std::cin,name);
+	std::cout << " Salary: ";	std::cin >> salary;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Title: ";	std::getline(std::cin,title);
+	
+	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 //	create.name = firstname + " " + lastname;
 //	std::cout<<"Name of the Employee is: \t"<<std::endl;
 //	std::cin>>create.name;
 
 
-
+/*
 	std::cout<<"Salary of the Employee is: \t"<<std::endl;
 	std::cin>>create.salary;
 
@@ -231,10 +239,12 @@ bool Config::createRecord()
 	std::cin>>create.empCode;
 	
 	
+	*/
 //	create.name = "Renu Wagh";
 
 
-	records.push_back(create);
+	//records.push_back(create);
+	records.push_back(Employee(name, empCode, salary, title));
 
 
 	saverecordinjson();

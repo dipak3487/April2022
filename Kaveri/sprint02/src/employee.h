@@ -19,6 +19,7 @@ public:
     std::string title;
 
     Employee() : name(""), empCode(""), salary(0), title("")  {}
+    Employee(std::string n, std::string ec, int s, std::string t) : name(n), empCode(ec), salary(s), title(t)  {}
 };
 
 class Config
