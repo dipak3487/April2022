@@ -202,19 +202,20 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-
-	std::string name;
-
-	std::cout<<"Name of the Employee is: \t"<<std::endl;
+	Employee create;
+	std::string firstname;
+	std::string lastname;
+/*
+	std::cout<<"First name of the Employee is: \t"<<std::endl;
+	std::cin>>firstname;
+	std::cout<<"last name of the Employee is: \t"<<std::endl;
+	std::cin>>lastname;
+*/
 	std::getline(std::cin,create.name);
 	
-	// Ignore to the end of file
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max());
-
-	// Ignore to the end of line
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-
+//	create.name = firstname + " " + lastname;
 //	std::cout<<"Name of the Employee is: \t"<<std::endl;
 //	std::cin>>create.name;
 
@@ -228,7 +229,8 @@ bool Config::createRecord()
 
 	std::cout<<"Code of the Employee is: \t"<<std::endl;
 	std::cin>>create.empCode;
-
+	
+	
 //	create.name = "Renu Wagh";
 
 
