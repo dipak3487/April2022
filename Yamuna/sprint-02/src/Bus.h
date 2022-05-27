@@ -23,6 +23,8 @@ class Bus
 
 	bool displayInformation();
 	bool empty();
+	bool reserveSeat(std::string name,int seatNo);
+
 };
 
 

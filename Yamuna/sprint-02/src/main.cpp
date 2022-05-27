@@ -16,6 +16,8 @@ int main()
 	int choice;
 	std::vector<Bus> busses;
 	int busIndex = 0;
+    string name;
+	int seatNo;
 
 	while(1)
 	{
@@ -38,6 +40,16 @@ int main()
 					busIndex++;
 				}
 				cin >> busIndex;
+				
+				cout <<"Enter your name :"<<endl;
+				cin >> name;
+
+				cout <<"Choose your SeatNo :"<<endl;
+				cin >> seatNo;
+				
+				(busses[busIndex]).reserveSeat(name, seatNo);
+
+
 				//busses[busIndex].displayInformation();
 				//busses[busIndex].reserveSeat();	//this we need to define in Bus class. and call here. 
 
