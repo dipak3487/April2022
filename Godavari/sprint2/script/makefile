@@ -1,5 +1,6 @@
 
- ../bin/program ../obj/main.o ../obj/Room.o ../sql.o (mysql)
+../bin/program: ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o
+	g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../sql.o ../hotelManager.o
 
 ../obj/main.o: ../src/main.cpp
 		#mkdir ../obj/
@@ -15,4 +16,4 @@
 		g++ -g -o ../obj/Room.o -c ../src/Room.cpp  -I../include/ -I../src/
 
 clean:
-		rm -r ../obj*.o ../bin/program
+		rm -rf ../obj*.o ../bin/program
