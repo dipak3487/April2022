@@ -311,14 +311,22 @@ void result()
 {
 	char ch;
 	int rno;
+<<<<<<< HEAD
+	//system("cls");
+=======
 //	system("cls");
+>>>>>>> 62e77d16aaa45cae061416e6467cf7bbd65047a3
 	cout<<"\n\n\n\tRESULT MENU";
 	cout<<"\n\n\n\t1. Class Result";
 	cout<<"\n\n\t2. Student Report Card";
 	cout<<"\n\n\t3. Back to Main Menu";
 	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
 	cin>>ch;
+<<<<<<< HEAD
+	//system("cls");
+=======
 //	system("cls");
+>>>>>>> 62e77d16aaa45cae061416e6467cf7bbd65047a3
 	switch(ch)
 	{
 	case '1' :	class_result(); break;
@@ -347,7 +355,11 @@ void entry_menu()
 {
 	char ch;
 	int num;
+<<<<<<< HEAD
+	//system("cls");
+=======
 //	system("cls");
+>>>>>>> 62e77d16aaa45cae061416e6467cf7bbd65047a3
 	cout<<"\n\n\n\tENTRY MENU";
 	cout<<"\n\n\t1.CREATE STUDENT RECORD";
 	cout<<"\n\n\t2.DISPLAY ALL STUDENTS RECORDS";
@@ -357,7 +369,11 @@ void entry_menu()
 	cout<<"\n\n\t6.BACK TO MAIN MENU";
 	cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
 	cin>>ch;
+<<<<<<< HEAD
+	//system("cls");
+=======
 //	system("cls");
+>>>>>>> 62e77d16aaa45cae061416e6467cf7bbd65047a3
 	switch(ch)
 	{
 	case '1':	write_student(); break;
