@@ -10,9 +10,9 @@ class Bank
 
 	public:
 
-	Bank() : dbFilePath("Account.txt") {};
+	Bank() : dbFilePath("account.txt") {};
 
-	bool write_Account();
+	bool createAccount();
 	bool display_sp(int);
 	bool modify_Account(int);
 	bool delete_Account(int);

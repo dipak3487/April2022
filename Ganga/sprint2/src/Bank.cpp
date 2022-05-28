@@ -5,9 +5,10 @@
 #include<iomanip>
 #include<stdlib.h>
 #include "Account.h"
+#include "Bank.h"
 using namespace std;
 // This function will add bank account.
-void writeAccount()
+void createAccount()
 {
 	Account ac;
 	ofstream outFile;
@@ -100,7 +101,7 @@ bool deleteAccount(int n)
     inFile.close();
 	outFile.close();
 	remove("account.txt");
-	rename("Temp.txt","Account.txt");
+	rename("Temp.txt","account.txt");
 	cout<<"\n\nRecord Deleted ..";
 	return true;
 }
