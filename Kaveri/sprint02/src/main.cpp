@@ -5,10 +5,13 @@
     Description : This file takes the input file and calls the functions the user wants to implement. 
 
 */
-
 #include<iostream>
+#include <unistd.h>
 #include<fstream>
-
+#include<stdlib.h>
+//#include <conio.h>
+//#include <curses.h>
+#include<cstdio>
 #include "employee.h"
 
 using namespace std;
@@ -37,6 +40,41 @@ int main(int argc,char* argv[])
 
 	while(1)
 	{
+	cout<<"Enter Admin Login Credentials:"<<endl;
+	
+	std::string user;
+    std::cout<<"Username:"<<std::endl;
+    std::cin>>user;
+
+    std::string pass;
+    std::cout<<"password:"<<std::endl;
+    std::cin>>pass;
+
+  // cout << "Type in your password: " << endl;
+  //  std::getline(cin, pass);
+
+
+
+/*
+	char pss[32];
+	int as=0;
+	char atemp;
+	for(as=0;;)
+	{
+		atemp= getchar();
+		if((atemp>='a')&&(atemp<='z'))
+		{
+			pss[as]=atemp;
+			++as;
+			cout<<"*";
+		}
+	 }
+	 */
+
+		///////////////////////////////////////////////////
+		if((user=="Admin")&&(pass=="renu@06"))
+		{///Go ahead
+
 		cout<<"1.Create new Employee details"<<endl;
 		cout<<"2.Edit Employee details"<<endl;
 		cout<<"3.Delete Employee details"<<endl;
@@ -68,6 +106,13 @@ int main(int argc,char* argv[])
 				cout<<"Please enter 1/2/3/4/5/6 only "<<endl;
 		//		exit(0);
 		}
+	}
+	else
+	{
+    ////////Exit
+	cout<<"Invalid username or password "<<endl;
+	exit(0);
+	}
 	}
 	return 0;
 }
