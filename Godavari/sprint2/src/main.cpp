@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-// #include <windows.h>
+//#include <windows.h>
 #include "Customer.h"
 #include "Room.h"
 #include "hotelManager.h"
@@ -21,4 +21,3 @@ int main(){
     else cout << "Not Connected";
     return 0;
 }
-
