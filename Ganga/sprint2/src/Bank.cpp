@@ -5,9 +5,15 @@
 #include<iomanip>
 #include<stdlib.h>
 #include "Account.h"
+#include "Bank.h"
 using namespace std;
+<<<<<<< HEAD
+// This function will add bank account.
+void createAccount()
+=======
 //this function will add bank account//
 void writeAccount()	
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 {
 	Account ac;
 	ofstream outFile;
@@ -16,7 +22,11 @@ void writeAccount()
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));
 	outFile.close();
 }
+<<<<<<< HEAD
+//this function will display account information
+=======
 // this funciton will display balance details//
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 bool displaysp(int n)
 {
 	Account ac;
@@ -42,7 +52,11 @@ bool displaysp(int n)
 		cout<<"\n\n\t\t\tAccount number does not exist";
 return true;
 }
+<<<<<<< HEAD
+// This function will modify account 
+=======
 // this function will modify the account details//  
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 bool modifyAccount(int n)
 {
 	bool found=false;
@@ -76,7 +90,11 @@ bool modifyAccount(int n)
 }
 
 
+<<<<<<< HEAD
+// This function will Delete Account.
+=======
 // this will delete account//
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 bool deleteAccount(int n)
 {
 	Account ac;
@@ -100,12 +118,16 @@ bool deleteAccount(int n)
     inFile.close();
 	outFile.close();
 	remove("account.txt");
-	rename("Temp.txt","Account.txt");
+	rename("Temp.txt","account.txt");
 	cout<<"\n\nRecord Deleted ..";
 	return true;
 }
 
+<<<<<<< HEAD
+// This function will Display All accounts.
+=======
 // this function will display all accounts with information//
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 bool displayall()
 {
 	system("clear");
@@ -129,7 +151,11 @@ bool displayall()
 	return true;
 }
 
+<<<<<<< HEAD
+// This function will Deposite Amount into account.
+=======
 // this function will deposit amount and withdraw amount//
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 bool depositwithdraw(int n, int option)
 {
 	int amt;

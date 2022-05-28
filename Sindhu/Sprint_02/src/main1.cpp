@@ -77,7 +77,7 @@ void Vaccine::getData(){
     cout<<"\n\t\t Enter the Body temperature:-  ";
     cin>>temperature;
         
-	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
+    cout<<"\n\t\t Enter Medical Conditions if any :-  ";
     cin>>Medical_conditions;
 
     cout<<"\n\t\t Enter the  Mobile number :- ";
@@ -90,10 +90,50 @@ void Vaccine::getData(){
 
 }
 
+void Vaccine::viewVaccine()
+{
+cout<<"\n\t\t\t*****************************************\n";
+cout<<"\t\t\t\tVACCINE STATISTICS";
+cout<<"\n\t\t\t*****************************************\n\n";
+cout<<"\n\t\t 1. Add Data ";      
+cout<<" \n\t\t2.Current Stock Status"; 
+cout<<"\n\t\t\t 3.Back"<<endl;
+cin>>ch;
+
+ switch(ch)
+    {
+    case 1:
+        
+        break;
+    case 2:
+    	
+        break;
+    case 3:
+        system("cls");
+        menu();
+    default:
+        system("cls");
+        cout<<"\nEnter valid option "<<endl;
+        menu();
+    }
+    file.close();
+    getch();
+}
+
+
+
+
+
+
+
+
+
+
 void Vaccine::addNew()
 {
 
-	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
+getData();
+temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
 
 command=temp.str();
  rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
@@ -145,7 +185,7 @@ int main(int argc, char** argv)
 {
 
 	Vaccine obj;
-	obj.getData();
+	obj.addNew();
 
 	int choice = -1, ch=1;
 	do

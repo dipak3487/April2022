@@ -28,3 +28,14 @@ bool Bus::empty()
 
 	return true;
 }
+
+bool Bus::reserveSeat(string name,int seatNo)
+{
+
+	seats[seatNo] = name;
+	return true;
+
+
+}
+
+ 

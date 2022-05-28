@@ -7,18 +7,23 @@
 #include "Account.h"
 
 using namespace std;
+<<<<<<< HEAD
+// Program starts here.
+=======
 //program start here//
+>>>>>>> b27779f89d3721aa59c96f02b1e1287407736bc1
 int main()
 {
-
+Account a;
 	char ch;
-	int num;
+	int num,accountnum;
+	char name[50];
 	Bank bank;
 
 	do
 	// this will print main menu//	
 	{
-
+             // This will print main menu.
 	cout<<"\n\n\t\t\t\t======================\n";
 	cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
 	cout<<"\n\t\t\t\t======================\n";
@@ -38,21 +43,24 @@ int main()
 		switch(ch)
 		{
 		case '1':
-			system("clear");
-			void writeAccount();
+			//system("clear");
+		//	cout<<"\n\n\t\t\tEnter Name :- ";cin>>name;
+		//	cout<<"\n\n\t\t\tEnter Accout Number:- ", cin>>accountnum;
+
+    		 a.createAccount();
 			break;
 		case '2':
-			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void deposit(int num);
+		//	system("clear");
+		cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
+	//	a.deposit(int);
 			break;
 		case '3':
-			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
+			//system("clear");
+		cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
 			void depositwithdraw(int num);
 			break;
 		case '4':
-			system("clear");
+		//	system("clear");
 			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
 			void displaysp(int num);
 			break;
