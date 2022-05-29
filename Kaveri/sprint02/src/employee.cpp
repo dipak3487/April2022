@@ -222,72 +222,58 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-	//Employee create;
+	
 	std::string name;
 	std::string empCode;
 	int salary;
 	std::string title;
-/*
-	std::cout<<"First name of the Employee is: \t"<<std::endl;
-	std::cin>>firstname;
-	std::cout<<"last name of the Employee is: \t"<<std::endl;
-	std::cin>>lastname;
-*/
+
 	while(1)
 	{
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Name: ";		std::getline(std::cin,name);
+	std::cout << " Name: ";		
+	std::getline(std::cin,name);
 	while(name.length() < 4)
 	{
 		std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << " Name: ";		std::getline(std::cin,name);
+		std::cout << " Name: ";		
+		std::getline(std::cin,name);
 	}
-	std::cout << " Salary: ";	std::cin >> salary;
+
+	std::cout << " Salary: ";	
+	std::cin >> salary;
 	while(salary<10000)
 	{
-		std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
-		std::cin>>salary;
+		std::cout<<" Salary can not be less than 10000, please enter the salary again: "<<std::endl;
+		std::cout << " Salary: ";
+
 	}
+	
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
+	std::cout << " Emp Code: ";
+	std::getline(std::cin,empCode);
 	while(empCode.length()!=5)
-	{
+{
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
+//	std::cout << " Invalid Emp Code,please enter again \n ";
+	std::cout << " Emp Code: ";	
+	std::getline(std::cin,empCode);
 	}
+
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Title: ";	std::getline(std::cin,title);
+	std::cout << " Title: ";	
+	std::getline(std::cin,title);
 	while(title.length() < 4)
 	{
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Title: ";	std::getline(std::cin,title);
+	std::cout << " Invalid title, please enter again \n ";
+	std::cout << " Title: ";	
+	std::getline(std::cin,title);
 	}
 	break;
 	}
-	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-//	create.name = firstname + " " + lastname;
-//	std::cout<<"Name of the Employee is: \t"<<std::endl;
-//	std::cin>>create.name;
-
-
-/*
-	std::cout<<"Salary of the Employee is: \t"<<std::endl;
-	std::cin>>create.salary;
-
-	std::cout<<"Title of the Employee is: \t"<<std::endl;
-	std::cin>>create.title;
-
-	std::cout<<"Code of the Employee is: \t"<<std::endl;
-	std::cin>>create.empCode;
 	
-	
-	*/
-//	create.name = "Renu Wagh";
-
-
-	//records.push_back(create);
 	records.push_back(Employee(name, empCode, salary, title));
 
 
