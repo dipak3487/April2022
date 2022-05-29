@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include<fstream>
 #include<stdlib.h>
+#include <cstring>
 //#include <conio.h>
 //#include <curses.h>
 #include<cstdio>
@@ -38,17 +39,46 @@ int main(int argc,char* argv[])
 	config.readConfig();
 	config.readRecords();
 
-	while(1)
-	{
-	cout<<"Enter Admin Login Credentials:"<<endl;
-	
-	std::string user;
-    std::cout<<"Username:"<<std::endl;
+
+	 cout<<"Enter Admin Login Credentials:"<<endl;
+
+    std::string user;
+    std::cout<<"Enter username:"<<std::endl;
     std::cin>>user;
 
-    std::string pass;
+    const char *mypass="vista";
+    char *password=getpass("Enter password: "); // yes, that's all you need!
+
+    cout<<password;
+    if(strcmp(password,mypass)==0) cout <<"Correct password!\n";
+    else cout <<"Incorrect password!\n";
+
+
+
+	while(1)
+	{
+/*	cout<<"Enter Admin Login Credentials:"<<endl;
+	
+	std::string user;
+    std::cout<<"Enter username:"<<std::endl;
+    std::cin>>user;
+
+	const char *mypass="vista";
+	char *password=getpass("Enter password: "); // yes, that's all you need!
+
+	cout<<password;
+	if(strcmp(password,mypass)==0) cout <<"Correct password!\n";
+	else cout <<"Incorrect password!\n";
+*/
+// I hope you are using a smart IDE...
+
+
+
+   /* std::string pass;
     std::cout<<"password:"<<std::endl;
     std::cin>>pass;
+   */
+
 
   // cout << "Type in your password: " << endl;
   //  std::getline(cin, pass);
@@ -72,7 +102,7 @@ int main(int argc,char* argv[])
 	 */
 
 		///////////////////////////////////////////////////
-		if((user=="Admin")&&(pass=="renu@06"))
+		if((user=="Admin")&&(mypass=="vista"))
 		{///Go ahead
 
 		cout<<"1.Create new Employee details"<<endl;
