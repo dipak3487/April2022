@@ -12,7 +12,8 @@ class account
 	int acno;
 	char name[50];
 	int deposit;
-	char type;
+	//int adhar;
+	//char type;
 public:
 	void create_account();//function to get data from user
 	void show_account() const;//function to show data on screen

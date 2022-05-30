@@ -4,18 +4,20 @@ using namespace std;
 
 void account::create_account()
 {
-//	system("CLS");
-	cout<<"\n\t\t\tEnter the Account No. : ";
+   
+	cout<<"\n\t\t\tEnter The  Account No. : ";
 	cin>>acno;
+
 	cout<<"\n\n\t\t\tEnter the Name of the Account holder : ";
 	cin.ignore();
 	cin.getline(name,50);
-	cout<<"\n\t\t\tEnter Type of the Account (C/S) : ";
-	cin>>type;
-	type=toupper(type);
+	//cout<<"\n\t\t\tEnter Type of the Account (C/S) : ";
+	//cin>>type;
+	//type=toupper(type);
 	cout<<"\n\t\t\tEnter The Initial amount : ";
 	cin>>deposit;
 	cout<<"\n\n\t\t\tAccount Created..";
+
 }
 //		function to show specific record from file
 void account::show_account() const
@@ -23,7 +25,7 @@ void account::show_account() const
 	cout<<"\n\t\t\tAccount No. : "<<acno;
 	cout<<"\n\t\t\tAccount Holder Name : ";
 	cout<<name;
-	cout<<"\n\t\t\tType of Account : "<<type;
+//	cout<<"\n\t\t\tType of Account : "<<type;
 	cout<<"\n\t\t\tBalance amount : "<<deposit;
 }
 
@@ -34,9 +36,9 @@ void account::modify()
 	cout<<"\n\t\t\tModify Account Holder Name : ";
 	cin.ignore();
 	cin.getline(name,50);
-	cout<<"\n\t\t\tModify Type of Account : ";
-	cin>>type;
-	type=toupper(type);
+	//cout<<"\n\t\t\tModify Type of Account : ";
+	//cin>>type;
+	//type=toupper(type);
 	cout<<"\n\t\t\tModify Balance amount : ";
 	cin>>deposit;
 }
@@ -54,7 +56,7 @@ void account::draw(int x)
 
 void account::report() const
 {
-	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<deposit<<endl;
+	cout<<acno<<setw(10)<<" "<<name<<setw(20)<<" "<<setw(6)<<deposit<<endl;
 }
 
 int account::retacno() const
@@ -67,10 +69,10 @@ int account::retdeposit() const
 	return deposit;
 }
 
-char account::rettype() const
+/*char account::rettype() const
 {
 	return type;
-}
+}*/
 //		function to write in file
 void write_account()
 {
@@ -104,7 +106,7 @@ void display_sp(int n)
 	}
     inFile.close();
 	if(flag==false)
-		cout<<"\n\n\t\t\tAccount number does not exist";
+		cout<<"\n\n\t\t\tAccount number does not exist!!!";
 }
 
 
@@ -131,13 +133,13 @@ void modify_account(int n)
 			int pos=(-1)*static_cast<int>(sizeof(account));
 			File.seekp(pos,ios::cur); //fncallat1353
 		    File.write(reinterpret_cast<char *> (&ac), sizeof(account));
-		    cout<<"\n\n\t\t\tRecord Updated";
+		    cout<<"\n\n\t\t\tRecords Updated!!";
 		    found=true;
 		  }
 	}
 	File.close();
 	if(found==false)
-		cout<<"\n\n\t\t\tRecord Not Found ";
+		cout<<"\n\n\t\t\tAccount number does not exist!!! ";
 }
 
 
@@ -181,9 +183,9 @@ void display_all()
 		return;
 	}
 	cout<<"\n\n\t\tACCOUNT HOLDER LIST\n\n";
-	cout<<"====================================================\n";
-	cout<<"A/c no.      NAME           Type  Balance\n";
-	cout<<"====================================================\n";
+	cout<<"=======================================================\n";
+	cout<<"A/c no.             NAME                  Balance\n";
+	cout<<"=======================================================\n";
 	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
 	{
 		ac.report();
@@ -237,7 +239,7 @@ void deposit_withdraw(int n, int option)
          }
     File.close();
 	if(found==false)
-		cout<<"\n\n\t\t\tRecord Not Found ";
+		cout<<"\n\n\t\t\tAccount number does not exist!!! ";
 }
 
 
