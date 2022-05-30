@@ -34,10 +34,10 @@ void menu()
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\n\t\t01: Add New Record"<<endl;
-    cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t03: View All Citizen Data"<<endl;
-    cout<<"\n\t\t04: Exit"<<endl;
+    cout<<"\n\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t0: Exit"<<endl;
 }
 */
 
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 		   vaccineDB.view_all();
                 break;
           
-         case 4:  
+         case 0:  
                     exit(0);
          default: 
                   cout<<"\n\n\n\n\n\n\n\n\t\t\t\t\t\tTHANK YOU!!";

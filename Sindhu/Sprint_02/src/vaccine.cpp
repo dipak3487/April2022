@@ -6,13 +6,8 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
-<<<<<<< HEAD
-#include "vaccine.h"
-=======
-
 #include "vaccine.h"
 
->>>>>>> 6347b20e5a47cdfc6d69000126b91397886858a6
 using namespace std;
 
 

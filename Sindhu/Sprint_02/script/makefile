@@ -9,5 +9,5 @@
 	g++ -g -o ../obj/vaccine.o -c ../src/vaccine.cpp -lsqlite3 -I../include/ -I../src/
 
 clean:
-	rm -rf ../obj ../bin/program
+	rm -rf ../bin/program
 
