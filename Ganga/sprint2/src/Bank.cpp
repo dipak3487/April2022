@@ -17,7 +17,7 @@ void account::create_account()
 	cin>>deposit;
 	cout<<"\n\n\t\t\tAccount Created..";
 }
-
+//		function to show specific record from file
 void account::show_account() const
 {
 	cout<<"\n\t\t\tAccount No. : "<<acno;
@@ -27,7 +27,7 @@ void account::show_account() const
 	cout<<"\n\t\t\tBalance amount : "<<deposit;
 }
 
-
+//		function to display modify record 
 void account::modify()
 {
 	cout<<"\n\t\t\tAccount No. : "<<acno;
@@ -71,7 +71,7 @@ char account::rettype() const
 {
 	return type;
 }
-
+//		function to write in file
 void write_account()
 {
 	account ac;
@@ -81,7 +81,7 @@ void write_account()
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
 	outFile.close();
 }
-
+//		function to read specific record from file
 void display_sp(int n)
 {
 	account ac;
@@ -108,7 +108,7 @@ void display_sp(int n)
 }
 
 
-
+//      function to modify record of file
 void modify_account(int n)
 {
 	bool found=false;
@@ -141,7 +141,7 @@ void modify_account(int n)
 }
 
 
-
+//		function to delete record of file
 void delete_account(int n)
 {
 	account ac;
@@ -168,11 +168,10 @@ void delete_account(int n)
 	rename("Temp.txt","account.txt");
 	cout<<"\n\nRecord Deleted ..";
 }
-
-
+//		function to display all accounts deposit list
 void display_all()
 {
-//	system("CLS");
+
 	account ac;
 	ifstream inFile;
 	inFile.open("account.txt",ios::binary);
@@ -192,7 +191,7 @@ void display_all()
 	inFile.close();
 }
 
-
+//		function to deposit and withdraw amounts
 void deposit_withdraw(int n, int option)
 {
 	int amt;

@@ -230,46 +230,46 @@ bool Config::createRecord()
 
 	while(1)
 	{
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Name: ";		
-	std::getline(std::cin,name);
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout <<"Employee Name: ";		
+		std::getline(std::cin,name);
 	while(name.length() < 4)
 	{
-		std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << " Name: ";		
+		std::cout<<"Name cannnot be less than 4 letters.Please enter the name again."<<std::endl;	
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	
+		std::cout<<"Employee Name: ";
 		std::getline(std::cin,name);
 	}
 
-	std::cout << " Salary: ";	
+	std::cout <<"Employee Salary: ";	
 	std::cin >> salary;
 	while(salary<10000)
 	{
-		std::cout<<" Salary can not be less than 10000, please enter the salary again: "<<std::endl;
-		std::cout << " Salary: ";
-
+		std::cout<<"Salary can not be less than 10,000.Please enter the salary again: "<<std::endl;
+		std::cout<<"Employee Salary: ";
+		std::cin>>salary;
 	}
 	
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Emp Code: ";
+	std::cout <<"Employee Code: ";
 	std::getline(std::cin,empCode);
 	while(empCode.length()!=5)
-{
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-//	std::cout << " Invalid Emp Code,please enter again \n ";
-	std::cout << " Emp Code: ";	
-	std::getline(std::cin,empCode);
+	{
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout <<"Invalid Emp Code.Please enter Emp Code of length 5. "<<std::endl;
+		std::cout <<"Employee Code: ";	
+		std::getline(std::cin,empCode);
 	}
 
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Title: ";	
+	std::cout <<"Employee Title: ";	
 	std::getline(std::cin,title);
 	while(title.length() < 4)
 	{
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout << " Invalid title, please enter again \n ";
-	std::cout << " Title: ";	
-	std::getline(std::cin,title);
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout <<"Invalid title.Please enter Employee title having length more than 4 letters. " <<std::endl;
+		std::cout <<"Employee Title: ";	
+		std::getline(std::cin,title);
 	}
 	break;
 	}

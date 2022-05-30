@@ -50,7 +50,7 @@ int main(int argc,char* argv[])
     char *password=getpass("Enter password: "); // yes, that's all you need!
 
 //    cout<<password;
-    if(strcmp(password,mypass)==0) cout <<"Correct password!\n";
+    if(strcmp(password,mypass)==0) cout <<"Correct password! \n";
     else cout <<"Incorrect password!\n";
 
 
