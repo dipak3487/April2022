@@ -6,6 +6,7 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
+#include "vaccine.h"
 using namespace std;
 
 
@@ -171,10 +172,10 @@ sqlite3* db;
     std::ostringstream temp;
     std::string command;
     
-    //string query = "SELECT * FROM VACCINE_INVENTORY";
+
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
