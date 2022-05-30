@@ -6,11 +6,16 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
+<<<<<<< HEAD
 
 #include "vaccine.h"
 
 
 
+=======
+#include "vaccine.h"
+
+>>>>>>> cb82c3cc8d6fddf7253e439961c40b5feaf72f1f
 using namespace std;
 
 
@@ -21,11 +26,18 @@ void Vaccine::menu()
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+<<<<<<< HEAD
     cout<<"\n\t\t\t\t1: Add New Record"<<endl;
     cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
     cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
     cout<<"\n\t\t\t\t4: Search"<<endl;
     cout<<"\n\t\t\t\t5: Exit"<<endl;
+=======
+    cout<<"\n\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t4: Exit"<<endl;
+>>>>>>> cb82c3cc8d6fddf7253e439961c40b5feaf72f1f
 }
 
 
