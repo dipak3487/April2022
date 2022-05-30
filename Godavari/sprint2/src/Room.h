@@ -1,7 +1,7 @@
 #ifndef ROOM_H_INCLUDED
 #define ROOM_H_INCLUDED
 
-// #include <windows.h>
+//#include <windows.h>
 #include "Customer.h"
 
 using namespace std;
@@ -12,7 +12,7 @@ class Room
     string roomtype;
     string comfort;
     string capacity;
-    string status;
+    int status;
     int rent_per_day;
 
     Customer cust;

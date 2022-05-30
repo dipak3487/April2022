@@ -40,7 +40,7 @@ Car::Car(std::string _regNo, std::string _company, std::string _model, double _c
 int Car::getNoOfCars() {
     return car_id;
 }
-
+// to get rented car's cost per day
 double Car::getCost() {
     return costPerDay;
 }

@@ -4,12 +4,12 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-// #include <windows.h>
+//#include <windows.h>
 #include "hotelManager.h"
 #include "Room.h"
 #include "Customer.h"
 #include "sql.h"
-//#include <sqlite3.h>
+#include <sqlite3.h>
 
 using namespace std;
 
@@ -22,7 +22,7 @@ bool sql::query_check(stringstream &ss, sql sql) {
     else return false;
 
     // sqlite3* DB;
-    // char* messaggeError;
+    // //char* ;
     // int exit = sqlite3_open("database.db", &DB);
     // string query = "SELECT * FROM database;";
     //sqlite3_close(db);

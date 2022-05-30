@@ -4,12 +4,16 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-// #include <windows.h>
+//#include <windows.h>
 #include "Customer.h"
 #include "Room.h"
 #include "hotelManager.h"
 #include "sql.h"
+#include<mysql/mysql.h>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73144e7752046bcd6eb764e5a5200f80e7fe78e3
 using namespace std;
 
 //done
@@ -142,23 +146,26 @@ void hotelManager::checkOut(int roomnumber){
                 cout<<"\nEnter number of days room was booked for: ";
                 cin>>num_of_days;
                 bill = num_of_days*rent;
-
-                s2 << "SELECT guests.*, '"<< num_of_days <<"', '"<< bill <<"' FROM guests WHERE RoomNumber = '"<< roomnumber <<"'";
-
-                bool q2state = sql.query_check(s2, sql);
-                if(q2state){
-                    s3 << "DELETE FROM guests WHERE RoomNumber = '"<< roomnumber <<"'";
-                    bool q3state = sql.query_check(s3, sql);
-                    if(q3state) {
+               
+                
+                    // s3 << "UPDATE guests SET TotalBill = "<< bill <<" WHERE RoomNumber = "<< roomnumber <<";";
+                    // cout << "\n--Q-- " "UPDATE guests SET TotalBill = "<< bill <<" WHERE RoomNumber = "<< roomnumber <<";";
+                    // bool q3state = sql.query_check(s3, sql);
+                    // if(q3state) {
+                    
                         status = 0;
                         s4 << "UPDATE rooms SET Status = '"<< status <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
                         bool q4state = sql.query_check(s4, sql);
-                        if(q4state) cout << "\nCheckOut Successful!";
-                        else cout << "\nRoom Status Not Modified!";
-                    }
-                    else cout << "\n CheckOut Unsuccessful!";
-                }
-                else cout << "\nCustomers Data not Modified!"<<endl;
+                        if(q4state) {
+                            cout << "\nCheckOut Successful!";
+                            cout << "\n Bill := "<<bill;
+                            }
+                        else{
+                             cout << "\nRoom Status Not Modified!";
+                        }
+                    // }
+                    // else cout << "\n CheckOut Unsuccessful!";
+                
             }
         }
         else cout << "\nRoom not found";
@@ -239,7 +246,7 @@ void hotelManager::searchCustomer(){
 
 void hotelManager::mainMenu(){
     hotelManager hm;
-    cout << "Welcome to Adones Hotel Management Corporation\n" << endl;
+    cout << "Welcome to  Hotel Management Corporation\n" << endl;
     int menu;
     int roomnumber;
     cout << "*********";

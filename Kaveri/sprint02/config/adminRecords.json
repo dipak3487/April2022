@@ -1,0 +1,12 @@
+{
+  "AdminDetails": [{
+			"user":"Madduri Raghuram",
+			"password" : "12345"
+			},
+        {
+			"user":"Renu Wagh",
+			"password" : "54321"
+			
+		}
+	]
+}

@@ -1,0 +1,27 @@
+0x000055555555b7e2 in __gnu_cxx::__normal_iterator<Employee*, std::vector<Employee, std::allocator<Employee> > >::__normal_iterator(Employee* const&) ()
+(gdb) bt
+#0  0x000055555555b7e2 in __gnu_cxx::__normal_iterator<Employee*, std::vector<Employee, std::allocator<Employee> > >::__normal_iterator(Employee* const&) ()
+#1  0x000055555555adb8 in std::vector<Employee, std::allocator<Employee> >::begin() ()
+#2  0x0000555555559011 in Config::searchRecord() ()
+#3  0x000055555555d5c8 in EmployeeTest::testsearchRecord() ()
+#4  0x000055555555f928 in void std::__invoke_impl<void, void (EmployeeTest::*&)(), EmployeeTest*&>(std::__invoke_memfun_deref, void (EmployeeTest::*&)(), EmployeeTest*&) ()
+#5  0x000055555555f7c8 in std::__invoke_result<void (EmployeeTest::*&)(), EmployeeTest*&>::type std::__invoke<void (EmployeeTest::*&)(), EmployeeTest*&>(void (EmployeeTest::*&)(), EmployeeTest*&) ()
+#6  0x000055555555f437 in void std::_Bind<void (EmployeeTest::*(EmployeeTest*))()>::__call<void, , 0ul>(std::tuple<>&&, std::_Index_tuple<0ul>) ()
+#7  0x000055555555f053 in void std::_Bind<void (EmployeeTest::*(EmployeeTest*))()>::operator()<, void>() ()
+#8  0x000055555555ec1b in std::_Function_handler<void (), std::_Bind<void (EmployeeTest::*(EmployeeTest*))()> >::_M_invoke(std::_Any_data const&) ()
+#9  0x000055555555fce8 in std::function<void ()>::operator()() const ()
+#10 0x000055555555fc32 in CppUnit::TestCaller<EmployeeTest>::runTest() ()
+#11 0x00007ffff7f99615 in CppUnit::TestCaseMethodFunctor::operator()() const () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#12 0x00007ffff7f90d76 in CppUnit::DefaultProtector::protect(CppUnit::Functor const&, CppUnit::ProtectorContext const&) ()
+   from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#13 0x00007ffff7f97390 in CppUnit::ProtectorChain::protect(CppUnit::Functor const&, CppUnit::ProtectorContext const&) ()
+   from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#14 0x00007ffff7f9ed8b in CppUnit::TestResult::protect(CppUnit::Functor const&, CppUnit::Test*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#15 0x00007ffff7f993f9 in CppUnit::TestCase::run(CppUnit::TestResult*) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#16 0x00007ffff7f99973 in CppUnit::TestComposite::doRunChildTests(CppUnit::TestResult*) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#17 0x00007ffff7f99874 in CppUnit::TestComposite::run(CppUnit::TestResult*) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#18 0x00007ffff7f9ecb7 in CppUnit::TestResult::runTest(CppUnit::Test*) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+#19 0x00007ffff7fa1443 in CppUnit::TestRunner::run(CppUnit::TestResult&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) () from /lib/x86_64-linux-gnu/libcppunit-1.15.so.1
+--Type <RET> for more, q to quit, c to continue without paging--
+
+

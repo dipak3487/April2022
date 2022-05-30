@@ -12,6 +12,7 @@ Description: executes the files which are asked in main.cpp
 #include<sstream>
 #include "employee.h"
 #include<memory>
+#include<bits/stdc++.h>
 
 /*
 filename : setFilePath
@@ -169,7 +170,14 @@ bool Config::editRecord()
 			if(string1 == "yes")
 			{
 				std::cout<<"change the name"<<std::endl;
-				std::cin>>e.name; 
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << " Name: ";		std::getline(std::cin,e.name);
+				while((e.name).length() < 4)
+				{
+					std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << " Name: ";		std::getline(std::cin,e.name);
+				}
 			}
 			std::cout<<"do you want to change the salary:"<<e.salary<<std::endl;
 			std::cout<<"enter yes or no"<<std::endl;
@@ -178,6 +186,11 @@ bool Config::editRecord()
 			{
 				std::cout<<"change the salary"<<std::endl;
 				std::cin>>e.salary; 
+				while(e.salary<10000)
+				{
+					std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
+					std::cin>>e.salary;
+				}
 			}
 			std::cout<<"do you want to change the title:"<<e.title<<std::endl;
 			std::cout<<"enter yes or no"<<std::endl;
@@ -185,7 +198,15 @@ bool Config::editRecord()
 			if(string3 == "yes")
 			{
 				std::cout<<"change the title"<<std::endl;
-				std::cin>>e.title; 
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << " title: ";		std::getline(std::cin,e.title);
+				while((e.title).length() < 4)
+				{
+					std::cout<<"employee title can't be less than 4 letters.please enter the title again"<<std::endl;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << " Title: ";	std::getline(std::cin,e.title);
+				}
+				//std::cin>>e.title; 
 			}
 		}
 	}
@@ -201,22 +222,59 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
+	
 	std::string name;
-	Employee create;
-	std::cout <<"name of the employee is: \t"<< std::endl;
-	std::getline(std::cin,create.name);
-	std::cin>>create.name;
-	std::cout<<"the salary of the employee is: \t"<<std::endl;
-	std::cin>>create.salary;
-	std::cout<<"the title of the employee is: \t"<<std::endl;
-	std::cin>>create.title;
-	std::cout<<"the code of the employee is: \t"<<std::endl;
-	std::cin>>create.empCode;
+	std::string empCode;
+	int salary;
+	std::string title;
 
-//	create.name = "Renu Wagh";
+	while(1)
+	{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Name: ";		
+	std::getline(std::cin,name);
+	while(name.length() < 4)
+	{
+		std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << " Name: ";		
+		std::getline(std::cin,name);
+	}
 
+	std::cout << " Salary: ";	
+	std::cin >> salary;
+	while(salary<10000)
+	{
+		std::cout<<" Salary can not be less than 10000, please enter the salary again: "<<std::endl;
+		std::cout << " Salary: ";
 
-	records.push_back(create);
+	}
+	
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Emp Code: ";
+	std::getline(std::cin,empCode);
+	while(empCode.length()!=5)
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//	std::cout << " Invalid Emp Code,please enter again \n ";
+	std::cout << " Emp Code: ";	
+	std::getline(std::cin,empCode);
+	}
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Title: ";	
+	std::getline(std::cin,title);
+	while(title.length() < 4)
+	{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Invalid title, please enter again \n ";
+	std::cout << " Title: ";	
+	std::getline(std::cin,title);
+	}
+	break;
+	}
+	
+	records.push_back(Employee(name, empCode, salary, title));
 
 
 	saverecordinjson();
@@ -330,5 +388,3 @@ return true;
 Config::Config()
 {
 }
-
-

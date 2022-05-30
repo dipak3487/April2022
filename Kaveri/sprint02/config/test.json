@@ -14,10 +14,22 @@
          "title" : "Manager"
       },
       {
+         "empCode" : "E1004",
+         "name" : "Mahendrasingh Dhoni",
+         "salary" : 50000,
+         "title" : "SeniorManager"
+      },
+      {
          "empCode" : "E1005",
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
+      },
+      {
+         "empCode" : "E3456",
+         "name" : "renu wagh",
+         "salary" : 34567,
+         "title" : "fresher"
       }
    ]
 }
