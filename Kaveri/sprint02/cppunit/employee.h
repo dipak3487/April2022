@@ -36,7 +36,8 @@ class Config
 
     public:
     bool readConfig();
-    Config(std::string configFilePath);
+   // Config(std::string configFilePath);
+    int mymath();
 	Config();
     bool setFilePath(std::string path);
     bool readRecords();
