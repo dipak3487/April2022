@@ -100,10 +100,10 @@ bool Config::searchRecord()
 	str1="E1003";	
 	std::vector<Employee> :: iterator it;
 	//std::cout<<records<<std::endl;
-//	for( it=records.begin(); it!=records.end(); it++)
+	for( it=records.begin(); it!=records.end(); it++)
 	{
-//		Employee &e = *it;
-//		if(e.empCode == str1)
+		Employee &e = *it;
+		if(e.empCode == str1)
 		{
 //				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
 //				std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;

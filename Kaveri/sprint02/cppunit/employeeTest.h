@@ -11,8 +11,8 @@ class EmployeeTest : public CppUnit::TestFixture
     void setup()
     {
 		emp = new Config;
-		emp->readConfig();
-		emp->readRecords();
+//		emp->readConfig();
+//		emp->readRecords();
 //		parsecommandline(int argc,char* argv[]);
 	}
     void tearDown()
@@ -21,9 +21,13 @@ class EmployeeTest : public CppUnit::TestFixture
 	}
     void testsearchRecord()
     {
+		//config1 = new Config;
+		Config config1;
+		config1.readConfig();
+		config1.readRecords();
 		//std::string record = emp->searchRecord("E1003");
 		//bool ret = record.compare("true");
-		CPPUNIT_ASSERT_EQUAL(emp->searchRecord(),true);
+		CPPUNIT_ASSERT_EQUAL(config1.searchRecord(),true);
 //		CPPUNIT_ASSERT_EQUAL(emp->mymath(),2);
 	}
 	CPPUNIT_TEST_SUITE(EmployeeTest);
