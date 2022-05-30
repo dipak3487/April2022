@@ -36,14 +36,15 @@ class Config
 
     public:
     bool readConfig();
-    Config(std::string configFilePath);
+   // Config(std::string configFilePath);
+    int mymath();
 	Config();
     bool setFilePath(std::string path);
     bool readRecords();
     bool readOneRecord();
 	bool editRecord();//will update vector record
 	bool createRecord();
-	bool searchRecord();
+	bool searchRecord(std::string str);
 	bool deleteRecord();
 	bool saverecordinjson();
 	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
@@ -52,4 +53,32 @@ class Config
 
 };
 
+class CppUnittest
+{
+    private:
+    //std::string filePath;
+    Json::Value unittest;
+    Json::Value oneRecord;
+
+    Employee cppemp;
+    std::vector<Employee> cpprecords;
+
+    public:
+    bool readConfig();
+   // Config(std::string configFilePath);
+  //  int mymath();
+	CppUnittest();
+   // bool setFilePath(std::string path);
+    bool readRecords();
+    bool readOneRecord();
+	bool editRecord(std::string code,std::string name,int salary,std::string title);//will update vector record
+	bool createRecord(std::string newcode,std::string newname,int newsalary,std::string newtitle);
+	bool searchRecord(std::string str);
+	bool deleteRecord(std::string str);
+	bool saverecordinjson();
+	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
+	bool getpayrolldetails(std::string code);
+  //  std::string getLogfilePath();
+
+};
 #endif

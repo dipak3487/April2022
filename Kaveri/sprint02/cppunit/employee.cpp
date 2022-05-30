@@ -19,7 +19,10 @@ filename : setFilePath
 created on : 25th May 2022
 Description: sets the input path to the filePath
 */
-
+int Config::mymath()
+{
+	return 2;
+}
 bool Config::setFilePath(std::string path)
 {
     filePath = path;
@@ -72,8 +75,9 @@ Description: takes the input file from filepath and parse it to a json value
 
 bool Config::readConfig()
 {
-    std::ifstream ifs(filePath);
-
+    //std::ifstream ifs(filePath);
+    std::ifstream ifs("employeeRecords.json");
+	
     Json::Reader jr;
 
     jr.parse(ifs, configRoot);
@@ -87,26 +91,29 @@ created on : 25th May 2022
 Description: searches for an employee record based on the empCode of the employee 
 */
 
-bool Config::searchRecord()
+bool Config::searchRecord(std::string str1)
 {
-	std::string str1;
+	//std::string str1;
 
-	std::cout<<"enter the empCode of the employee"<<std::endl;
-	std::cin>>str1;
-	
-	
-	for(auto it=records.begin(); it!=records.end(); it++)
+//	std::cout<<"enter the empCode of the employee"<<std::endl;
+//	std::cin>>str1;
+//	str1="E1003";
+	bool result = false;
+	std::vector<Employee> :: iterator it;
+	//std::cout<<records<<std::endl;
+	for( it=records.begin(); it!=records.end(); it++)
 	{
 		Employee &e = *it;
 		if(e.empCode == str1)
 		{
-				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-				std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
-				std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
-				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+//				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+//				std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
+//				std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
+//				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+			result = true;
 		}
 	}
-	return true;
+	return result;
 }
 
 /*
@@ -157,7 +164,7 @@ bool Config::editRecord()
 	std::string string3;
     std::cout<<"enter the empCode of the employee"<<std::endl;
     std::cin>>code;
-
+	bool result=false;
 	for(auto it=records.begin(); it!=records.end(); it++)
 	{
 		
@@ -208,6 +215,7 @@ bool Config::editRecord()
 				}
 				//std::cin>>e.title; 
 			}
+			result = true;
 		}
 	}
 	saverecordinjson();
@@ -222,58 +230,72 @@ Description: creates a new employee record when a new employee is added
 
 bool Config::createRecord()
 {
-	
+	//Employee create;
 	std::string name;
 	std::string empCode;
 	int salary;
 	std::string title;
-
+/*
+	std::cout<<"First name of the Employee is: \t"<<std::endl;
+	std::cin>>firstname;
+	std::cout<<"last name of the Employee is: \t"<<std::endl;
+	std::cin>>lastname;
+*/
 	while(1)
 	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout <<"Employee Name: ";		
-		std::getline(std::cin,name);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Name: ";		std::getline(std::cin,name);
 	while(name.length() < 4)
 	{
-		std::cout<<"Name cannnot be less than 4 letters.Please enter the name again."<<std::endl;	
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	
-		std::cout<<"Employee Name: ";
-		std::getline(std::cin,name);
+		std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << " Name: ";		std::getline(std::cin,name);
 	}
-
-	std::cout <<"Employee Salary: ";	
-	std::cin >> salary;
+	std::cout << " Salary: ";	std::cin >> salary;
 	while(salary<10000)
 	{
-		std::cout<<"Salary can not be less than 10,000.Please enter the salary again: "<<std::endl;
-		std::cout<<"Employee Salary: ";
+		std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
 		std::cin>>salary;
 	}
-	
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout <<"Employee Code: ";
-	std::getline(std::cin,empCode);
+	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
 	while(empCode.length()!=5)
 	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout <<"Invalid Emp Code.Please enter Emp Code of length 5. "<<std::endl;
-		std::cout <<"Employee Code: ";	
-		std::getline(std::cin,empCode);
-	}
-
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	std::cout <<"Employee Title: ";	
-	std::getline(std::cin,title);
+	std::cout << " Emp Code: ";	std::getline(std::cin,empCode);
+	}
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Title: ";	std::getline(std::cin,title);
 	while(title.length() < 4)
 	{
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout <<"Invalid title.Please enter Employee title having length more than 4 letters. " <<std::endl;
-		std::cout <<"Employee Title: ";	
-		std::getline(std::cin,title);
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << " Title: ";	std::getline(std::cin,title);
 	}
 	break;
 	}
+	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+//	create.name = firstname + " " + lastname;
+//	std::cout<<"Name of the Employee is: \t"<<std::endl;
+//	std::cin>>create.name;
+
+
+/*
+	std::cout<<"Salary of the Employee is: \t"<<std::endl;
+	std::cin>>create.salary;
+
+	std::cout<<"Title of the Employee is: \t"<<std::endl;
+	std::cin>>create.title;
+
+	std::cout<<"Code of the Employee is: \t"<<std::endl;
+	std::cin>>create.empCode;
 	
+	
+	*/
+//	create.name = "Renu Wagh";
+
+
+	//records.push_back(create);
 	records.push_back(Employee(name, empCode, salary, title));
 
 
@@ -292,19 +314,39 @@ Description: delete an employee record based on the empCode of the employee
 bool Config::deleteRecord()
 {
 	std::string code;
-
-    std::cout<<"enter the empCode of the employee"<<std::endl;
-    std::cin>>code;
-
+	int choice;
+	std::string employeename;
 	for(auto it=records.begin(); it!=records.end(); it++)
 	{
-		
+/*	while(1)
+	{
+		std::cout<<"Enter your choice:"<<std::endl;
+        std::cin>>choice;
 		Employee &e = *it;
-		if(e.empCode == code)
-		{
-			records.erase(it);
+		switch(choice)
+        {
+            case 1:
+				std::cout<<"enter the empCode of the employee"<<std::endl;
+				std::cin>>code;
+				
+				if(e.empCode == code)
+				{
+					records.erase(it);
+				}
+				break;
+			case 2:
+				std::cout<<"enter the empCode of the employee"<<std::endl;
+				std::cin>>employeename;
+				
+				if(e.name == employeename)
+				{
+					records.erase(it);
+				}
+				break;
+			default:
+				std::cout<<"enter 1 or 2 only"<<std::endl;
+				*/
 		}
-	}
 	saverecordinjson();
 
 return true;

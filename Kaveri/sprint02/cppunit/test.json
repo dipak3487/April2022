@@ -24,12 +24,6 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
-      },
-      {
-         "empCode" : "E3456",
-         "name" : "Renu",
-         "salary" : 56788,
-         "title" : "Analyst"
       }
    ]
 }

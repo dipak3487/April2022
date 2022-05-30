@@ -1,6 +1,7 @@
 #ifndef HOTELMANAGER_H_INCLUDED
 #define HOTELMANAGER_H_INCLUDED
 
+//#include <windows.h>
 #include "Room.h"
 
 using namespace std;

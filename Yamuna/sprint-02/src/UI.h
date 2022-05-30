@@ -8,7 +8,7 @@ typedef enum Menu { ADD_BUS=1, RESERVE_SEAT, SHOW_RESERVATION, SHOW_AVAILABILITY
 class UI
 {
 	private:
-	static int const MinMenu = 1;
+    static int const MinMenu = 1;
 	static int const MaxMenu = 6;
 
 	public:
@@ -17,6 +17,10 @@ class UI
 
 	static Bus& add_new_number_of_bus();
 	static bool avail();
+	
+    
+
+
 
 };
 

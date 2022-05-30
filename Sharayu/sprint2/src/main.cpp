@@ -1,394 +1,414 @@
-//***************************************************************
-//                   HEADER FILE USED IN PROJECT
-//****************************************************************
-
-#include<iostream>
-#include<fstream>
-#include<iomanip>
-using namespace std;
+// Student Report Management System
 
 
-//***************************************************************
-//                   CLASS USED IN PROJECT
-//****************************************************************
+#include <iostream>
+#include <fstream>
+#include <regex>
+#include <typeinfo>
+#include "json/json.h"
+#include "CppConsoleTable.hpp"
 
-class student
-{
-	int rollno;
-	char name[50];
-	int p_marks, c_marks, m_marks, e_marks, cs_marks;
-	double per;
-	char grade;
-	void calculate();	//function to calculate grade
-public:
-	void getdata();		//function to accept data from user
-	void showdata() const;	//function to show data on screen
-	void show_tabular() const;
-	int retrollno() const;
-}; //class ends here
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
 
+using samilton::ConsoleTable;
 
-void student::calculate()
-{
-	per=(p_marks+c_marks+m_marks+e_marks+cs_marks)/5.0;
-	if(per>=60)
-		grade='A';
-	else if(per>=50)
-		grade='B';
-	else if(per>=33)
-		grade='C';
-	else
-		grade='F';
-}
+Json::Value getStudentReport() {
+	// https://finbarr.ca/jsoncpp-example/
+	Json::Value root;
+		std::ifstream file("reports.json");
+    file >> root;
 
-void student::getdata()
-{
-	cout<<"\nEnter The roll number of student ";
-	cin>>rollno;
-	cout<<"\n\nEnter The Name of student ";
-	cin.ignore();
-	cin.getline(name,50);
-	cout<<"\nEnter The marks in physics out of 100 : ";
-	cin>>p_marks;
-	cout<<"\nEnter The marks in chemistry out of 100 : ";
-	cin>>c_marks;
-	cout<<"\nEnter The marks in maths out of 100 : ";
-	cin>>m_marks;
-	cout<<"\nEnter The marks in english out of 100 : ";
-	cin>>e_marks;
-	cout<<"\nEnter The marks in computer science out of 100 : ";
-	cin>>cs_marks;
-	calculate();
-}
-
-void student::showdata() const
-{
-	cout<<"\nRoll number of student : "<<rollno;
-	cout<<"\nName of student : "<<name;
-	cout<<"\nMarks in Physics : "<<p_marks;
-	cout<<"\nMarks in Chemistry : "<<c_marks;
-	cout<<"\nMarks in Maths : "<<m_marks;
-	cout<<"\nMarks in English : "<<e_marks;
-	cout<<"\nMarks in Computer Science :"<<cs_marks;
-	cout<<"\nPercentage of student is  :"<<per;
-	cout<<"\nGrade of student is :"<<grade;
-}
-
-void student::show_tabular() const
-{
-	cout<<rollno<<setw(6)<<" "<<name<<setw(10)<<p_marks<<setw(4)<<c_marks<<setw(4)<<m_marks<<setw(4)
-		<<e_marks<<setw(4)<<cs_marks<<setw(8)<<per<<setw(6)<<grade<<endl;
-}
-
-int  student::retrollno() const
-{
-	return rollno;
+	file.close();
+	return root;
 }
 
 
-//***************************************************************
-//    	function declaration
-//****************************************************************
-
-void write_student();	//write the record in binary file
-void display_all();	//read all records from binary file
-void display_sp(int);	//accept rollno and read record from binary file
-void modify_student(int);	//accept rollno and update record of binary file
-void delete_student(int);	//accept rollno and delete selected records from binary file
-void class_result();	//display all records in tabular format from binary file
-void result();		//display result menu
-void intro();		//display welcome screen
-void entry_menu();	//display entry menu on screen
+void setStudentReport(Json::Value root) {
+	// Write the output to a file
+	std::ofstream outFile;
+	outFile.open("reports.json");
+	outFile << root;
+	outFile.close();    
+}
 
 
-//***************************************************************
-//    	THE MAIN FUNCTION OF PROGRAM
-//****************************************************************
+string getName() {
+	string str;
+	cout << "Enter Student's Name: ";
+	getline(cin, str);
+
+	if(str == "") {
+		cout << "Enter a name!" << endl;
+		getName();
+	}
+	return str;
+}
 
 
-int main()
-{
-	char ch;
-	cout.setf(ios::fixed|ios::showpoint);
-	cout<<setprecision(2); // program outputs decimal number to two decimal places
-	intro();
-	do
-	{
-//		system("clear");
-		cout<<"\n\n\n\tMAIN MENU";
-		cout<<"\n\n\t01. RESULT MENU";
-		cout<<"\n\n\t02. ENTRY/EDIT MENU";
-		cout<<"\n\n\t03. EXIT";
-		cout<<"\n\n\tPlease Select Your Option (1-3) ";
-		cin>>ch;
-		switch(ch)
-		{
-			case '1': result();
-				break;
-			case '2': entry_menu();
-				break;
-			case '3':
-				break;
-			default :cout<<"\a";
+int reportOptions() {
+	cout << "1. Show Student Report"<< endl;
+	cout << "2. Add New Report"<< endl;
+	cout << "3. Modify Report"<< endl;
+	cout << "4. Remove Report"<< endl;
+	cout << "5. Show All Reports"<< endl;
+	cout << "0. Exit"<< endl;
+	cout << "--- Choose any one option ---" << endl;
+	cout << "Enter one option: ";
+
+	int selectedOption = 0;
+	cin >> selectedOption;
+	cin.ignore ( std::numeric_limits<std::streamsize>::max(), '\n' ); 
+
+	return selectedOption;
+}
+
+
+void checkReport() {
+	string cls; int roll;
+
+	cout << "--- Check Student Report ---" << endl;
+
+	cout << "Student's Class: ";
+	cin >> cls;
+	cout << "Student's Roll No: ";
+	cin >> roll;
+
+	Json::Value list = getStudentReport();
+	int len = list.size();
+
+	for ( int i = 0; i < len; i++ )
+    {
+		string studentClass = list[i]["student"]["class"].asString();
+		int studentRollNum = list[i]["student"]["roll_number"].asInt();
+
+		if (cls == studentClass && roll == studentRollNum) {
+			string studentName = list[i]["student"]["name"].asString();
+			int eng = list[i]["marks"]["english"].asInt();
+			int math = list[i]["marks"]["math"].asInt();
+			int science = list[i]["marks"]["science"].asInt();
+			int social = list[i]["marks"]["social"].asInt();
+			int history = list[i]["marks"]["history"].asInt();
+
+			string grade = list[i]["grade"].asString();
+
+			cout << "Student Name: " << studentName << endl;
+			cout << "English: " << eng << endl;
+			cout << "Math: " << math << endl;
+			cout << "Science: " << science << endl;
+			cout << "Social: " << social << endl;
+			cout << "History: " << history << endl;
+			cout << "Grade: " << grade << endl;
+			return;
 		}
-    }while(ch!='3');
-	return 0;
+
+    }
+
+	cout << "Report Not Found." << endl;
 }
 
-//***************************************************************
-//    	function to write in file
-//****************************************************************
+int calculateTotal(int *arr, int size) {
+	int sum = 0, i;
+	for (i = 0; i < size; i++) {
+    	sum += arr[i];
+   	}
 
-void write_student()
-{
-	student st;
-	ofstream outFile;
-	outFile.open("student.dat",ios::binary|ios::app);
-	st.getdata();
-	outFile.write(reinterpret_cast<char *> (&st), sizeof(student));
-	outFile.close();
-    	cout<<"\n\nStudent record Has Been Created ";
-	cin.ignore();
-	cin.get();
+	return sum;
 }
 
-//***************************************************************
-//    	function to read all records from file
-//****************************************************************
-
-void display_all()
-{
-	student st;
-	ifstream inFile;
-	inFile.open("student.dat",ios::binary);
-	if(!inFile)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		cin.ignore();
-		cin.get();
-		return;
+string figureGrade(int totalMarks, int size) {
+	if (totalMarks / size >= 90) {
+		return "A";
+	} else if (totalMarks / size >= 70) {
+		return "B";
+	} else if (totalMarks / size >= 50) {
+		return "C";
+	} else {
+		return "F";
 	}
-	cout<<"\n\n\n\t\tDISPLAY ALL RECORD !!!\n\n";
-	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
-	{
-		st.showdata();
-		cout<<"\n\n====================================\n";
-	}
-	inFile.close();
-	cin.ignore();
-	cin.get();
+	return "null";
 }
 
-//***************************************************************
-//    	function to read specific record from file
-//****************************************************************
+class student {
+	private:
+	string name, cls; 
+	int rollNumber;
+};
 
-void display_sp(int n)
-{
-	student st;
-	ifstream inFile;
-	inFile.open("student.dat",ios::binary);
-	if(!inFile)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		cin.ignore();
-		cin.get();
-		return;
-	}
-	bool flag=false;
-	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
-	{
-		if(st.retrollno()==n)
-		{
-	  		 st.showdata();
-			 flag=true;
+typedef class student Student;
+
+void addReport() {
+	public:
+	Student st;
+	string grade;
+	int id, total;
+	int eng, science, history, math, social = 0;
+
+	Json::Value records = getStudentReport();
+
+	// generate random number
+	std::srand(static_cast<unsigned int>(std::time(nullptr))); 
+	id = std::rand();
+
+	cout << endl << "--- Provide Student Report Details ---" << endl;
+	st.name = getName();
+	cout << "Roll No: ";
+	cin >> st.rollNumber;
+	cout << "Student Class: ";
+	cin >> st.cls;
+	cout << "----- Student's Marks -----" << endl;
+	cout << "English: ";
+	cin >> eng;
+	cout << "Math: ";
+	cin >> math;
+	cout << "Science: ";
+	cin >> science;
+	cout << "Social Studies: ";
+	cin >> social;
+	cout << "History: ";
+	cin >> history;
+	
+	int marks[5] = { eng, math, history, science, social };
+	total = calculateTotal(marks, 5);
+	grade = figureGrade(total, 5);
+
+	Json::Value record;
+	record["id"] = id;
+	record["student"]["name"] = st.name;
+	record["student"]["roll_number"] = st.rollNumber;	
+	record["student"]["class"] = st.cls;	
+
+	record["marks"]["english"] = eng;
+	record["marks"]["math"] = math;
+	record["marks"]["science"] = science;
+	record["marks"]["history"] = history;
+	record["marks"]["social"] = social;
+
+	record["total_marks"] = total;
+	record["grade"] = grade;
+
+	records.append(record);
+	setStudentReport(records);
+	
+   	cout << st.name << " Report added. " << endl;
+   	cout << "Grade: " << grade << endl; 
+}
+
+//Update the student details
+void updateReport() {
+	string cls; int roll;
+	cout << endl << "--- Update Student Report ---" << endl;
+
+	cout << "Student's Class: ";
+	cin >> cls;
+	cout << "Student's Roll No: ";
+	cin >> roll;
+
+	Json::Value records = getStudentReport();
+	int len = records.size();
+	bool found = false;
+
+    for ( int i = 0; i < len; i++ )
+    {
+		string studentClass = records[i]["student"]["class"].asString();
+		int studentRollNum = records[i]["student"]["roll_number"].asInt();
+
+		if (cls == studentClass && roll == studentRollNum) {
+			string name, s_class, grade;
+			int rollNumber, eng, math, science, social, history, total;
+
+			cin.ignore(); 
+			name = getName();
+
+			cout << "Roll No: ";
+			cin >> rollNumber;
+			cout << "Student Class: ";
+			cin >> s_class;
+			cout << "----- Student's Marks -----" << endl;
+			cout << "English: ";
+			cin >> eng;
+			cout << "Math: ";
+			cin >> math;
+			cout << "Science: ";
+			cin >> science;
+			cout << "Social Studies: ";
+			cin >> social;
+			cout << "History: ";
+			cin >> history;
+			
+			int marks[5] = { eng, math, history, science, social };
+			total = calculateTotal(marks, 5);
+			grade = figureGrade(total, 5);
+
+			records[i]["student"]["name"] = name;
+			records[i]["student"]["roll_number"] = rollNumber;	
+			records[i]["student"]["class"] = s_class;	
+
+			records[i]["marks"]["english"] = eng;
+			records[i]["marks"]["math"] = math;
+			records[i]["marks"]["science"] = science;
+			records[i]["marks"]["history"] = history;
+			records[i]["marks"]["social"] = social;
+
+			records[i]["total_marks"] = total;
+			records[i]["grade"] = grade;
+
+			found = true;
+			break;
 		}
+    }
+
+	if (!found) {
+		cout << "Report Not Found." << endl;
+	} else { 
+		setStudentReport(records);
+		cout << "Report Updated" << endl;
 	}
-	inFile.close();
-	if(flag==false)
-		cout<<"\n\nrecord not exist";
-	cin.ignore();
-	cin.get();
+
 }
 
-//***************************************************************
-//    	function to modify record of file
-//****************************************************************
 
-void modify_student(int n)
-{
-	bool found=false;
-	student st;
-	fstream File;
-	File.open("student.dat",ios::binary|ios::in|ios::out);
-	if(!File)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		cin.ignore();
-		cin.get();
-		return;
-	}
-    	while(!File.eof() && found==false)
-	{
+void removeReport() {
+	string cls;
+	int roll;
+	cout << endl << "--- Remove Student Report ---" << endl;
+	
+	cout << "Student's Class: ";
+	cin >> cls;
+	cout << "Student's Roll No: ";
+	cin >> roll;
+	
 
-		File.read(reinterpret_cast<char *> (&st), sizeof(student));
-		if(st.retrollno()==n)
-		{
-			st.showdata();
-			cout<<"\n\nPlease Enter The New Details of student"<<endl;
-			st.getdata();
-		    	int pos=(-1)*static_cast<int>(sizeof(st));
-		    	File.seekp(pos,ios::cur);
-		    	File.write(reinterpret_cast<char *> (&st), sizeof(student));
-		    	cout<<"\n\n\t Record Updated";
-		    	found=true;
+	Json::Value records = getStudentReport();
+	int len = records.size();
+
+	Json::Value newRecords;
+	bool studentReportExists = false;
+
+    for ( int i = 0; i < len; i++ )
+    {
+		string studentClass = records[i]["student"]["class"].asString();
+		int studentRollNum = records[i]["student"]["roll_number"].asInt();
+
+		if (cls == studentClass && roll == studentRollNum) {
+			studentReportExists = true;
+			continue;
 		}
-	}
-	File.close();
-	if(found==false)
-		cout<<"\n\n Record Not Found ";
-	cin.ignore();
-	cin.get();
-}
+		newRecords.append(records[i]);
+    }
 
-//***************************************************************
-//    	function to delete record of file
-//****************************************************************
-
-void delete_student(int n)
-{
-	student st;
-	ifstream inFile;
-	inFile.open("student.dat",ios::binary);
-	if(!inFile)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		cin.ignore();
-		cin.get();
-		return;
-	}
-	ofstream outFile;
-	outFile.open("Temp.dat",ios::out);
-	inFile.seekg(0,ios::beg);
-	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
-	{
-		if(st.retrollno()!=n)
-		{
-			outFile.write(reinterpret_cast<char *> (&st), sizeof(student));
-		}
-	}
-	outFile.close();
-	inFile.close();
-	remove("student.dat");
-	rename("Temp.dat","student.dat");
-	cout<<"\n\n\tRecord Deleted ..";
-	cin.ignore();
-	cin.get();
-}
-
-//***************************************************************
-//    	function to display all students grade report
-//****************************************************************
-
-void class_result()
-{
-	student st;
-	ifstream inFile;
-	inFile.open("student.dat",ios::binary);
-	if(!inFile)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		cin.ignore();
-		cin.get();
-		return;
-	}
-	cout<<"\n\n\t\tALL STUDENTS RESULT \n\n";
-	cout<<"==========================================================\n";
-	cout<<"R.No       Name        P   C   M   E   CS   %age   Grade"<<endl;
-	cout<<"==========================================================\n";
-	while(inFile.read(reinterpret_cast<char *> (&st), sizeof(student)))
-	{
-		st.show_tabular();
-	}
-	cin.ignore();
-	cin.get();
-	inFile.close();
-}
-
-//***************************************************************
-//    	function to display result menu
-//****************************************************************
-
-void result()
-{
-	char ch;
-	int rno;
-//	system("clear");
-	cout<<"\n\n\n\tRESULT MENU";
-	cout<<"\n\n\n\t1. Class Result";
-	cout<<"\n\n\t2. Student Report Card";
-	cout<<"\n\n\t3. Back to Main Menu";
-	cout<<"\n\n\n\tEnter Choice (1/2/3)? ";
-	cin>>ch;
-//	system("clear");
-	switch(ch)
-	{
-	case '1' :	class_result(); break;
-	case '2' :	cout<<"\n\n\tEnter Roll Number Of Student : "; cin>>rno;
-				display_sp(rno); break;
-	case '3' :	break;
-	default:	cout<<"\a";
+	if(studentReportExists) {
+		setStudentReport(newRecords);
+		cout << "Student Report Removed";
+	} else {
+		cout << "Student Report does not exist";
 	}
 }
 
-//***************************************************************
-//    	INTRODUCTION FUNCTION
-//****************************************************************
 
-void intro()
-{
-	cout<<"\n\n\n\t\t  STUDENT";
-	cout<<"\n\n\t\tREPORT MANAGEMENT SYSTEM";
-	cout<<"\n\n\t\t  PROJECT";
-	cout<<"\n\n\n\tMADE BY : TEAM SHARAYU";
-//	cout<<"\n\t : ";
-	cin.get();
+void showReports() {
+	cout << "--- List of Student Reports ---" << endl;
+
+	Json::Value list = getStudentReport();
+	int len = list.size();
+
+
+	ConsoleTable table(1, 1, samilton::Alignment::centre);
+
+	// creating struct
+	ConsoleTable::TableChars chars;
+		// modifying characters
+	chars.topLeft = '*';
+	chars.topRight = '*';
+	chars.downLeft = '*';
+	chars.downRight = '*';
+
+	chars.topDownSimple = '-';
+	chars.leftRightSimple = '+';
+
+	chars.leftSeparation = '*';
+	chars.rightSeparation = '*';
+	chars.topSeparation = '*';
+	chars.downSeparation = '*';
+	chars.centreSeparation = '*';
+
+	// changing characters in table
+	table.setTableChars(chars);
+
+
+	table[0][0] = "Student Name";
+	table[0][1] = "Class";
+	table[0][2] = "Roll No.";
+	table[0][3] = "Grade";
+	table[0][4] = "Total Marks";
+
+	for ( int i = 0; i < len; i++ )
+    {
+		string name = list[i]["student"]["name"].asString();
+		int rollNum = list[i]["student"]["roll_number"].asInt();
+		string sClass = list[i]["student"]["class"].asString();
+		string grade = list[i]["grade"].asString();
+		string total = list[i]["total_marks"].asString();
+
+		int j = i + 1;
+		table[j][0] = name;
+		table[j][1] = sClass;
+		table[j][2] = rollNum;
+		table[j][3] = grade;
+		table[j][4] = total;
+    }
+
+	cout << table;
 }
 
-//***************************************************************
-//    	ENTRY / EDIT MENU FUNCTION
-//****************************************************************
 
-void entry_menu()
-{
-	char ch;
-	int num;
-//	system("clear");
-	cout<<"\n\n\n\tENTRY MENU";
-	cout<<"\n\n\t1.CREATE STUDENT RECORD";
-	cout<<"\n\n\t2.DISPLAY ALL STUDENTS RECORDS";
-	cout<<"\n\n\t3.SEARCH STUDENT RECORD ";
-	cout<<"\n\n\t4.MODIFY STUDENT RECORD";
-	cout<<"\n\n\t5.DELETE STUDENT RECORD";
-	cout<<"\n\n\t6.BACK TO MAIN MENU";
-	cout<<"\n\n\tPlease Enter Your Choice (1-6) ";
-	cin>>ch;
-//	system("clear");
-	switch(ch)
-	{
-	case '1':	write_student(); break;
-	case '2':	display_all(); break;
-	case '3':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
-			display_sp(num); break;
-	case '4':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
-			modify_student(num);break;
-	case '5':	cout<<"\n\n\tPlease Enter The roll number "; cin>>num;
-			delete_student(num);break;
-	case '6':	break;
-	default:	cout<<"\a"; entry_menu();
+void actions(int& option) {
+	switch(option) {
+		case 1: 
+			checkReport();
+			break;
+		case 2: 
+			addReport();
+			break;
+		case 3: 
+			updateReport();
+			break;
+		case 4: 
+			removeReport();
+			break;
+		case 5: 
+			showReports();
+			break;
 	}
 }
 
-//***************************************************************
-//    			END OF PROJECT
-//***************************************************************
+
+void home () {
+	int option = reportOptions();
+	if (option != 0 && option <= 5) {
+		actions(option);
+	} else if (option > 5) {
+		cout << endl << "!!! Enter Valid Option !!!" << endl;
+		option = reportOptions();
+	} else {
+	 	exit(0);
+	}
+}
+
+
+int main () {
+	cout << "*** WELCOME ***";
+	string yesOrNo;
+	
+	while(true) {
+		cout << endl << "--- Student Report Management System ---" << endl;
+		home();
+		cout << endl << "Continue? (y/n) :";
+		cin >> yesOrNo;
+		if(yesOrNo != "y") break;
+	}
+
+	cout << "Good Bye!" << endl;
+}

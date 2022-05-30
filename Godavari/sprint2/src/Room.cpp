@@ -5,12 +5,11 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-// #include <windows.h>
+//#include <windows.h>
 #include "hotelManager.h"
 #include "Room.h"
 #include "Customer.h"
 #include "sql.h"
-// #include <mysql/mysql.h>
 
 using namespace std;
 
@@ -40,7 +39,7 @@ void Room::addRoom(int roomnumber){
     cin >> room.rent_per_day;
 
     cout << "\n***********";
-    cout << "\n(Available->A)\n(None-Available->N)";
+    cout << "\n(Available->0)\n(None-Available->1)";
     cout << "\n***********";
     cout << "\nEnter the Status:";
     cin >> room.status;
