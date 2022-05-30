@@ -18,10 +18,10 @@ void Vaccine::menu()
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\n\t\t01: Add New Record"<<endl;
-    cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t03: View All Citizen Data"<<endl;
-    cout<<"\n\t\t04: Exit"<<endl;
+    cout<<"\n\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t4: Exit"<<endl;
 }
 
 

@@ -26,22 +26,6 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
-/*
-void menu()
-{
-    
-    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
-    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\t\t\t\t MAIN MENU";
-    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\n\t\t1: Add New Record"<<endl;
-    cout<<"\n\t\t2: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t3: View All Citizen Data"<<endl;
-    cout<<"\n\t\t0: Exit"<<endl;
-}
-*/
-
-
 int main(int argc, char** argv)
 {
 
