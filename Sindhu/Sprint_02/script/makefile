@@ -1,4 +1,4 @@
-i../bin/program: ../obj/main.o ../obj/vaccine.o
+../bin/program: ../obj/main.o ../obj/vaccine.o
 	g++ -o ../bin/program ../obj/main.o ../obj/vaccine.o -lsqlite3
 
 ../obj/main.o: ../src/main.cpp

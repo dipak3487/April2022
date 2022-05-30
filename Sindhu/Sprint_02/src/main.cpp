@@ -26,6 +26,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
+/*
 void menu()
 {
     
@@ -38,29 +39,32 @@ void menu()
     cout<<"\n\t\t03: View All Citizen Data"<<endl;
     cout<<"\n\t\t04: Exit"<<endl;
 }
+*/
+
+
 int main(int argc, char** argv)
 {
 
-     Vaccine obj;
+     Vaccine vaccineDB;
      int k=3;
 
      int ch;
       do{
 
-            menu();
+            vaccineDB.menu();
             cout<<"\n\t\n\tChoose according to your need : ";
             cin>>ch;
 
       switch(ch)
        {
          case 1: 
-	             obj.addNew();
+	             vaccineDB.addNew();
                  break;
          case 2: 
-       	    obj.view_Vaccine();
+       	    vaccineDB.view_Vaccine();
                  break;
          case 3:
-		   obj.view_all();
+		   vaccineDB.view_all();
                 break;
           
          case 4:  

@@ -6,13 +6,16 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
+
+#include "vaccine.h"
+
 using namespace std;
 
 
-void menu()
+void Vaccine::menu()
 {
     
-    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
