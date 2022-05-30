@@ -59,6 +59,7 @@ int main(int argc, char** argv)
        {
          case 1: 
 	             vaccineDB.addNew();
+	             vaccineDB.showData();
                  break;
          case 2: 
        	    vaccineDB.view_Vaccine();
@@ -67,11 +68,15 @@ int main(int argc, char** argv)
 		   vaccineDB.view_all();
                 break;
           
-         case 4:  
-                    exit(0);
+          case 4:  
+		vaccineDB.Search_Citizen_Records();
+		break;
+	case 5:
+		exit(0);
+		break;
          default: 
-                  cout<<"\n\n\n\n\n\n\n\n\t\t\t\t\t\tTHANK YOU!!";
-                  cout<<"\n\n\t\t\t\t\t****HAVE A NICE DAY*****";
+                  cout<<"\n\n\n\t\t\tTHANK YOU!!";
+                  cout<<"\n\n\t\t****HAVE A NICE DAY*****";
                   exit(0);
        }
       }while(ch!=0);
