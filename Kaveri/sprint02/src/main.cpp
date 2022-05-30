@@ -41,72 +41,33 @@ int main(int argc,char* argv[])
 
 
 	 cout<<"Enter Admin Login Credentials:"<<endl;
-
+	std::string adminid = "ADMIN";
     std::string user;
     std::cout<<"Enter username:"<<std::endl;
     std::cin>>user;
+	if(adminid == user)
+	{
+     const char *mypass="vista";
+     char *password=getpass("Enter password: "); 
 
-    const char *mypass="vista";
-    char *password=getpass("Enter password: "); // yes, that's all you need!
-
-//    cout<<password;
-    if(strcmp(password,mypass)==0) 
-		cout <<"Correct password! \n";
-    else
+     if(strcmp(password,mypass)==0) 
+	 {
+	 	cout <<"Correct password! \n";
+	 }
+     else
+	 {
 		cout <<"Invalid password!\n";
-
-
+	 	exit(0);
+	 }
+	}
+	else
+	{
+		cout<<"Invalid user"<<endl;
+		exit(0);
+	}
 
 	while(1)
 	{
-/*	cout<<"Enter Admin Login Credentials:"<<endl;
-	
-	std::string user;
-    std::cout<<"Enter username:"<<std::endl;
-    std::cin>>user;
-
-	const char *mypass="vista";
-	char *password=getpass("Enter password: "); // yes, that's all you need!
-
-	cout<<password;
-	if(strcmp(password,mypass)==0) cout <<"Correct password!\n";
-	else cout <<"Incorrect password!\n";
-*/
-// I hope you are using a smart IDE...
-
-
-
-   /* std::string pass;
-    std::cout<<"password:"<<std::endl;
-    std::cin>>pass;
-   */
-
-
-  // cout << "Type in your password: " << endl;
-  //  std::getline(cin, pass);
-
-
-
-/*
-	char pss[32];
-	int as=0;
-	char atemp;
-	for(as=0;;)
-	{
-		atemp= getchar();
-		if((atemp>='a')&&(atemp<='z'))
-		{
-			pss[as]=atemp;
-			++as;
-			cout<<"*";
-		}
-	 }
-	 */
-
-		///////////////////////////////////////////////////
-		if((user=="Admin")&&(mypass=="vista"))
-		{///Go ahead
-
 		cout<<"1.Create new Employee details"<<endl;
 		cout<<"2.Edit Employee details"<<endl;
 		cout<<"3.Delete Employee details"<<endl;
@@ -138,13 +99,6 @@ int main(int argc,char* argv[])
 				cout<<"Please enter 1/2/3/4/5/6 only "<<endl;
 		//		exit(0);
 		}
-	}
-	else
-	{
-    ////////Exit
-	cout<<"Invalid username or password "<<endl;
-	exit(0);
-	}
 	}
 	return 0;
 }
