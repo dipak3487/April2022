@@ -131,14 +131,16 @@ string figureGrade(int totalMarks, int size) {
 	return "null";
 }
 
-struct student {
+class student {
+	private:
 	string name, cls; 
 	int rollNumber;
 };
 
-typedef struct student Student;
+typedef class student Student;
 
 void addReport() {
+	public:
 	Student st;
 	string grade;
 	int id, total;
