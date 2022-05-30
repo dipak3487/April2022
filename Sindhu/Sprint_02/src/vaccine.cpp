@@ -321,4 +321,3 @@ void Vaccine::showData()
     cout<<"\n\t\t vaccine injected : "<<vaccine<<endl;
     
 }
-
