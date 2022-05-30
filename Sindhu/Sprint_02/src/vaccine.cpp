@@ -6,8 +6,16 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
+<<<<<<< HEAD
+
 #include "vaccine.h"
 
+
+
+=======
+#include "vaccine.h"
+
+>>>>>>> cb82c3cc8d6fddf7253e439961c40b5feaf72f1f
 using namespace std;
 
 
@@ -18,10 +26,18 @@ void Vaccine::menu()
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+<<<<<<< HEAD
+    cout<<"\n\t\t\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t\t\t4: Search"<<endl;
+    cout<<"\n\t\t\t\t5: Exit"<<endl;
+=======
     cout<<"\n\t\t1: Add New Record"<<endl;
     cout<<"\n\t\t2: View VACCINE Inventory"<<endl;
     cout<<"\n\t\t3: View All Citizen Data"<<endl;
     cout<<"\n\t\t4: Exit"<<endl;
+>>>>>>> cb82c3cc8d6fddf7253e439961c40b5feaf72f1f
 }
 
 
@@ -134,13 +150,14 @@ cin>>ch;
     {
     case 1:
         addNew_Vaccine();
+        view_Vaccine();
         break;
     case 2:
     	view_Vac();
+    	view_Vaccine();
         break;
     case 3:
-
-        menu();
+	menu();
     default:
 
         cout<<"\nEnter valid option "<<endl;
@@ -158,6 +175,138 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    printf("\n");
    return 0;
 }
+void Vaccine::Search_Citizen_Records()
+{
+
+int ch;
+cout<<"\n\t\t\t*****************************************\n";
+cout<<"\t\t\t\tSEARCH HERE";
+cout<<"\n\t\t\t*****************************************\n\n";
+cout<<"\n\t\t1.Search By Name ";      
+cout<<"\n\t\t2.Search By Aadhar Card Number"; 
+cout<<"\n\t\t3.Search By Mobile Number"; 
+cout<<"\n\t\t4.Back"<<endl;
+cin>>ch;
+
+ switch(ch)
+    {
+    case 1:
+        
+        search_name();
+        Search_Citizen_Records();
+        break;
+    case 2:
+    	search_aadhar();
+        Search_Citizen_Records();
+        break;
+    case 3:
+	search_mobile();
+        Search_Citizen_Records();
+    case 4:
+    	menu();
+    default:
+
+        cout<<"\nEnter valid option "<<endl;
+        menu();
+    }
+
+
+}
+
+void Vaccine::search_name()
+{
+string name,data;
+sqlite3* db;
+    char* zErrMsg=0;
+    int rc;
+    char *sql;
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  name to search:- ";
+    std::getline(std::cin, name);
+       
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Name = '"<<name<<"' ;";
+
+    command=temp.str();
+    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
+
+void Vaccine::search_aadhar()
+{
+string aadhar_no;
+sqlite3* db;
+    char* zErrMsg=0;
+    int rc;
+    char *sql;
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  Aadhar Number to search:- ";
+    cin>>aadhar_no;
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Aadhar_No = '"<<aadhar_no<<"' ;";
+
+    command=temp.str();
+    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
+
+
+void Vaccine::search_mobile()
+{
+    string mobile_no;
+    sqlite3* db;
+    char* zErrMsg=0;
+    int rc;
+    char *sql;
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  Mobile Number to search:- ";
+    cin>>mobile_no;
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Mobile_No = '"<<mobile_no<<"' ;";
+
+    command=temp.str();
+    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
 
 
 		
