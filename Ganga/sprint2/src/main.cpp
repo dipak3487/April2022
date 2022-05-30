@@ -1,3 +1,14 @@
+/*FILENAME	:	main.cpp
+ *  
+ *   
+ *     DESCRIPTION	:	This is the main file which contains all th information about the program.
+ *      			It provides the menus to the user for different task. There are 08 menus for 
+ *       			different operations. All the related files(.cpp and .h) used here that is 
+ *        			declared/defined in other files.
+ *        
+ *          			CHANGES MADE BY TEAM Ganga
+ *          
+ */
 #include<iostream>
 #include<fstream>
 #include<cctype>
@@ -39,7 +50,7 @@ int main()
 		switch(ch)
 		{
 		case '1':
-		//	system("CLS");
+			system("clear");
 			write_account();
 			break;
 		case '2':
