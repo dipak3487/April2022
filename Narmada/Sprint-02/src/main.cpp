@@ -52,7 +52,6 @@ void waitForKeyPress()
 
 void clear() 
 {
-    system("cls");
     system("clear");    
 }
 
