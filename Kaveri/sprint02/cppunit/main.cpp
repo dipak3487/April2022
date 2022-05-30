@@ -11,7 +11,7 @@
 #include<iostream>
 #include<fstream>
 #include "employeeTest.h"
-#include "employee.h"
+#include "../src/employee.h"
 
 using namespace std;
 
@@ -41,12 +41,12 @@ int main(int argc,char* argv[])
 	runner.run();
 	
 //	int choice=0;
-	/*parsecommandline(argc, argv);
+/*	parsecommandline(argc, argv);
 
 	config.readConfig();
 	config.readRecords();
-
-	while(1)
+*/
+/*	while(1)
 	{
 		cout<<"1.Create new Employee details"<<endl;
 		cout<<"2.Edit Employee details"<<endl;

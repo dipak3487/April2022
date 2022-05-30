@@ -1,6 +1,6 @@
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "employee.h"
+#include "../src/employee.h"
 
 class EmployeeTest : public CppUnit::TestFixture
 {
@@ -13,7 +13,6 @@ class EmployeeTest : public CppUnit::TestFixture
 	//	emp = new Config;
 //		emp->readConfig();
 //		emp->readRecords();
-//		parsecommandline(int argc,char* argv[]);
 	}
     void tearDown()
     {
@@ -21,23 +20,26 @@ class EmployeeTest : public CppUnit::TestFixture
 	}
     void sunnytestsearchRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str="E1003";
-		CPPUNIT_ASSERT_EQUAL(config1.searchRecord(str),true);
+		CPPUNIT_ASSERT_EQUAL(config1.searchRecordInp(str),true);
 	}
     void rainytestsearchRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str1="R3267";
-		CPPUNIT_ASSERT_EQUAL(config1.searchRecord(str1),false);
+		CPPUNIT_ASSERT_EQUAL(config1.searchRecordInp(str1),false);
 	}
     void sunnytestcreateRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string newcode="E1896";
@@ -45,11 +47,12 @@ class EmployeeTest : public CppUnit::TestFixture
 		int newsalary=25000;
 		std::string newtitle="analyst";
 
-		CPPUNIT_ASSERT_EQUAL(config1.createRecord(newcode,newname,newsalary,newtitle),true);
+		CPPUNIT_ASSERT_EQUAL(config1.createRecordInp(newcode,newname,newsalary,newtitle),true);
 	}
     void sunnytesteditRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str1="E1003";
@@ -57,11 +60,12 @@ class EmployeeTest : public CppUnit::TestFixture
 		int salary=22000;
 		std::string title="assistant";
 
-		CPPUNIT_ASSERT_EQUAL(config1.editRecord(str1,name,salary,title),true);
+		CPPUNIT_ASSERT_EQUAL(config1.editRecordInp(str1,name,salary,title),true);
 	}
     void rainytesteditRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str1="P1023";
@@ -69,31 +73,43 @@ class EmployeeTest : public CppUnit::TestFixture
 		int salary=22000;
 		std::string title="assistant";
 
-		CPPUNIT_ASSERT_EQUAL(config1.editRecord(str1,name,salary,title),false);
+		CPPUNIT_ASSERT_EQUAL(config1.editRecordInp(str1,name,salary,title),false);
 	}
     void sunnytestdeleteRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str="E1003";
-		CPPUNIT_ASSERT_EQUAL(config1.deleteRecord(str),true);
+		CPPUNIT_ASSERT_EQUAL(config1.deleteRecordInp(str),true);
 	}
     void rainytestdeleteRecord()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str="Z2312";
-		CPPUNIT_ASSERT_EQUAL(config1.deleteRecord(str),false);
+		CPPUNIT_ASSERT_EQUAL(config1.deleteRecordInp(str),false);
 	}
     void sunnygetpayrolldetails()
     {
-		CppUnittest config1;
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
 		config1.readConfig();
 		config1.readRecords();
 		std::string str="E1003";
-		CPPUNIT_ASSERT_EQUAL(config1.getpayrolldetails(str),true);
+		CPPUNIT_ASSERT_EQUAL(config1.getpayrolldetailsInp(str),true);
+	}
+    void rainygetpayrolldetails()
+    {
+		Config config1;
+		config1.setFilePath("../config/employeeRecords.json");
+		config1.readConfig();
+		config1.readRecords();
+		std::string str="x1023";
+		CPPUNIT_ASSERT_EQUAL(config1.getpayrolldetailsInp(str),false);
 	}
 
 	CPPUNIT_TEST_SUITE(EmployeeTest);
@@ -105,12 +121,8 @@ class EmployeeTest : public CppUnit::TestFixture
 	CPPUNIT_TEST(sunnytesteditRecord);
 	CPPUNIT_TEST(rainytesteditRecord);
 	CPPUNIT_TEST(sunnygetpayrolldetails);
-    //CPPUNIT_TEST(weDontWantException);
-   // CPPUNIT_TEST_EXCEPTION(weWantException,std::exception);
-    //CPPUNIT_TEST_EXCEPTION(weDontWantException,std::exception);
+	CPPUNIT_TEST(rainygetpayrolldetails);
     CPPUNIT_TEST_SUITE_END();
-	
-
 };
 
 
