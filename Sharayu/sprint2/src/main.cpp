@@ -1,6 +1,3 @@
-// Student Report Management System
-
-
 #include <iostream>
 #include <fstream>
 #include <regex>
@@ -16,9 +13,8 @@ using std::endl;
 using samilton::ConsoleTable;
 
 Json::Value getStudentReport() {
-	// https://finbarr.ca/jsoncpp-example/
 	Json::Value root;
-		std::ifstream file("reports.json");
+	std::ifstream file("reports.json");
     file >> root;
 
 	file.close();
@@ -130,9 +126,8 @@ string figureGrade(int totalMarks, int size) {
 	}
 	return "null";
 }
-
 class student {
-	private:
+	public:
 	string name, cls; 
 	int rollNumber;
 };
@@ -140,7 +135,6 @@ class student {
 typedef class student Student;
 
 void addReport() {
-	public:
 	Student st;
 	string grade;
 	int id, total;
@@ -196,7 +190,7 @@ void addReport() {
    	cout << "Grade: " << grade << endl; 
 }
 
-//Update the student details
+
 void updateReport() {
 	string cls; int roll;
 	cout << endl << "--- Update Student Report ---" << endl;
