@@ -1,112 +1,21 @@
+/*
+    Filename : main.cpp
+    Created On : 25th May 2022
+    Description : This file takes the input file and calls the functions the user wants to implement. 
+*/
+
 #include<stdio.h>
 #include <iostream>
 #include <string.h>
 #include<sstream>
 #include <cstring>
 #include <sqlite3.h>
+#include<memory>
+#include<bits/stdc++.h>
+#include "vaccine.h"
 using namespace std;
 
 
-
-class Vaccine
-{
-	private:
-		int age;
-		int temperature;
-		int bloodPressure;
-		int date_of_dose1[100];
-		int date_of_dose2[100];
-		string aadhar_no;
-		char gender;
-		string name;
-		string mobileNumber;
-		string vaccine;
-		char Medical_conditions[100];
-
-	public:
-		void getData();//takes data from the user
-		void addNew_Record();//data is added to the  database
-		void showData();//display data
-		void showList();//data list returned when searched
-		void search_Data();//data search function
-		void search_by_aadhar_no();
-		void search_by_vaccine();
-		void view_all();//view the entire Citizen database
-		void view_vaccine();//operations on the vaccine inventory
-};
-
-void menu()
-{
-    
-    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
-    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\t\t\t\t MAIN MENU";
-    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\n\t\t01: Add New Record"<<endl;
-	cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t03: Search for Citizen Records"<<endl;
-	cout<<"\n\t\t04: View All Data"<<endl;
-    cout<<"\n\t\t05: Exit"<<endl;
-}
-
-
-
-
-void Vaccine::getData(){
-	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
-	cout<<"-----------------------------------------------------------------------";
-	cout<<"\n\t\t Enter Name :-  ";
-    getline (std::cin,name);
-	if(name.length()==0){
-        cout<<"Name cannot be blank"<<endl;}
-
-    cout<<"\n\t\t Enter Aadhaar no :-  ";
-    getline (std::cin,aadhar_no);
-	if(aadhar_no.length()==0){
-        cout<<"Aadhaar Number cannot be blank"<<endl;}
-
-	cout<<"\n\t\t Enter the gender (M|F) :-  ";
-    cin>>gender;
-
-    cout<<"\n\t\t Enter the  age:- ";
-    cin>>age;
-        
-    cout<<"\n\t\t Enter the  B.P. :-  ";
-    cin>>bloodPressure;
-
-    cout<<"\n\t\t Enter the Body temperature:-  ";
-    cin>>temperature;
-        
-	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
-    cin>>Medical_conditions;
-
-    cout<<"\n\t\t Enter the  Mobile number :- ";
-    getline(std::cin,mobileNumber);
-
-    cout<<"\n\t\t Enter the vaccine injected :- ";
-    getline (std::cin,vaccine);
-	if(vaccine.length()==0){
-        cout<<"Vaccine injected cannot be blank"<<endl;}
-
-}
-
-
-void Vaccine::showData()
-{
-
-    cout<<"\t\t\t\t DETAILS  ";
-    cout<<"\n\t\t\t---------------------------------------------------------------------\n\n";
-    cout<<"\t\t Name is: "<<name<<endl;
-    cout<<"\t\t Aadhar number is: "<<aadhar_no<<endl;
-    cout<<"\t\t Age is "<<age<<endl;
-    cout<<"\t\t Gender is : "<<gender<<endl;
-    cout<<"\t\t Blood pressure is :"<<bloodPressure<<endl;
-    cout<<"\t\t Body temperature is : "<<temperature<<endl;
-    cout<<"\t\t Medical Conditions is/are "<<Medical_conditions<<endl;
-    cout<<"\t\t Mobile number is: "<<mobileNumber<<endl;
-    cout<<"\n\t\t vaccine injected : "<<vaccine<<endl;
-    
-}
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
@@ -117,105 +26,50 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
+void menu()
+{
+    
+    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t MAIN MENU";
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\n\t\t01: Add New Record"<<endl;
+    cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t03: View All Citizen Data"<<endl;
+    cout<<"\n\t\t04: Exit"<<endl;
+}
 int main(int argc, char** argv)
 {
-int age;
-		int temperature;
-		int bloodPressure;
-		int date_of_dose1[100];
-		int date_of_dose2[100];
-		string aadhar_no;
-		char gender;
-		string name;
-		string mobileNumber;
-		string vaccine;
-		char Medical_conditions[100];
 
-    sqlite3* db;
-    char* zErrMsg=0;
-    int rc;
-    char *sql;
-    rc = sqlite3_open("example.db", &db);
-    std::ostringstream temp;
-    std::string command;
-    
-    string query = "SELECT * FROM CITIZEN_RECORDS;";
-   if( rc ) {
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      return(0);
-   } else {
-      fprintf(stderr, "Opened database successfully\n");
-   }
-   
+     Vaccine obj;
+     int k=3;
 
+     int ch;
+      do{
 
-   //sql="INSERT INTO CITIZEN_RECORDS (NAME,AADHARCARD_NO,AGE,GENDER,B.P.,BODY_TEMP,MEDICAL_CONDITION,MOBILE_NUMBER,VACCINE_INJECTED) "  \
-         "VALUES (''Paul',2345678987654,22,'M',123,22,'NN',345678765456,'cc'); "
-   
-   
-cout<<"\n\t\t Enter Name :-  ";
-    getline (std::cin,name);
-	//if(name.length()==0){
-        //cout<<"Name cannot be blank"<<endl;}
+            menu();
+            cout<<"\n\t\n\tChoose according to your need : ";
+            cin>>ch;
 
-    cout<<"\n\t\t Enter Aadhaar no :-  ";
-    getline (std::cin,aadhar_no);
-	//if(aadhar_no.length()==0){
-        //cout<<"Aadhaar Number cannot be blank"<<endl;}
-
-	cout<<"\n\t\t Enter the gender (M|F) :-  ";
-    cin>>gender;
-
-    cout<<"\n\t\t Enter the  age:- ";
-    cin>>age;
-        
-    cout<<"\n\t\t Enter the  B.P. :-  ";
-    cin>>bloodPressure;
-
-    cout<<"\n\t\t Enter the Body temperature:-  ";
-    cin>>temperature;
-        
-	cout<<"\n\t\t Enter Medical Conditions if any :-  ";
-    cin>>Medical_conditions;
-
-    cout<<"\n\t\t Enter the  Mobile number :- ";
-    cin>>mobileNumber;
-
-    cout<<"\n\t\t Enter the vaccine injected :- ";
-   cin>>vaccine;
-	//if(vaccine.length()==0){
-        //cout<<"Vaccine injected cannot be blank"<<endl;}
-
-	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
-//temp.str("");
-command=temp.str();
- rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
-   
-   if( rc != SQLITE_OK ){
-      fprintf(stderr, "SQL error: %s\n", zErrMsg);
-      sqlite3_free(zErrMsg);
-   } else {
-      fprintf(stdout, "Records created successfully\n");
-
-
-    sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
-  
-    
-   }
-   sqlite3_close(db);
-   return 0;
-
-
-
-
-	int choice = -1, ch=1;
-	do
-	{
-	cout<<"\n\n\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
-    cout<<"\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2   WELCOME TO LOGIN PAGE   \xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
-    cout<<"\n\n\t\t\t\t------------------------------------------------------------------------------------------";
-    cout<<"\n\t\t\t\t\tEnter User name and Password\n";
-    cout<<"\t\t\t\t----------------------------------------------------------------------------------------------\n";
-	}while(ch!=1);
-	return 0;
+      switch(ch)
+       {
+         case 1: 
+	             obj.addNew();
+                 break;
+         case 2: 
+       	    obj.view_Vaccine();
+                 break;
+         case 3:
+		   obj.view_all();
+                break;
+          
+         case 4:  
+                    exit(0);
+         default: 
+                  cout<<"\n\n\n\n\n\n\n\n\t\t\t\t\t\tTHANK YOU!!";
+                  cout<<"\n\n\t\t\t\t\t****HAVE A NICE DAY*****";
+                  exit(0);
+       }
+      }while(ch!=0);
+      return 0;
 }

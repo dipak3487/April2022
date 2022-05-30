@@ -10,8 +10,8 @@
 
 #include<iostream>
 #include<fstream>
-#include "../cppunit/employeeTest.h"
-#include "employee.h"
+#include "employeeTest.h"
+#include "../src/employee.h"
 
 using namespace std;
 
@@ -19,7 +19,8 @@ using namespace std;
 
 /*
 	function name: parsecommandline
-	created on: 25th May 2022
+	create../cppunit/../src/employee.h:46:7: note: candidate: ‘bool Config::searchRecord()’
+d on: 25th May 2022
 	Description: takes argument 1 (argv[1]) as input and calls the function to parse the input file.
 
 */
@@ -40,12 +41,12 @@ int main(int argc,char* argv[])
 	runner.run();
 	
 //	int choice=0;
-	/*parsecommandline(argc, argv);
+/*	parsecommandline(argc, argv);
 
 	config.readConfig();
 	config.readRecords();
-
-	while(1)
+*/
+/*	while(1)
 	{
 		cout<<"1.Create new Employee details"<<endl;
 		cout<<"2.Edit Employee details"<<endl;

@@ -14,9 +14,9 @@
 
 Customer::Customer() {
     customerID = -1;
-    name = "John Doe";
+    name = "Nishant Kumar";
     phoneNumber = "0000000000";
-    eMail = "john.doe@example.com";
+    eMail = "NishantKumar@gmail.com";
     resAddress = "N/A";
     idProofNo = "000000000000";
     dor = todayDate;
