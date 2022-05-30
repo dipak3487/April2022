@@ -3,18 +3,21 @@
 #include<cctype>
 #include<iomanip>
 #include<stdlib.h>
-#include"Bank.h"
+//#include "Bank.h"
 #include "Account.h"
 
-using namespace std;
+void write_account();
+void display_sp(int);
+void modify_account(int);
+void delete_account(int);
+void display_all();
+void deposit_withdraw(int, int);
 
 int main()
 {
 
 	char ch;
 	int num;
-	Bank bank;
-
 	do
 	{
 
@@ -37,22 +40,22 @@ int main()
 		switch(ch)
 		{
 		case '1':
-		//	system("clear");
-			bank.write_Account();
+			system("clear");
+			write_account();
 			break;
 		case '2':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
 			deposit_withdraw(num, 1);
 			break;
 		case '3':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
 			deposit_withdraw(num, 2);
 			break;
 		case '4':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
 			display_sp(num);
 			break;
 		case '5':
@@ -60,13 +63,13 @@ int main()
 			break;
 		case '6':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			delete_Account(num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			delete_account(num);
 			break;
 		 case '7':
 		 	system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			modify_Account(num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			modify_account(num);
 			break;
 		 case '8':
 		 	system("clear");
@@ -79,9 +82,4 @@ int main()
     }while(ch!='8');
 	return 0;
 }
-
-
-
-
-
 
