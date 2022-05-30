@@ -38,4 +38,44 @@ bool Bus::reserveSeat(string name,int seatNo)
 
 }
 
- 
+ bool Bus::cancelSeat(int seatNo)
+ {
+		seats[seatNo] ="Empty";
+
+		return true;
+
+ }
+
+bool Bus::showReservation()
+
+{
+
+	for(int i=0; i<32; i++)
+    {
+
+		//for(int x=0; x<8;x++)
+//	{
+
+	cout<<"\n";
+		cout<<seats[i] ;
+
+		
+		//	seats[seatNo]=seatNo ;
+
+
+//		}
+        //seats.push_back(string name,int seatNo);
+    }
+
+
+
+
+
+return true;
+
+}
+
+
+
+
+
