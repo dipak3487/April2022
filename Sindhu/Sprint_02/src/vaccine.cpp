@@ -41,14 +41,14 @@ void Vaccine::getData(){
 	
 
     cout<<"\n\t\t Enter Aadhaar no :-  "; std::getline(std::cin, aadhar_no);
-    while((aadhar_no).length() <= 15)
+    while((aadhar_no).length() < 16 || (aadhar_no).length() > 16)
 				{
-					std::cout<<"Aadhaar Card Number can't be less than 16 numbers. Please enter the again"<<std::endl;
+					std::cout<<"Aadhaar Card Number can't be lessor more than 16 numbers. Please enter the again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					cout<<"\n\t\t Enter Aadhaar no :- ";
 					std::getline(std::cin,aadhar_no);
 				}
-   // getline (std::cin,aadhar_no);
+   
 	
 
     cout<<"\n\t\t Enter the gender (M|F) :-  ";
@@ -69,9 +69,9 @@ void Vaccine::getData(){
     cout<<"\n\t\t Enter the  Mobile number :-  "; 
     cin>>mobileNumber;
 
-    while((mobileNumber).length() < 10)
+    while((mobileNumber).length() < 10|| (mobileNumber).length()> 10)
 				{
-					std::cout<<"Mobile Number can't be less than 10 numbers. Please enter the again"<<std::endl;
+					std::cout<<"Mobile Number can't be less or more than 10 numbers. Please enter the again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					cout<<"\n\t\t Enter Mobile number :- ";
 					std::getline(std::cin,mobileNumber);
