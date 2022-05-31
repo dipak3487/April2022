@@ -2,11 +2,11 @@
  *
  *
  * DESCRIPTION	:	This is the main file which contains all th information about the program.
- * 			It provides the menus to the user for different task. There are 11 menus for 
- * 			different operations. All the related files(.cpp and .h) used here that is 
- * 			declared/defined in other files.
+ *					It provides the menus to the user for different task. There are 11 menus for 
+ *					different operations. All the related files(.cpp and .h) used here that is 
+ *					declared/defined in other files.
  *
- * 			CHANGES MADE BY TEAM NARMADA
+ *					CHANGES MADE BY TEAM NARMADA
  *
  */
 
@@ -26,7 +26,8 @@ Date todayDate;
 /*Function Name  :  printMenu()
  *
  * Description  : In printMenu() function it will display menu to user to select option from menu
-					1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
+				1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 
+				6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
  *					
  */
 void printMenu() 
