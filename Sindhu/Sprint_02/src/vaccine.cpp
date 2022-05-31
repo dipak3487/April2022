@@ -8,12 +8,14 @@
 #include<bits/stdc++.h>
 #include "vaccine.h"
 
+
 using namespace std;
 
-
+/*
 void Vaccine::menu()
 {
-    
+    if(up ==1)
+    {
     cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
@@ -25,9 +27,24 @@ void Vaccine::menu()
     cout<<"\n\t\t\t\t4: Search"<<endl;
     cout<<"\n\t\t\t\t5: Exit"<<endl;
 
+    }
+
+else
+{
+    cout<<"\t\t\t\t	W	E	L	C	O	M	E	"<<endl;
+    cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t M		A	I	N 	M	E	N	U";
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+
+    cout<<"\n\t\t\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t\t\t4: Search"<<endl;
+    cout<<"\n\t\t\t\t5: Exit"<<endl;
 }
 
-
+}*/
 
 
 void Vaccine::getData(){
@@ -100,7 +117,7 @@ int password()
     cout<<"\n\n\n\n\t\t\t\t\tUSER NAME:  ";
     fflush(stdin);
     cin>>cname;
-    //getline(std::cin,cname);
+
     cout<<"\n\t\t\t\t\tPASSWORD:    ";
     cin>>password;
     
@@ -151,7 +168,7 @@ cin>>ch;
         menu();
     }
 
-    //getc();
+    
 }
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
@@ -204,9 +221,9 @@ void Vaccine::search_name()
 {
 string name,data;
 sqlite3* db;
-    char* zErrMsg=0;
+
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -225,7 +242,7 @@ sqlite3* db;
     temp << "SELECT * FROM CITIZEN_RECORDS WHERE Name = '"<<name<<"' ;";
 
     command=temp.str();
-    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+
   
    sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
    sqlite3_close(db);
@@ -236,9 +253,9 @@ void Vaccine::search_aadhar()
 {
 string aadhar_no;
 sqlite3* db;
-    char* zErrMsg=0;
+
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -268,9 +285,9 @@ void Vaccine::search_mobile()
 {
     string mobile_no;
     sqlite3* db;
-    char* zErrMsg=0;
+
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -288,7 +305,7 @@ void Vaccine::search_mobile()
     temp << "SELECT * FROM CITIZEN_RECORDS WHERE Mobile_No = '"<<mobile_no<<"' ;";
 
     command=temp.str();
-    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+
   
    sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
    sqlite3_close(db);
@@ -304,7 +321,7 @@ void Vaccine::addNew_Vaccine()
 sqlite3* db;
     char* zErrMsg=0;
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -357,9 +374,8 @@ void Vaccine:: view_all()
 {
 
 sqlite3* db;
-    char* zErrMsg=0;
+
     int rc;
-    char *sql;
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -367,7 +383,7 @@ sqlite3* db;
     string query = "SELECT * FROM CITIZEN_RECORDS;";
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+     
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
@@ -381,9 +397,9 @@ void Vaccine:: view_Vac()
 {
 
 sqlite3* db;
-    char* zErrMsg=0;
+    //char* zErrMsg=0;
     int rc;
-    char *sql;
+    //char *sql;
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -405,15 +421,15 @@ void Vaccine::addNew()
  sqlite3* db;
     char* zErrMsg=0;
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
     
-    //string query = "SELECT * FROM CITIZEN_RECORDS;";
+
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
