@@ -106,7 +106,9 @@ Customer registerCustomer() {
  *
  */
 bool save(Customer c) {
-	//establishing connection with database to perform operations
+	//establishing connection with database to perform operations like insert, modify, delete
+	//we have used sqlite3_open to connect the database
+	//this function saves the details of the customer like customer ID, name, email, phone number, address and ID proof. 
 	sqlite3 *DB;
 	std::string sql = "INSERT INTO customers VALUES (" + std::to_string(c.customerID) +  ", \"" +  c.name + "\", \"" + c.eMail + "\", \"" + c.phoneNumber + "\", \"" + c.resAddress + "\", \"" + c.idProofNo + "\", \"" + c.dor.returnSQLDate() + "\");";
 	int connection = 0;
@@ -115,7 +117,7 @@ bool save(Customer c) {
 	connection = sqlite3_exec(DB, sql.c_str(), NULL, 0, &errMsg);
 	if (connection != SQLITE_OK) {
 		std::cerr << "Error Inserting Record" << std::endl;
-		std::cerr << errMsg << std::endl;
+	  	std::cerr << errMsg << std::endl;
 		sqlite3_free(errMsg);
 		return false;
 	} else {
@@ -128,7 +130,10 @@ bool save(Customer c) {
 /*Function :  getCustomer()
  *
  * Description  :  This function returns the customers details from the database if the user select
- * 		   menu to dee the details.
+ * 		   menu to see the details.
+ * 		   We have used sqlite3_database to connect the database.
+ * 		   In this function, it will ask for cutomer ID to display the cutomer details like name, email, phone number, address, ID proof,
+ * 		   date of rent.
  *
  */
 Customer getCustomer(int cus_id) {
@@ -136,7 +141,7 @@ Customer getCustomer(int cus_id) {
 	int connection = 0;
 	connection = sqlite3_open("database.db", &DB);
 	char *errMsg;
-	sqlite3_stmt* statement;
+sqlite3_stmt* statement;
 	std::string sql = "SELECT * FROM customers";
 	if (cus_id != 0) {
 		sql += " WHERE cust_id = " + std::to_string(cus_id) + ";";
@@ -161,6 +166,9 @@ Customer getCustomer(int cus_id) {
 /*Function Name  :  displayAllCustomers()
  *
  * Description   :  This function is used here to display all the information of a customer.
+ * 		    We have used sqlite3_database to connect the database.
+ * 		    In this function, it will ask for cutomer ID to display the cutomer details like name, email, phone number, address, ID proof,
+ * 		    date of rent.
  *
  */
 
@@ -196,6 +204,7 @@ int Customer::getCustID() {
 /*Function Name  :  getCurrentCustomerID()
  *
  * Description  :  This function returns the customer id.
+ *
  */
 int getCurrentCustomerID() {
 	sqlite3 *DB;
@@ -230,7 +239,11 @@ void sqlExec(std::string sql) {
 }
 /* Function Name  :  modify()
  *
- * Description  :  This function is used here to update the update the customer details through sqlite3 queries.
+ * Description  :  This function is used here to update the customer details through sqlite3 queries.
+ * 		   We have used sqlite3_database to connect the database.
+ * 		   In this function, it will ask for customer ID to modify the cutomer details like name, email, phone number, address, ID proof,
+ * 		   date of rent.
+ * 		   These details will be saved in the database.
  *
  */
 bool modify(int cust_id, std::string name = "", std::string email = "", std::string phNo = "", std::string resAdd = "") {

@@ -14,7 +14,7 @@ class Employee
 {
 public:
     std::string name;
-	std::string empCode;
+    std::string empCode;
     int salary;
     std::string title;
 
@@ -28,31 +28,30 @@ class Config
     std::string filePath;
     Json::Value configRoot;
     Json::Value oneEmp;
-	//int change;
+
     Employee emp;
     std::vector<Employee> records;
 
     private:
 
     public:
-    bool readConfig();
+    bool ReadConfig();
     Config(std::string configFilePath);
 	Config();
-    bool setFilePath(std::string path);
-    bool readRecords();
-	//static void SetUserPreference(int f) {change = f; }
-    bool readOneRecord();
-	bool editRecordInp(std::string code,std::string name,int salary,std::string title);
-	bool editRecord();//will update vector record
-	bool createRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
-	bool createRecord();
-	bool searchRecord();
-	bool searchRecordInp(std::string str);
-	bool deleteRecord();
-	bool deleteRecordInp(std::string code);
-	bool getpayrolldetails();
-	bool getpayrolldetailsInp(std::string code);
-	bool saverecordinjson();
+    bool SetFilePath(std::string path);
+    bool ReadRecords();
+    bool ReadOneRecord();
+	bool EditRecordInp(std::string code,std::string name,int salary,std::string title);
+	bool EditRecord();//will update vector record
+	bool CreateRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
+	bool CreateRecord();
+	bool SearchRecord();
+	bool SearchRecordInp(std::string str);
+	bool DeleteRecord();
+	bool DeleteRecordInp(std::string code);
+	bool GetPayrollDetails();
+	bool GetPayrollDetailsInp(std::string code);
+	bool SaveRecordinjson();
 	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
   //  std::string getLogfilePath();
 

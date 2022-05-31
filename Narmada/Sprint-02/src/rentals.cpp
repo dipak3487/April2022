@@ -16,6 +16,7 @@
 
 int getCurrentRentalID() {    //this function returns the rental id for a customer who rents a car.
 	//establishing connection with database
+	//After displaying rental id it will close the connection to DB unless/until user wants to see rental id
 	sqlite3 *DB;
 	int conn = 0;
 	conn = sqlite3_open("database.db", &DB);
@@ -31,8 +32,10 @@ int getCurrentRentalID() {    //this function returns the rental id for a custom
 	return id + 1;
 }
 
-Rental::Rental() {
-	rentalID = -1;
+Rental::Rental() {     //Scope resolution operator used here
+	               //'rental' constructor is declared here for rental class
+		       //If user gives incorrect rental id, then it will return rentDate = 01 01 2000, returnDate = 0 0 0, costPaid = 0 & rent paid as 'FALSE' 	
+        rentalID = -1;
 	rentDate = Date(1, 1, 2000);
 	returnDate = Date(0,0,0);
 	Customer c;
@@ -43,7 +46,8 @@ Rental::Rental() {
 	isPaid = false;
 }
 
-Rental::Rental(const Rental& rental2) {
+Rental::Rental(const Rental& rental2) {    //Scope reolution operator used here
+	                                   //Parameterised cosntructor 'rental' used here with rental& rental2 as arguments
 	rentalID = rental2.rentalID;
 	rentDate = rental2.rentDate;
 	returnDate = rental2.returnDate;
@@ -63,14 +67,17 @@ Rental::Rental(Date _rentDate, Customer _cust, Car _car) {
 	isPaid = false;
 }
 
-bool Rental::chkPaid() {
+bool Rental::chkPaid() {    //If cost paid then return boolean value (0,1) - if true -> 1 & if false -> 0
 	if (isPaid) {
 		return true;
 	}
 	return false;
-}
+} 
 
 double Rental::calculateBill() {    //calculatebill returns the amount to be paid by the customer for rented car
+	                            //Establish an connection to DB for updation of values - If unable to establish connection with DB then print "errMssg"
+	                            //Update the rentals table fields - amount paid or not (with Value)
+				    //closes the connection to DB when set of operations are performed on the tables
 	returnDate = todayDate;
 	int noOfdays = getDifference(rentDate, returnDate);
 	costPaid = car.getCost()*noOfdays;
@@ -117,6 +124,9 @@ std::ostream& operator<< (std::ostream& os, const Rental& rental) {
 	return os;
 }
 //this save() function will save the rental information to the rental table in database.
+//Inserting values into rental table
+//Establish connection to DB for updating set of records in rental table - If unable to establish connection print error message "Error inserting records" else print "Record save successfully"
+//Closes connection to DB when set of operations to be performed are done
 bool save(Rental r) {
 	std::string sql = "INSERT INTO rental(rental_id, cust_id, car_id, dateOfRent, dateOfReturn, cost, isPaid) VALUES (" + std::to_string(r.rentalID) + ", " + std::to_string(r.cust.getCustID()) + ", " + std::to_string(r.car.getCarID()) + ", \"" + r.rentDate.returnSQLDate() + "\", NULL, " + std::to_string(r.costPaid) + ", false);";
 	sqlite3 *DB;
@@ -151,12 +161,12 @@ Rental getRental(int r_id) {
 	//establishing database connection
 	conn = sqlite3_open("database.db", &DB);
 	sqlite3_stmt *statement;
-	std::string sql = "SELECT * FROM rental WHERE rental_id = " + std::to_string(r_id) + ";";
+	std::string sql = "SELECT * FROM rental WHERE rental_id = " + std::to_string(r_id) + ";"; //fetching set of values from rental table depending upon condition used 
 	sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
 
-	Rental r;
+	Rental r; 
 
-	while(sqlite3_step(statement) != SQLITE_DONE) {
+	while(sqlite3_step(statement) != SQLITE_DONE) {  //Entry Controlled loop used here i.e., While loop
 		r.rentalID = sqlite3_column_int(statement, 0);
 		r.cust = getCustomer(sqlite3_column_int(statement, 1));
 		r.car = getCar(sqlite3_column_int(statement, 2));
@@ -164,25 +174,25 @@ Rental getRental(int r_id) {
 		r.returnDate = strToDate((char *) sqlite3_column_text(statement, 4));
 		r.costPaid = sqlite3_column_double(statement, 5);
 		r.isPaid = sqlite3_column_int(statement, 6);
-	}
+	} 
 
-	sqlite3_close(DB);
+	sqlite3_close(DB);  //closes connection to DB when set of operations to be performed are done
 	return r; 
 }
 
 
 Rental newRental() {
-	int cust_id, car_id;
-	std::cout << "\t\t\t\tRental ID: " << rental_id << std::endl;
+	int cust_id, car_id;  //declared two variables 'cust_id' & car_id of type int
+	std::cout << "\t\t\t\tRental ID: " << rental_id << std::endl;  //fetch rental_id from user as input
 	std::cout << "\t\t\t\tEnter Customer ID: ";
-	std::cin >> cust_id;
-	std::cin.ignore();
+	std::cin >> cust_id;  //fetch cust_id from user as input 
+	std::cin.ignore(); //Ignore() function used here if user provides no input
 	Customer cst = getCustomer(cust_id);
 	std::cout << "\t\t\t\tEnter Car ID: ";
-	std::cin >> car_id;
+	std::cin >> car_id; //fetch car_id from user as input
 	std::cin.ignore();
 	Car cr = getCar(car_id);
-	std::cout << "\t\t\t\tRent Date: " << todayDate << std::endl;
+	std::cout << "\t\t\t\tRent Date: " << todayDate << std::endl; //fetch rent_date from user & displays it
 	Rental r(todayDate, cst, cr);
 
 	return r;
