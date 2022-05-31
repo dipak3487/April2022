@@ -13,7 +13,7 @@
 //#include <conio.h>
 //#include <curses.h>
 #include<cstdio>
-#include "employee.h"
+#include "../include/employee.h"
 
 using namespace std;
 

@@ -1,22 +1,16 @@
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "../src/employee.h"
+#include "../include/employee.h"
 
 class EmployeeTest : public CppUnit::TestFixture
 {
 	private:
-    //Config *emp;
-	//CppUnittest 
 	 public:
     void setup()
     {
-	//	emp = new Config;
-//		emp->readConfig();
-//		emp->readRecords();
 	}
     void tearDown()
     {
-	//	delete emp;
 	}
     void sunnytestsearchRecord()
     {
