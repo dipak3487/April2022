@@ -127,16 +127,23 @@ string figureGrade(int totalMarks, int size) {
 	return "null";
 }
 class student {
-	public:
 	string name, cls; 
 	int rollNumber;
+	int eng, science , history , math ,social;
+	string grade;
+public:
+	void addReport();
+        void updateReort();
+        void removeReport();
+	void showReports();
+	void actions();
 };
 
-typedef class student Student;
 
 void addReport() {
-	Student st;
+	string name,cls;
 	string grade;
+	int rollNumber;
 	int id, total;
 	int eng, science, history, math, social = 0;
 
@@ -147,11 +154,11 @@ void addReport() {
 	id = std::rand();
 
 	cout << endl << "--- Provide Student Report Details ---" << endl;
-	st.name = getName();
+	name = getName();
 	cout << "Roll No: ";
-	cin >> st.rollNumber;
+	cin >> rollNumber;
 	cout << "Student Class: ";
-	cin >> st.cls;
+	cin >> cls;
 	cout << "----- Student's Marks -----" << endl;
 	cout << "English: ";
 	cin >> eng;
@@ -170,9 +177,9 @@ void addReport() {
 
 	Json::Value record;
 	record["id"] = id;
-	record["student"]["name"] = st.name;
-	record["student"]["roll_number"] = st.rollNumber;	
-	record["student"]["class"] = st.cls;	
+	record["student"]["name"] = name;
+	record["student"]["roll_number"] = rollNumber;	
+	record["student"]["class"] = cls;	
 
 	record["marks"]["english"] = eng;
 	record["marks"]["math"] = math;
@@ -186,7 +193,7 @@ void addReport() {
 	records.append(record);
 	setStudentReport(records);
 	
-   	cout << st.name << " Report added. " << endl;
+   	cout << name << " Report added. " << endl;
    	cout << "Grade: " << grade << endl; 
 }
 

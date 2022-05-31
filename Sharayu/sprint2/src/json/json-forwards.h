@@ -312,10 +312,6 @@ using JSONCPP_OSTREAM = Json::OStream;
 // Beginning of content of file: include/json/forwards.h
 // //////////////////////////////////////////////////////////////////////
 
-// Copyright 2007-2010 Baptiste Lepilleur and The JsonCpp Authors
-// Distributed under MIT license, or public domain if desired and
-// recognized in your jurisdiction.
-// See file LICENSE for detail or copy at http://jsoncpp.sourceforge.net/LICENSE
 
 #ifndef JSON_FORWARDS_H_INCLUDED
 #define JSON_FORWARDS_H_INCLUDED
