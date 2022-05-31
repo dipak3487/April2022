@@ -6,33 +6,64 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
-#include "vaccine.h"
-
+using std::stringstream;
 using namespace std;
 
 
-void Vaccine::menu()
+
+class Vaccine
+{
+	private:
+		int age;
+		int temperature;
+		int bloodPressure;
+		int date;
+		int bno;
+		int units;
+		int backup;
+		string aadhar_no;
+		char gender;
+		string name;
+		string v_name;
+		string desc;
+		string mobileNumber;
+		string vaccine;
+		char Medical_conditions[100];
+
+	public:
+		void getData();//takes data from the user
+		void addNew();//data is added to the  database
+		void addNew_Vaccine();
+		void showData();//display data
+		void view_all();//view the entire Citizen database
+		void view_Vac();
+               void Search_Citizen_Records();
+               void search_name();
+               void search_aadhar();
+		void search_mobile();
+		void view_Vaccine();//operations on the vaccine inventory
+};
+
+void menu()
 {
     
-    cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
+    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-
     cout<<"\n\t\t\t\t1: Add New Record"<<endl;
     cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
     cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
     cout<<"\n\t\t\t\t4: Search"<<endl;
     cout<<"\n\t\t\t\t5: Exit"<<endl;
-
 }
 
 
 
 
 void Vaccine::getData(){
-	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
-	cout<<"-----------------------------------------------------------------------";
+	cout<<"\t\t\t\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
+	cout<<"-------------------------------------------------------------------------------------";
 	 
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     cout<<"\n\t\t Enter Name :-  ";
@@ -144,7 +175,8 @@ cin>>ch;
     	view_Vaccine();
         break;
     case 3:
-	menu();
+	
+        menu();
     default:
 
         cout<<"\nEnter valid option "<<endl;
@@ -154,14 +186,6 @@ cin>>ch;
     //getc();
 }
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
-   int i;
-   for(i = 0; i<argc; i++) {
-      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-   }
-   printf("\n");
-   return 0;
-}
 void Vaccine::Search_Citizen_Records()
 {
 
@@ -197,9 +221,22 @@ cin>>ch;
         menu();
     }
 
-
+    //getc();
 }
 
+
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+   int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
+
+
+
+		
 void Vaccine::search_name()
 {
 string name,data;
@@ -294,9 +331,6 @@ void Vaccine::search_mobile()
    sqlite3_close(db);
 }	
 
-
-
-		
 		
 void Vaccine::addNew_Vaccine()
 {
@@ -312,7 +346,7 @@ sqlite3* db;
 
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-
+      //return 0;
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
@@ -370,6 +404,7 @@ sqlite3* db;
       //return 0;
    } else {
       fprintf(stderr, "Opened database successfully\n");
+
    }
    sqlite3_exec(db, query.c_str(), callback, NULL, NULL);
 sqlite3_close(db);
@@ -452,3 +487,49 @@ void Vaccine::showData()
     cout<<"\n\t\t vaccine injected : "<<vaccine<<endl;
     
 }
+
+
+
+int main(int argc, char** argv)
+{
+
+     Vaccine obj;
+     int k=3;
+
+     int ch;
+      do{
+
+            menu();
+            cout<<"\n\t\n\tChoose according to your need : ";
+            cin>>ch;
+
+      switch(ch)
+       {
+         case 1: 
+	             obj.addNew();
+	             obj.showData();
+                 break;
+         case 2: 
+       	    obj.view_Vaccine();
+       	    
+                 break;
+         case 3:
+		   obj.view_all();
+                break;
+          
+         case 4:  
+		obj.Search_Citizen_Records();
+		break;
+	case 5:
+		exit(0);
+		break;
+         default: 
+                  cout<<"\n\n\n\t\t\tTHANK YOU!!";
+                  cout<<"\n\n\t\t****HAVE A NICE DAY*****";
+                  exit(0);
+       }
+      }while(ch!=0);
+      return 0;
+}
+
+
