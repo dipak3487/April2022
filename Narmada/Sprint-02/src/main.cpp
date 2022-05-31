@@ -25,8 +25,9 @@ Date todayDate;
 //std::string currentUser;
 /*Function Name  :  printMenu()
  *
- * Description  :  This functions returns the menus for the user.
- *
+ * Description  : In printMenu() function it will display menu to user to select option from menu
+					1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
+ *					
  */
 void printMenu() 
 {
@@ -40,7 +41,7 @@ void printMenu()
 		\t5. Display Details of a Car\n \
 		\t6. Display Details of all Cars\n \
 		\t7. Display Details of a Customer\n \
-		\t8. Modify Car Detials\n \
+		\t8. Modify Car Details\n \
 		\t9. Get Rental Data\n \
 		\t10. Print Rental Bill\n \
 		\t11. Exit\n\n";
@@ -48,7 +49,7 @@ void printMenu()
 std::string currentUser;
 }
 
-void waitForKeyPress() 
+void waitForKeyPress() // This function is waiting for user to press any option in menu.
 {
 	cout << "Press any key to Continue...";
 	cin.ignore();
@@ -73,7 +74,7 @@ int getInput() //This function take the user input as a menu option.
 	return option;
 }
 
-void carModify() //This function changes the car cost per day.
+void carModify() //This function will ask for car ID then user will change the car cost per day. 
 {
 	cout << "\t\t\t\tChange Cost per Day of a Car" << endl;
 	int c_id;
@@ -89,7 +90,7 @@ void carModify() //This function changes the car cost per day.
 	clear();
 }
 
-void custModify() //this will modify the customer details.
+void custModify() //This function will ask for customer ID then user will modify the details like name, email, phone number, residential address
 { 
 	cout << "========================= Customer Modification Menu =========================" << endl;
 	cout << "\t\t\t\tEnter Customer ID: ";
@@ -149,6 +150,7 @@ void custModify() //this will modify the customer details.
  *
  *  All user-defined function implemented here in main. It will show the menus to the user, provide different options 
  *  for different operations.
+	We used getDate() to take date from user then the menu will open containing options: 1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
  */ 
 int main() 
 {
