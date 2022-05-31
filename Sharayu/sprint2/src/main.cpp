@@ -45,8 +45,8 @@ string getName() {
 
 
 int reportOptions() {
-	cout << "1. Show Student Report"<< endl;
-	cout << "2. Add New Report"<< endl;
+	cout << "1. Add New Report"<< endl;
+	cout << "2. Show Student Report"<< endl;
 	cout << "3. Modify Report"<< endl;
 	cout << "4. Remove Report"<< endl;
 	cout << "5. Show All Reports"<< endl;

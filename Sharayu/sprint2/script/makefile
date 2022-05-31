@@ -1,8 +1,7 @@
-../bin/program: ../obj/main.o ../obj/jsoncpp.o
+../bin/program: ../obj/main.o ../src/jsoncpp.o
 	g++ -o ../bin/program ../obj/main.o ../obj/jsoncpp.o -ljsoncpp
 
 ../obj/main.o: ../src/main.cpp
-	#mkdir ../obj/
 	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp -I../include/ -I../src/
 
 ../obj/jsoncpp.o: ../src/jsoncpp.cpp
