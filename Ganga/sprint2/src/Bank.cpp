@@ -43,27 +43,27 @@ void account::modify()
 	cin>>deposit;
 }
 
-
+//function to accept amount and add to balance amount
 void account::dep(int x)
 {
 	deposit+=x;
 }
-
+//function to accept amount and subtract from balance amount
 void account::draw(int x)
 {
 	deposit-=x;
 }
-
+//function to show data in tabular format
 void account::report() const
 {
 	cout<<acno<<setw(10)<<" "<<name<<setw(20)<<" "<<setw(6)<<deposit<<endl;
 }
-
+//function to return account number
 int account::retacno() const
 {
 	return acno;
 }
-
+//function to return balance amount
 int account::retdeposit() const
 {
 	return deposit;
