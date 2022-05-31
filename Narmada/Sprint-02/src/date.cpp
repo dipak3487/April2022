@@ -9,12 +9,13 @@
  */ 			
 
 #include <iostream>
-#include "date.h"
+#include "../include/date.h"
 
 Date strToDate(char * date) {
     if (date ==  NULL) {
         return Date(0,0,0);
     }
+
     std::string dt = std::string(date);
     std::string y = dt.substr(0, 4), m = std::string(&dt[5]), d = std::string(&dt[7]);
     if (d == "0") {
@@ -23,6 +24,7 @@ Date strToDate(char * date) {
     if (m == "0") {
         m = std::string(&date[8]);
     }
+
     return Date(atoi(d.c_str()), atoi(m.c_str()), atoi(y.c_str()));
 }
 
@@ -101,7 +103,11 @@ std::istream& operator>> (std::istream& is, Date &dt) {
     } while (!(isDate && isMonth));
     return is;
 }
-
+/*Function Name  :  countLeapYears()
+ *
+ * Description  :  This function is used to count the leap year.
+ *
+ */
 int countLeapYears(Date dt) {
     int years = dt.y;
 
@@ -109,7 +115,11 @@ int countLeapYears(Date dt) {
         years--;
     return years / 4 - years / 100 + years / 400;
 }
-
+/*Function Name  :  getDifference()
+ *
+ * Description  :  This function return the difference between the start date and the return date.
+ *
+ */
 int getDifference(Date &dt1, Date& dt2) {
     const int monthDays[12]
     = { 31, 28, 31, 30, 31, 30, 

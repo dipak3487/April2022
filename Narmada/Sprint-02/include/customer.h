@@ -10,7 +10,7 @@
 #define CUSTOMER_H
 
 #include <iostream>
-#include "../src/date.h"
+#include "../include/date.h"
 
 int getCurrentCustomerID();
 static int customer_id = getCurrentCustomerID();
@@ -25,9 +25,13 @@ class Customer {
         Customer();
         Customer(std::string, std::string, std::string, std::string, std::string);
         Customer(const Customer &c2);
-        friend void save(Customer);
+        friend bool save(Customer);
         friend Customer getCustomer(int);
         friend void displayAllCustomers();
+		//int save(std::string name1,std::string phone_no,std::string email,std::string res_addr,std::string id_proof);
+		//int modify(std::string name1,std::string phone_no,std::string email,std::string res_addr,std::string id_proof);
+		//int getCustomer(int cust_id);
+
         static int getNoCustomers();
         static void customerRegisterd();
         static void customerDeleted();
@@ -38,9 +42,9 @@ class Customer {
 };
 
 Customer registerCustomer();
-void save(Customer);
+bool save(Customer);
 Customer getCustomer(int);
 void displayAllCustomers();
-void modify(int, std::string, std::string, std::string, std::string);
+bool modify(int, std::string, std::string, std::string, std::string);
 
 #endif
