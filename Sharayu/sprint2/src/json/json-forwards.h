@@ -12,13 +12,6 @@
 #ifndef JSON_VERSION_H_INCLUDED
 #define JSON_VERSION_H_INCLUDED
 
-// Note: version must be updated in three places when doing a release. This
-// annoying process ensures that amalgamate, CMake, and meson all report the
-// correct version.
-// 1. /meson.build
-// 2. /include/json/version.h
-// 3. /CMakeLists.txt
-// IMPORTANT: also update the SOVERSION!!
 
 #define JSONCPP_VERSION_STRING "1.9.4"
 #define JSONCPP_VERSION_MAJOR 1
@@ -148,10 +141,6 @@ bool operator!=(const SecureAllocator<T>&, const SecureAllocator<U>&) {
 // Beginning of content of file: include/json/config.h
 // //////////////////////////////////////////////////////////////////////
 
-// Copyright 2007-2010 Baptiste Lepilleur and The JsonCpp Authors
-// Distributed under MIT license, or public domain if desired and
-// recognized in your jurisdiction.
-// See file LICENSE for detail or copy at http://jsoncpp.sourceforge.net/LICENSE
 
 #ifndef JSON_CONFIG_H_INCLUDED
 #define JSON_CONFIG_H_INCLUDED

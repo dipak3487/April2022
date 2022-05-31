@@ -10,7 +10,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-using samilton::ConsoleTable;
+using tableFormat::ConsoleTable;
 
 Json::Value getStudentReport() {
 	Json::Value root;
@@ -317,7 +317,7 @@ void showReports() {
 	int len = list.size();
 
 
-	ConsoleTable table(1, 1, samilton::Alignment::centre);
+	ConsoleTable table(1, 1, tableFormat::Alignment::centre);
 
 	// creating struct
 	ConsoleTable::TableChars chars;
