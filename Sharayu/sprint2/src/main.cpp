@@ -43,7 +43,7 @@ string getName() {
 	return str;
 }
 
-
+// the student report options
 int reportOptions() {
 	cout << "1. Add New Report"<< endl;
 	cout << "2. Show Student Report"<< endl;
