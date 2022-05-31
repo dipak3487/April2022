@@ -1,32 +1,28 @@
-#ifndef __bankmanagement_h
-#define __bankmanagement_h
-
 #include<iostream>
 #include<fstream>
+#ifndef __bankmanagement_h
+#define __bankmanagement_h
 #include<cctype>
 #include<iomanip>
 #include<stdlib.h>
-#include "Bank.h"
+
 using namespace std;
-
-
-
-class Account
+class account
 {
-	int accountNumber;
+	int acno;
 	char name[50];
-	int balance;
-	char type;
+	int deposit;
+	//int adhar;
+	//char type;
 public:
-	bool createAccount();
-	bool showAccount() const;
-	bool modify();
-	bool deposit(int);
-	bool draw(int);
-	bool report() const;
-	int getAccountNumber() const;
-	int getBalance() const;
-	char getType() const;
+	void create_account();//function to get data from user
+	void show_account() const;//function to show data on screen
+	void modify();//function to add new data
+	void dep(int);//function to accept amount and add to balance amount
+	void draw(int);//function to accept amount and subtract from balance amount
+	void report() const;//function to show data in tabular format
+	int retacno() const;//function to return account number
+	int retdeposit() const;//function to return balance amount
+	char rettype() const;//function to return type of account
 };
-
 #endif

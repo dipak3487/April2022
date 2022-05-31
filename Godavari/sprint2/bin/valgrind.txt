@@ -1,0 +1,32 @@
+==32338== Memcheck, a memory error detector
+==32338== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==32338== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==32338== Command: ./program
+==32338== Parent PID: 32337
+==32338== 
+==32338== error calling PR_SET_PTRACER, vgdb might block
+==32338== 
+==32338== Process terminating with default action of signal 2 (SIGINT)
+==32338==    at 0x5295FD2: read (read.c:26)
+==32338==    by 0x5218B9E: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:517)
+==32338==    by 0x5219F85: _IO_default_uflow (genops.c:362)
+==32338==    by 0x50944B0: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==32338==    by 0x50A2B22: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==32338==    by 0x50A2DA1: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+==32338==    by 0x10CED8: hotelManager::mainMenu() (hotelManager.cpp:254)
+==32338==    by 0x10A480: main (main.cpp:21)
+==32338== 
+==32338== HEAP SUMMARY:
+==32338==     in use at exit: 164,649 bytes in 4,220 blocks
+==32338==   total heap usage: 5,160 allocs, 940 frees, 325,390 bytes allocated
+==32338== 
+==32338== LEAK SUMMARY:
+==32338==    definitely lost: 0 bytes in 0 blocks
+==32338==    indirectly lost: 0 bytes in 0 blocks
+==32338==      possibly lost: 29,343 bytes in 26 blocks
+==32338==    still reachable: 135,306 bytes in 4,194 blocks
+==32338==         suppressed: 0 bytes in 0 blocks
+==32338== Rerun with --leak-check=full to see details of leaked memory
+==32338== 
+==32338== For lists of detected and suppressed errors, rerun with: -s
+==32338== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

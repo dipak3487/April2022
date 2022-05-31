@@ -36,18 +36,23 @@ class Config
 
     public:
     bool readConfig();
-   // Config(std::string configFilePath);
-    Config();
+    Config(std::string configFilePath);
+	Config();
     bool setFilePath(std::string path);
     bool readRecords();
     bool readOneRecord();
+	bool editRecordInp(std::string code,std::string name,int salary,std::string title);
 	bool editRecord();//will update vector record
+	bool createRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
 	bool createRecord();
 	bool searchRecord();
+	bool searchRecordInp(std::string str);
 	bool deleteRecord();
+	bool deleteRecordInp(std::string code);
+	bool getpayrolldetails();
+	bool getpayrolldetailsInp(std::string code);
 	bool saverecordinjson();
 	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
-	bool getpayrolldetails();
   //  std::string getLogfilePath();
 
 };

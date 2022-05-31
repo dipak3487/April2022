@@ -1,22 +1,34 @@
+/*FILENAME	:	main.cpp
+ *  
+ *   
+ *     DESCRIPTION	:	This is the main file which contains all th information about the program.
+ *      			It provides the menus to the user for different task. There are 08 menus for 
+ *       			different operations. All the related files(.cpp and .h) used here that is 
+ *        			declared/defined in other files.
+ *        
+ *          			CHANGES MADE BY TEAM Ganga
+ *          
+ */
 #include<iostream>
 #include<fstream>
 #include<cctype>
 #include<iomanip>
 #include<stdlib.h>
-#include "Bank.h"
 #include "Account.h"
+//		function declaration
+void write_account();//function to write record in binary file
+void display_sp(int);//function to display account details given by user
+void modify_account(int);//function to modify record of file
+void delete_account(int);//function to delete record of file
+void display_all();//function to display all account details
+void deposit_withdraw(int, int); // function to desposit/withdraw amount for given account
 
-using namespace std;
-//program start here//
 int main()
 {
 
 	char ch;
 	int num;
-	Bank bank;
-
 	do
-	// this will print main menu//	
 	{
 
 	cout<<"\n\n\t\t\t\t======================\n";
@@ -39,50 +51,47 @@ int main()
 		{
 		case '1':
 			system("clear");
-			void writeAccount();
+			write_account();
 			break;
 		case '2':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void deposit(int num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			deposit_withdraw(num, 1);
 			break;
 		case '3':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void depositwithdraw(int num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			deposit_withdraw(num, 2);
 			break;
 		case '4':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void displaysp(int num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			display_sp(num);
 			break;
 		case '5':
-			void displayall();
+			display_all();
 			break;
 		case '6':
 			system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void delete_Account(int num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			delete_account(num);
 			break;
 		 case '7':
 		 	system("clear");
-			cout<<"\n\n\t\t\tEnter The Account No. : "; cin>>num;
-			void modify_Account(int num);
+			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
+			modify_account(num);
 			break;
 		 case '8':
 		 	system("clear");
 			cout<<"\n\n\t\t\tThank You For Using Bank Management System";
 			break;
-		 default :cout<<"\a";
+		 default :cout<<"\n\n\t\t\tInvalid Choice!!!!";
 		}
+		cout<<"\n\n\t\t\tPress Enter to Continue...";
 		cin.ignore();
 		cin.get();
     }while(ch!='8');
 	return 0;
 }
-
-
-
-
 
 

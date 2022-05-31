@@ -4,16 +4,13 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-// #include <windows.h>
 #include "Customer.h"
 #include "Room.h"
 #include "hotelManager.h"
 #include "sql.h"
 #include<mysql/mysql.h>
-<<<<<<< HEAD
 
-=======
->>>>>>> 73144e7752046bcd6eb764e5a5200f80e7fe78e3
+
 using namespace std;
 
 //done
@@ -33,12 +30,12 @@ void hotelManager::manageRooms(){
             cout << "\nEnter Room Number:";
             cin >> roomnumber;
 
-            stringstream s1;
+            stringstream s1;                                                                       //to read or write form database(help)
             s1 << "SELECT * FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
-            bool qstate = sql.query_check(s1, sql);
+            bool qstate = sql.query_check(s1, sql);                                                //cheack query and execute query
             if(qstate) {
-                sql.res= mysql_store_result(sql.conn);
-                sql.row = mysql_fetch_row(sql.res);
+                sql.res= mysql_store_result(sql.conn);                                             // store result set
+                sql.row = mysql_fetch_row(sql.res);                                                // fetch result one by one
                 if(sql.row) cout << "\nRoom Already Present!";
                 else room.addRoom(roomnumber);
             }
@@ -67,6 +64,7 @@ void hotelManager::manageRooms(){
 void hotelManager::checkIn(){
     sql sql;
     int roomnumber, again;
+    
     cout << "Enter Room Number: ";
     cin >> roomnumber;
     stringstream s1, s2, s3;
@@ -125,7 +123,7 @@ void hotelManager::checkIn(){
     mainMenu();
 }
 
-//done
+
 void hotelManager::checkOut(int roomnumber){
     sql sql;
     int bill;
@@ -146,23 +144,22 @@ void hotelManager::checkOut(int roomnumber){
                 cout<<"\nEnter number of days room was booked for: ";
                 cin>>num_of_days;
                 bill = num_of_days*rent;
-
-                s2 << "SELECT guests.*, '"<< num_of_days <<"', '"<< bill <<"' FROM guests WHERE RoomNumber = '"<< roomnumber <<"'";
-
-                bool q2state = sql.query_check(s2, sql);
-                if(q2state){
-                    s3 << "DELETE FROM guests WHERE RoomNumber = '"<< roomnumber <<"'";
-                    bool q3state = sql.query_check(s3, sql);
-                    if(q3state) {
+               
+                
+                  
+                    
                         status = 0;
                         s4 << "UPDATE rooms SET Status = '"<< status <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
                         bool q4state = sql.query_check(s4, sql);
-                        if(q4state) cout << "\nCheckOut Successful!";
-                        else cout << "\nRoom Status Not Modified!";
-                    }
-                    else cout << "\n CheckOut Unsuccessful!";
-                }
-                else cout << "\nCustomers Data not Modified!"<<endl;
+                        if(q4state) {
+                            cout << "\nCheckOut Successful!";
+                            cout << "\n Bill := "<<bill;
+                            }
+                        else{
+                             cout << "\nRoom Status Not Modified!";
+                        }
+                    
+                
             }
         }
         else cout << "\nRoom not found";
@@ -175,7 +172,7 @@ void hotelManager::checkOut(int roomnumber){
     mainMenu();
 }
 
-//done
+
 void hotelManager::getAvailableRooms(){
     sql sql;
     int status = 0;
@@ -198,7 +195,8 @@ void hotelManager::getAvailableRooms(){
     cout << "\nPress any key to continue:";
     cin.ignore();
     cin.get();
-    mainMenu();
+    //checkIn();
+   mainMenu();
 }
 
 void hotelManager::searchCustomer(){
@@ -243,7 +241,7 @@ void hotelManager::searchCustomer(){
 
 void hotelManager::mainMenu(){
     hotelManager hm;
-    cout << "Welcome to Adones Hotel Management Corporation\n" << endl;
+    cout << "Welcome to Hotel Management System\n" << endl;
     int menu;
     int roomnumber;
     cout << "*********";
