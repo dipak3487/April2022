@@ -16,6 +16,49 @@
 #include<stdlib.h>
 #include "Account.h"
 //		function declaration
+
+#include <fcntl.h>           /* Definition of AT_* constants */
+ #include <unistd.h>
+ int up=0;
+
+
+pthread_t pthread1;
+
+void* userPreferenceThread(void *arg) {
+char *input = (char *)arg;
+ printf("Started: %s\n", input);
+while(true) {
+//printf("Started: %s\n", input);
+//if /tmp/nice file exists
+if (access("/tmp/nice", F_OK) == 0)
+{
+up =1;
+}
+else
+{
+up=0;
+}
+
+sleep(1);
+}
+//pthread_exit(arg);
+return arg;
+}
+
+void createUserPreferenceThread() {
+ const char *thread_input1 = "User preference thread";
+pthread_attr_t attr;
+pthread_attr_init(&attr);
+pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+//int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
+if(rc != 0) {
+printf("Error occurred, thread could not be created, errno = %d\n", rc);
+exit(0);
+}
+}
+
 void write_account();//function to write record in binary file
 void display_sp(int);//function to display account details given by user
 void modify_account(int);//function to modify record of file
@@ -28,9 +71,10 @@ int main()
 
 	char ch;
 	int num;
+createUserPreferenceThread();	
 	do
 	{
-
+cout<<"userprefernce: "<< up << endl;
 	cout<<"\n\n\t\t\t\t======================\n";
 	cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
 	cout<<"\n\t\t\t\t======================\n";

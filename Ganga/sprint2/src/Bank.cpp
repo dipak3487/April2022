@@ -78,7 +78,7 @@ void write_account()
 {
 	account ac;
 	ofstream outFile;
-	outFile.open("account.txt",ios::binary|ios::app);
+	outFile.open("account.txt",ios::binary);
 	ac.create_account();
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
 	outFile.close();
