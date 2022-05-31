@@ -74,6 +74,13 @@ int main(int argc, char** argv)
 	case 5:
 		exit(0);
 		break;
+<<<<<<< HEAD
+=======
+
+         case 0:  
+                    exit(0);
+	
+>>>>>>> f3ee2194e090b1d1a4bc21f34d9b23747bc4d546
          default: 
                   cout<<"\n\n\n\t\t\tTHANK YOU!!";
                   cout<<"\n\n\t\t****HAVE A NICE DAY*****";
