@@ -41,9 +41,9 @@ void Vaccine::getData(){
 	
 
     cout<<"\n\t\t Enter Aadhaar no :-  "; std::getline(std::cin, aadhar_no);
-    while((aadhar_no).length() < 16 || (aadhar_no).length() > 16)
+    while((aadhar_no).length() < 12 || (aadhar_no).length() > 12)
 				{
-					std::cout<<"Aadhaar Card Number can't be lessor more than 16 numbers. Please enter the again"<<std::endl;
+					std::cout<<"Aadhaar Card Number can't be lessor more than 12 numbers. Please enter the again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					cout<<"\n\t\t Enter Aadhaar no :- ";
 					std::getline(std::cin,aadhar_no);
