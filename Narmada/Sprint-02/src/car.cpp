@@ -16,7 +16,7 @@
 #include <iostream>
 #include <sqlite3.h>
 #include "car.h"
-#include "../include/date.h"
+#include "date.h"
 
 Car::Car() {
 	carID = -1;
