@@ -60,7 +60,7 @@ int reportOptions() {
 
 	return selectedOption;
 }
-
+// this is to show student individual report
 
 void checkReport() {
 	string cls; int roll;
@@ -126,6 +126,7 @@ string figureGrade(int totalMarks, int size) {
 	}
 	return "null";
 }
+//using class
 class student {
 	string name, cls; 
 	int rollNumber;

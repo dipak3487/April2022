@@ -1,16 +1,8 @@
 #ifndef SQL_H_INCLUDED
 #define SQL_H_INCLUDED
-<<<<<<< HEAD
+
 #include<iostream>
 #include <mysql/mysql.h>
-=======
-<<<<<<< HEAD
-#include<mysql/mysql.h>
-=======
-
-#include <mysql/mysql.h>
->>>>>>> 73144e7752046bcd6eb764e5a5200f80e7fe78e3
->>>>>>> 074095a469a9bd1acc257a5a4716bc1ac2f5489e
 
 using namespace std;
 

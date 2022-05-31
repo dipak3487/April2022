@@ -13,7 +13,9 @@
 //#include <conio.h>
 //#include <curses.h>
 #include<cstdio>
-#include "employee.h"
+#include "../include/employee.h"
+#include <pthread.h>
+#include<fcntl.h>
 
 using namespace std;
 
@@ -31,6 +33,49 @@ int parsecommandline(int argc,char* argv[])
 	config.setFilePath(argv[1]);
 	return 0;
 }
+
+int change = 0;
+pthread_t pthread1;
+
+
+void* userPreferenceThread(void *arg) {
+    char *input = (char *)arg;
+	cout<<"Started: %s\n"<< input;
+
+    while(true) {
+        
+		//if /tmp/nice file exists
+        if (access("/tmp/nice", F_OK) == 0)
+        {
+			// Config::SetUserPreference(1); //nice menu
+		   change = 1;
+        }
+        else
+        {
+           // Config::SetUserPreference(0); //normal menu
+			change = 0;
+        }
+
+        sleep(1);
+    }
+    //pthread_exit(arg);
+    return arg;
+}
+
+void createUserPreferenceThread() {
+    static char *thread_input1 = "User preference thread";
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+    int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+    //int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
+    if(rc != 0) {
+        printf("Error occurred, thread could not be created, errno = %d\n", rc);
+        exit(0);
+    }
+}
+
 int main(int argc,char* argv[])
 {
 	int choice=0;
@@ -38,9 +83,9 @@ int main(int argc,char* argv[])
 
 	config.readConfig();
 	config.readRecords();
+	
 
-
-	 cout<<"Enter Admin Login Credentials:"<<endl;
+	cout<<"Enter Admin Login Credentials:"<<endl;
 	std::string adminid = "ADMIN";
     std::string user;
     std::cout<<"Enter username:"<<std::endl;
@@ -65,14 +110,23 @@ int main(int argc,char* argv[])
 		cout<<"Invalid user"<<endl;
 		exit(0);
 	}
+	
+	createUserPreferenceThread();
 
 	while(1)
 	{
-		cout<<"1.Create new Employee details"<<endl;
-		cout<<"2.Edit Employee details"<<endl;
-		cout<<"3.Delete Employee details"<<endl;
-		cout<<"4.Search Employee details"<<endl;
-		cout<<"5.Get Payroll details and Display details for employee"<<endl;
+		cout<<"userpreference"<<change<<endl;
+		if(change==1)
+		{
+			cout<<"1.Create new Employee details"<<endl;
+			cout<<"2.Edit Employee details"<<endl;
+			cout<<"3.Delete Employee details"<<endl;
+		}
+		else
+		{
+			cout<<"4.Search Employee details"<<endl;
+			cout<<"5.Get Payroll details and Display details for employee"<<endl;
+		}
 		cout<<"6.EXIT"<<endl;
 		cout<<"Enter your choice:"<<endl;
 		cin>>choice;
@@ -100,5 +154,6 @@ int main(int argc,char* argv[])
 		//		exit(0);
 		}
 	}
+	
 	return 0;
 }

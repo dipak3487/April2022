@@ -21,11 +21,7 @@ bool sql::query_check(stringstream &ss, sql sql) {
     if(qstate == 0) return true;
     else return false;
 
-    // sqlite3* DB;
-    // //char* ;
-    // int exit = sqlite3_open("database.db", &DB);
-    // string query = "SELECT * FROM database;";
-    //sqlite3_close(db);
+    
 }
 
 

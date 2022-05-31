@@ -1,4 +1,8 @@
-/*FILENAME	:	This file contains/display all information of a customer/user.
+/*FILENAME	:	customer.cpp
+ *
+ *
+ *
+ *DESCRIPTION	:	This file contains/display all information of a customer/user.
  * 			There are user-defined functions in this file using which we can add new customers, display all
  * 			registered customers, modify customers details from the database using sqlite3 query.
  *
@@ -10,217 +14,255 @@
 #include <iostream>
 #include <sqlite3.h>
 #include "customer.h"
-#include "../src/date.h"
+#include "../include/date.h"
 
 Customer::Customer() {
     customerID = -1;
-    name = "John Doe";
+    name = "Nishant Kumar";
     phoneNumber = "0000000000";
-    eMail = "john.doe@example.com";
+    eMail = "NishantKumar@gmail.com";
     resAddress = "N/A";
     idProofNo = "000000000000";
     dor = todayDate;
 }
 
 Customer::Customer(const Customer &c2) {
-    customerID = c2.customerID;
-    name = c2.name;
-    phoneNumber = c2.phoneNumber;
-    eMail = c2.eMail;
-    resAddress = c2.resAddress;
-    idProofNo = c2.idProofNo;
-    dor = c2.dor;
+	customerID = c2.customerID;
+	name = c2.name;
+	phoneNumber = c2.phoneNumber;
+	eMail = c2.eMail;
+	resAddress = c2.resAddress;
+	idProofNo = c2.idProofNo;
+	dor = c2.dor;
 }
 
 Customer::Customer(std::string _name, std::string _phoneNumber, std::string _eMail, std::string _resAddress, std::string _idProofNo) {
-    customerID = customer_id;
-    name = _name;
-    phoneNumber = _phoneNumber;
-    eMail = _eMail;
-    resAddress = _resAddress;
-    idProofNo = _idProofNo;
-    dor = todayDate;
+	customerID = customer_id;
+	name = _name;
+	phoneNumber = _phoneNumber;
+	eMail = _eMail;
+	resAddress = _resAddress;
+	idProofNo = _idProofNo;
+	dor = todayDate;
 }
 
 int Customer::getNoCustomers() {
-    return customer_id;
+	return customer_id;
 }
 
 void Customer::customerRegisterd() {
-    customer_id = getCurrentCustomerID();
+	customer_id = getCurrentCustomerID();
 }
 
 void Customer::customerDeleted() {
-    customer_id = getCurrentCustomerID();
+	customer_id = getCurrentCustomerID();
 }
 
 std::ostream& operator<< (std::ostream& os, const Customer& cust) {
-    os << "\t\t\t\tCustomer ID: " << cust.customerID << std::endl;
-    os << "\n\t\t\tCustomer Name: " << cust.name << std::endl;
-    os << "\n\tEmail: " << cust.eMail << "\t" << "Phone Number: " << cust.phoneNumber << std::endl;
-    os << "\n\tResidential Address: " << cust.resAddress << std::endl;
-    os << "\n\tID Proof Number: " << cust.idProofNo << std::endl;
-    os << "\n\tDate of Registration: " << cust.dor << std::endl;
-    return os;
-    
+	os << "\t\t\t\tCustomer ID: " << cust.customerID << std::endl;
+	os << "\n\t\t\tCustomer Name: " << cust.name << std::endl;
+	os << "\n\tEmail: " << cust.eMail << "\t" << "Phone Number: " << cust.phoneNumber << std::endl;
+	os << "\n\tResidential Address: " << cust.resAddress << std::endl;
+	os << "\n\tID Proof Number: " << cust.idProofNo << std::endl;
+	os << "\n\tDate of Registration: " << cust.dor << std::endl;
+	return os;
+
 }
 
 Customer::~Customer() {
-    
-}
 
+}
 Customer registerCustomer() {
-    std::string name, phoneNumber, eMail, resAddress, idProofNo;
-    std::cout << "\t\t\t\tCustomer ID: " << customer_id << std::endl;
-    std::cout << "\t\t\t\tEnter Name: ";
-    std::getline(std::cin, name);
-    std::cout << "\t\t\t\tEnter Phone Number: ";
-    std::cin >> phoneNumber;
-    std::cin.ignore();
-    while (phoneNumber.length() != 10) {
-        std::cout << "\t\t\t\tWrong Phone Number format Re-Enter: " << std::endl;
-        std::cout << "\t\t\t\tEnter Phone Number: ";
-        std::cin >> phoneNumber;
-        std::cin.ignore();
-    }
+	std::string name, phoneNumber, eMail, resAddress, idProofNo;
+	std::cout << "\t\t\t\tCustomer ID: " << customer_id << std::endl;
+	std::cout << "\t\t\t\tEnter Name: ";
+	std::getline(std::cin, name);
+	std::cout << "\t\t\t\tEnter Phone Number: ";
+	std::cin >> phoneNumber;
 
-    std::cout << "\t\t\t\tEnter Email: ";
-    std::cin >> eMail;
-    std::cin.ignore();
-    std::cout << "\t\t\t\tEnter Residential Address: ";
-    std::getline(std::cin, resAddress);
-    std::cout << "\t\t\t\tEnter ID Proof Number: ";
-    std::cin >> idProofNo;
-    std::cin.ignore();
-    Customer c(name, phoneNumber, eMail, resAddress, idProofNo);
-    
-    return c;
+	std::cin.ignore();
+	while (phoneNumber.length() != 10) {
+		std::cout << "\t\t\t\tWrong Phone Number format Re-Enter: " << std::endl;
+		std::cout << "\t\t\t\tEnter Phone Number: ";
+		std::cin >> phoneNumber;
+		std::cin.ignore();
+	}
+
+	std::cout << "\t\t\t\tEnter Email: ";
+	std::cin >> eMail;
+	std::cin.ignore();
+	std::cout << "\t\t\t\tEnter Residential Address: ";
+	std::getline(std::cin, resAddress);
+	std::cout << "\t\t\t\tEnter ID Proof Number: ";
+	std::cin >> idProofNo;
+	std::cin.ignore();
+	Customer c(name, phoneNumber, eMail, resAddress, idProofNo);
+
+	return c;
 }
-
-void save(Customer c) {
-    sqlite3 *DB;
-    std::string sql = "INSERT INTO customers VALUES (" + std::to_string(c.customerID) +  ", \"" +  c.name + "\", \"" + c.eMail + "\", \"" + c.phoneNumber + "\", \"" + c.resAddress + "\", \"" + c.idProofNo + "\", \"" + c.dor.returnSQLDate() + "\");";
-    int connection = 0;
-    connection = sqlite3_open("database.db", &DB);
-    char *errMsg;
-    connection = sqlite3_exec(DB, sql.c_str(), NULL, 0, &errMsg);
-    if (connection != SQLITE_OK) {
-        std::cerr << "Error Inserting Record" << std::endl;
-        std::cerr << errMsg << std::endl;
-        sqlite3_free(errMsg);
-    } else {
-        std::cout << "Customer Registration Successful" << std::endl;
-    }
-    c.customerRegisterd();
-    sqlite3_close(DB);
+/*Function Name  :  save()
+ *
+ * Description  :  This function enables user to save their information in database.
+ *
+ */
+bool save(Customer c) {
+	//establishing connection with database to perform operations like insert, modify, delete
+	//we have used sqlite3_open to connect the database
+	//this function saves the details of the customer like customer ID, name, email, phone number, address and ID proof. 
+	sqlite3 *DB;
+	std::string sql = "INSERT INTO customers VALUES (" + std::to_string(c.customerID) +  ", \"" +  c.name + "\", \"" + c.eMail + "\", \"" + c.phoneNumber + "\", \"" + c.resAddress + "\", \"" + c.idProofNo + "\", \"" + c.dor.returnSQLDate() + "\");";
+	int connection = 0;
+	connection = sqlite3_open("database.db", &DB);
+	char *errMsg;
+	connection = sqlite3_exec(DB, sql.c_str(), NULL, 0, &errMsg);
+	if (connection != SQLITE_OK) {
+		std::cerr << "Error Inserting Record" << std::endl;
+	  	std::cerr << errMsg << std::endl;
+		sqlite3_free(errMsg);
+		return false;
+	} else {
+		std::cout << "Customer Registration Successful" << std::endl;
+	}
+	c.customerRegisterd();
+	sqlite3_close(DB);
+	return true;
 }
-
+/*Function :  getCustomer()
+ *
+ * Description  :  This function returns the customers details from the database if the user select
+ * 		   menu to see the details.
+ * 		   We have used sqlite3_database to connect the database.
+ * 		   In this function, it will ask for cutomer ID to display the cutomer details like name, email, phone number, address, ID proof,
+ * 		   date of rent.
+ *
+ */
 Customer getCustomer(int cus_id) {
-    sqlite3 *DB;
-    int connection = 0;
-    connection = sqlite3_open("database.db", &DB);
-    char *errMsg;
-    sqlite3_stmt* statement;
-    std::string sql = "SELECT * FROM customers";
-    if (cus_id != 0) {
-        sql += " WHERE cust_id = " + std::to_string(cus_id) + ";";
-    }
-    sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
-    Customer c;
-    
-    while (sqlite3_step(statement) != SQLITE_DONE) {
-        c.customerID = sqlite3_column_int(statement, 0);
-        c.name = (char *) sqlite3_column_text(statement, 1);
-        c.eMail = (char *) sqlite3_column_text(statement, 2);
-        c.phoneNumber = (char *) sqlite3_column_text(statement, 3);
-        c.resAddress = (char *) sqlite3_column_text(statement, 4);
-        c.idProofNo = (char *) sqlite3_column_text(statement, 5);
-        c.dor = strToDate((char *) sqlite3_column_text(statement, 6));
-    }
-    
-    sqlite3_close(DB);
+	sqlite3 *DB;
+	int connection = 0;
+	connection = sqlite3_open("database.db", &DB);
+	char *errMsg;
+sqlite3_stmt* statement;
+	std::string sql = "SELECT * FROM customers";
+	if (cus_id != 0) {
+		sql += " WHERE cust_id = " + std::to_string(cus_id) + ";";
+	}
+	sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
+	Customer c;
 
-    return c;
+	while (sqlite3_step(statement) != SQLITE_DONE) {
+		c.customerID = sqlite3_column_int(statement, 0);
+		c.name = (char *) sqlite3_column_text(statement, 1);
+		c.eMail = (char *) sqlite3_column_text(statement, 2);
+		c.phoneNumber = (char *) sqlite3_column_text(statement, 3);
+		c.resAddress = (char *) sqlite3_column_text(statement, 4);
+		c.idProofNo = (char *) sqlite3_column_text(statement, 5);
+		c.dor = strToDate((char *) sqlite3_column_text(statement, 6));
+	}
+
+	sqlite3_close(DB);
+
+	return c;
 }
+/*Function Name  :  displayAllCustomers()
+ *
+ * Description   :  This function is used here to display all the information of a customer.
+ * 		    We have used sqlite3_database to connect the database.
+ * 		    In this function, it will ask for cutomer ID to display the cutomer details like name, email, phone number, address, ID proof,
+ * 		    date of rent.
+ *
+ */
 
 void displayAllCustomers() {
-    sqlite3 *DB;
-    int connection = 0;
-    connection = sqlite3_open("database.db", &DB);
-    char *errMsg;
-    sqlite3_stmt* statement;
-    std::string sql = "SELECT * FROM customers;";
-    sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
-    Customer c;
-    
-    while (sqlite3_step(statement) != SQLITE_DONE) {
-        c.customerID = sqlite3_column_int(statement, 0);
-        c.name = (char *) sqlite3_column_text(statement, 1);
-        c.eMail = (char *) sqlite3_column_text(statement, 2);
-        c.phoneNumber = (char *) sqlite3_column_text(statement, 3);
-        c.resAddress = (char *) sqlite3_column_text(statement, 4);
-        c.idProofNo = (char *) sqlite3_column_text(statement, 5);
-        c.dor = strToDate((char *) sqlite3_column_text(statement, 6));
+	sqlite3 *DB;
+	int connection = 0;
+	connection = sqlite3_open("database.db", &DB);
+	char *errMsg;
+	sqlite3_stmt* statement;
+	std::string sql = "SELECT * FROM customers;";
+	sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
+	Customer c;
 
-        std::cout << c << '\n' << std::endl;
-    }
+	while (sqlite3_step(statement) != SQLITE_DONE) {
+		c.customerID = sqlite3_column_int(statement, 0);
+		c.name = (char *) sqlite3_column_text(statement, 1);
+		c.eMail = (char *) sqlite3_column_text(statement, 2);
+		c.phoneNumber = (char *) sqlite3_column_text(statement, 3);
+		c.resAddress = (char *) sqlite3_column_text(statement, 4);
+		c.idProofNo = (char *) sqlite3_column_text(statement, 5);
+		c.dor = strToDate((char *) sqlite3_column_text(statement, 6));
 
-    sqlite3_close(DB);
+		std::cout << c << '\n' << std::endl;
+	}
+
+	sqlite3_close(DB);
 }
 
 
 int Customer::getCustID() {
-    return customerID;
+	return customerID;
 }
-
+/*Function Name  :  getCurrentCustomerID()
+ *
+ * Description  :  This function returns the customer id.
+ *
+ */
 int getCurrentCustomerID() {
-    sqlite3 *DB;
-    int connection = 0;
-    connection = sqlite3_open("database.db", &DB);
-    char *errMsg;
-    sqlite3_stmt* statement;
-    std::string sql = "SELECT cust_id FROM customers;";
-    int id = 0;
-    sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
-    while(sqlite3_step(statement) != SQLITE_DONE) {
-        id = sqlite3_column_int(statement, 0);
-    }
-    sqlite3_close(DB);
-    return id + 1;
+	sqlite3 *DB;
+	int connection = 0;
+	connection = sqlite3_open("database.db", &DB);
+	char *errMsg;
+	sqlite3_stmt* statement;
+	std::string sql = "SELECT cust_id FROM customers;";
+	int id = 0;
+	sqlite3_prepare(DB, sql.c_str(), -1, &statement, 0);
+	while(sqlite3_step(statement) != SQLITE_DONE) {
+		id = sqlite3_column_int(statement, 0);
+	}
+	sqlite3_close(DB);
+	return id + 1;
 }
 
 void sqlExec(std::string sql) {
-    sqlite3 *Database;
-    int connection = 0;
-    connection = sqlite3_open("database.db", &Database);
-    char *errMsg;
-    connection = sqlite3_exec(Database, sql.c_str(), NULL, 0, &errMsg);
-    if (connection != SQLITE_OK) {
-        std::cerr << "Error Updating Record" << std::endl;
-        std::cerr << errMsg << std::endl;
-        sqlite3_free(errMsg);
-    } else {
-        std::cout << "Updation Successful" << std::endl;
-    }
-    sqlite3_close(Database);
+	sqlite3 *Database;
+	int connection = 0;
+	connection = sqlite3_open("database.db", &Database);
+	char *errMsg;
+	connection = sqlite3_exec(Database, sql.c_str(), NULL, 0, &errMsg);
+	if (connection != SQLITE_OK) {
+		std::cerr << "Error Updating Record" << std::endl;
+		std::cerr << errMsg << std::endl;
+		sqlite3_free(errMsg);
+	} else {
+		std::cout << "Updation Successful" << std::endl;
+	}
+	sqlite3_close(Database);
 }
-
-void modify(int cust_id, std::string name = "", std::string email = "", std::string phNo = "", std::string resAdd = "") {
-    std::string sql = "UPDATE customers SET ", query = "", footStr = " WHERE cust_id = " + std::to_string(cust_id) + ";";
-    if (name != "") {
-        query = sql + "name = \"" + name + "\"" + footStr;
-        sqlExec(query);
-    }
-    if (email != "") {
-        query = sql + "email = \"" + email + "\"" + footStr;
-        sqlExec(query);
-    }
-    if (phNo != "") {
-        query = sql + "phNo = \"" + phNo + "\"" + footStr;
-        sqlExec(query);
-    }
-    if (resAdd != "") {
-        query = sql + "resAddress = \"" + resAdd + "\"" + footStr;
-        sqlExec(query);
-    }
+/* Function Name  :  modify()
+ *
+ * Description  :  This function is used here to update the customer details through sqlite3 queries.
+ * 		   We have used sqlite3_database to connect the database.
+ * 		   In this function, it will ask for customer ID to modify the cutomer details like name, email, phone number, address, ID proof,
+ * 		   date of rent.
+ * 		   These details will be saved in the database.
+ *
+ */
+bool modify(int cust_id, std::string name = "", std::string email = "", std::string phNo = "", std::string resAdd = "") {
+	std::string sql = "UPDATE customers SET ", query = "", footStr = " WHERE cust_id = " + std::to_string(cust_id) + ";";
+	if (name != "") {
+		query = sql + "name = \"" + name + "\"" + footStr;
+		sqlExec(query);
+	}
+	if (email != "") {
+		query = sql + "email = \"" + email + "\"" + footStr;
+		sqlExec(query);
+	}
+	if (phNo != "") {
+		query = sql + "phNo = \"" + phNo + "\"" + footStr;
+		sqlExec(query);
+	}
+	if (resAdd != "") {
+		query = sql + "resAddress = \"" + resAdd + "\"" + footStr;
+		sqlExec(query);
+	}
+	return true;
 }

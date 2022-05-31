@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E3456",
-         "name" : "Renu",
-         "salary" : 56788,
-         "title" : "Analyst"
+         "empCode" : "E1003",
+         "name" : "Madduri",
+         "salary" : 12345,
+         "title" : "Assistant"
       }
    ]
 }

@@ -1,8 +1,17 @@
+/* FILENAME	:	car.h
+ *
+ * DESCRIPTION	:	This file contains all the functions declarations of car.cpp
+ *
+ *
+ * CHANGES MADE BY TEAM NARMADA
+ *
+ *
+ */
 #ifndef CAR_H
 #define CAR_H
 
 #include <iostream>
-#include "../src/date.h"
+#include "../include/date.h"
 
 int getCurrentCarID();
 
@@ -26,9 +35,13 @@ class Car {
         static void carAdded();
         int getCarID();
         double getCost();
-        friend void save(Car c);
+        friend bool save(Car c);
+		//int save(std:: string reg_no,std::string company1,std::string model1,std::string cost_per_day);
+		//int displayAllCars(int option1);
+		//int getCar(int car_id);
         friend Car getCar(int);
         friend void displayAllCars();
+		//int modify(int car_id,double cost_per_day);
         friend std::ostream& operator<< (std::ostream& os, const Car& car);
         ~Car();
 };
@@ -37,6 +50,6 @@ Car getCarDetails();
 Car getCar(int);
 void displayAllCars();
 
-void modify(int, double);
+bool modify(int, double);
 
 #endif

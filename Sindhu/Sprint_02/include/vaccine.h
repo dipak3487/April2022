@@ -7,7 +7,7 @@ class Vaccine
 {
 	private:
 		int age;
-		int temperature;
+		float temperature;
 		int bloodPressure;
 		int date;
 		int bno;

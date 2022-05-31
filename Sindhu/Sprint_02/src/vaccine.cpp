@@ -6,23 +6,45 @@
 #include <sqlite3.h>
 #include<memory>
 #include<bits/stdc++.h>
+#include "vaccine.h"
+
+
 using namespace std;
 
-
-void menu()
+/*
+void Vaccine::menu()
 {
-    
-    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    if(up ==1)
+    {
+    cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t MAIN MENU";
     cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-    cout<<"\n\t\t01: Add New Record"<<endl;
-    cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
-    cout<<"\n\t\t03: View All Citizen Data"<<endl;
-    cout<<"\n\t\t04: Exit"<<endl;
+
+    cout<<"\n\t\t\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t\t\t4: Search"<<endl;
+    cout<<"\n\t\t\t\t5: Exit"<<endl;
+
+    }
+
+else
+{
+    cout<<"\t\t\t\t	W	E	L	C	O	M	E	"<<endl;
+    cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t M		A	I	N 	M	E	N	U";
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+
+    cout<<"\n\t\t\t\t1: Add New Record"<<endl;
+    cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
+    cout<<"\n\t\t\t\t4: Search"<<endl;
+    cout<<"\n\t\t\t\t5: Exit"<<endl;
 }
 
-
+}*/
 
 
 void Vaccine::getData(){
@@ -36,14 +58,14 @@ void Vaccine::getData(){
 	
 
     cout<<"\n\t\t Enter Aadhaar no :-  "; std::getline(std::cin, aadhar_no);
-    while((aadhar_no).length() <= 15)
+    while((aadhar_no).length() < 12 || (aadhar_no).length() > 12)
 				{
-					std::cout<<"Aadhaar Card Number can't be less than 16 numbers. Please enter the again"<<std::endl;
+					std::cout<<"Aadhaar Card Number can't be lessor more than 12 numbers. Please enter the again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					cout<<"\n\t\t Enter Aadhaar no :- ";
 					std::getline(std::cin,aadhar_no);
 				}
-   // getline (std::cin,aadhar_no);
+   
 	
 
     cout<<"\n\t\t Enter the gender (M|F) :-  ";
@@ -64,9 +86,9 @@ void Vaccine::getData(){
     cout<<"\n\t\t Enter the  Mobile number :-  "; 
     cin>>mobileNumber;
 
-    while((mobileNumber).length() < 10)
+    while((mobileNumber).length() < 10|| (mobileNumber).length()> 10)
 				{
-					std::cout<<"Mobile Number can't be less than 10 numbers. Please enter the again"<<std::endl;
+					std::cout<<"Mobile Number can't be less or more than 10 numbers. Please enter the again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					cout<<"\n\t\t Enter Mobile number :- ";
 					std::getline(std::cin,mobileNumber);
@@ -95,7 +117,7 @@ int password()
     cout<<"\n\n\n\n\t\t\t\t\tUSER NAME:  ";
     fflush(stdin);
     cin>>cname;
-    //getline(std::cin,cname);
+
     cout<<"\n\t\t\t\t\tPASSWORD:    ";
     cin>>password;
     
@@ -132,20 +154,21 @@ cin>>ch;
     {
     case 1:
         addNew_Vaccine();
+        view_Vaccine();
         break;
     case 2:
     	view_Vac();
+    	view_Vaccine();
         break;
     case 3:
-
-        menu();
+	menu();
     default:
 
         cout<<"\nEnter valid option "<<endl;
         menu();
     }
 
-    //getc();
+    
 }
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
@@ -156,6 +179,138 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    printf("\n");
    return 0;
 }
+void Vaccine::Search_Citizen_Records()
+{
+
+int ch;
+cout<<"\n\t\t\t*****************************************\n";
+cout<<"\t\t\t\tSEARCH HERE";
+cout<<"\n\t\t\t*****************************************\n\n";
+cout<<"\n\t\t1.Search By Name ";      
+cout<<"\n\t\t2.Search By Aadhar Card Number"; 
+cout<<"\n\t\t3.Search By Mobile Number"; 
+cout<<"\n\t\t4.Back"<<endl;
+cin>>ch;
+
+ switch(ch)
+    {
+    case 1:
+        
+        search_name();
+        Search_Citizen_Records();
+        break;
+    case 2:
+    	search_aadhar();
+        Search_Citizen_Records();
+        break;
+    case 3:
+	search_mobile();
+        Search_Citizen_Records();
+    case 4:
+    	menu();
+    default:
+
+        cout<<"\nEnter valid option "<<endl;
+        menu();
+    }
+
+
+}
+
+void Vaccine::search_name()
+{
+string name,data;
+sqlite3* db;
+
+    int rc;
+
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  name to search:- ";
+    std::getline(std::cin, name);
+       
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Name = '"<<name<<"' ;";
+
+    command=temp.str();
+
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
+
+void Vaccine::search_aadhar()
+{
+string aadhar_no;
+sqlite3* db;
+
+    int rc;
+
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  Aadhar Number to search:- ";
+    cin>>aadhar_no;
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Aadhar_No = '"<<aadhar_no<<"' ;";
+
+    command=temp.str();
+    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
+
+
+void Vaccine::search_mobile()
+{
+    string mobile_no;
+    sqlite3* db;
+
+    int rc;
+
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter the  Mobile Number to search:- ";
+    cin>>mobile_no;
+    temp << "SELECT * FROM CITIZEN_RECORDS WHERE Mobile_No = '"<<mobile_no<<"' ;";
+
+    command=temp.str();
+
+  
+   sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
+   sqlite3_close(db);
+}	
+
 
 
 		
@@ -166,15 +321,15 @@ void Vaccine::addNew_Vaccine()
 sqlite3* db;
     char* zErrMsg=0;
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
     
-    //string query = "SELECT * FROM VACCINE_INVENTORY";
+
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
@@ -219,9 +374,8 @@ void Vaccine:: view_all()
 {
 
 sqlite3* db;
-    char* zErrMsg=0;
+
     int rc;
-    char *sql;
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -229,7 +383,7 @@ sqlite3* db;
     string query = "SELECT * FROM CITIZEN_RECORDS;";
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+     
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
@@ -243,9 +397,9 @@ void Vaccine:: view_Vac()
 {
 
 sqlite3* db;
-    char* zErrMsg=0;
+    //char* zErrMsg=0;
     int rc;
-    char *sql;
+    //char *sql;
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
@@ -267,15 +421,15 @@ void Vaccine::addNew()
  sqlite3* db;
     char* zErrMsg=0;
     int rc;
-    char *sql;
+
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
     
-    //string query = "SELECT * FROM CITIZEN_RECORDS;";
+
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-      //return 0;
+
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
@@ -314,4 +468,3 @@ void Vaccine::showData()
     cout<<"\n\t\t vaccine injected : "<<vaccine<<endl;
     
 }
-

@@ -14,7 +14,7 @@ class Employee
 {
 public:
     std::string name;
-	std::string empCode;
+    std::string empCode;
     int salary;
     std::string title;
 
@@ -35,19 +35,24 @@ class Config
     private:
 
     public:
-    bool readConfig();
+    bool ReadConfig();
     Config(std::string configFilePath);
 	Config();
-    bool setFilePath(std::string path);
-    bool readRecords();
-    bool readOneRecord();
-	bool editRecord();//will update vector record
-	bool createRecord();
-	bool searchRecord();
-	bool deleteRecord();
-	bool saverecordinjson();
+    bool SetFilePath(std::string path);
+    bool ReadRecords();
+    bool ReadOneRecord();
+	bool EditRecordInp(std::string code,std::string name,int salary,std::string title);
+	bool EditRecord();//will update vector record
+	bool CreateRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
+	bool CreateRecord();
+	bool SearchRecord();
+	bool SearchRecordInp(std::string str);
+	bool DeleteRecord();
+	bool DeleteRecordInp(std::string code);
+	bool GetPayrollDetails();
+	bool GetPayrollDetailsInp(std::string code);
+	bool SaveRecordinjson();
 	bool printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
-	bool getpayrolldetails();
   //  std::string getLogfilePath();
 
 };
