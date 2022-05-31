@@ -28,7 +28,7 @@ class Config
     std::string filePath;
     Json::Value configRoot;
     Json::Value oneEmp;
-
+	//int change;
     Employee emp;
     std::vector<Employee> records;
 
@@ -40,6 +40,7 @@ class Config
 	Config();
     bool setFilePath(std::string path);
     bool readRecords();
+	//static void SetUserPreference(int f) {change = f; }
     bool readOneRecord();
 	bool editRecordInp(std::string code,std::string name,int salary,std::string title);
 	bool editRecord();//will update vector record

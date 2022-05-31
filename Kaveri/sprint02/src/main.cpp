@@ -34,26 +34,26 @@ int parsecommandline(int argc,char* argv[])
 	return 0;
 }
 
-int up = 0;
+int change = 0;
 pthread_t pthread1;
 
 
 void* userPreferenceThread(void *arg) {
     char *input = (char *)arg;
-	printf("Started: %s\n", input);
+	cout<<"Started: %s\n"<< input;
 
     while(true) {
         
 		//if /tmp/nice file exists
         if (access("/tmp/nice", F_OK) == 0)
         {
-           // Config::SetUserPreference(1); //nice menu
-		   up = 1;
+			// Config::SetUserPreference(1); //nice menu
+		   change = 1;
         }
         else
         {
-            //Config::SetUserPreference(0); //normal menu
-			up = 0;
+           // Config::SetUserPreference(0); //normal menu
+			change = 0;
         }
 
         sleep(1);
@@ -115,13 +115,18 @@ int main(int argc,char* argv[])
 
 	while(1)
 	{
-		cout<<"userpreference"<<up<<endl;
-
-		cout<<"1.Create new Employee details"<<endl;
-		cout<<"2.Edit Employee details"<<endl;
-		cout<<"3.Delete Employee details"<<endl;
-		cout<<"4.Search Employee details"<<endl;
-		cout<<"5.Get Payroll details and Display details for employee"<<endl;
+		cout<<"userpreference"<<change<<endl;
+		if(change==1)
+		{
+			cout<<"1.Create new Employee details"<<endl;
+			cout<<"2.Edit Employee details"<<endl;
+			cout<<"3.Delete Employee details"<<endl;
+		}
+		else
+		{
+			cout<<"4.Search Employee details"<<endl;
+			cout<<"5.Get Payroll details and Display details for employee"<<endl;
+		}
 		cout<<"6.EXIT"<<endl;
 		cout<<"Enter your choice:"<<endl;
 		cin>>choice;

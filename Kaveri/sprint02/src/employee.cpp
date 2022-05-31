@@ -10,7 +10,7 @@ Description: executes the files which are asked in main.cpp
 #include<fstream>
 #include<cstring>
 #include<sstream>
-#include "../include/employee.h"
+#include "employee.h"
 #include<memory>
 #include<bits/stdc++.h>
 
@@ -240,9 +240,10 @@ bool Config::editRecord()
 }
 
 /*
-filename : createRecord
+filename : createRecordInp
 created on : 25th May 2022
-Description: creates a new employee record when a new employee is added  
+Description: It takes all the details(name,empCode,salary,title) of an employee, gives it to the records vector and store the vector the json file given in saverecordinjson file.
+return: true when success, false when failed to run.
 */
 bool Config::createRecordInp(std::string newname, std::string newempCode, int newsalary, std::string newtitle)
 {
@@ -259,6 +260,12 @@ bool Config::createRecordInp(std::string newname, std::string newempCode, int ne
 	saverecordinjson();
  return true;
 }
+/*
+filename : createRecordInp
+created on : 25th May 2022
+Description: It asks the user to enter all the details(name,empCode,salary,title) of an employee and calls the function createRecordInp with the details the user gave to the function.  
+return: true when success, false when failed to run.
+*/
 bool Config::createRecord()
 {
 	
