@@ -26,6 +26,22 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    return 0;
 }
 
+/*
+void menu()
+{
+    
+    cout<<"\n\n\t\t\t\xB3\xB2=\xB2=\xB2-\xB3 VACCINE MANAGEMENT SYSTEM  \xB3\xB2=\xB2=\xB2-\xB3\n\n"<<endl;
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t MAIN MENU";
+    cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
+    cout<<"\n\t\t01: Add New Record"<<endl;
+    cout<<"\n\t\t02: View VACCINE Inventory"<<endl;
+    cout<<"\n\t\t03: View All Citizen Data"<<endl;
+    cout<<"\n\t\t04: Exit"<<endl;
+}
+*/
+
+
 int main(int argc, char** argv)
 {
 
@@ -52,17 +68,12 @@ int main(int argc, char** argv)
 		   vaccineDB.view_all();
                 break;
           
-<<<<<<< HEAD
           case 4:  
-		vaccineDB.Search_Citizen_Records();
+		   vaccineDB.Search_Citizen_Records();
 		break;
 	case 5:
 		exit(0);
 		break;
-=======
-         case 0:  
-                    exit(0);
->>>>>>> cb82c3cc8d6fddf7253e439961c40b5feaf72f1f
          default: 
                   cout<<"\n\n\n\t\t\tTHANK YOU!!";
                   cout<<"\n\n\t\t****HAVE A NICE DAY*****";
