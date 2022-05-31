@@ -1,7 +1,7 @@
 /*FILENAME	:	car.cpp
  *
  *DESCRIPTION	:	This main.cpp file display all the details about a aprticular car using car ID.
- It also allows users to add new car, enables user to change the car cost per day.
+ 			It also allows users to add new car, enables user to change the car cost per day.
  *
  *
  *                      CHANGES MADE BY TEAM NARMADA
@@ -79,14 +79,15 @@ void Car::carAdded() {
 /*FUNCTION NAME : void save()
  *
  * DESCRIPTION  : This function is used to insert values in cars table when user add
- * 		  any new car.
+ * 		  any new car.Whene you add a new car it will ask you for registration number, company name, model name, cost per day.
+ * 		  And also it will generate car ID.
  */
 
 bool save(Car c) {
 	sqlite3 *DB;
 	std::string sql = "INSERT INTO cars VALUES (" + std::to_string(c.carID) +  ", \"" +  c.regNo + "\", \"" + c.company + "\", \"" + c.model + "\", " + std::to_string(c.isRented) + ", \"" + c.doa.returnSQLDate() + "\", " + std::to_string(c.costPerDay) + ");";
 	int connection = 0;
-	//making connection with database
+	//we have used sqlite3 for making connection with database
 	connection = sqlite3_open("database.db", &DB);
 	char *errMsg;
 	connection = sqlite3_exec(DB, sql.c_str(), NULL, 0, &errMsg);
@@ -108,6 +109,7 @@ Car getCar(int c_id) {
 	int connection = 0;
 	connection = sqlite3_open("database.db", &DB);
 	char *errMsg;
+	//it will ask for car ID to display the car details.
 	//sqlite3 query to see the car data details
 	sqlite3_stmt* statement;
 	std::string sql = "SELECT * FROM cars";
@@ -133,7 +135,9 @@ Car getCar(int c_id) {
 }
 /*FUNCTION NAME  :  displayAllCars()
  *
- * DESCRIPTION  :  This function displays the all details of a car.
+ * DESCRIPTION  :	This function displays all details of car like car ID, registration number
+ * 			company name, model number, cost per day and aslo it will show is rented or not.
+ * 		   
  *
  */
 
@@ -163,7 +167,8 @@ void displayAllCars() {
 }
 /*Function name : getCurrentCarID()
  *
- * Description  :  This function returns only car id for a partcular car.
+ * Description  :	In this function it will ask you to enter the car ID and it will shows the details 
+ * 			of that particuler car.
  *
  */
 int getCurrentCarID() {
@@ -212,7 +217,8 @@ Car getCarDetails() {
 }
 /*Function Name  :  modify()
  *
- * Description :  This function is used here to modify car cost per day.
+ * Description :	In this function first it will ask car ID and then 
+ * 			it will ask you to enter new cost per day.
  *
  */
 
