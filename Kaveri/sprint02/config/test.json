@@ -24,6 +24,12 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
+      },
+      {
+         "empCode" : "E1003",
+         "name" : "Madduri",
+         "salary" : 12345,
+         "title" : "Assistant"
       }
    ]
 }

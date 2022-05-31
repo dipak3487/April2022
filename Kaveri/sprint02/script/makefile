@@ -1,5 +1,5 @@
 ../bin/program: ../obj/main.o ../obj/employee.o
-	g++ -o ../bin/program ../obj/main.o ../obj/employee.o -ljsoncpp
+	g++ -o ../bin/program ../obj/main.o ../obj/employee.o -ljsoncpp -lpthread
 
 ../obj/main.o: ../src/main.cpp
 	#mkdir ../obj/
