@@ -30,6 +30,10 @@ class Vaccine
 		void showData();//display data
 		void view_all();//view the entire Citizen database
 		void view_Vac();
+		void Search_Citizen_Records();
+		void search_name();
+		void search_aadhar();
+		void search_mobile();
 		void view_Vaccine();//operations on the vaccine inventory
 };
 
