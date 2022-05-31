@@ -1,14 +1,5 @@
-
 ../bin/program: ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o
-<<<<<<< HEAD
-	        g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --cflags --libs`
-=======
-<<<<<<< HEAD
-	g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --libs`
-=======
-	        g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --libs`
->>>>>>> 73144e7752046bcd6eb764e5a5200f80e7fe78e3
->>>>>>> 074095a469a9bd1acc257a5a4716bc1ac2f5489e
+		g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --cflags --libs`
 
 ../obj/main.o: ../src/main.cpp
 	                #mkdir ../obj/
