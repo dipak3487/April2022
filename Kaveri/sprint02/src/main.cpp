@@ -10,8 +10,6 @@
 #include<fstream>
 #include<stdlib.h>
 #include <cstring>
-//#include <conio.h>
-//#include <curses.h>
 #include<cstdio>
 #include "employee.h"
 #include <pthread.h>
@@ -48,19 +46,16 @@ pthread_t pthread1;
 
 void* userPreferenceThread(void *arg) {
     char *input = (char *)arg;
-//	cout<<"Started: %s\n"<< input;
 
     while(true) {
         
-        if (access("/tmp/nice", F_OK) == 0)
+        if (access("/tmp/change", F_OK) == 0)
         {
-			// Config::SetUserPreference(1); //nice menu
-		   change = 1;
+			change = Config::SetUserPreference(1); //nice menu
         }
         else
         {
-           // Config::SetUserPreference(0); //normal menu
-			change = 0;
+           change = Config::SetUserPreference(0); //normal menu
         }
 
         sleep(1);
@@ -126,6 +121,8 @@ int main(int argc,char* argv[])
 			cout<<"1.Create new Employee details"<<endl;
 			cout<<"2.Edit Employee details"<<endl;
 			cout<<"3.Delete Employee details"<<endl;
+			cout<<"4.Search Employee details"<<endl;
+			cout<<"5.Get Payroll details and Display details for employee"<<endl;
 		}
 		else
 		{
