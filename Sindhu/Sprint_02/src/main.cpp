@@ -3,17 +3,17 @@
     Created On : 25th May 2022
     Description : This file takes the input file and calls the functions the user wants to implement. 
 */
-#include<fcntl.h>
-#include<unistd.h>
-#include<pthread.h>
-#include<stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <stdio.h>
 #include <iostream>
 #include <string.h>
-#include<sstream>
+#include <sstream>
 #include <cstring>
 #include <sqlite3.h>
-#include<memory>
-#include<bits/stdc++.h>
+#include <memory>
+#include <bits/stdc++.h>
 #include "vaccine.h"
 using namespace std;
 
@@ -120,21 +120,21 @@ int main(int argc, char** argv)
 
 
 
-	/*cout<<"\t\t\tAdmin Login"<<endl;
+	cout<<"\t\t\tAdmin Login"<<endl;
 	std::string adminid = "admin";
-    std::string user;
-    std::cout<<"Enter username:"<<std::endl;
-    std::cin>>user;
+	std::string user;
+    	std::cout<<"Enter username:"<<std::endl;
+    	std::cin>>user;
 	if(adminid == user)
 	{
-     const char *mypass="sindhu";
-     char *password=getpass("Enter password: "); 
+     	const char *mypass="sindhu";
+     	char *password=getpass("Enter password: "); 
 
-     if(strcmp(password,mypass)==0) 
+     	if(strcmp(password,mypass)==0) 
 	 {
 	 	cout <<"Correct password! \n";
 	 }
-     else
+     	else
 	 {
 		cout <<"Invalid password!\n";
 	 	exit(0);
@@ -145,9 +145,9 @@ int main(int argc, char** argv)
 		cout<<"Invalid user"<<endl;
 		exit(0);
 	}
-*/
-//while(1)
-do
+
+//	while(1)
+	do
 	{
 		
      	    Vaccine vaccineDB;
