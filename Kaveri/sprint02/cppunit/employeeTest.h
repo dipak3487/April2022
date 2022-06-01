@@ -4,7 +4,6 @@
 
 class EmployeeTest : public CppUnit::TestFixture
 {
-	private:
 	 public:
     void setup()
     {
@@ -18,7 +17,7 @@ class EmployeeTest : public CppUnit::TestFixture
 		config1.SetFilePath("../InputFiles/employeeRecords.json");
 		config1.ReadConfig();
 		config1.ReadRecords();
-		std::string str="E1003";
+		std::string str="E1004";
 		CPPUNIT_ASSERT_EQUAL(config1.SearchRecordInp(str),true);
 	}
     void rainytestsearchRecord()
@@ -64,7 +63,7 @@ class EmployeeTest : public CppUnit::TestFixture
 		config1.SetFilePath("../InputFiles/employeeRecords.json");
 		config1.ReadConfig();
 		config1.ReadRecords();
-		std::string str1="E1003";
+		std::string str1="E1004";
 		std::string name="raghu ram";
 		int salary=22000;
 		std::string title="assistant";
@@ -90,7 +89,7 @@ class EmployeeTest : public CppUnit::TestFixture
 		config1.SetFilePath("../InputFiles/employeeRecords.json");
 		config1.ReadConfig();
 		config1.ReadRecords();
-		std::string str="E1003";
+		std::string str="E1004";
 		CPPUNIT_ASSERT_EQUAL(config1.DeleteRecordInp(str),true);
 	}
     void rainytestdeleteRecord()
@@ -108,7 +107,7 @@ class EmployeeTest : public CppUnit::TestFixture
 		config1.SetFilePath("../InputFiles/employeeRecords.json");
 		config1.ReadConfig();
 		config1.ReadRecords();
-		std::string str="E1003";
+		std::string str="E1004";
 		CPPUNIT_ASSERT_EQUAL(config1.GetPayrollDetailsInp(str),true);
 	}
     void rainygetpayrolldetails()

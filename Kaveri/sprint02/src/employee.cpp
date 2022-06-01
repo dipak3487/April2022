@@ -156,6 +156,7 @@ bool Config::SaveRecordinjson()
 	builder["commentStyle"] = "None";
 	builder["indentation"] = "   ";
 	std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+	//std::ofstream outputFileStream(filePath);
 	std::ofstream outputFileStream("../InputFiles/test.json");
 	writer->write(root, &outputFileStream);
 	outputFileStream.close();
@@ -177,15 +178,15 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
 		Employee &e = *it;
 		if(e.empCode == code)
 		{
-			if(name != " ")
+			if(name.length() >= MIN_NAME_LENGTH)
 			{
 				e.name=name;
 			}
-			if(salary != 0)
+			if(salary >= 1000)
 			{
 				e.salary=salary;
 			}
-			if(title!=" ")
+			if(title.length() >= MIN_TITLE_LENGTH)
 			{
 				e.title=title;
 			}
@@ -358,7 +359,7 @@ bool Config::CreateRecord()
 	std::cin >> salary;
 	while(salary< MIN_SALARY)
 	{
-		std::cout<<"Salary can not be less than 10,000.Please enter the salary again: "<<std::endl;
+		std::cout<<"Salary can not be less than 1,000.Please enter the salary again: "<<std::endl;
 		std::cout<<"Employee Salary: ";
 		std::cin>>salary;
 	}
@@ -418,7 +419,8 @@ bool Config::DeleteRecordInp(std::string code)
         Employee &e = *it;
         if(e.empCode == code)
         {
-            std::cout<<"delete record failed."<<std::endl;
+            std::cout<<"delete record failed or duplicate employee code is present"<<std::endl;
+
         }
     }
 	SaveRecordinjson();

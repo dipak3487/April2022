@@ -71,7 +71,7 @@ void createUserPreferenceThread() {
 
     int flag = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
     if(flag != 0) {
-        printf(" thread can not be created, error number = %d\n", flag);
+        cout<<" thread can not be created, error number = %d\n"<< flag<<endl;
         exit(0);
     }
 }
@@ -112,10 +112,10 @@ int main(int argc,char* argv[])
 	}
 	*/
 	createUserPreferenceThread();
+	cout<<"change value : "<<change<<endl;
 
 	while(1)
 	{
-		cout<<"userpreference"<<change<<endl;
 		if(change==1)
 		{
 			cout<<"1.Create new Employee details"<<endl;

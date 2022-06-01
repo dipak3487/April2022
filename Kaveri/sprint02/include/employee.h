@@ -47,7 +47,7 @@ class Config
     static int SetUserPreference(int flag) { return flag; };
     bool ReadRecords();
     bool ReadOneRecord();
-	bool EditRecord();//will update vector record
+	bool EditRecord();
 	bool CreateRecord();
 	bool SearchRecord();
 	bool DeleteRecord();

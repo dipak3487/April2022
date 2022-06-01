@@ -2,18 +2,6 @@
    "EmployeeRecords" : 
    [
       {
-         "empCode" : "E1002",
-         "name" : "Sachin Ramesh Tendulkar",
-         "salary" : 20000,
-         "title" : "Analyst"
-      },
-      {
-         "empCode" : "E1003",
-         "name" : "verender Sehwag",
-         "salary" : 30000,
-         "title" : "Manager"
-      },
-      {
          "empCode" : "E1004",
          "name" : "Mahendrasingh Dhoni",
          "salary" : 50000,
@@ -24,6 +12,18 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
+      },
+      {
+         "empCode" : "E8234",
+         "name" : "hardik pandya",
+         "salary" : 20000,
+         "title" : "analyst"
+      },
+      {
+         "empCode" : "E8234",
+         "name" : "hardik pandya",
+         "salary" : 20000,
+         "title" : "analyst"
       }
    ]
 }
