@@ -10,7 +10,7 @@
  */ 			
 
 #include <iostream>
-#include "../include/date.h"
+#include "date.h"
 
 Date strToDate(char * date) {
     if (date ==  NULL) {

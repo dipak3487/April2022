@@ -1,5 +1,5 @@
 ../bin/program: ../obj/date.o ../obj/car.o ../obj/customer.o ../obj/rentals.o ../obj/main.o
-		g++ ../obj/date.o ../obj/car.o ../obj/customer.o ../obj/rentals.o ../obj/main.o -l sqlite3 -l ncurses -g -o ../bin/program
+		g++ ../obj/date.o ../obj/car.o ../obj/customer.o ../obj/rentals.o ../obj/main.o -l sqlite3 -lpthread -l ncurses -g -o ../bin/program
 
 ../obj/date.o:	../src/date.cpp
 		g++ -g -o ../obj/date.o -c ../src/date.cpp -I../include/

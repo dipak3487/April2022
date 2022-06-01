@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <sqlite3.h>
-#include "../include/rentals.h"
+#include "rentals.h"
 
 int getCurrentRentalID() {    //this function returns the rental id for a customer who rents a car.
 	//establishing connection with database
