@@ -127,7 +127,7 @@ string figureGrade(int totalMarks, int size) {
 	return "null";
 }
 //using class
-class student {
+class Student {
 	string name, cls; 
 	int rollNumber;
 	int eng, science , history , math ,social;
@@ -319,7 +319,7 @@ void showReports() {
 
 	ConsoleTable table(1, 1, tableFormat::Alignment::centre);
 
-	// creating struct
+	// creating class
 	ConsoleTable::TableChars chars;
 		// modifying characters
 	chars.topLeft = '*';
@@ -369,10 +369,10 @@ void showReports() {
 void actions(int& option) {
 	switch(option) {
 		case 1: 
-			checkReport();
+			addReport();
 			break;
 		case 2: 
-			addReport();
+			checkReport();
 			break;
 		case 3: 
 			updateReport();
