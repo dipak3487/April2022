@@ -1,8 +1,9 @@
 #ifndef _VACCINE_H
 #define _VACCINE_H
-
 #include <sqlite3.h>
 
+
+//Creating class of Vaccine
 class Vaccine
 {
 	private:
