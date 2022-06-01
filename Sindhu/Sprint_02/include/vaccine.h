@@ -1,8 +1,9 @@
 #ifndef _VACCINE_H
 #define _VACCINE_H
-
 #include <sqlite3.h>
 
+
+//Creating class of Vaccine
 class Vaccine
 {
 	private:
@@ -13,6 +14,7 @@ class Vaccine
 		int bno;
 		int units;
 		int backup;
+		int cost;
 		std::string aadhar_no;
 		char gender;
 		std::string name;
@@ -24,9 +26,10 @@ class Vaccine
 
 	public:
 		void menu();
-		void getData();//takes data from the user
+		void getData();//takes Citizen data from the user
 		void addNew();//data is added to the  database
 		void addNew_Vaccine();
+		void get_VaccineData();//takes Vaccine Data from the user
 		void showData();//display data
 		void view_all();//view the entire Citizen database
 		void view_Vac();
@@ -34,7 +37,10 @@ class Vaccine
 		void search_name();
 		void search_aadhar();
 		void search_mobile();
+		void createUserPreferenceThread();
 		void view_Vaccine();//operations on the vaccine inventory
+		int countRecords();
+		
 };
 
 #endif

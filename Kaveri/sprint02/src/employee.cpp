@@ -82,8 +82,8 @@ bool Config::ReadConfig()
     Json::Reader jr;
 
     jr.parse(ifs, configRoot);
-
-    return true;
+	ifs.close();
+	return true;
 }
 
 /*
@@ -156,9 +156,10 @@ bool Config::SaveRecordinjson()
 	builder["commentStyle"] = "None";
 	builder["indentation"] = "   ";
 	std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
-	std::ofstream outputFileStream("../config/test.json");
+	//std::ofstream outputFileStream(filePath);
+	std::ofstream outputFileStream("../InputFiles/test.json");
 	writer->write(root, &outputFileStream);
-
+	outputFileStream.close();
     return true;
 }
 
@@ -177,15 +178,15 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
 		Employee &e = *it;
 		if(e.empCode == code)
 		{
-			if(name != " ")
+			if(name.length() >= MIN_NAME_LENGTH)
 			{
 				e.name=name;
 			}
-			if(salary != 0)
+			if(salary >= 1000)
 			{
 				e.salary=salary;
 			}
-			if(title!=" ")
+			if(title.length() >= MIN_TITLE_LENGTH)
 			{
 				e.title=title;
 			}
@@ -253,7 +254,7 @@ bool Config::EditRecord()
 				std::cout<<"Salary";	std::cin>>editsalary; 
 				while(editsalary<MIN_SALARY)
 				{
-					std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
+					std::cout<<"salary can not be less than 1000. enter the salary again"<<std::endl;
 					std::cout<<"Salary";	std::cin>>editsalary; 
 				}
 			}
@@ -285,16 +286,17 @@ return: true when success, false when failed to run.
 */
 bool Config::CreateRecordInp(std::string newname, std::string newempCode, int newsalary, std::string newtitle)
 {
-	bool res = true;
 	std::string name;
     std::string empCode;
     int salary;
+	int flag=0;
     std::string title;
-	if(name.length()<MIN_NAME_LENGTH || newempCode.length() != EMPCODE_LENGTH || newsalary < MIN_SALARY || newtitle.length() < MIN_TITLE_LENGTH)
+	try
+	{
+	if(newname.length()<MIN_NAME_LENGTH || newsalary < MIN_SALARY || newtitle.length() < MIN_TITLE_LENGTH || newempCode.length()!=EMPCODE_LENGTH)
     {
-        std::cout<<"you have not followed the guidelines for creation of employee details"<<std::endl;
-        res = false;
-    }
+		throw flag;
+    }	
     else
     {
     name=newname;
@@ -307,15 +309,22 @@ bool Config::CreateRecordInp(std::string newname, std::string newempCode, int ne
             Employee &e = *it;
             if(e.empCode == newempCode)
             {
+				SaveRecordinjson();
                 std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
                 std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
                 std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
                 std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+				return true;
             }
         } 
-	SaveRecordinjson();
 	}
- return res;
+	}
+	catch(int x)
+	{
+		std::cout<<"the employee details are not valid. " <<std::endl;
+		return false;
+	}
+return false;
 }
 
 
@@ -350,7 +359,7 @@ bool Config::CreateRecord()
 	std::cin >> salary;
 	while(salary< MIN_SALARY)
 	{
-		std::cout<<"Salary can not be less than 10,000.Please enter the salary again: "<<std::endl;
+		std::cout<<"Salary can not be less than 1,000.Please enter the salary again: "<<std::endl;
 		std::cout<<"Employee Salary: ";
 		std::cin>>salary;
 	}
@@ -410,7 +419,8 @@ bool Config::DeleteRecordInp(std::string code)
         Employee &e = *it;
         if(e.empCode == code)
         {
-            std::cout<<"delete record failed."<<std::endl;
+            std::cout<<"delete record failed or duplicate employee code is present"<<std::endl;
+
         }
     }
 	SaveRecordinjson();
@@ -528,5 +538,9 @@ return true;
 
 Config::Config()
 {
-	std::cout<<" Welcome to Employee Management System"<<std::endl;
+	std::cout<<" \t Welcome to Employee Management System "<<std::endl;
+}
+Config::~Config()
+{
+	std::cout<<"\t  Thank you for using Employee Management System"<<std::endl;
 }

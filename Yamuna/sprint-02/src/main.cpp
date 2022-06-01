@@ -8,49 +8,24 @@
 
 #include "UI.h"
 #include "Bus.h"
-
+#include"json.h"
 
 using namespace std;
 
-/*
-Config config;
-
-int parsecommandline(int argc,char* argv[])
-{
-	config.setFilePath(argv[1]);
-	return 0;
-}
-
-
-*/
 
 
 
-
-int main()		//int argc,char* argv[]
-
+int main(int argc,char*argv[])		
 {
 
-/*
-	parsecommandline(argc, argv);
-
-	config.readConfig();
-	config.readRecords();
-
-
-*/
-
-
-
-
-
-
+	
 	int choice;
-	std::vector<Bus> busses;
+	
 	int busIndex = 0;
     string name;
 	int seatNo;
-
+	
+	readJsonFile(argv[1]);
 	while(1)
 	{
 		UI::DisplayMainMenu();

@@ -3,8 +3,7 @@
 
 #include<iostream>
 #include<fstream>
-#include "employeeTest.h"
-#include "employee.h"
+#include "studenttest.h"
 
 using namespace std;
 
@@ -13,7 +12,7 @@ int main(int argc,char* argv[])
 {
 	CppUnit::TextUi::TestRunner runner;
 
-    runner.addTest(EmployeeTest::suite());
+    runner.addTest(StudentTest::suite());
 	runner.run();
 	return 0;
 }
