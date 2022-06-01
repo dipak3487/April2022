@@ -8,12 +8,17 @@
 #include<bits/stdc++.h>
 #include "vaccine.h"
 
-
 using namespace std;
 
-/*
+//
+//Define Menu functionality
+//
+
+/* 
 void Vaccine::menu()
-{
+{	
+    int up;
+
     if(up ==1)
     {
     cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
@@ -44,13 +49,17 @@ else
     cout<<"\n\t\t\t\t5: Exit"<<endl;
 }
 
-}*/
+}
 
+*/
+//Get CitizenData 
+//definition
 
 void Vaccine::getData(){
+//      Taking Input Detail from User(Citizen)
 	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
-	 
+	
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     cout<<"\n\t\t Enter Name :-  ";
 
@@ -66,8 +75,6 @@ void Vaccine::getData(){
 					std::getline(std::cin,aadhar_no);
 				}
    
-	
-
     cout<<"\n\t\t Enter the gender (M|F) :-  ";
     cin>>gender;
 
@@ -138,6 +145,10 @@ int password()
     else
         return 0;
 }
+
+//
+//View Vaccine method definition
+//
 void Vaccine::view_Vaccine()
 {
 
@@ -170,7 +181,7 @@ cin>>ch;
 
     
 }
-
+//callback method definitaion...
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    int i;
    for(i = 0; i<argc; i++) {
@@ -179,6 +190,9 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
    printf("\n");
    return 0;
 }
+//
+//Defining Search Citizen Funtionlaity
+//
 void Vaccine::Search_Citizen_Records()
 {
 
@@ -217,6 +231,10 @@ cin>>ch;
 
 }
 
+//
+//
+//implementing Search functionality
+//
 void Vaccine::search_name()
 {
 string name,data;
@@ -247,20 +265,26 @@ sqlite3* db;
    sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
    sqlite3_close(db);
 }	
-
-
+//
+//
+//Implementing search by Aadhar functionality
+//
 void Vaccine::search_aadhar()
 {
 string aadhar_no;
 sqlite3* db;
 
     int rc;
-
+//
+//Checking Database connection
+//
     rc = sqlite3_open("example.db", &db);
     std::ostringstream temp;
     std::string command;
-    
 
+//  
+//Checking Database Connection
+//
    if( rc ) {
       fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 
@@ -272,15 +296,17 @@ sqlite3* db;
     cin>>aadhar_no;
     temp << "SELECT * FROM CITIZEN_RECORDS WHERE Aadhar_No = '"<<aadhar_no<<"' ;";
 
-    command=temp.str();
-    //rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
+    command=temp.str();  
   
    sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
    sqlite3_close(db);
 }	
 
 
-
+//
+//
+//Implementaion of Search Citizen Records By Mobile Number
+//
 void Vaccine::search_mobile()
 {
     string mobile_no;
@@ -339,8 +365,10 @@ std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     
     }
 
-		
-		
+//
+//Implementing Add New Vaccine Funtionality
+//
+//
 void Vaccine::addNew_Vaccine()
 {
 
@@ -377,6 +405,7 @@ command=temp.str();
 
 
 }
+//Implemeting View All Citizen Rocord
 void Vaccine:: view_all()
 {
 
@@ -398,8 +427,10 @@ sqlite3* db;
 sqlite3_close(db);
 
 }
-
-
+//
+//Implemeting View Vaccine Record
+//
+//
 void Vaccine:: view_Vac()
 {
 
@@ -422,7 +453,9 @@ sqlite3* db;
 sqlite3_close(db);
 
 }
-
+//
+//Implementing Add New Citizen Record...
+//
 void Vaccine::addNew()
 {
  sqlite3* db;
@@ -457,6 +490,7 @@ command=temp.str();
 
 }
 
+<<<<<<< HEAD
 int countRecords()
 {
 
@@ -492,6 +526,12 @@ sqlite3* db;
 
 }
 
+=======
+//
+//
+//Implementing showData() to Display Citizen record 
+//
+>>>>>>> 33835b81a24a066e6f4275ebca45a727ed53ac74
 void Vaccine::showData()
 {
 

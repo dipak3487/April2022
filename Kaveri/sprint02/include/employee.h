@@ -33,16 +33,18 @@ class Config
     std::vector<Employee> records;
 
     private:
+    public:
 	bool EditRecordInp(std::string code,std::string name,int salary,std::string title);
 	bool CreateRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
 	bool SearchRecordInp(std::string str);
 	bool DeleteRecordInp(std::string code);
 	bool GetPayrollDetailsInp(std::string code);
-    public:
-    bool ReadConfig();
+	bool ReadConfig();
     Config(std::string configFilePath);
 	Config();
+	~Config();
     bool SetFilePath(std::string path);
+    static int SetUserPreference(int flag) { return flag; };
     bool ReadRecords();
     bool ReadOneRecord();
 	bool EditRecord();//will update vector record
