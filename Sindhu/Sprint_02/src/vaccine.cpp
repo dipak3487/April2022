@@ -311,7 +311,33 @@ void Vaccine::search_mobile()
    sqlite3_close(db);
 }	
 
+void Vaccine::get_VaccineData()
+{
+std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    cout<<"\n\t\t Enter Vaccine Brand Name :-  ";
+    std::getline (std::cin,v_name);
+	
 
+    cout<<"\n\t\t Enter Brand Description  :-  ";
+    getline (std::cin,desc);
+	
+
+    cout<<"\n\t\t Enter the Expiry Date :-  ";
+    cin>>date;
+
+    cout<<"\n\t\t Enter the  BATCH Number:- ";
+    cin>>bno;
+        
+    cout<<"\n\t\t Enter the Number of Units :-  ";
+    cin>>units;
+
+    cout<<"\n\t\t Enter Backup Stock number if available:-  ";
+    cin>>backup;
+    
+    cout<<"\n\t\t Enter total Cost:-  ";
+    cin>>cost;
+    
+    }
 
 		
 		
@@ -333,28 +359,9 @@ sqlite3* db;
    } else {
       fprintf(stderr, "Opened database successfully\n");
    }
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-    cout<<"\n\t\t Enter Vaccine Brand Name :-  ";
-    std::getline (std::cin,v_name);
-	
-
-    cout<<"\n\t\t Enter Brand Description  :-  ";
-    getline (std::cin,desc);
-	
-
-    cout<<"\n\t\t Enter the Expiry Date :-  ";
-    cin>>date;
-
-    cout<<"\n\t\t Enter the  BATCH Number:- ";
-    cin>>bno;
-        
-    cout<<"\n\t\t Enter the Number of Units :-  ";
-    cin>>units;
-
-    cout<<"\n\t\t Enter Backup Stock number if available:-  ";
-    cin>>backup;
-        
-temp << "INSERT INTO VACCINE_INVENTORY VALUES ('"<< v_name <<"','" << desc <<"', "<< date <<"," << bno <<","<< units <<","<<backup<<")";
+    
+   get_VaccineData();  
+temp << "INSERT INTO VACCINE_INVENTORY VALUES ('"<< v_name <<"','" << desc <<"', "<< date <<"," << bno <<","<< units <<","<<backup<<","<<cost<<")";
 
 command=temp.str();
  rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
@@ -450,7 +457,40 @@ command=temp.str();
 
 }
 
+int countRecords()
+{
 
+sqlite3* db;
+    char* zErrMsg=0;
+    int rc;
+    int count = 0;
+
+
+    rc = sqlite3_open("example.db", &db);
+    std::ostringstream temp;
+    std::string command;
+    
+
+   if( rc ) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+
+   } else {
+      fprintf(stderr, "Opened database successfully\n");
+   }
+
+   rc = sqlite3_exec(db, "select count(*) from VACCINE_INVENTORY", callback, &count, &zErrMsg);
+
+   
+   if( rc != SQLITE_OK ){
+      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+   } else {
+      fprintf(stdout, "Records created successfully\n");    
+   }
+   sqlite3_close(db);
+   return 0;
+
+}
 
 void Vaccine::showData()
 {

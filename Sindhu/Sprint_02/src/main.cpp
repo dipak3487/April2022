@@ -167,6 +167,7 @@ do
                  break;
          case 3:
 		   vaccineDB.view_all();
+		   //.countRecords();
                 break;
           
           case 4:  
