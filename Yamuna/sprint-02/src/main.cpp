@@ -134,8 +134,8 @@ int main()		//int argc,char* argv[]
                 }
                 cin >> busIndex;
 
-                cout <<"Enter your name :"<<endl;
-                cin >> name;
+                //cout <<"Enter your name :"<<endl;
+               // cin >> name;
 
                 cout <<"Choose your SeatNo :"<<endl;
                 cin >> seatNo;
