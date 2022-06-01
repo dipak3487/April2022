@@ -13,7 +13,7 @@
 //#include <conio.h>
 //#include <curses.h>
 #include<cstdio>
-#include "../include/employee.h"
+#include "employee.h"
 #include <pthread.h>
 #include<fcntl.h>
 
@@ -28,9 +28,17 @@ Config config;
 
 */
 
-int parsecommandline(int argc,char* argv[])
+int ParseCommandLine(int argc,char* argv[])
 {
-	config.setFilePath(argv[1]);
+	if(argc !=2)
+	{
+		cout<<"the employee data is not given"<<endl;
+		exit(0);
+	}
+	if(argv[1]!= NULL)
+	{
+		config.SetFilePath(argv[1]);
+	}
 	return 0;
 }
 
@@ -40,11 +48,10 @@ pthread_t pthread1;
 
 void* userPreferenceThread(void *arg) {
     char *input = (char *)arg;
-	cout<<"Started: %s\n"<< input;
+//	cout<<"Started: %s\n"<< input;
 
     while(true) {
         
-		//if /tmp/nice file exists
         if (access("/tmp/nice", F_OK) == 0)
         {
 			// Config::SetUserPreference(1); //nice menu
@@ -58,7 +65,6 @@ void* userPreferenceThread(void *arg) {
 
         sleep(1);
     }
-    //pthread_exit(arg);
     return arg;
 }
 
@@ -68,10 +74,9 @@ void createUserPreferenceThread() {
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
-    int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
-    //int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
-    if(rc != 0) {
-        printf("Error occurred, thread could not be created, errno = %d\n", rc);
+    int flag = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+    if(flag != 0) {
+        printf(" thread can not be created, error number = %d\n", flag);
         exit(0);
     }
 }
@@ -79,12 +84,12 @@ void createUserPreferenceThread() {
 int main(int argc,char* argv[])
 {
 	int choice=0;
-	parsecommandline(argc, argv);
+	ParseCommandLine(argc, argv);
 
-	config.readConfig();
-	config.readRecords();
+	config.ReadConfig();
+	config.ReadRecords();
 	
-
+/*
 	cout<<"Enter Admin Login Credentials:"<<endl;
 	std::string adminid = "ADMIN";
     std::string user;
@@ -110,7 +115,7 @@ int main(int argc,char* argv[])
 		cout<<"Invalid user"<<endl;
 		exit(0);
 	}
-	
+	*/
 	createUserPreferenceThread();
 
 	while(1)
@@ -133,25 +138,33 @@ int main(int argc,char* argv[])
 		switch(choice)
         {
 			case 1:
-				config.createRecord();
+				if(change == 1)
+				{
+					config.CreateRecord();
+				}
 				break;
 			case 2:
-				config.editRecord();
+				if(change == 1)
+				{
+					config.EditRecord();
+				}
 				break;
 			case 3:
-				config.deleteRecord();
+				if(change == 1)
+				{
+					config.DeleteRecord();
+				}
 				break;
 			case 4:
-				config.searchRecord();
+				config.SearchRecord();
 				break;
 			case 5:
-				config.getpayrolldetails();
+				config.GetPayrollDetails();
 				break;
 			case 6:
 				exit(0);
 			default:
 				cout<<"Please enter 1/2/3/4/5/6 only "<<endl;
-		//		exit(0);
 		}
 	}
 	

@@ -13,27 +13,30 @@ Description: executes the files which are asked in main.cpp
 #include "employee.h"
 #include<memory>
 #include<bits/stdc++.h>
-
+#define MIN_NAME_LENGTH 4
+#define MIN_SALARY 1000
+#define MIN_TITLE_LENGTH 4
+#define EMPCODE_LENGTH 5
 /*
-filename : setFilePath
+filename : SetFilePath
 created on : 25th May 2022
-Description: sets the input path to the filePath
+Description: sets the input path to the filePath string.
+return true on success, and return false in case of failure.
 */
-//std::string filePath="../config/employeeRecords.json";
-bool Config::setFilePath(std::string path)
+bool Config::SetFilePath(std::string path)
 {
     filePath = path;
     return true;
 }
 
 /*
-filename : readOneRecord
+filename : ReadOneRecord
 created on : 25th May 2022
-Description: reads one record and append it to records vector.
-
+Description: reads one employee's record and append it to records vector.
+return true on success, and return false in case of failure.
 */
 
-bool Config::readOneRecord()
+bool Config::ReadOneRecord()
 {
 
 	emp.name = oneEmp["name"].asString();
@@ -48,29 +51,31 @@ bool Config::readOneRecord()
 }
 
 /*
-filename : readRecords
+filename : ReadRecords
 created on : 25th May 2022
-Description: takes the records from json value and ask the readOneRecord function to append them into records vector 
+Description: takes the records from json value and calls the ReadOneRecord function to append them into records vector 
+return true on success, and return false in case of failure.
 */
 
-bool Config::readRecords()
+bool Config::ReadRecords()
 {
     const Json::Value EmpRecords = configRoot["EmployeeRecords"];
     for ( int index = 0; index < EmpRecords.size(); ++index )
     {
         oneEmp = EmpRecords[index];
-        readOneRecord();
+        ReadOneRecord();
     }
     return true;
 }
 
 /*
-filename : readConfig
+filename : ReadConfig
 created on : 25th May 2022
-Description: takes the input file from filepath and parse it to a json value
+Description: takes the input file path from filepath string and parse it to a json value
+return true on success, and return false in case of failure.
 */
 
-bool Config::readConfig()
+bool Config::ReadConfig()
 {
     std::ifstream ifs(filePath);
 
@@ -82,11 +87,12 @@ bool Config::readConfig()
 }
 
 /*
-filename : searchRecord
+filename : SearchRecordInp
 created on : 25th May 2022
-Description: searches for an employee record based on the empCode of the employee 
+Description: It takes the empcode of an employee gives it to the records vector and store the vector in the json file given in saverecordinjson file.
+return true on success, and return false in case of failure.
 */
-bool Config::searchRecordInp(std::string str)
+bool Config::SearchRecordInp(std::string str)
 {
 	std::vector<Employee> :: iterator it;
 	for(it=records.begin(); it!=records.end(); it++)
@@ -98,30 +104,37 @@ bool Config::searchRecordInp(std::string str)
 				std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
 				std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
 				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
-				//res = true;
 				return true;
 		}
 	}
 	return false;
 }
-bool Config::searchRecord()
+
+
+/*
+filename : SearchRecord
+created on : 25th May 2022
+Description: It asks the user to enter the empcode of an employee and calls the function SearchRecordInp with the details the user gave to the function.
+return true on success, and return false in case of failure.
+*/
+bool Config::SearchRecord()
 {
 	std::string str1;
 
 	std::cout<<"enter the empCode of the employee"<<std::endl;
 	std::cin>>str1;
 	
-	searchRecordInp(str1);	
+	SearchRecordInp(str1);	
 	return true;
 }
 
 /*
-filename : saverecordinjson
+filename : SaveRecordinjson
 created on : 25th May 2022
-Description: saves the records vector in json file 
+Description: Saves the records vector in json file. 
 */
 
-bool Config::saverecordinjson()
+bool Config::SaveRecordinjson()
 {
 	Json::Value root, content;
 
@@ -150,11 +163,13 @@ bool Config::saverecordinjson()
 }
 
 /*
-filename : editRecord
+filename : EditRecordInp
 created on : 25th May 2022
-Description: edits an employee record based on the empCode of the employee 
+Description: It takes the details of an employee and checks whether changes have been made or not, if changes are made we edit them and gives it to the records vector and store the vector in the json file given in saverecordinjson file.
+return true on success, return false in case of failure.
 */
-bool Config::editRecordInp(std::string code,std::string name,int salary,std::string title)
+
+bool Config::EditRecordInp(std::string code,std::string name,int salary,std::string title)
 {
 	bool result = false;
 	for(auto it=records.begin(); it!=records.end(); it++)
@@ -177,11 +192,33 @@ bool Config::editRecordInp(std::string code,std::string name,int salary,std::str
 			result =true;
 		}
 	}
-	saverecordinjson();
+	SaveRecordinjson();
+	std::cout<<"The edited record details are:"<<std::endl;
+    for(auto it=records.begin(); it!=records.end(); it++)
+    {
+        Employee &e = *it;
+        if(e.empCode == code)
+        {
+                std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+                std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
+                std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
+                std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+        }
+
+    }
+
 
 return result;
 }
-bool Config::editRecord()
+
+/*
+filename : EditRecord
+created on : 25th May 2022
+Description: It asks the user to enter the empcode and ask the user to enter the details of an employee the user wants to edit and calls the EditRecordInp function.
+return true on success, return false in case of failure.
+*/
+
+bool Config::EditRecord()
 {
 	std::string code;
 	std::string string1;
@@ -200,7 +237,7 @@ bool Config::editRecord()
 				std::cout<<"change the name"<<std::endl;
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				std::cout << " Name: ";		std::getline(std::cin,editname);
-				while((editname).length() < 4)
+				while((editname).length() < MIN_NAME_LENGTH)
 				{
 					std::cout<<"name can't be less than 4 letters.please enter the name again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -214,7 +251,7 @@ bool Config::editRecord()
 			{
 				std::cout<<"change the salary"<<std::endl;
 				std::cout<<"Salary";	std::cin>>editsalary; 
-				while(editsalary<10000)
+				while(editsalary<MIN_SALARY)
 				{
 					std::cout<<"salary can not be less than 10000. enter the salary again"<<std::endl;
 					std::cout<<"Salary";	std::cin>>editsalary; 
@@ -228,45 +265,67 @@ bool Config::editRecord()
 				std::cout<<"change the title"<<std::endl;
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				std::cout << " title: ";		std::getline(std::cin,edittitle);
-				while((edittitle).length() < 4)
+				while((edittitle).length() < MIN_TITLE_LENGTH)
 				{
 					std::cout<<"employee title can't be less than 4 letters.please enter the title again"<<std::endl;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 					std::cout << " Title: ";	std::getline(std::cin,edittitle);
 				}
 			}
-		editRecordInp(code,editname,editsalary,edittitle);
+		EditRecordInp(code,editname,editsalary,edittitle);
 	return true;
 }
 
+
 /*
-filename : createRecordInp
+filename : CreateRecordInp
 created on : 25th May 2022
-Description: It takes all the details(name,empCode,salary,title) of an employee, gives it to the records vector and store the vector the json file given in saverecordinjson file.
+Description: It takes all the details(name,empCode,salary,title) of an employee, gives it to the records vector and store the vector in the json file given in saverecordinjson file.
 return: true when success, false when failed to run.
 */
-bool Config::createRecordInp(std::string newname, std::string newempCode, int newsalary, std::string newtitle)
+bool Config::CreateRecordInp(std::string newname, std::string newempCode, int newsalary, std::string newtitle)
 {
+	bool res = true;
 	std::string name;
     std::string empCode;
     int salary;
     std::string title;
+	if(name.length()<MIN_NAME_LENGTH || newempCode.length() != EMPCODE_LENGTH || newsalary < MIN_SALARY || newtitle.length() < MIN_TITLE_LENGTH)
+    {
+        std::cout<<"you have not followed the guidelines for creation of employee details"<<std::endl;
+        res = false;
+    }
+    else
+    {
     name=newname;
     empCode=newempCode;
     salary=newsalary;
     title=newtitle;
     records.push_back(Employee(name, empCode, salary, title));
- 
-	saverecordinjson();
- return true;
+	for(auto it=records.begin(); it!=records.end(); it++)
+        {
+            Employee &e = *it;
+            if(e.empCode == newempCode)
+            {
+                std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
+                std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
+                std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
+                std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+            }
+        } 
+	SaveRecordinjson();
+	}
+ return res;
 }
+
+
 /*
-filename : createRecordInp
+filename : CreateRecord
 created on : 25th May 2022
-Description: It asks the user to enter all the details(name,empCode,salary,title) of an employee and calls the function createRecordInp with the details the user gave to the function.  
+Description: It asks the user to enter all the details(name,empCode,salary,title) of an employee and calls the function CreateRecordInp with the details the user gave to the function.  
 return: true when success, false when failed to run.
 */
-bool Config::createRecord()
+bool Config::CreateRecord()
 {
 	
 	std::string name;
@@ -279,7 +338,7 @@ bool Config::createRecord()
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout <<"Employee Name: ";		
 		std::getline(std::cin,name);
-	while(name.length() < 4)
+	while(name.length() < MIN_NAME_LENGTH)
 	{
 		std::cout<<"Name cannnot be less than 4 letters.Please enter the name again."<<std::endl;	
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	
@@ -289,7 +348,7 @@ bool Config::createRecord()
 
 	std::cout <<"Employee Salary: ";	
 	std::cin >> salary;
-	while(salary<10000)
+	while(salary< MIN_SALARY)
 	{
 		std::cout<<"Salary can not be less than 10,000.Please enter the salary again: "<<std::endl;
 		std::cout<<"Employee Salary: ";
@@ -299,7 +358,7 @@ bool Config::createRecord()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout <<"Employee Code: ";
 	std::getline(std::cin,empCode);
-	while(empCode.length()!=5)
+	while(empCode.length()!= EMPCODE_LENGTH)
 	{
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout <<"Invalid Emp Code.Please enter Emp Code of length 5. "<<std::endl;
@@ -310,7 +369,7 @@ bool Config::createRecord()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout <<"Employee Title: ";	
 	std::getline(std::cin,title);
-	while(title.length() < 4)
+	while(title.length() < MIN_TITLE_LENGTH)
 	{
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout <<"Invalid title.Please enter Employee title having length more than 4 letters. " <<std::endl;
@@ -320,18 +379,19 @@ bool Config::createRecord()
 	break;
 	}
 	
-Config::createRecordInp(name, empCode,  salary, title);
+Config::CreateRecordInp(name, empCode,  salary, title);
 	
 return true;
 
 }
 
 /*
-filename : deleteRecord
+filename : DeleteRecordInp
 created on : 25th May 2022
-Description: delete an employee record based on the empCode of the employee 
+Description: It takes employee code as a parameter and deletes the employee details in records vector and calls the saverecordinjson file to save the updated records in json file.
+return true on success, return false in case of failure.
 */
-bool Config::deleteRecordInp(std::string code)
+bool Config::DeleteRecordInp(std::string code)
 {
 	bool result = false;
 	for(auto it=records.begin(); it!=records.end(); it++)
@@ -344,28 +404,46 @@ bool Config::deleteRecordInp(std::string code)
 			result = true;
 		}
 	}
-	saverecordinjson();
+	for(auto it=records.begin(); it!=records.end(); it++)
+    {
+
+        Employee &e = *it;
+        if(e.empCode == code)
+        {
+            std::cout<<"delete record failed."<<std::endl;
+        }
+    }
+	SaveRecordinjson();
 
 return result;
 }
-bool Config::deleteRecord()
+
+/*
+filename : DeleteRecord
+created on : 25th May 2022
+Description: It asks user to enter the empcode of an employee and calls the DeleteRecordInp function.
+return true on success, return false in case of failure.
+*/
+bool Config::DeleteRecord()
 {
 	std::string code;
 
     std::cout<<"enter the empCode of the employee"<<std::endl;
     std::cin>>code;
 
-	deleteRecordInp(code);
+	DeleteRecordInp(code);
 return true;
 
 }
 
 /*
-filename : getpayrolldetails
+filename : GetPayrollDetailsInp
 created on : 25th May 2022
-Description: gets the payroll details of an employee and asks the printpayslip function to print all the payroll details of that employee 
+Description: It takes the details from user and calculates the payroll details and calls the PrintPaySlip function to display all the payroll details. 
+return true on success, return false in case of failure.
 */
-bool Config::getpayrolldetailsInp(std::string code)
+
+bool Config::GetPayrollDetailsInp(std::string code)
 {
 	int INCOME_TAX = 0;
 	int PROVISION_FUND =0;
@@ -406,30 +484,38 @@ bool Config::getpayrolldetailsInp(std::string code)
 		NET_PAY = salary - (INSURANCE + PROVISION_FUND + INCOME_TAX);
 		result = true;
 		//std::cout << "The net salary the employee receives is \n" << NET_PAY << std::endl;
-		printpayslip(salary,INCOME_TAX,PROVISION_FUND,INSURANCE,NET_PAY);
+		PrintPaySlip(salary,INCOME_TAX,PROVISION_FUND,INSURANCE,NET_PAY);
 		}
 	}
 	return result;
 }
-bool Config::getpayrolldetails()
+
+/*
+filename : GetPayrollDetails
+created on : 25th May 2022
+Description: It asks user to enter the empcode and calls the GetPayrollDetailsInp function.
+return true on success, return false in case of failure.
+*/
+
+bool Config::GetPayrollDetails()
 {
-	std::string code;
+	std::string code; 
 
     std::cout<<"enter the empCode of the employee"<<std::endl;
     std::cin>>code;
 	
-	getpayrolldetailsInp(code);
+	GetPayrollDetailsInp(code);
 return true;
 
 }
 
 /*
-filename : printpayslip
+filename : PrintPaySlip
 created on : 25th May 2022
-Description: prints the all the payrolldetails based on the values given from getpayrollfunction 
+Description: Prints all the payrolldetails based on the values given from GetPayrollDetailsInp function.
 */
 
-bool Config::printpayslip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
+bool Config::PrintPaySlip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
 {
 
 		std::cout << "The base salary of the employee: \t" << salary << std::endl;
@@ -442,4 +528,5 @@ return true;
 
 Config::Config()
 {
+	std::cout<<" Welcome to Employee Management System"<<std::endl;
 }

@@ -4,7 +4,7 @@
       {
          "empCode" : "E1002",
          "name" : "Sachin Ramesh Tendulkar",
-         "salary" : 20000,
+         "salary" : 27655,
          "title" : "Analyst"
       },
       {
@@ -24,12 +24,6 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
-      },
-      {
-         "empCode" : "E1003",
-         "name" : "Madduri",
-         "salary" : 12345,
-         "title" : "Assistant"
       }
    ]
 }
