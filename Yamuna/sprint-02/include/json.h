@@ -33,8 +33,36 @@ bool readJsonFile(std::string filePath)
     return true;
 
 }
-//bool writeJsonFile(std::string filePath)
-//{
+
+bool writeJsonFile(std::string filePath)
+{
+	Json::Value root, content, booking;
+
+	for(auto it=busses.begin(); it!=busses.end(); it++)
+	{
+
+		Bus &busObj = *it;
+		content.clear();
+		content["busNumber"] = busObj.busNumber;
+		content["Reservations"] = Json::arrayValue;
+		for ( int index = 0; index < busObj.seats.size(); ++index )
+		{
+			booking = busObj.seats[index].c_str();
+			content["Reservations"].append(booking);
+		}
+		root["BusRecords"].append(content);
+	}
+
+	Json::StreamWriterBuilder builder;
+	builder["commentStyle"] = "None";
+	builder["indentation"] = "   ";
+	Json::StreamWriter *writer(builder.newStreamWriter());
+	std::ofstream outputFileStream(filePath);
+	writer->write(root, &outputFileStream);
+	outputFileStream.close();
+
+	return true;
+}
 
 
 #endif
