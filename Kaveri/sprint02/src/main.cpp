@@ -130,8 +130,19 @@ int main(int argc,char* argv[])
 			cout<<"5.Get Payroll details and Display details for employee"<<endl;
 		}
 		cout<<"6.EXIT"<<endl;
+	 try
+	 {
 		cout<<"Enter your choice:"<<endl;
 		cin>>choice;
+		if(choice<0)
+		{
+			throw choice;
+		}
+	 }
+	 catch(int x)
+	 {
+		 cout<<"enter positive integers only"<<endl;
+	 }
 		switch(choice)
         {
 			case 1:

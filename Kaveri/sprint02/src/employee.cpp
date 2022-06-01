@@ -288,12 +288,14 @@ bool Config::CreateRecordInp(std::string newname, std::string newempCode, int ne
 	std::string name;
     std::string empCode;
     int salary;
+	int flag=0;
     std::string title;
+	try
+	{
 	if(newname.length()<MIN_NAME_LENGTH || newsalary < MIN_SALARY || newtitle.length() < MIN_TITLE_LENGTH || newempCode.length()!=EMPCODE_LENGTH)
     {
-        std::cout<<"you have not followed the guidelines for creation of employee details"<<std::endl;
-		return false;
-    }
+		throw flag;
+    }	
     else
     {
     name=newname;
@@ -314,6 +316,12 @@ bool Config::CreateRecordInp(std::string newname, std::string newempCode, int ne
 				return true;
             }
         } 
+	}
+	}
+	catch(int x)
+	{
+		std::cout<<"the employee details are not valid. " <<std::endl;
+		return false;
 	}
 return false;
 }
