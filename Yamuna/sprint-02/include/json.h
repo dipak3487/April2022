@@ -46,7 +46,7 @@ bool readJsonFile(std::string filePath)
 
 bool writeJsonFile(std::string filePath)
 {
-	//Json::Value root, content, booking;
+
 	Json::Value root;
 
 	for(auto it=busses.begin(); it!=busses.end(); it++)
@@ -66,9 +66,9 @@ bool writeJsonFile(std::string filePath)
 
 
 			content["Reservations"] = Json::arrayValue;
-			//booking.clear();
+	
 			content["Reservations"].clear();
-		//	for ( int index = 0; index < busObj.seats.size(); ++index )
+
 			for ( int index = 0; index < 32; ++index )
 			{
 				booking = busObj.seats[index].c_str();
