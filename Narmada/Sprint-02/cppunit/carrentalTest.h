@@ -11,7 +11,7 @@ using namespace std;
 class CarTest : public CppUnit::TestFixture
 {
 	public:
-		void CarDataAdd()
+		void TestCarData()
 		{
 			string reg_no="BR29EZ7762";
 			string company1="Hyundai";
@@ -22,7 +22,7 @@ class CarTest : public CppUnit::TestFixture
 		}
 
 		CPPUNIT_TEST_SUITE(CarTest);
-		CPPUNIT_TEST(CarDataAdd);
+		CPPUNIT_TEST(TestCarData);
 		CPPUNIT_TEST_SUITE_END();
 };
 
