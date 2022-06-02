@@ -16,7 +16,7 @@ using namespace std;
 
 void Vaccine::getData(){
 	//Input Details of the Citizens administered with the vaccines from the authorised user
-	cout<<"\t\t\t\t\t\t ENTER THE GIVEN DETAILS";
+	cout<<"\t\t\t ENTER THE GIVEN DETAILS";
 	cout<<"-----------------------------------------------------------------------";
 
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -86,7 +86,7 @@ void Vaccine::view_Vaccine()
 
 	int ch;
 	cout<<"\n\t\t\t*****************************************\n";
-	cout<<"\t\t\t\t\t\t\t\tVACCINE STATISTICS";
+	cout<<"\t\t\t\t\tVACCINE STATISTICS";
 	cout<<"\n\t\t\t*****************************************\n\n";
 	cout<<"\n\t\t1.Add Data ";      
 	cout<<"\n\t\t2.Current Stock Status"; 
@@ -101,6 +101,7 @@ void Vaccine::view_Vaccine()
 			break;
 		case 2:
 			view_Vac();
+			countRecords();
 			view_Vaccine();
 			break;
 		case 3:
@@ -425,7 +426,7 @@ void Vaccine::addNewCitizen()
 }
 
 // counting datarecords for VACCINE_INVENTORY
-int countRecords()
+int Vaccine:: countRecords()
 {
 
 	sqlite3* db;
