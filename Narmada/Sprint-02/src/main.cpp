@@ -53,7 +53,7 @@ void* userPreferenceThread(void *arg) {
 }
 
 void createUserPreferenceThread() {
-	static char *thread_input1 = "User preference thread";
+	const char *thread_input1 = "User preference thread";
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
