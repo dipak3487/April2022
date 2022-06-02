@@ -207,6 +207,7 @@ int main(int argc, char** argv)
                  break;
          case 2: 
        	    vaccineDB.view_Vaccine();
+       	    vaccineDB.countRecords();
                  break;
          case 3:
 		   vaccineDB.view_all();
