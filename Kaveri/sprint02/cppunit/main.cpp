@@ -4,7 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include "employeeTest.h"
-#include "../include/employee.h"
+#include "employee.h"
 
 using namespace std;
 
