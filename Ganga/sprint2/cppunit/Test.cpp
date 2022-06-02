@@ -1,8 +1,7 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "Account.h"
-#include "BankTest.h"
+#include "AccountTest.h"
 
 using namespace std;
 int main(int argc,char* argv[])

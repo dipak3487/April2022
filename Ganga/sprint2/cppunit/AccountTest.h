@@ -9,18 +9,21 @@ using namespace std;
 class AccountTest : public CppUnit::TestFixture
 {
 	public:
-		void Create_Account ()
+		void TransactionTest ()
 		{
 			int acno=7762;
-			char name="Rushi";
+			char name[]="Rushi";
 			int deposit=2000;
 			Account ac(acno,name,deposit);
-			int b1 =ac.Withdraw(100);
-CPPUNIT_ASSERT_EQUAL(b1,1900);
+			ac.Withdraw(100);
+			CPPUNIT_ASSERT_EQUAL(ac.Retdeposit(),1900);
+			ac.Deposit(200);
+			CPPUNIT_ASSERT_EQUAL(ac.Retdeposit(),2100);
+
 
 		}
 		
 		CPPUNIT_TEST_SUITE(AccountTest);
-		CPPUNIT_TEST(Create_Account);
+		CPPUNIT_TEST(TransactionTest);
 		CPPUNIT_TEST_SUITE_END();
 };

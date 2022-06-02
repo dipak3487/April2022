@@ -4,6 +4,7 @@
 #define __bankmanagement_h
 #include<cctype>
 #include<iomanip>
+#include<string.h>
 #include<stdlib.h>
 
 using namespace std;
@@ -13,8 +14,8 @@ class Account
 	char name[50];
 	int deposit;
 public:
-//	Account(){};
-//	Account(int a, char n, int b): acno(a),name(n),deposit(b){};
+	Account(){};
+	Account(int a, char n[50], int b): acno(a),deposit(b){strncpy(name,n,50); name[49]='\0';};
 	void Create_Account();//function to get data from user
 	void Show_Account() const;//function to show data on screen
 	void Modify();//function to add new data
