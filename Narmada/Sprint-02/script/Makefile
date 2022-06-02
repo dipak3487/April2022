@@ -1,3 +1,6 @@
+#ifndef MAKEFILE_SPRINT02
+#define MAKEFILE_SPRINT02
+
 ../bin/program: ../obj/date.o ../obj/car.o ../obj/customer.o ../obj/rentals.o ../obj/main.o
 		g++ ../obj/date.o ../obj/car.o ../obj/customer.o ../obj/rentals.o ../obj/main.o -l sqlite3 -lpthread -l ncurses -g -o ../bin/program
 
@@ -18,3 +21,5 @@
 
 clean:
 		rm -r ../obj/*.o ../bin/program
+
+#endif
