@@ -4,11 +4,7 @@
 #include <typeinfo>
 #include "json/json.h"
 #include "CppConsoleTable.hpp"
-
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
 
 using tableFormat::ConsoleTable;
 
@@ -132,12 +128,7 @@ class Student {
 	int rollNumber;
 	int eng, science , history , math ,social;
 	string grade;
-public:
-	void addReport();
-        void updateReort();
-        void removeReport();
-	void showReports();
-	void actions();
+
 };
 
 
