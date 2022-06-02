@@ -40,7 +40,7 @@ void Vaccine::getData(){
 	cout<<"\n\t\t Enter the  age:- ";
 	cin>>age;
 
-	cout<<"\n\t\t Enter the  B.P. :-  ";
+	cout<<"\n\t\t Enter the  Blood Pressure. :-  ";
 	cin>>bloodPressure;
 
 	cout<<"\n\t\t Enter the Body temperature:-  ";

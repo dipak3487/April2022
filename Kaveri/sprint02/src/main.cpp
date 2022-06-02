@@ -116,22 +116,13 @@ int main(int argc,char* argv[])
 
 	while(1)
 	{
-		if(change==1)
-		{
 			cout<<"1.Create new Employee details"<<endl;
 			cout<<"2.Edit Employee details"<<endl;
 			cout<<"3.Delete Employee details"<<endl;
 			cout<<"4.Search Employee details"<<endl;
 			cout<<"5.Get Payroll details and Display details for employee"<<endl;
-		}
-		else
-		{
-			cout<<"4.Search Employee details"<<endl;
-			cout<<"5.Get Payroll details and Display details for employee"<<endl;
-		}
-		cout<<"6.EXIT"<<endl;
-	 try
-	 {
+			cout<<"6.EXIT"<<endl;
+	try{
 		cout<<"Enter your choice:"<<endl;
 		cin>>choice;
 		if(choice<0)

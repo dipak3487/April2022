@@ -193,13 +193,17 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
 			result =true;
 		}
 	}
+	if(result == false)
+	{
+		std::cout<<"\t The employee code is wrong."<<std::endl;
+	}
 	SaveRecordinjson();
-	std::cout<<"The edited record details are:"<<std::endl;
     for(auto it=records.begin(); it!=records.end(); it++)
     {
         Employee &e = *it;
         if(e.empCode == code)
         {
+				std::cout<<"The edited record details are:"<<std::endl;
                 std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
                 std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
                 std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
@@ -321,7 +325,7 @@ bool Config::CreateRecordInp(std::string newname, std::string newempCode, int ne
 	}
 	catch(int x)
 	{
-		std::cout<<"the employee details are not valid. " <<std::endl;
+		std::cout<<"\t the employee details are not valid. " <<std::endl;
 		return false;
 	}
 return false;
@@ -413,6 +417,11 @@ bool Config::DeleteRecordInp(std::string code)
 			result = true;
 		}
 	}
+	if(result == false)
+	{
+		std::cout<<"\t The employee code is not in the employee management system."<<std::endl;
+	}
+
 	for(auto it=records.begin(); it!=records.end(); it++)
     {
 
