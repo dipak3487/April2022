@@ -10,48 +10,7 @@
 
 using namespace std;
 
-//
-//Define Menu functionality
-//
 
-/* 
-   void Vaccine::menu()
-   {	
-   int up;
-
-   if(up ==1)
-   {
-   cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
-   cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-   cout<<"\t\t\t\t MAIN MENU";
-   cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-
-   cout<<"\n\t\t\t\t1: Add New Record"<<endl;
-   cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
-   cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
-   cout<<"\n\t\t\t\t4: Search"<<endl;
-   cout<<"\n\t\t\t\t5: Exit"<<endl;
-
-   }
-
-   else
-   {
-   cout<<"\t\t\t\t	W	E	L	C	O	M	E	"<<endl;
-   cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
-   cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-   cout<<"\t\t\t\t M		A	I	N 	M	E	N	U";
-   cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
-
-   cout<<"\n\t\t\t\t1: Add New Record"<<endl;
-   cout<<"\n\t\t\t\t2: View VACCINE Inventory"<<endl;
-   cout<<"\n\t\t\t\t3: View All Citizen Data"<<endl;
-   cout<<"\n\t\t\t\t4: Search"<<endl;
-   cout<<"\n\t\t\t\t5: Exit"<<endl;
-   }
-
-   }
-
- */
 //Get Citizen Data from the user with numeric constraint validation for mobile number and aadhar card number
 //
 
@@ -323,7 +282,7 @@ void Vaccine::get_VaccineData()
 	getline (std::cin,desc);
 
 
-	cout<<"\n\t\t Enter the Expiry Date :-  ";
+	cout<<"\n\t\t Enter the Expiry Year :-  ";
 	cin>>date;
 
 	cout<<"\n\t\t Enter the  BATCH Number:- ";
@@ -431,7 +390,7 @@ void Vaccine:: view_Vac()
 //
 //Implementing Add New Citizen Record, user can add new citizen records who are administered with vaccines
 //
-void Vaccine::addNew()
+void Vaccine::addNewCitizen()
 {
 	sqlite3* db;
 	char* zErrMsg=0;
@@ -450,7 +409,7 @@ void Vaccine::addNew()
 	}
 
 	getData();
-	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'" << gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
+	temp << "INSERT INTO CITIZEN_RECORDS VALUES ('"<< name <<"', "<< aadhar_no <<",'"<< gender <<"', "<< age <<"," << bloodPressure <<","<< temperature <<",'"<<Medical_conditions<<"',"<<mobileNumber<<",'"<< vaccine <<"')";
 
 	command=temp.str();
 	rc = sqlite3_exec(db,command.c_str(), callback, 0, &zErrMsg);
@@ -520,6 +479,6 @@ void Vaccine::showData()
 	cout<<"\t\t Body temperature is : "<<temperature<<endl;
 	cout<<"\t\t Medical Conditions is/are "<<Medical_conditions<<endl;
 	cout<<"\t\t Mobile number is: "<<mobileNumber<<endl;
-	cout<<"\n\t\t vaccine injected : "<<vaccine<<endl;
+	cout<<"\t\t vaccine injected : "<<vaccine<<endl;
 
 }

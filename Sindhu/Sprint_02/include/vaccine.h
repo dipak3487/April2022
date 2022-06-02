@@ -3,7 +3,7 @@
 #include <sqlite3.h>
 
 
-//Creating class of Vaccine
+//Creating Vaccine class
 class Vaccine
 {
 	private:
@@ -25,21 +25,21 @@ class Vaccine
 		char Medical_conditions[100];
 
 	public:
-		void menu();
+		void menu();//displayed on the command prompt for the user
 		void getData();//takes Citizen data from the user
-		void addNew();//data is added to the  database
-		void addNew_Vaccine();
+		void addNewCitizen();//data is added to the  database
+		void addNew_Vaccine();//data is added to the  database
 		void get_VaccineData();//takes Vaccine Data from the user
 		void showData();//display data
-		void view_all();//view the entire Citizen database
-		void view_Vac();
-		void Search_Citizen_Records();
-		void search_name();
-		void search_aadhar();
-		void search_mobile();
-		void createUserPreferenceThread();
+		void view_all();//view the entire Citizen records
+		void view_Vac();//view the entire vaccine records
+		void Search_Citizen_Records();//main menu to access the search options for Citizen table
+		void search_name();//search using name datafield
+		void search_aadhar();//search using the aadhar card number
+		void search_mobile(); //search using mobile number
+		void createUserPreferenceThread();// function for multithreading
 		void view_Vaccine();//operations on the vaccine inventory
-		int countRecords();
+		int countRecords();// count the total records in vaccine table of records
 		
 };
 

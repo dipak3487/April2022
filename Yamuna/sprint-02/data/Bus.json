@@ -1,24 +1,55 @@
 {
-    "BusRecords": [{
-            "busNumber": "MH13AB3456",
-            "Reservations": [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
-                        "driver": "Manoj"
-        },{
-            "busNumber": "MH14AB3457",
-            "Reservations": [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
-                        "driver": "Omkar"
-        },{
-            "busNumber": "MH15AB3458",
-            "Reservations": [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
-                        "driver": "Apurva"
-        },{
-            "busNumber": "MH16AB3459",
-            "Reservations": [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
-                        "driver": "Prudhvi"
-        },{
-            "busNumber": "MH17AB3455",
-            "Reservations": [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
-                        "driver": "Saikrishna"
-        }
-    ]
+   "BusRecords" : 
+   [
+      {
+         "Reservations" : [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
+         "arrivalTime" : "4AM",
+         "busNumber" : "MH13AB3456",
+         "departureTime" : "6AM",
+         "driver" : "Manoj",
+         "fromStation" : "PUNE",
+         "journeyDate" : "04-06-2022",
+         "toStation" : "MUMBAI"
+      },
+      {
+         "Reservations" : [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
+         "arrivalTime" : "4AM",
+         "busNumber" : "MH14AB3457",
+         "departureTime" : "6AM",
+         "driver" : "Omkar",
+         "fromStation" : "MAHARASHTRA",
+         "journeyDate" : "05-06-2022",
+         "toStation" : "MUMBAI"
+      },
+      {
+         "Reservations" : [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
+         "arrivalTime" : "4AM",
+         "busNumber" : "MH15AB3458",
+         "departureTime" : "6AM",
+         "driver" : "Apurva",
+         "fromStation" : "PUNE",
+         "journeyDate" : "06-06-2022",
+         "toStation" : "MAHARASHTRA"
+      },
+      {
+         "Reservations" : [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
+         "arrivalTime" : "4AM",
+         "busNumber" : "MH16AB3459",
+         "departureTime" : "6AM",
+         "driver" : "Prudhvi",
+         "fromStation" : "KARNATAKA",
+         "journeyDate" : "07-06-2022",
+         "toStation" : "MUMBAI"
+      },
+      {
+         "Reservations" : [ "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty", "Empty"],
+         "arrivalTime" : "4AM",
+         "busNumber" : "MH17AB3455",
+         "departureTime" : "6AM",
+         "driver" : "Saikrishna",
+         "fromStation" : "PUNE",
+         "journeyDate" : "08-06-2022",
+         "toStation" : "KARNATAKA"
+      }
+   ]
 }

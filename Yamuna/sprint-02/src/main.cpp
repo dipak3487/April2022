@@ -18,13 +18,13 @@ using namespace std;
 int main(int argc,char*argv[])		
 {
 
-	
+
 	int choice;
-	
+
 	int busIndex = 0;
-    string name;
+	string name;
 	int seatNo;
-	
+
 	readJsonFile(argv[1]);
 	while(1)
 	{
@@ -47,13 +47,13 @@ int main(int argc,char*argv[])
 					busIndex++;
 				}
 				cin >> busIndex;
-				
+
 				cout <<"Enter your name :"<<endl;
 				cin >> name;
 
 				cout <<"Choose your SeatNo :"<<endl;
 				cin >> seatNo;
-				
+
 				(busses[busIndex]).reserveSeat(name, seatNo);
 
 
@@ -70,21 +70,21 @@ int main(int argc,char*argv[])
 				cout << "SHOW_RESERVATION menu is selected" << endl;
 
 				busIndex = 0;
-                for(std::vector<Bus>::iterator it = busses.begin(); it != busses.end(); it++)
-                {
-                    cout << "Select " << busIndex << " for : " << endl;
-                    (*it).displayInformation();
-                    busIndex++;
-                }
-                cin >> busIndex;
-				
-			
+				for(std::vector<Bus>::iterator it = busses.begin(); it != busses.end(); it++)
+				{
+					cout << "Select " << busIndex << " for : " << endl;
+					(*it).displayInformation();
+					busIndex++;
+				}
+				cin >> busIndex;
 
 
 
 
 
-					(busses[busIndex]).showReservation();
+
+
+				(busses[busIndex]).showReservation();
 
 
 
@@ -101,19 +101,19 @@ int main(int argc,char*argv[])
 				cout << "CANCEL_RESERVATION menu is selected" << endl;
 
 				busIndex = 0;
-                for(std::vector<Bus>::iterator it = busses.begin(); it != busses.end(); it++)
-                {
-                    cout << "Select " << busIndex << " for : " << endl;
-                    (*it).displayInformation();
-                    busIndex++;
-                }
-                cin >> busIndex;
+				for(std::vector<Bus>::iterator it = busses.begin(); it != busses.end(); it++)
+				{
+					cout << "Select " << busIndex << " for : " << endl;
+					(*it).displayInformation();
+					busIndex++;
+				}
+				cin >> busIndex;
 
-                //cout <<"Enter your name :"<<endl;
-               // cin >> name;
+				//cout <<"Enter your name :"<<endl;
+				// cin >> name;
 
-                cout <<"Choose your SeatNo :"<<endl;
-                cin >> seatNo;
+				cout <<"Choose your SeatNo :"<<endl;
+				cin >> seatNo;
 
 
 
@@ -127,15 +127,15 @@ int main(int argc,char*argv[])
 
 
 
-                //seatNo.push_back("Empty");
+				//seatNo.push_back("Empty");
 
-//  seats.push_back("Empty")
-
-
-//			busses.erase(name,seatNo);
+				//  seats.push_back("Empty")
 
 
-			cout<<"your bus seat cancelled successfully"<<endl;
+				//			busses.erase(name,seatNo);
+
+
+				cout<<"your bus seat cancelled successfully"<<endl;
 
 
 
@@ -145,6 +145,7 @@ int main(int argc,char*argv[])
 
 				break;
 			case Menu::EXIT: 
+				writeJsonFile(argv[1]);
 				exit(0);
 				break;
 		}
