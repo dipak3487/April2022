@@ -2,7 +2,33 @@
 Filename : main.cpp
 Created On : 25th May 2022
 Description : This file takes the input file and calls the functions the user wants to implement. 
+The VACCINE MANAGEMENT SYSTEM implements adding Citizen records, Vacccine Records to a SQLITE3 database, the user can view the data added or search from the Citizen record datatable
+We have seperated functions to get the user input and insert the data into the database
+	void getData();//takes Citizen data from the user
+	void addNewCitizen();//data is added to the  database
+	void addNew_Vaccine();//data is added to the  database
+	void get_VaccineData();//takes Citizen data from the user
+
+Functions for the user menu, showing the inserted data on the console and view data are as follows:
+		void menu();
+		void showData();//display data
+		void view_all();//view the entire Citizen datatable
+		void view_Vac();//view the entire Vaccine datatable
+		
+Functions to execute search, the user can search by string name, aadhar card number (primary key constraint), mobile number(unique constraint)
+		void Search_Citizen_Records();//main menu function will hold options to search by name, aadhar card number, mobile number
+		void search_name();
+		void search_aadhar();
+		void search_mobile();
+		
+We have also used multithreading, with the help of the function void createUserPreferenceThread(), the fucntion checks the existence of the file /temp/nice/ in bin folder
+if the file is present the loop conditions present an different menu version, if not the regular menu
+
+
+
  */
+ 
+ 
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -22,7 +48,7 @@ using namespace std;
 int up;
 pthread_t pthread1;
 
-// Implemeting Thread  
+// Implementing Thread  
 void* userPreferenceThread(void *arg) {
 	char *input = (char *)arg;
 	printf("Started: %s\n", input);
@@ -69,7 +95,7 @@ void Vaccine::menu()
 {
 
 
-	if(up == 0)
+	if(up == 0)//regular menu
 	{
 
 		cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
@@ -87,10 +113,10 @@ void Vaccine::menu()
 
 	else
 	{
-		// Second way to display using thread 
+		// Second version of the menu to display the use of multithreading 
 		//
 		cout<<"\t\t\t\t	W	E	L	C	O	M	E	"<<endl;
-		cout<<"\n\n\t\t\t VACCINE MANAGEMENT SYSTEM  \n\n"<<endl;
+		cout<<"\n\n\t\t\t\t     VACCINE              MANAGEMENT                SYSTEM  \n\n"<<endl;
 		cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
 		cout<<"\t\t\t\t M	  A	I	N 	M	E	N	U";
 		cout<<"\n\t\t\t------------------------------------------------------------------------------------\n";
@@ -148,7 +174,7 @@ int main(int argc, char** argv)
 
 		if(strcmp(password,mypass)==0) 
 		{
-			cout <<"Correct password! \n";
+			cout <<"WELCOME! \n";
 		}
 		else
 		{
@@ -163,7 +189,7 @@ int main(int argc, char** argv)
 	}
 	//
 	//
-	//starting of routiene
+	//starting of routine
 	do
 	{
 		
@@ -176,7 +202,7 @@ int main(int argc, char** argv)
       switch(ch)
        {
          case 1: 
-	             vaccineDB.addNew();
+	             vaccineDB.addNewCitizen();
 	             vaccineDB.showData();
                  break;
          case 2: 
