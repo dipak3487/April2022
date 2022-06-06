@@ -24,35 +24,36 @@ public:
 
 class Config
 {
-    private:
-    std::string filePath;
-    Json::Value configRoot;
-    Json::Value oneEmp;
 
-    Employee emp;
-    std::vector<Employee> records;
-
-    private:
+    public:
 	bool EditRecordInp(std::string code,std::string name,int salary,std::string title);
 	bool CreateRecordInp(std::string newname, std::string newCode, int newsalary, std::string newtitle);
 	bool SearchRecordInp(std::string str);
 	bool DeleteRecordInp(std::string code);
 	bool GetPayrollDetailsInp(std::string code);
-    public:
-    bool ReadConfig();
+	bool ReadConfig();
     Config(std::string configFilePath);
 	Config();
+	~Config();
     bool SetFilePath(std::string path);
+    static int SetUserPreference(int flag) { return flag; };
     bool ReadRecords();
     bool ReadOneRecord();
-	bool EditRecord();//will update vector record
+	bool EditRecord();
 	bool CreateRecord();
 	bool SearchRecord();
 	bool DeleteRecord();
 	bool GetPayrollDetails();
 	bool SaveRecordinjson();
 	bool PrintPaySlip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY);
-  //  std::string getLogfilePath();
+    
+	private:
+    std::string filePath;
+    Json::Value configRoot;
+    Json::Value oneEmp;
+
+    Employee emp;
+    std::vector<Employee> records;
 
 };
 

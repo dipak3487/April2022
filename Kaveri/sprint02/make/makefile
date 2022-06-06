@@ -2,7 +2,7 @@
 	g++ -o ../bin/program ../obj/main.o ../obj/employee.o -ljsoncpp -lpthread
 
 ../obj/main.o: ../src/main.cpp
-	#mkdir ../obj/
+	mkdir ../obj/
 	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp -I../include/ -I../src/
 
 ../obj/employee.o: ../src/employee.cpp

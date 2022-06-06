@@ -18,3 +18,4 @@
 
 clean:
 		rm -r ../obj/*.o ../bin/program
+
