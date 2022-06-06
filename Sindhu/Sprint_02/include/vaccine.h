@@ -2,40 +2,44 @@
 #define _VACCINE_H
 #include <sqlite3.h>
 
-
-//Creating class of Vaccine
+// Creating class of Vaccine
 class Vaccine
 {
-	private:
-		int age;
-		float temperature;
-		int bloodPressure;
-		int date;
-		int bno;
-		int units;
-		int backup;
-		std::string aadhar_no;
-		char gender;
-		std::string name;
-		std::string v_name;
-		std::string desc;
-		std::string mobileNumber;
-		std::string vaccine;
-		char Medical_conditions[100];
+private:
+    int age;
+    float temperature;
+    int bloodPressure;
+    int date;
+    int bno;
+    int units;
+    int backup;
+    int cost;
+    std::string aadhar_no;
+    char gender;
+    std::string name;
+    std::string v_name;
+    std::string desc;
+    std::string mobileNumber;
+    std::string vaccine;
+    char Medical_conditions[100];
 
-	public:
-		void menu();
-		void getData();//takes data from the user
-		void addNew();//data is added to the  database
-		void addNew_Vaccine();
-		void showData();//display data
-		void view_all();//view the entire Citizen database
-		void view_Vac();
-		void Search_Citizen_Records();
-		void search_name();
-		void search_aadhar();
-		void search_mobile();
-		void view_Vaccine();//operations on the vaccine inventory
+public:
+    void mainMenu();
+   // void getData(); // takes Citizen data from the user
+    void addNewCitizen();  // data is added to the  database
+    void addNewVaccine();
+    void getVaccineDetails(); // takes Vaccine Data from the user
+    void showCitizenData();        // display data
+    void viewAllCitizenRecord();        // view the entire Citizen database
+    void viewVaccineStatics();
+    void searchCitizenRecords();
+    void searchByName();
+    void searchUsingAadhar();
+    void searchUsingMobile();
+    void createUserPreferenceThread();
+    void viewVaccineDetails();
+    int countRecords();
+    void getData();
 };
 
 #endif

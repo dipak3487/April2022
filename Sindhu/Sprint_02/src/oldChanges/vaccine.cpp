@@ -24,7 +24,7 @@ pthread_t pthread1;
 
 // Implemeting Thread  
 void* userPreferenceThread(void *arg) {
-    char *input = (char *)arg;
+        char *input = (char *)arg;
 	printf("Started: %s\n", input);
 
     while(true) {
@@ -62,10 +62,10 @@ void createUserPreferenceThread() {
 }
 
 
-//  Implemetaion of Function
 //
+//Implemetaion of Function
 //
-
+/*
 void Vaccine::menu()
 {
 
@@ -105,7 +105,7 @@ else
 
 }
 
-
+*/
 
 //
 //creating callback
@@ -166,10 +166,9 @@ int main(int argc, char** argv)
 	//
 	//starting of routiene
 	do
-	{
-		
+	{		
      	    Vaccine vaccineDB;
-     	    int ch;
+     	    int ch;;
             vaccineDB.menu();
             cout<<"\n\t\n\tChoose according to your need : ";
             cin>>ch;
