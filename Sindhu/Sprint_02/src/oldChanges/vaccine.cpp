@@ -50,7 +50,11 @@ pthread_t pthread1;
 
 // Implementing Thread  
 void* userPreferenceThread(void *arg) {
+<<<<<<< HEAD:Sindhu/Sprint_02/src/oldChanges/vaccine.cpp
+        char *input = (char *)arg;
+=======
 	char *input = (char *)arg;
+>>>>>>> 501b7dfab72cb7222f4b080c3ac63d06ffc21eec:Sindhu/Sprint_02/src/main.cpp
 	printf("Started: %s\n", input);
 
 	while(true) {
@@ -87,10 +91,16 @@ void createUserPreferenceThread() {
 	}
 }
 
+<<<<<<< HEAD:Sindhu/Sprint_02/src/oldChanges/vaccine.cpp
+
+//
+//Implemetaion of Function
+=======
 //Program Menu for user inputs
 // Menu choices to display multithreading
+>>>>>>> 501b7dfab72cb7222f4b080c3ac63d06ffc21eec:Sindhu/Sprint_02/src/main.cpp
 //
-
+/*
 void Vaccine::menu()
 {
 
@@ -130,7 +140,7 @@ void Vaccine::menu()
 
 }
 
-
+*/
 
 //
 //creating callback
@@ -191,10 +201,9 @@ int main(int argc, char** argv)
 	//
 	//starting of routine
 	do
-	{
-		
+	{		
      	    Vaccine vaccineDB;
-     	    int ch;
+     	    int ch;;
             vaccineDB.menu();
             cout<<"\n\t\n\tChoose according to your need : ";
             cin>>ch;
