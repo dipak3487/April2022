@@ -81,15 +81,15 @@ void printMenu()
 		cout << "=====================================================================================" << endl;
 		cout << "Today\'s Date: " << todayDate << endl;
 		cout << "===================================Welcome to Narmada Car Rental Services ===================================\n\n \
-			\t1. New Car\n \
-			\t2. New Customer\n \
-			\t3. Create Rental\n \
+			\t1. Add New Car\n \
+			\t2. Add New Customer\n \
+			\t3. Rent a Car\n \
 			\t4. Modify Customer Details\n \
 			\t5. Display Details of a Car\n \
 			\t6. Display Details of all Cars\n \
 			\t7. Display Details of a Customer\n \
-			\t8. Modify Car Detials\n \
-			\t9. Get Rental Data\n \
+			\t8. Modify Car Details\n \
+			\t9. Print Rental Data\n \
 			\t10. Print Rental Bill\n \
 			\t11. Exit\n\n";
 		cout << "====================================================================================\n" << endl;
