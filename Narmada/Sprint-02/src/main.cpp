@@ -2,17 +2,17 @@
  *
  *
  * DESCRIPTION	:	This is the main file which contains all th information about the program.
- *					It provides the menus to the user for different task. There are 11 menus for 
- *					different operations. All the related files(.cpp and .h) used here that is 
- *					declared/defined in other files.
+ * 			It provides the menus to the user for different task. There are 11 menus for 
+ * 			different operations. All the related files(.cpp and .h) used here that is 
+ * 			declared/defined in other files.
  *
- *					CHANGES MADE BY TEAM NARMADA
+ * 			CHANGES MADE BY TEAM NARMADA
  *
  */
 
 
 
-#include<iostream>
+#include <iostream>
 #include<fcntl.h>
 #include<pthread.h>
 #include<unistd.h>
@@ -65,13 +65,11 @@ void createUserPreferenceThread() {
 		exit(0);
 	}
 }
-
+//std::string currentUser;
 /*Function Name  :  printMenu()
  *
- * Description  : In printMenu() function it will display menu to user to select option from menu
- 1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 
- 6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
- *					
+ * Description  :  This functions returns the menus for the user.
+ *
  */
 void printMenu() 
 {
@@ -90,7 +88,7 @@ void printMenu()
 			\t5. Display Details of a Car\n \
 			\t6. Display Details of all Cars\n \
 			\t7. Display Details of a Customer\n \
-			\t8. Modify Car Details\n \
+			\t8. Modify Car Detials\n \
 			\t9. Get Rental Data\n \
 			\t10. Print Rental Bill\n \
 			\t11. Exit\n\n";
@@ -99,62 +97,63 @@ void printMenu()
 	}
 }
 
-	void waitForKeyPress() // This function is waiting for user to press any option in menu.
+void waitForKeyPress() 
+{
+	cout << "Press any key to Continue...";
+	//cin.ignore();
+	cin.get();
+}
+
+void clear()   //This function clear the screen 
+{
+	//system("cls");
+	system("clear");    
+}
+
+int getInput() //This function take the user input as a menu option.
+{
+	int option = -1;
+	do 
 	{
-		cout << "Press any key to Continue...";
+		cout << "\t\t\t\tChoose: ";
+		cin >> option;
 		cin.ignore();
-		cin.get();
-	}
+	} while(option < 1 || option > 12);
+	return option;
+}
 
-	void clear()   //This function clear the screen 
-	{
-		//system("cls");
-		system("clear");    
-	}
+void carModify() //This function changes the car cost per day.
+{
+	cout << "\t\t\t\tChange Cost per Day of a Car" << endl;
+	int c_id;
+	cout << "\t\t\t\tEnter Car ID: ";
+	cin >> c_id;
+	cin.ignore();
+	double nCost;
+	cout << "\t\t\t\tEnter New Cost per Day: ";
+	cin >> nCost;
+	cin.ignore();
+	modify(c_id, nCost);
+	waitForKeyPress();
+	clear();
+}
 
-	int getInput() //This function take the user input as a menu option.
+void custModify() //this will modify the customer details.
+{ 
+	cout << "========================= Customer Modification Menu =========================" << endl;
+	cout << "\t\t\t\tEnter Customer ID: ";
+	int cust_id;
+	cin >> cust_id;
+	cin.ignore();
+	string mn =  "\t\t\t\t1. Modify Name\n\t\t\t\t2. Modify Email\n\t\t\t\t3. Modify Phone Number\n\t\t\t\t4. Modify Residential Address\n\t\t\t\t5. Back\n";
+	int inp = -1;
+	while(1)
 	{
-		int option = -1;
-		do 
+		cout << mn;
+		inp = getInput();
+		switch(inp) 
 		{
-			cout << "\t\t\t\tChoose: ";
-			cin >> option;
-			cin.ignore();
-		} while(option < 1 || option > 12);
-		return option;
-	}
-
-	void carModify() //This function will ask for car ID then user will change the car cost per day. 
-	{
-		cout << "\t\t\t\tChange Cost per Day of a Car" << endl;
-		int c_id;
-		cout << "\t\t\t\tEnter Car ID: ";
-		cin >> c_id;
-		cin.ignore();
-		double nCost;
-		cout << "\t\t\t\tEnter New Cost per Day: ";
-		cin >> nCost;
-		cin.ignore();
-		modify(c_id, nCost);
-		waitForKeyPress();
-		clear();
-	}
-
-	void custModify() //This function will ask for customer ID then user will modify the details like name, email, phone number, residential address
-	{ 
-		cout << "========================= Customer Modification Menu =========================" << endl;
-		cout << "\t\t\t\tEnter Customer ID: ";
-		int cust_id;
-		cin >> cust_id;
-		cin.ignore();
-		string mn =  "\t\t\t\t1. Modify Name\n\t\t\t\t2. Modify Email\n\t\t\t\t3. Modify Phone Number\n\t\t\t\t4. Modify Residential Address\n\t\t\t\t5. Back\n";
-		int inp = -1;
-		do 
-		{
-			cout << mn;
-			inp = getInput();
-			if (inp == 1) 
-			{
+			case 1:{
 				cout << "\t\t\t\tEnter New Name: ";
 				string name;
 
@@ -162,60 +161,65 @@ void printMenu()
 				modify(cust_id, name, "", "", "");
 				waitForKeyPress();
 				clear();
-			} 
-			else if (inp == 2) 
-			{
+				break;
+			}
+
+			case 2:{
 				cout << "\t\t\t\tEnter New Email: ";
 				string eml;
 				getline(cin, eml);
 				modify(cust_id, "", eml, "", "");
 				waitForKeyPress();
 				clear();
-			} 
-			else if (inp == 3) 
-			{
+				break;
+			}
+
+			case 3:{
 				cout << "\t\t\t\tEnter New Phone Number: ";
 				string pNo;
 				getline(cin, pNo);
 				modify(cust_id, "", "", pNo, "");
 				waitForKeyPress();
 				clear();
-			} 
-			else if (inp == 4) 
-			{
+				break;
+			}
+
+			case 4:{
 				cout << "\t\t\t\tEnter New Address: ";
 				string rAdd;
 				getline(cin, rAdd);
 				modify(cust_id, "", "", "", rAdd);
 				waitForKeyPress();
 				clear();
-			} 
-			else if (inp == 5) 
-			{
 				break;
 			}
-		} while(inp != 5);
+
+			case 5:{
+				break;
+			}
+		}
 	}
-	/*  main () Description 
-	 *
-	 *  All user-defined function implemented here in main. It will show the menus to the user, provide different options 
-	 *  for different operations.
-	 We used getDate() to take date from user then the menu will open containing options: 1. New Car, 2. New Customer, 3. Create Rental, 4. Modify Customer Details, 5. Display Details of a Car, 6. Display Details of all Cars, 7. Display Details of a Customer, 8. Modify Car Detials, 9. Get Rental data, 10. Print Rental Data.
-	 */ 
-	int main() 
+}
+/*  main () Description 
+ *
+ *  All user-defined function implemented here in main. It will show the menus to the user, provide different options 
+ *  for different operations.
+ */ 
+int main() 
+{
+	createUserPreferenceThread();
+	cout << "Enter Today\'s Date: ";
+	todayDate = getDate();
+	int opt = -1;
+	while(1)
 	{
-		createUserPreferenceThread();
-		cout << "Enter Today\'s Date: ";
-		todayDate = getDate();
-		int opt = -1;
-		do 
+		clear();
+		cout<<"Userpreference"<<up<<endl;
+		printMenu();
+		opt = getInput();
+		switch(opt) 
 		{
-			clear();
-			cout<<"Userpreference"<<up<<endl;
-			printMenu();
-			opt = getInput();
-			if (opt == 1) 
-			{
+			case 1:{
 				clear();
 				cout << "=========================== Add New Car ===========================\n" << endl;
 				Car c = getCarDetails();
@@ -223,10 +227,10 @@ void printMenu()
 				cout << "===================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 2) 
-			{
+			case 2:{
 				clear();
 				cout << "=========================== New Customer ===========================\n" << endl;
 				Customer cust = registerCustomer();
@@ -234,25 +238,26 @@ void printMenu()
 				cout << "====================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 3) 
-			{
+
+			case 3:{
 				cout << "============================ New Rental ============================\n" << endl;
 				Rental rent = newRental();
 				save(rent);
 				cout << "====================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 4) 
-			{
+			case 4:{
 				custModify();
-			} 
+				break;
+			}
 
-			else if (opt == 5) 
-			{
+			case 5:{
 				int c_id;
 				clear();
 				cout << "=========================== Get Car Details ===========================\n" << endl;
@@ -266,17 +271,17 @@ void printMenu()
 				cout << "\n=======================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 6) 
-			{
+			case 6:{
 				displayAllCars();
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 7) 
-			{
+			case 7:{
 				int cus_id;
 				clear();
 				cout << "=========================== Get Customer Details ===========================\n" << endl;
@@ -290,15 +295,15 @@ void printMenu()
 				cout << "\n==========================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 8) 
-			{
+			case 8:{
 				carModify();
-			} 
+				break;
+			}
 
-			else if (opt == 9) 
-			{
+			case 9:{
 				int r_id;
 				clear();
 				cout << "=========================== Get Rental Details ===========================\n" << endl;
@@ -312,10 +317,11 @@ void printMenu()
 				cout << "\n=============================================================================" << endl;
 				waitForKeyPress();
 				clear();
-			} 
+				break;
+			}
 
-			else if (opt == 10) 
-			{
+
+			case 10:{
 				int r_id;
 				clear();    
 				cout << "=========================== Calculate Rental Bill ===========================\n" << endl;
@@ -355,20 +361,21 @@ void printMenu()
 				}
 				waitForKeyPress();
 				clear();
-			} 
-
-			else if (opt == 11) 
-			{
 				break;
-			} 
-		} while(opt != 11);
+			}
 
-		clear();
-		cout << "==================================== Thank You ====================================\n" << endl;
-		waitForKeyPress();
-		return 0;
-		cout << "Press any key to Continue...";
-		cin.ignore();
-		cin.get();
+			case 11:{
+				exit(0);
+			}
+		}
 	}
+
+	clear();
+	cout << "==================================== Thank You ====================================\n" << endl;
+	waitForKeyPress();
+	return 0;
+	cout << "Press any key to Continue...";
+	//cin.ignore();
+	cin.get();
+}
 
