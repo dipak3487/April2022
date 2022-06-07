@@ -1,12 +1,22 @@
+CC = g++
+TH = -lpthread
+IN = ../include
+SR = -I../src/
+RM = rm -rf
+CFLAG = $(DB) -I$(IN)
+
+#makefile for program
+
+
 ../bin/program: ../obj/main.o ../obj/Account.o
-	g++ -o ../bin/program  ../obj/main.o ../obj/Account.o -lpthread
+	$(CC) -o ../bin/program  ../obj/main.o ../obj/Account.o $(DB) $(TH)
 
 ../obj/main.o: ../src/main.cpp
 	#mkdir ../obj/
-	g++ -g -o ../obj/main.o -c ../src/main.cpp -I../include/ -I../src/
+	$(CC) -g -o ../obj/main.o -c ../src/main.cpp $(CFLAG) $(SR)
 
 ../obj/Account.o: ../src/Account.cpp
-	g++ -g -o ../obj/Account.o -c ../src/Account.cpp -I../include/ -I../src/
+	$(CC) -g -o ../obj/Account.o -c ../src/Account.cpp $(CFLAG) $(SR)
 
 clean:
-	rm ../obj/main.o ../obj/Account.o ../bin/program 
+	$(RM) ../obj/main.o ../obj/Account.o ../bin/program 

@@ -22,7 +22,13 @@
             "empCode": "E1005",
             "salary": 24000,
             "title": "Assistant Manager"
-        }
+        },
+        {
+            "name": "Rahul Dravid",
+            "empCode": "E1006",
+            "salary": 28000,
+            "title": "Manager"
+        }	
     ]
 }
 

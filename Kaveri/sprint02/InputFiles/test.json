@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E2003",
-         "name" : "Hannah Montana",
-         "salary" : 25000,
-         "title" : "Fresher"
+         "empCode" : "E1006",
+         "name" : "Rahul Dravid",
+         "salary" : 28000,
+         "title" : "Manager"
       }
    ]
 }
