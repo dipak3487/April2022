@@ -425,9 +425,8 @@ return true on success, return false in case of failure.
 bool Config::DeleteRecordInp(std::string code)
 {
 	bool result = false;
-	for(auto it=records.begin(); it!=records.end(); it++)
+	for(auto it=records.begin(); it!=records.end()+1; it++)
 	{
-		
 		Employee &e = *it;
 		if(e.empCode == code)
 		{
@@ -435,6 +434,7 @@ bool Config::DeleteRecordInp(std::string code)
 			result = true;
 		}
 	}
+		std::cout<<"123"<<std::endl;
 	if(result == false)
 	{
 		std::cout<<"\t The employee code is not in the employee management system."<<std::endl;
@@ -450,7 +450,7 @@ bool Config::DeleteRecordInp(std::string code)
 
         }
     }
-	SaveRecordinjson();
+			SaveRecordinjson();
 
 return result;
 }
