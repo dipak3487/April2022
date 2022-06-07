@@ -1,5 +1,5 @@
 ../bin/program: ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o
-		g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --cflags --libs`
+		g++ -o ../bin/program ../obj/main.o ../obj/Room.o ../obj/sql.o ../obj/hotelManager.o `mysql_config --cflags --libs` -lpthread
 
 ../obj/main.o: ../src/main.cpp
 	                #mkdir ../obj/
@@ -15,4 +15,4 @@
 	        g++ -g -o ../obj/Room.o -c ../src/Room.cpp  -I../include/ -I../src/
 
 clean:
-	        rm -rf ../obj*.o ../bin/program
+	        rm -rf ../obj/*.o ../bin/program

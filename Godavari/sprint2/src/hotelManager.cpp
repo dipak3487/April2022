@@ -4,6 +4,9 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include<pthread.h>
+#include<fcntl.h>
+#include<unistd.h>
 #include "Customer.h"
 #include "Room.h"
 #include "hotelManager.h"
@@ -13,7 +16,48 @@
 
 using namespace std;
 
-//done
+pthread_t pthread1;
+int change=0;
+
+void* userPreferenceThread(void *arg) {
+    char *input = (char *)arg;
+      //  cout<<"Started: %s\n"<< input;
+
+    while(true) {
+
+                //if /tmp/nice file exists
+        if (access("/tmp/nice", F_OK) == 0)
+        {
+                        // hotelManager::SetUserPreference(1); //nice menu
+                   change = 1;
+ }
+        else
+        {
+           // hotelManager::SetUserPreference(0); //normal menu
+                        change = 0;
+        }
+
+        sleep(1);
+    }
+    //pthread_exit(arg);
+    return arg;
+}
+
+void createUserPreferenceThread() {
+   const char *thread_input1 = " ";
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+    int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+    //int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
+    if(rc != 0) {
+        printf("Error occurred, thread could not be created, errno = %d\n", rc);
+        exit(0);
+    }
+}
+
+//This function manageroom details like add rooms in the system,modify their details.we can add roomtype,comfort,capacity,status,rent_per_day in the room table
 void hotelManager::manageRooms(){
     Room room;
     int menu, roomnumber;
@@ -60,7 +104,7 @@ void hotelManager::manageRooms(){
         hm.manageRooms();
 }
 
-//done
+//This function add check-in details in the system.
 void hotelManager::checkIn(){
     sql sql;
     int roomnumber, again;
@@ -123,7 +167,7 @@ void hotelManager::checkIn(){
     mainMenu();
 }
 
-
+//This function used for checkout of the customer
 void hotelManager::checkOut(int roomnumber){
     sql sql;
     int bill;
@@ -172,7 +216,7 @@ void hotelManager::checkOut(int roomnumber){
     mainMenu();
 }
 
-
+//This function check whether room available or not for allocating to the customer
 void hotelManager::getAvailableRooms(){
     sql sql;
     int status = 0;
@@ -199,6 +243,7 @@ void hotelManager::getAvailableRooms(){
    mainMenu();
 }
 
+//This function search the customer detail with their allocated room number
 void hotelManager::searchCustomer(){
 
     sql sql;
@@ -241,12 +286,16 @@ void hotelManager::searchCustomer(){
 
 void hotelManager::mainMenu(){
     hotelManager hm;
-    cout << "Welcome to Hotel Management System\n" << endl;
+    createUserPreferenceThread();
+   // cout<<"user preference:"<<change;
+    if(change==0)
+  {
+    cout << "\n\t\t Welcome to Hotel Management System\n" << endl;
     int menu;
     int roomnumber;
-    cout << "*********";
-    cout << "\n1.Manage Rooms"<< endl << "2.Check-In Room" << endl << "3.Check-out Room" << endl << "4.Search Customer" << endl << "5.Available Rooms" << endl << "6.Exit";
-    cout << "*********";
+    cout << "**********************************************************";
+    cout << "\n\t1.Manage Rooms"<< endl << "\t2.Check-In Room" << endl << "\t3.Check-out Room" << endl << "\t4.Search Customer" << endl << "\t5.Available Rooms" << endl << "\t6.Exit";
+    cout << "\n*********************************************************";
     cout << "\nEnter the corresponding no. to go the menu:";
     cin >> menu;
     switch(menu){
@@ -276,4 +325,41 @@ void hotelManager::mainMenu(){
     }
 }
 
+else
+{
+cout << "\n\t\tWelcome to Hotel Management System\n" << endl;
+    int menu;
+    int roomnumber;
+    cout << "=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*";
+    cout << "\n\t\t1.Manage Rooms"<< endl <<"\t\t2.Check-In Room" << endl << "\t\t3.Check-out Room" << endl << "\t\t4.Search Customer" << endl << "\t\t5.Available Rooms" << endl << "\t\t6.Exit";
+    cout << "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*";
+    cout << "\nEnter the corresponding no. to go the menu:";
+    cin >> menu;
+    switch(menu){
+        case 1:
+           hm.manageRooms();
+           break;
+         case 2:
+ hm.checkIn();
+            break;
+         case 3:
+            cout << "\nEnter Room Number:";
+            cin >> roomnumber;
+            hm.checkOut(roomnumber);
+            break;
+        case 4:
+                hm.searchCustomer();
+            break;
+        case 5:
+                hm.getAvailableRooms();
+            break;
+        case 6:
+            cout<<"\nTHANK YOU FOR USING THIS SOFTWARE";
+            break;
+        default:
+            cout << "\nInvalid input.";
+            cout << "\nEnter the correct option:";
+    }
 
+}
+}

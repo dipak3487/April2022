@@ -5,12 +5,6 @@
 class EmployeeTest : public CppUnit::TestFixture
 {
 	 public:
-    void setup()
-    {
-	}
-    void tearDown()
-    {
-	}
     void sunnytestsearchRecord()
     {
 		Config config1;
@@ -55,8 +49,6 @@ class EmployeeTest : public CppUnit::TestFixture
 
 		CPPUNIT_ASSERT_EQUAL(config1.CreateRecordInp(newcode,newname,newsalary,newtitle),true);
 	}
-
-
     void sunnytesteditRecord()
     {
 		Config config1;

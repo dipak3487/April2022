@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E1005",
-         "name" : "Renu Shubh",
-         "salary" : 30000,
-         "title" : "Analyst"
+         "empCode" : "E2007",
+         "name" : "renu",
+         "salary" : 20000,
+         "title" : "Fresher"
       }
    ]
 }
