@@ -1,0 +1,99 @@
+[
+	{
+		"grade" : "F",
+		"id" : 1,
+		"marks" : 
+		{
+			"english" : 45,
+			"history" : 45,
+			"math" : 45,
+			"science" : 45,
+			"social" : 45
+		},
+		"student" : 
+		{
+			"class" : "4",
+			"name" : "rajesh",
+			"rollNumber" : "23",
+			"roll_number" : 23
+		},
+		"total" : 225,
+		"total_marks" : 300
+	},
+	{
+		"grade" : "B",
+		"id" : 2,
+		"marks" : 
+		{
+			"english" : 88,
+			"history" : 87,
+			"math" : 92,
+			"science" : 93,
+			"social" : 79
+		},
+		"student" : 
+		{
+			"class" : "6",
+			"name" : "mani",
+			"roll_number" : 22
+		},
+		"total_marks" : 300
+	},
+	{
+		"grade" : "F",
+		"id" : 1193729689,
+		"marks" : 
+		{
+			"english" : 3,
+			"history" : 3,
+			"math" : 3,
+			"science" : 3,
+			"social" : 3
+		},
+		"student" : 
+		{
+			"class" : "3",
+			"name" : "sunny",
+			"roll_number" : 3
+		},
+		"total_marks" : 15
+	},
+	{
+		"grade" : "B",
+		"id" : 2054793389,
+		"marks" : 
+		{
+			"english" : 45,
+			"history" : 95,
+			"math" : 75,
+			"science" : 68,
+			"social" : 96
+		},
+		"student" : 
+		{
+			"class" : "7",
+			"name" : "shiva",
+			"roll_number" : 21
+		},
+		"total_marks" : 379
+	},
+	{
+		"grade" : "C",
+		"id" : 423096511,
+		"marks" : 
+		{
+			"english" : 32,
+			"history" : 74,
+			"math" : 67,
+			"science" : 86,
+			"social" : 78
+		},
+		"student" : 
+		{
+			"class" : "4",
+			"name" : "Dipak",
+			"roll_number" : 1001
+		},
+		"total_marks" : 337
+	}
+]

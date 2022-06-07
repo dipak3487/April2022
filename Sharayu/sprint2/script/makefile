@@ -1,11 +1,14 @@
-../bin/program: ../obj/main.o ../src/jsoncpp.o
-	g++ -o ../bin/program ../obj/main.o ../obj/jsoncpp.o -ljsoncpp
+../bin/program: ../obj/main.o ../obj/Student.o ../obj/jsoncpp.o
+	g++ -o ../bin/program ../obj/main.o ../obj/Student.o ../obj/jsoncpp.o -ljsoncpp
 
 ../obj/main.o: ../src/main.cpp
-	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp -I../include/ -I../src/
+	g++ -std=c++17 -g -o ../obj/main.o -c ../src/main.cpp -I../include/ -I../src/
+
+../obj/Student.o: ../src/Student.cpp
+	g++ -std=c++17 -g -o ../obj/Student.o -c ../src/Student.cpp -I../include/ -I../src/
 
 ../obj/jsoncpp.o: ../src/jsoncpp.cpp
-	g++ -g -o ../obj/jsoncpp.o -c ../jsoncpp.cpp -ljsoncpp -I../include/ -I../src/
+	g++ -std=c++17 -g -o ../obj/jsoncpp.o -c ../src/jsoncpp.cpp -I../include/ -I../src/
 
 clean:
-	rm -rf ../obj ../bin/program
+	rm ../obj/* ../bin/program
