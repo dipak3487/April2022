@@ -434,7 +434,6 @@ bool Config::DeleteRecordInp(std::string code)
 			result = true;
 		}
 	}
-		std::cout<<"123"<<std::endl;
 	if(result == false)
 	{
 		std::cout<<"\t The employee code is not in the employee management system."<<std::endl;

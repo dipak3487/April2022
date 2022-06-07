@@ -24,6 +24,12 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
+      },
+      {
+         "empCode" : "E1006",
+         "name" : "Rahul Dravid",
+         "salary" : 28000,
+         "title" : "Manager"
       }
    ]
 }
