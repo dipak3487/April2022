@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -11,6 +10,15 @@
 #include "sql.h"
 
 using namespace std;
+
+Room::Room(string rt,string c,string ct,int s,int rent)
+{
+ roomtype = rt;
+ comfort = c;
+ capacity = ct;
+ status= s;
+ rent_per_day=rent;
+}
 
 
 void Room::addRoom(int roomnumber){
@@ -61,6 +69,22 @@ void Room::addRoom(int roomnumber){
     hm.manageRooms();
 }
 
+int Room :: TotalRoomCount()
+ {
+    sql sql;
+     int count=0;
+   // Room room ;
+        stringstream ss;
+        ss << "SELECT COUNT(*) FROM rooms" ;
+        bool qstate = sql.query_check(ss, sql);
+        if(qstate) {
+             sql.res= mysql_store_result(sql.conn);
+             count = mysql_num_rows(sql.res);
+             // cout<<count;                   
+            }
+            
+        return count;
+}
 
 void Room::displayRoom(int roomnumber){
     sql sql;

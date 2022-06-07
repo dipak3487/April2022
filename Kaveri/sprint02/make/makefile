@@ -1,13 +1,22 @@
+CC = g++
+TH = -lpthread
+IN = ../include
+DB = -ljsoncpp
+SR = -I../src/
+RM = rm -rf
+CFLAG = $(DB) -I$(IN)
+
+#makefile for program
+
 ../bin/program: ../obj/main.o ../obj/employee.o
-	g++ -o ../bin/program ../obj/main.o ../obj/employee.o -ljsoncpp -lpthread
+	$(CC)  -o ../bin/program ../obj/main.o ../obj/employee.o $(DB) $(TH)
 
 ../obj/main.o: ../src/main.cpp
-	#mkdir ../obj/
-	g++ -g -o ../obj/main.o -c ../src/main.cpp -ljsoncpp -I../include/ -I../src/
+	$(CC)  -g -o ../obj/main.o -c ../src/main.cpp $(CFLAG) $(SR)
 
 ../obj/employee.o: ../src/employee.cpp
-	g++ -g -o ../obj/employee.o -c ../src/employee.cpp -ljsoncpp -I../include/ -I../src/
+	$(CC)  -g -o ../obj/employee.o -c ../src/employee.cpp $(CFLAG) $(SR)
 
 clean:
-	rm -rf ../obj ../bin/program
-
+	$(RM) ../obj/*.o ../bin/program 
+                        

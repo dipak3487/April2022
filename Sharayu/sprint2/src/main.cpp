@@ -1,10 +1,11 @@
-//Student Management system
 #include <iostream>
 #include <fstream>
 #include <regex>
 #include <typeinfo>
+//#include<jsoncpp/json/json.h>
 #include "json/json.h"
-#include "CppConsoleTable.hpp"
+#include "CppConsoleTable.h"
+#include "Student.h"
 
 using std::string;
 using std::cout;
@@ -15,7 +16,7 @@ using tableFormat::ConsoleTable;
 
 Json::Value getStudentReport() {
 	Json::Value root;
-	std::ifstream file("reports.json");
+	std::ifstream file("../data/reports.json");
     file >> root;
 
 	file.close();
@@ -106,61 +107,26 @@ void checkReport() {
 	cout << "Report Not Found." << endl;
 }
 
-int calculateTotal(int *arr, int size) {
-	int sum = 0, i;
-	for (i = 0; i < size; i++) {
-    	sum += arr[i];
-   	}
-
-	return sum;
-}
-
-string figureGrade(int totalMarks, int size) {
-	if (totalMarks / size >= 90) {
-		return "A";
-	} else if (totalMarks / size >= 70) {
-		return "B";
-	} else if (totalMarks / size >= 50) {
-		return "C";
-	} else {
-		return "F";
-	}
-	return "null";
-}
-//using class
-class Student {
-	string name, cls; 
-	int rollNumber;
-	int eng, science , history , math ,social;
-	string grade;
-public:
-	void addReport();
-        void updateReort();
-        void removeReport();
-	void showReports();
-	void actions();
-};
-
-
 void addReport() {
-	string name,cls;
-	string grade;
-	int rollNumber;
-	int id, total;
-	int eng, science, history, math, social = 0;
 
 	Json::Value records = getStudentReport();
+	int userInput = 0;
+	int eng, science, history, math, social;
+	std::string strUserInput;
 
 	// generate random number
 	std::srand(static_cast<unsigned int>(std::time(nullptr))); 
-	id = std::rand();
+	int id = std::rand();
+	Student newStudent;
 
 	cout << endl << "--- Provide Student Report Details ---" << endl;
-	name = getName();
+	newStudent.setName(getName());
 	cout << "Roll No: ";
-	cin >> rollNumber;
+	cin >> userInput;
+	newStudent.setRollNumber(userInput);
 	cout << "Student Class: ";
-	cin >> cls;
+	cin >> strUserInput;
+	newStudent.setClass(strUserInput);
 	cout << "----- Student's Marks -----" << endl;
 	cout << "English: ";
 	cin >> eng;
@@ -172,16 +138,14 @@ void addReport() {
 	cin >> social;
 	cout << "History: ";
 	cin >> history;
+	newStudent.setMarks(eng, science, history, math, social);
 	
-	int marks[5] = { eng, math, history, science, social };
-	total = calculateTotal(marks, 5);
-	grade = figureGrade(total, 5);
 
 	Json::Value record;
 	record["id"] = id;
-	record["student"]["name"] = name;
-	record["student"]["roll_number"] = rollNumber;	
-	record["student"]["class"] = cls;	
+	record["student"]["name"] = newStudent.getName();
+	record["student"]["roll_number"] = newStudent.getRollNumber();
+	record["student"]["class"] = newStudent.getClass();
 
 	record["marks"]["english"] = eng;
 	record["marks"]["math"] = math;
@@ -189,14 +153,14 @@ void addReport() {
 	record["marks"]["history"] = history;
 	record["marks"]["social"] = social;
 
-	record["total_marks"] = total;
-	record["grade"] = grade;
+	record["total_marks"] = newStudent.calculateTotal();
+	record["grade"] = newStudent.figureGrade();
 
 	records.append(record);
 	setStudentReport(records);
 	
-   	cout << name << " Report added. " << endl;
-   	cout << "Grade: " << grade << endl; 
+   	cout << newStudent.getName() << " Report added. " << endl;
+   	cout << "Grade: " << newStudent.figureGrade() << endl; 
 }
 
 
@@ -242,8 +206,11 @@ void updateReport() {
 			cin >> history;
 			
 			int marks[5] = { eng, math, history, science, social };
-			total = calculateTotal(marks, 5);
-			grade = figureGrade(total, 5);
+			Student st;
+			st.setName(name);
+			st.setRollNumber(rollNumber);
+			st.setClass(s_class);
+			st.setMarks(eng, science, history, math, social);
 
 			records[i]["student"]["name"] = name;
 			records[i]["student"]["roll_number"] = rollNumber;	
@@ -255,8 +222,8 @@ void updateReport() {
 			records[i]["marks"]["history"] = history;
 			records[i]["marks"]["social"] = social;
 
-			records[i]["total_marks"] = total;
-			records[i]["grade"] = grade;
+			records[i]["total_marks"] = st.calculateTotal();
+			records[i]["grade"] = st.figureGrade();
 
 			found = true;
 			break;
@@ -402,7 +369,7 @@ void home () {
 
 
 int main () {
-	cout << "*** WELCOME ***";
+	cout << "* WELCOME *";
 	string yesOrNo;
 	
 	while(true) {
