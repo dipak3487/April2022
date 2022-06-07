@@ -31,7 +31,7 @@ int ParseCommandLine(int argc,char* argv[])
 {
 	if(argc !=2)
 	{
-		cout<<"the employee data is not given"<<endl;
+		cout<<"Employee data is not given"<<endl;
 		exit(0);
 	}
 	if(argv[1]!= NULL)
@@ -84,33 +84,6 @@ int main(int argc,char* argv[])
 	config.ReadConfig();
 	config.ReadRecords();
 	
-/*
-	cout<<"Enter Admin Login Credentials:"<<endl;
-	std::string adminid = "ADMIN";
-    std::string user;
-    std::cout<<"Enter username:"<<std::endl;
-    std::cin>>user;
-	if(adminid == user)
-	{
-     const char *mypass="vista";
-     char *password=getpass("Enter password: "); 
-
-     if(strcmp(password,mypass)==0) 
-	 {
-	 	cout <<"Correct password! \n";
-	 }
-     else
-	 {
-		cout <<"Invalid password!\n";
-	 	exit(0);
-	 }
-	}
-	else
-	{
-		cout<<"Invalid user"<<endl;
-		exit(0);
-	}
-	*/
 	createUserPreferenceThread();
 
 	while(1)
@@ -132,7 +105,7 @@ int main(int argc,char* argv[])
 	 }
 	 catch(int x)
 	 {
-		 cout<<"enter positive integers only"<<endl;
+		 cout<<"Please enter positive integers only"<<endl;
 	 }
 		switch(choice)
         {

@@ -3,7 +3,7 @@
    [
       {
          "empCode" : "E1002",
-         "name" : "Madduri Ravi teja",
+         "name" : "Sachin Ramesh Tendulkar",
          "salary" : 20000,
          "title" : "Analyst"
       },
@@ -24,6 +24,12 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
+      },
+      {
+         "empCode" : "E2003",
+         "name" : "Hannah Montana",
+         "salary" : 25000,
+         "title" : "Fresher"
       }
    ]
 }
