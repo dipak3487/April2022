@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E1003",
-         "name" : "Madduri",
-         "salary" : 12345,
-         "title" : "Assistant"
+         "empCode" : "E2003",
+         "name" : "Hannah Montana",
+         "salary" : 25000,
+         "title" : "Fresher"
       }
    ]
 }

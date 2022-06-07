@@ -2,91 +2,79 @@
 #include "Account.h"
 using namespace std;
 
-void account::create_account()
+void Account::Create_Account()
 {
    
 	cout<<"\n\t\t\tEnter The  Account No. : ";
 	cin>>acno;
-
 	cout<<"\n\n\t\t\tEnter the Name of the Account holder : ";
 	cin.ignore();
 	cin.getline(name,50);
-	//cout<<"\n\t\t\tEnter Type of the Account (C/S) : ";
-	//cin>>type;
-	//type=toupper(type);
 	cout<<"\n\t\t\tEnter The Initial amount : ";
 	cin>>deposit;
 	cout<<"\n\n\t\t\tAccount Created..";
 
 }
 //		function to show specific record from file
-void account::show_account() const
+void Account::Show_Account() const
 {
 	cout<<"\n\t\t\tAccount No. : "<<acno;
 	cout<<"\n\t\t\tAccount Holder Name : ";
 	cout<<name;
-//	cout<<"\n\t\t\tType of Account : "<<type;
 	cout<<"\n\t\t\tBalance amount : "<<deposit;
 }
 
 //		function to display modify record 
-void account::modify()
+void Account::Modify()
 {
 	cout<<"\n\t\t\tAccount No. : "<<acno;
 	cout<<"\n\t\t\tModify Account Holder Name : ";
 	cin.ignore();
 	cin.getline(name,50);
-	//cout<<"\n\t\t\tModify Type of Account : ";
-	//cin>>type;
-	//type=toupper(type);
 	cout<<"\n\t\t\tModify Balance amount : ";
 	cin>>deposit;
 }
 
 //function to accept amount and add to balance amount
-void account::dep(int x)
+void Account::Deposit(int x)
 {
 	deposit+=x;
 }
 //function to accept amount and subtract from balance amount
-void account::draw(int x)
+void Account::Withdraw(int x)
 {
 	deposit-=x;
 }
 //function to show data in tabular format
-void account::report() const
+void Account::Report() const
 {
-	cout<<acno<<setw(10)<<" "<<name<<setw(20)<<" "<<setw(6)<<deposit<<endl;
+	cout<<acno<<setw(10)<<" "<<name<<setw(20)<<" "<<deposit<<endl;
 }
 //function to return account number
-int account::retacno() const
+int Account::Retacno() const
 {
 	return acno;
 }
 //function to return balance amount
-int account::retdeposit() const
+int Account::Retdeposit() const
 {
 	return deposit;
 }
 
-/*char account::rettype() const
-{
-	return type;
-}*/
 //		function to write in file
-void write_account()
+void Write_Account()
 {
-	account ac;
+	Account ac;
 	ofstream outFile;
-	outFile.open("account.txt",ios::binary|ios::app);
-	ac.create_account();
-	outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+	outFile.open("account.txt",ios::binary);
+	ac.Create_Account();
+	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
 	outFile.close();
 }
 //		function to read specific record from file
-void display_sp(int n)
+void Display(int n)
 {
-	account ac;
+	Account ac;
 	bool flag=false;
 	ifstream inFile;
 	inFile.open("account.txt",ios::binary);
@@ -96,11 +84,11 @@ void display_sp(int n)
 		return;
 	}
 	cout<<"\n\t\t\tBALANCE DETAILS\n";
-    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+    	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Account)))//Dyanamic memory allocation & convert input of binary format to string
 	{
-		if(ac.retacno()==n)
+		if(ac.Retacno()==n)
 		{
-			ac.show_account();
+			ac.Show_Account();
 			flag=true;
 		}
 	}
@@ -111,10 +99,10 @@ void display_sp(int n)
 
 
 //      function to modify record of file
-void modify_account(int n)
+void Modify_Account(int n)
 {
 	bool found=false;
-	account ac;
+	Account ac;
 	fstream File;
     File.open("account.txt",ios::binary|ios::in|ios::out);
 	if(!File)
@@ -124,15 +112,15 @@ void modify_account(int n)
 	}
 	while(!File.eof() && found==false)
 	{
-		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
-		if(ac.retacno()==n)
+		File.read(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
+		if(ac.Retacno()==n)
 		{
-			ac.show_account();
+			ac.Show_Account();
 			cout<<"\n\n\t\t\tEnter The New Details of account"<<endl;
-			ac.modify();
-			int pos=(-1)*static_cast<int>(sizeof(account));
-			File.seekp(pos,ios::cur); //fncallat1353
-		    File.write(reinterpret_cast<char *> (&ac), sizeof(account));
+			ac.Modify();
+			int pos=(-1)*static_cast<int>(sizeof(Account));
+			File.seekp(pos,ios::cur); 
+		    File.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
 		    cout<<"\n\n\t\t\tRecords Updated!!";
 		    found=true;
 		  }
@@ -144,9 +132,9 @@ void modify_account(int n)
 
 
 //		function to delete record of file
-void delete_account(int n)
+void Delete_Account(int n)
 {
-	account ac;
+	Account ac;
 	ifstream inFile;
 	ofstream outFile;
 	inFile.open("account.txt",ios::binary);
@@ -157,11 +145,11 @@ void delete_account(int n)
 	}
 	outFile.open("Temp.txt",ios::binary);
 	inFile.seekg(0,ios::beg);
-	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Account)))//Dyanamic memory allocation & convert input of binary format to string
 	{
-		if(ac.retacno()!=n)
+		if(ac.Retacno()!=n)
 		{
-			outFile.write(reinterpret_cast<char *> (&ac), sizeof(account));
+			outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
 		}
 	}
     inFile.close();
@@ -171,10 +159,9 @@ void delete_account(int n)
 	cout<<"\n\nRecord Deleted ..";
 }
 //		function to display all accounts deposit list
-void display_all()
-{
-
-	account ac;
+void Display_All()
+   {
+	Account ac;
 	ifstream inFile;
 	inFile.open("account.txt",ios::binary);
 	if(!inFile)
@@ -186,19 +173,19 @@ void display_all()
 	cout<<"=======================================================\n";
 	cout<<"A/c no.             NAME                  Balance\n";
 	cout<<"=======================================================\n";
-	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(account)))
+	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Account)))//Dyanamic memory allocation & convert input of binary format to string
 	{
-		ac.report();
+		ac.Report();
 	}
 	inFile.close();
 }
 
 //		function to deposit and withdraw amounts
-void deposit_withdraw(int n, int option)
+void Deposit_Withdraw(int n, int option)
 {
 	int amt;
 	bool found=false;
-	account ac;
+	Account ac;
 	fstream File;
     File.open("account.txt", ios::binary|ios::in|ios::out);
 	if(!File)
@@ -208,31 +195,31 @@ void deposit_withdraw(int n, int option)
 	}
 	while(!File.eof() && found==false)
 	{
-		File.read(reinterpret_cast<char *> (&ac), sizeof(account));
-		if(ac.retacno()==n)
+		File.read(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
+		if(ac.Retacno()==n)
 		{
-			ac.show_account();
+			ac.Show_Account();
 			if(option==1)
 			{
 				cout<<"\n\n\t\t\tTO DEPOSITSS AMOUNT";
 				cout<<"\n\n\t\t\tEnter The amount to be deposited: ";
 				cin>>amt;
-				ac.dep(amt);
+				ac.Deposit(amt);
 			}
 		    if(option==2)
 			{
 				cout<<"\n\n\t\t\tTO WITHDRAW AMOUNT";
 				cout<<"\n\n\t\t\tEnter The amount to be withdraw: ";
 				cin>>amt;
-				int bal=ac.retdeposit()-amt;
+				int bal=ac.Retdeposit()-amt;
 				if(bal<0)
 					cout<<"Insufficience balance";
 				else
-					ac.draw(amt);
+					ac.Withdraw(amt);
 		      }
 			int pos=(-1)*static_cast<int>(sizeof(ac));
 			File.seekp(pos,ios::cur);//fn1353
-			File.write(reinterpret_cast<char *> (&ac), sizeof(account));
+			File.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
 			cout<<"\n\n\t\t\tRecord Updated";
 			found=true;
 	       }

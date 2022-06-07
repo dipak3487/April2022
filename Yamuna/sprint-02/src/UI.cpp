@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include "UI.h"
 
 using namespace std;
@@ -8,38 +8,31 @@ Bus& UI::add_new_number_of_bus()
 
 	Bus *bus = new Bus;
 
-  cout<<"Enter Bus Number: ";
-
+  cout<<"\n\n\t\t\t\tEnter Bus Number: \t\t";
   cin>>bus->busNumber;
 
-  cout<<"\nEnter Driver Name: ";
-
+  cout<<"\n\t\t\t\tEnter Driver Name: \t\t";
   cin>>bus->busDriver;
 
-  cout<<"\nEnter Date: ";
-
+  cout<<"\n\t\t\t\tEnter Date: \t\t\t";
   cin>>bus->journeyDate;
 
 
-  cout<<"\nArrival Time: ";
-
+  cout<<"\n\t\t\t\tArrival Time: \t\t\t";
   cin>>bus->arrivalTime;
 
-  cout<<"\nDeparture: ";
-
+  cout<<"\n\t\t\t\tDeparture: \t\t\t";
   cin>>bus->departureTime;
 
-  cout<<"\nFrom: \t\t\t";
-
+  cout<<"\n\t\t\t\tFrom: \t\t\t\t";
   cin>>bus->fromStation;
 
-  cout<<"\nTo: \t\t\t";
-
+  cout<<"\n\t\t\t\tTo: \t\t\t\t";
   cin>>bus->toStation;
 
   bus->empty();
   
-  cout<<"\n\n***New Bus Added Successfully***\t\t\t";
+  cout<<"\n\n\t\t\t\t\t@@@@@@->New Bus Added Successfully<-@@@@@@\t\t\t";
 
 	return *bus;
 
@@ -63,24 +56,23 @@ bool UI::DisplayMainMenu()
 {
 
 		cout<<"\n\n\n";
-		//   cout << "\n\n \t\tWelcome To Flight Reservation System" << endl << endl;
 		cout <<"\t\t\t   <><><><><><><><><><><><><><><><><><>\n";
 		cout << "\t\t\t     WELCOME TO BUS RESERVATION SYSTEM" << endl;
 		cout <<"\t\t\t   <><><><><><><><><><><><><><><><><><>";
 
 
 		cout<<"\n\n";
-		cout<<"\t\t\t1.Add New Bus Number\n\t\t\t"
+		cout<<"\t\t\t\t1.Add New Bus Details\n\n\t\t\t"
 
-			<<"2.Reservation\n\t\t\t"
+			<<"\t2.Seat Reservation\n\n\t\t\t"
 
-			<<"3.Show Reservation\n\t\t\t"
+			<<"\t3.Show Seat Reservation\n\n\t\t\t"
 
-			<<"4.Buses Available \n\t\t\t"
+			<<"\t4.Buses Available \n\n\t\t\t"
 
-			<<"5.Cancel Reservation\n\t\t\t"
+			<<"\t5.Cancel Seat Reservation\n\n\t\t\t"
 
-			<<"6.Exit";
+			<<"\t6.Exit";
 
 
 

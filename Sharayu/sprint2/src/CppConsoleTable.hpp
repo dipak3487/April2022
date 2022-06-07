@@ -14,7 +14,7 @@
 #include <type_traits> // enable_if, is_arithmetic, is_same, remove_pointer
 #include <vector> // vector
 
-namespace samilton {
+namespace tableFormat {
 	// force declaration
 	class ConsoleTable;
 	class ConsoleRow;

@@ -8,18 +8,23 @@ using namespace std;
 
 class Room
 {
+    private:
+    string RoomType;
+    string Comfort;
+    string Capacity;
+    int Status;
+    int Rent_Per_Day;
+    
     public:
-    string roomtype;
-    string comfort;
-    string capacity;
-    int status;
-    int rent_per_day;
-
+    Room() {};
+    Room(string rt,string c,string ct,int s,int rent);
+    ~Room() {};
     Customer cust;
-    void addRoom(int);
-    void searchRoom(int);
-    void modifyRoom(int);
-    void displayRoom(int);
+    int TotalRoomCount();
+    void AddRoom(int);
+    void  SearchRoom(int);
+    void   ModifyRoom(int);
+    void   DisplayRoom(int);
 };
 
 #endif // ROOM_H_INCLUDED

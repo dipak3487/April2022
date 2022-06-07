@@ -9,9 +9,9 @@
 #define RENTALS_H
 
 #include <iostream>
-#include "../include/date.h"
-#include "../include/car.h"
-#include "../include/customer.h"
+#include "date.h"
+#include "car.h"
+#include "customer.h"
 
 int getCurrentRentalID();
 static int rental_id = getCurrentRentalID();

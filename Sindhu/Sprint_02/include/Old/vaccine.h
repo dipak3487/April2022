@@ -1,13 +1,12 @@
 #ifndef _VACCINE_H
 #define _VACCINE_H
 
-#include <sqlite3.h>
-
+//Creating class of Vaccine
 class Vaccine
 {
 	private:
 		int age;
-		int temperature;
+		float temperature;
 		int bloodPressure;
 		int date;
 		int bno;

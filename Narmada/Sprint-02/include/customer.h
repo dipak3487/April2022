@@ -10,7 +10,7 @@
 #define CUSTOMER_H
 
 #include <iostream>
-#include "../include/date.h"
+#include "date.h"
 
 int getCurrentCustomerID();
 static int customer_id = getCurrentCustomerID();

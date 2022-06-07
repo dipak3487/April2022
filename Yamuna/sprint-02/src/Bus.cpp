@@ -1,20 +1,21 @@
 #include <iostream>
+#include <cstring>
 #include "Bus.h"
 
 
 using namespace std;
 
-bool Bus::displayInformation()
+bool Bus::displayInformation()                                                                
 {
-	cout << "****************************" << endl;
+	cout << "\n****************************\n" << endl;
 
-	cout<<"Bus Number: \t"<<busNumber << endl;
-	cout<<"busDriver: \t"<<busDriver << endl;
-	cout<<"journeyDate: \t"<<journeyDate << endl;
-	cout<<"arrivalTime: \t"<<arrivalTime << endl;
-	cout<<"departureTime: \t"<<departureTime << endl;
-	cout<<"fromStation: \t"<<fromStation << endl;
-	cout<<"toStation: \t"<<toStation << endl;
+	cout<<"BusNumber: \t"<<busNumber << endl;
+	cout<<"BusDriver: \t"<<busDriver << endl;
+	cout<<"JourneyDate: \t"<<journeyDate << endl;
+	cout<<"ArrivalTime: \t"<<arrivalTime << endl;
+	cout<<"DepartureTime: \t"<<departureTime << endl;
+	cout<<"FromStation: \t"<<fromStation << endl;
+	cout<<"ToStation: \t"<<toStation << endl;
 
 	return true;
 }
@@ -31,47 +32,45 @@ bool Bus::empty()
 
 bool Bus::reserveSeat(string name,int seatNo)
 {
+	if(seatNo>=32)
+	{
+		return false;
 
+	}
 	seats[seatNo] = name;
 	return true;
 
 
 }
 
- bool Bus::cancelSeat(int seatNo)
- {
-		seats[seatNo] ="Empty";
+bool Bus::cancelSeat(int seatNo)
+{
+	if(seatNo>=32)
+	{
+		return false;
+	}
+	seats[seatNo] ="Empty";
 
-		return true;
+	return true;
 
- }
+}
 
 bool Bus::showReservation()
 
 {
-
 	for(int i=0; i<32; i++)
-    {
+	{
 
-		//for(int x=0; x<8;x++)
-//	{
+		if(i%4==0)
+		{
+			cout<<endl;
+		}
+		cout<<i<<". "<<seats[i]<<"\t\t"; 
 
-	cout<<"\n";
-		cout<<seats[i] ;
-
-		
-		//	seats[seatNo]=seatNo ;
-
-
-//		}
-        //seats.push_back(string name,int seatNo);
-    }
+	}
 
 
-
-
-
-return true;
+	return true;
 
 }
 

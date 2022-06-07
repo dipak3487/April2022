@@ -14,7 +14,7 @@
 #include <iostream>
 #include <sqlite3.h>
 #include "customer.h"
-#include "../include/date.h"
+#include "date.h"
 
 Customer::Customer() {
     customerID = -1;

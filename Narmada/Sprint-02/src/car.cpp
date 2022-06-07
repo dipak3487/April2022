@@ -18,7 +18,7 @@
 #include "car.h"
 #include "date.h"
 
-Car::Car() {
+Car::Car() {  
 	carID = -1;
 	regNo = "N/A";
 	company = "N/A";
@@ -80,7 +80,10 @@ void Car::carAdded() {
  *
  * DESCRIPTION  : This function is used to insert values in cars table when user add
  * 		  any new car.Whene you add a new car it will ask you for registration number, company name, model name, cost per day.
- * 		  And also it will generate car ID.
+ * 		  And also it will generate car ID. And after that it will save these details in the database.
+ * 		  We have you used sqlite3_open to connect the database.
+ * 		  After successfully save the details in database we use sqlite3_close to close the database.
+ * 		  
  */
 
 bool save(Car c) {
@@ -109,8 +112,8 @@ Car getCar(int c_id) {
 	int connection = 0;
 	connection = sqlite3_open("database.db", &DB);
 	char *errMsg;
-	//it will ask for car ID to display the car details.
-	//sqlite3 query to see the car data details
+	//it will ask for car ID to display the car details like registration number, company name, model, cost per day, and it's rental date.
+	//sqlite3 query to see the car data details so we use sqlite3_open to connect the database.
 	sqlite3_stmt* statement;
 	std::string sql = "SELECT * FROM cars";
 	if (c_id != 0) {
@@ -135,8 +138,10 @@ Car getCar(int c_id) {
 }
 /*FUNCTION NAME  :  displayAllCars()
  *
- * DESCRIPTION  :	This function displays all details of car like car ID, registration number
+ * DESCRIPTION  :	This function displays all details of all car present in database like car ID, registration number
  * 			company name, model number, cost per day and aslo it will show is rented or not.
+ *			 We have you used sqlite3_open to connect the database.
+ *			 After successfully save the details in database we use sqlite3_close to close the database.
  * 		   
  *
  */
@@ -168,7 +173,10 @@ void displayAllCars() {
 /*Function name : getCurrentCarID()
  *
  * Description  :	In this function it will ask you to enter the car ID and it will shows the details 
- * 			of that particuler car.
+ * 			of that particuler car like car ID, registration number
+ * 			company name, model number, cost per day and aslo it will show is rented or not.
+ * 			We have you used sqlite3_open to connect the database.
+ * 			After successfully save the details in database we use sqlite3_close to close the database.
  *
  */
 int getCurrentCarID() {
@@ -187,7 +195,7 @@ int getCurrentCarID() {
 	return id + 1;
 }
 
-int Car::getCarID() {
+int Car::getCarID() {   //getcarID() returns the car ID
 	return carID;
 }
 
@@ -219,6 +227,10 @@ Car getCarDetails() {
  *
  * Description :	In this function first it will ask car ID and then 
  * 			it will ask you to enter new cost per day.
+ * 			To update this record in the cars table first you nedd to connect with database using sqlite3_open.
+ * 			Now you just run the query and update record according the car ID selected.
+ * 			If updation is successfull it will display the record save successfully.
+ * 			And if the updation is not successfull it will display the error in record.
  *
  */
 

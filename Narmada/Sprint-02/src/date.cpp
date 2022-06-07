@@ -3,13 +3,14 @@
  *
  * DESCRIPTION	:	This file contains user-defined functions using which we enter rental 
  * 			start date and end date. It also checks that the entered date by user is valid or not.
+ * 			User will enter the valid date. We are aslo checking for the leap year.
  *
  * 			CHANGES MADE BY TEAM NARAMADA
  *
  */ 			
 
 #include <iostream>
-#include "../include/date.h"
+#include "date.h"
 
 Date strToDate(char * date) {
     if (date ==  NULL) {

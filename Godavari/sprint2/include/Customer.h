@@ -1,18 +1,19 @@
-#ifndef CUSTOMER_H_INCLUDED
-#define CUSTOMER_H_INCLUDED
-
-//#include <windows.h>
+#ifndef Customer_H_INCLUDED
+#define Customer_H_INCLUDED
 
 using namespace std;
 
 class Customer{
     public:
-    string firstname;
-    string lastname;
-    string address;
-    string phone;
-    int num_of_days;
+    string FirstName;
+    string LastName;
+    string Address;
+    string Phone;
+    int Num_of_Days;
+    
+
+   
 };
 
-#endif // CUSTOMER_H_INCLUDED
+#endif // Customer_H_INCLUDED
 
