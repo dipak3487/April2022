@@ -194,9 +194,8 @@ void custModify() //this will modify the customer details.
 				break;
 			}
 
-			case 5:{
-				break;
-			}
+			case 5:
+				return printMenu();
 		}
 	}
 }
