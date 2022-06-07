@@ -3,7 +3,7 @@
    [
       {
          "empCode" : "E1002",
-         "name" : "Sachin Ramesh Tendulkar",
+         "name" : "Madduri Ravi teja",
          "salary" : 20000,
          "title" : "Analyst"
       },
@@ -24,12 +24,6 @@
          "name" : "Virat Kohli",
          "salary" : 24000,
          "title" : "Assistant Manager"
-      },
-      {
-         "empCode" : "E1005",
-         "name" : "Renu Shubh",
-         "salary" : 30000,
-         "title" : "Analyst"
       }
    ]
 }

@@ -17,6 +17,12 @@ Description: executes the files which are asked in main.cpp
 #define MIN_SALARY 1000
 #define MIN_TITLE_LENGTH 4
 #define EMPCODE_LENGTH 5
+#define PF_Percentage 0.12
+#define Insurance_Percentage 0.0475
+#define IT_LessThan21K 0
+#define IT_21KTo42K 0.05
+#define IT_42KTo84K 0.20
+#define IT_GreaterThan84K 0.30
 /*
 filename : SetFilePath
 created on : 25th May 2022
@@ -94,18 +100,24 @@ return true on success, and return false in case of failure.
 */
 bool Config::SearchRecordInp(std::string str)
 {
+	bool search = false;
 	std::vector<Employee> :: iterator it;
 	for(it=records.begin(); it!=records.end(); it++)
 	{
 		Employee &e = *it;
 		if(e.empCode == str)
 		{
-				std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-				std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
-				std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
-				std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+				std::cout <<"\n \t \t Name of the employee is: \t"<<e.name<< std::endl;
+				std::cout<<"\t \t the code of the employee is: \t"<<e.empCode<<std::endl;
+				std::cout<<"\t \t the salary of the employee is: \t"<<e.salary<<std::endl;
+				std::cout<<"\t \t the title of the employee is: \t \n \n"<<e.title<<std::endl;
+				search = true;
 				return true;
 		}
+	}
+	if(search == false)
+	{
+		std::cout<<"The employee code is not present in our system"<<std::endl;
 	}
 	return false;
 }
@@ -182,7 +194,7 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
 			{
 				e.name=name;
 			}
-			if(salary >= 1000)
+			if(salary >= MIN_SALARY)
 			{
 				e.salary=salary;
 			}
@@ -195,7 +207,7 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
 	}
 	if(result == false)
 	{
-		std::cout<<"\t The employee code is wrong."<<std::endl;
+		std::cout<<"\t The employee code is not in the system"<<std::endl;
 	}
 	SaveRecordinjson();
     for(auto it=records.begin(); it!=records.end(); it++)
@@ -203,11 +215,11 @@ bool Config::EditRecordInp(std::string code,std::string name,int salary,std::str
         Employee &e = *it;
         if(e.empCode == code)
         {
-				std::cout<<"The edited record details are:"<<std::endl;
-                std::cout <<"name of the employee is: \t"<<e.name<< std::endl;
-                std::cout<<"the code of the employee is: \t"<<e.empCode<<std::endl;
-                std::cout<<"the salary of the employee is: \t"<<e.salary<<std::endl;
-                std::cout<<"the title of the employee is: \t"<<e.title<<std::endl;
+				std::cout<<"\t \t The edited record details are:"<<std::endl;
+                std::cout <<"\t \t name of the employee is: \t"<<e.name<< std::endl;
+                std::cout<<"\t \t the code of the employee is: \t"<<e.empCode<<std::endl;
+                std::cout<<"\t \t the salary of the employee is: \t"<<e.salary<<std::endl;
+                std::cout<<"\t \t the title of the employee is: \t"<<e.title<<std::endl;
         }
 
     }
@@ -428,7 +440,7 @@ bool Config::DeleteRecordInp(std::string code)
         Employee &e = *it;
         if(e.empCode == code)
         {
-            std::cout<<"delete record failed or duplicate employee code is present"<<std::endl;
+            std::cout<<"\t \t delete record failed or duplicate employee code is present"<<std::endl;
 
         }
     }
@@ -479,27 +491,27 @@ bool Config::GetPayrollDetailsInp(std::string code)
 			 //std::cout<<"salary \n"<<e.salary<<std::endl;
 			 if(salary < 21000)
 			 {
-					INCOME_TAX = 0;
+					INCOME_TAX = IT_LessThan21K;
 			 }
 			 else if(salary > 21000 && salary <42000)
 			 {
-				 INCOME_TAX = 0.05 * salary;
+				 INCOME_TAX = IT_21KTo42K * salary;
 			 }
 			 else if(salary > 42000 && salary < 84000)
 			 {
-				 INCOME_TAX = 0.20 * salary;
+				 INCOME_TAX = IT_42KTo84K * salary;
 			 }
 			 else if(salary > 84000)
 			 {
-				 INCOME_TAX = 0.30 * salary;
+				 INCOME_TAX = IT_GreaterThan84K * salary;
 			 }
 			 else
 			 {
 				 std::cout<<"edit the salary. salary is defined wrong"<<std::endl;
 			 }
-			 PROVISION_FUND = 0.12 * salary;
+			 PROVISION_FUND = PF_Percentage * salary;
 
-			 INSURANCE = 0.0475 * salary;
+			 INSURANCE = Insurance_Percentage * salary;
 		NET_PAY = salary - (INSURANCE + PROVISION_FUND + INCOME_TAX);
 		result = true;
 		//std::cout << "The net salary the employee receives is \n" << NET_PAY << std::endl;
@@ -537,19 +549,19 @@ Description: Prints all the payrolldetails based on the values given from GetPay
 bool Config::PrintPaySlip(int salary,int INCOME_TAX,int PROVISION_FUND,int INSURANCE,int NET_PAY)
 {
 
-		std::cout << "The base salary of the employee: \t" << salary << std::endl;
-		std::cout << "The income tax of  the employee: \t" << INCOME_TAX << std::endl;
-		std::cout << "The provision fund the employee: \t" << PROVISION_FUND << std::endl;
-		std::cout << "The insurance of the employee:  \t" << INSURANCE << std::endl;
-		std::cout << "The net salary the employee receives is \t" << NET_PAY << std::endl;
+		std::cout << "\n \t \t The base salary of the employee: \t " << salary << std::endl;
+		std::cout << "\n \t \tThe income tax of  the employee: \t " << INCOME_TAX << std::endl;
+		std::cout << "\n \t \t The provision fund the employee: \t " << PROVISION_FUND << std::endl;
+		std::cout << "\n \t \t The insurance of the employee:  \t" << INSURANCE << std::endl;
+		std::cout << "\n \t \t The net salary the employee receives is \t" << NET_PAY << std::endl;
 return true;
 }
 
 Config::Config()
 {
-	std::cout<<" \t Welcome to Employee Management System "<<std::endl;
+	std::cout<<"\n \t \t Welcome to Employee Management System "<<std::endl;
 }
 Config::~Config()
 {
-	std::cout<<"\t  Thank you for using Employee Management System"<<std::endl;
+	std::cout<<"\n \t \t Thank you for using Employee Management System"<<std::endl;
 }
