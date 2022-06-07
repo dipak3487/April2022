@@ -22,9 +22,9 @@ class Room
     Customer cust;
     int TotalRoomCount();
     void AddRoom(int);
-    void  SearchRoom(int);
-    void   ModifyRoom(int);
-    void   DisplayRoom(int);
+    void SearchRoom(int);
+    void  ModifyRoom(int);
+    void  DisplayRoom(int);
 };
 
 #endif // ROOM_H_INCLUDED
