@@ -13,7 +13,7 @@
 
 using namespace std;
 
-//done
+
 void hotelManager::manageRooms(){
     Room room;
     int menu, roomnumber;
@@ -30,12 +30,12 @@ void hotelManager::manageRooms(){
             cout << "\nEnter Room Number:";
             cin >> roomnumber;
 
-            stringstream s1;                                                                       //to read or write form database(help)
+            stringstream s1;                                                            //to store the query
             s1 << "SELECT * FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
-            bool qstate = sql.query_check(s1, sql);                                                //cheack query and execute query
+            bool qstate = sql.query_check(s1, sql);                                   //cheack query and execute query
             if(qstate) {
-                sql.res= mysql_store_result(sql.conn);                                             // store result set
-                sql.row = mysql_fetch_row(sql.res);                                                // fetch result one by one
+                sql.res= mysql_store_result(sql.conn);                                 // store result set
+                sql.row = mysql_fetch_row(sql.res);                                  // fetch result one by one
                 if(sql.row) cout << "\nRoom Already Present!";
                 else room.addRoom(roomnumber);
             }
@@ -60,7 +60,6 @@ void hotelManager::manageRooms(){
         hm.manageRooms();
 }
 
-//done
 void hotelManager::checkIn(){
     sql sql;
     int roomnumber, again;

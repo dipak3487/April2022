@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-//#include <windows.h>
 #include "hotelManager.h"
 #include "Room.h"
 #include "Customer.h"

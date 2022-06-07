@@ -80,7 +80,7 @@ void Room::displayRoom(int roomnumber){
                     cout << "Room capacity: " << sql.row[3] << "\n";
                     cout << "Room status: " << sql.row[4] << "\n";
                     cout << "Rent per day: " << sql.row[5] << "\n";
-                    cout << "Number of Days: " << sql.row[5] << "\n";
+                    //cout << "Number of Days: " << sql.row[6] << "\n";
                 }
                 else cout << "\nNo record found!!";
             }
