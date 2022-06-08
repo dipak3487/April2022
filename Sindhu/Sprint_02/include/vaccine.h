@@ -81,7 +81,11 @@ class Vaccine
 		void view_Vaccine();//operations on the vaccine inventory
 		int countRecords();// count the total records in vaccine table of records
 		
+<<<<<<< HEAD
+		
+=======
 >>>>>>> 501b7dfab72cb7222f4b080c3ac63d06ffc21eec
+>>>>>>> d808ce161a0f8ea930a0397fa2aa2bd9f4e93b34
 };
 
 #endif

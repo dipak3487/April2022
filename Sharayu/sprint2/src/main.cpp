@@ -7,10 +7,7 @@
 #include "CppConsoleTable.h"
 #include "Student.h"
 
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
 
 using tableFormat::ConsoleTable;
 
@@ -27,7 +24,7 @@ Json::Value getStudentReport() {
 void setStudentReport(Json::Value root) {
 	// Write the output to a file
 	std::ofstream outFile;
-	outFile.open("reports.json");
+	outFile.open("../data/reports.json");
 	outFile << root;
 	outFile.close();    
 }
