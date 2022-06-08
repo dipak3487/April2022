@@ -1,31 +1,26 @@
 #ifndef ROOM_H_INCLUDED
 #define ROOM_H_INCLUDED
 
-//#include <windows.h>
+
 #include "Customer.h"
 
 using namespace std;
 
 class Room
 {
-    private:
-    string roomtype;
-    string comfort;
-    string capacity;
-    int status;
-    int rent_per_day;
-    
     public:
-    Room() {};
-    Room(string rt,string c,string ct,int s,int rent);
-    ~Room() {};
+    string RoomType;
+    string Comfort;
+    string Capacity;
+    int Status;
+    int Rent_Per_Day;
+
     Customer cust;
-    int TotalRoomCount();
-    void addRoom(int);
-    void searchRoom(int);
-    void modifyRoom(int);
-    void displayRoom(int);
+    void AddRoom(int);
+    void  SearchRoom(int);
+    void   ModifyRoom(int);
+    void   DisplayRoom(int);
 };
 
-#endif // ROOM_H_INCLUDED
+#endif 
 

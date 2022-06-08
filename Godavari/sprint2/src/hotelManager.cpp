@@ -7,14 +7,16 @@
 #include<pthread.h>
 #include<fcntl.h>
 #include<unistd.h>
-#include "Customer.h"
-#include "Room.h"
-#include "hotelManager.h"
-#include "sql.h"
+#include "../include/Customer.h"
+#include "../include/Room.h"
+#include "../include/HotelManager.h"
+#include "../include/Sql.h"
 #include<mysql/mysql.h>
 
 
 using namespace std;
+
+
 
 pthread_t pthread1;
 int change=0;
@@ -28,12 +30,12 @@ void* userPreferenceThread(void *arg) {
                 //if /tmp/nice file exists
         if (access("/tmp/nice", F_OK) == 0)
         {
-                        // hotelManager::SetUserPreference(1); //nice menu
+                        // HotelManager::SetUserPreference(1); //nice Menu
                    change = 1;
  }
         else
         {
-           // hotelManager::SetUserPreference(0); //normal menu
+           // HotelManager::SetUserPreference(0); //normal Menu
                         change = 0;
         }
 
@@ -57,41 +59,42 @@ void createUserPreferenceThread() {
     }
 }
 
-//This function manageroom details like add rooms in the system,modify their details.we can add roomtype,comfort,capacity,status,rent_per_day in the room table
-void hotelManager::manageRooms(){
+//This function manageroom details like add rooms in the system,modify their details.we can add RoomType,Comfort,Capacity,Status,Rent_Per_Day in the room table
+
+void HotelManager::ManageRooms(){
     Room room;
-    int menu, roomnumber;
-    hotelManager hm;
+    int Menu, RoomNumber;
+    HotelManager hm;
     sql sql;
 
         cout << "\n***********";
         cout<<"\n### Manage Rooms ###";
-        cout<<"\n1.Add Room\n2.Modify Room\n3.Back to main menu: ";
+        cout<<"\n1.Add Room\n2.Modify Room\n3.Back to main Menu: ";
         cout << "\n***********";
         cout << "\n\nEnter Option: ";
-        cin >> menu;
-        if(menu == 1){
+        cin >> Menu;
+        if(Menu == 1){
             cout << "\nEnter Room Number:";
-            cin >> roomnumber;
+            cin >> RoomNumber;
 
-            stringstream s1;                                                                       //to read or write form database(help)
-            s1 << "SELECT * FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
-            bool qstate = sql.query_check(s1, sql);                                                //cheack query and execute query
+            stringstream s1;                                                            //to store the query
+            s1 << "SELECT * FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
+            bool qstate = sql.query_check(s1, sql);                                   //cheack query and execute query
             if(qstate) {
-                sql.res= mysql_store_result(sql.conn);                                             // store result set
-                sql.row = mysql_fetch_row(sql.res);                                                // fetch result one by one
+                sql.res= mysql_store_result(sql.conn);                                 // store result set
+                sql.row = mysql_fetch_row(sql.res);                                  // fetch result one by one
                 if(sql.row) cout << "\nRoom Already Present!";
-                else room.addRoom(roomnumber);
+                else room.AddRoom(RoomNumber);
             }
             else cout << "\nQuery Execution Failed!";
         }
-        else if(menu==2){
+        else if(Menu==2){
             cout << "\nEnter Room Number:";
-            cin >> roomnumber;
-            room.searchRoom(roomnumber);
+            cin >> RoomNumber;
+            room. SearchRoom(RoomNumber);
         }
-        else if(menu==3){
-            hm.mainMenu();
+        else if(Menu==3){
+            hm.MainMenu();
         }
         else {
             cout << "*********";
@@ -101,52 +104,53 @@ void hotelManager::manageRooms(){
         cout << "\nPress any key to continue:";
         cin.ignore();
         cin.get();
-        hm.manageRooms();
+        hm.ManageRooms();
 }
 
 //This function add check-in details in the system.
-void hotelManager::checkIn(){
+
+void HotelManager::CheckIn(){
     sql sql;
-    int roomnumber, again;
+    int RoomNumber, Again;
     
     cout << "Enter Room Number: ";
-    cin >> roomnumber;
+    cin >> RoomNumber;
     stringstream s1, s2, s3;
-    s1 << "SELECT Status FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
+    s1 << "SELECT Status FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
     bool qstate = sql.query_check(s1, sql);
     if(qstate) {
         sql.res= mysql_store_result(sql.conn);
         sql.row = mysql_fetch_row(sql.res);
         if(sql.row) {
-            int status = atoi(sql.row[0]);
-            if(status != 0) {
+            int Status = atoi(sql.row[0]);
+            if(Status != 0) {
                 cout << "\nRoom is already booked.";
                 cout << "\nPress any key to continue:";
                 cin.ignore();
                 cin.get();
-                cout << "\nPress 1 to go back to main menu\nPress 2 to enter another room no.";
-                cin >> again;
-                if(again==1)mainMenu();
-                if(again==2)checkIn();
+                cout << "\nPress 1 to go back to main Menu\nPress 2 to enter another room no.";
+                cin >> Again;
+                if(Again==1)MainMenu();
+                if(Again==2)CheckIn();
                 else cout << "\nInvalid input!";
             }
             else {
                 cout<<"\nEnter Customer Name (First Name): ";
-                cin>>cust.firstname;
+                cin>>cust.FirstName;
                 cout<<"\nEnter Customer Name (Last Name): ";
-                cin>>cust.lastname;
+                cin>>cust.LastName;
                 cout<<"\nEnter Address (only city): ";
-                cin>>cust.address;
+                cin>>cust.Address;
                 cout<<"\nEnter Phone Number(10 digits): ";
-                cin >> cust.phone;
+                cin >> cust.Phone;
                 cout<<"\nEnter Number of Days: ";
-                cin >> cust.num_of_days;
+                cin >> cust.Num_of_Days;
 
-                s2 << "INSERT INTO guests(RoomNumber, FirstName, LastName, Address, PhoneNumber,NumOfDays) VALUES('"<< roomnumber <<"','"<< cust.firstname <<"','"<< cust.lastname <<"','"<< cust.address <<"','"<< cust.phone <<"','"<< cust.num_of_days <<"')";
+                s2 << "INSERT INTO guests(RoomNumber, FirstName, LastName, Address, PhoneNumber,NumOfDays) VALUES('"<< RoomNumber <<"','"<< cust.FirstName <<"','"<< cust.LastName <<"','"<< cust.Address <<"','"<< cust.Phone <<"','"<< cust.Num_of_Days <<"')";
                 bool q2state = sql.query_check(s2, sql);
                 if(q2state) {
-                    status = 1;
-                    s3 << "UPDATE rooms SET Status = '"<< status <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+                    Status = 1;
+                    s3 << "UPDATE rooms SET Status = '"<< Status <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
                     bool q3state = sql.query_check(s3, sql);
                     if(q3state) {
                             cout << "\nCustomer CheckedIn Successfully!";
@@ -164,40 +168,40 @@ void hotelManager::checkIn(){
     cout << "\nPress any key to continue:";
     cin.ignore();
     cin.get();
-    mainMenu();
+    MainMenu();
 }
 
-//This function used for checkout of the customer
-void hotelManager::checkOut(int roomnumber){
+//This function used for CheckOut of the Customer
+void HotelManager::CheckOut(int RoomNumber){
     sql sql;
-    int bill;
-    int num_of_days;
+    int Bill;
+    int Num_of_Days;
     stringstream s1, s2, s3, s4;
-    s1 << "SELECT Status, RentPerDay FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
+    s1 << "SELECT Status, Rent_Per_Day FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
     bool qstate = sql.query_check(s1, sql);
     if(qstate){
         sql.res= mysql_store_result(sql.conn);
         sql.row = mysql_fetch_row(sql.res);
         if(sql.row) {
-            int status = atoi(sql.row[0]);
+            int Status = atoi(sql.row[0]);
             int rent = atoi(sql.row[1]);
-            if(status == 0) {
+            if(Status == 0) {
                 cout << "\nRoom is empty.";
             }
             else {
                 cout<<"\nEnter number of days room was booked for: ";
-                cin>>num_of_days;
-                bill = num_of_days*rent;
+                cin>>Num_of_Days;
+                Bill = Num_of_Days*rent;
                
                 
                   
                     
-                        status = 0;
-                        s4 << "UPDATE rooms SET Status = '"<< status <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+                        Status = 0;
+                        s4 << "UPDATE rooms SET Status = '"<< Status <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
                         bool q4state = sql.query_check(s4, sql);
                         if(q4state) {
                             cout << "\nCheckOut Successful!";
-                            cout << "\n Bill := "<<bill;
+                            cout << "\n Bill := "<<Bill;
                             }
                         else{
                              cout << "\nRoom Status Not Modified!";
@@ -213,15 +217,15 @@ void hotelManager::checkOut(int roomnumber){
     cout << "\nPress any key to continue:";
     cin.ignore();
     cin.get();
-    mainMenu();
+    MainMenu();
 }
 
-//This function check whether room available or not for allocating to the customer
-void hotelManager::getAvailableRooms(){
+//This function check whether room available or not for allocating to the Customer
+void HotelManager::GetAvailableRooms(){
     sql sql;
-    int status = 0;
+    int Status = 0;
     stringstream s1;
-    s1 << "SELECT RoomNumber FROM rooms WHERE Status = '"<< status <<"'";
+    s1 << "SELECT RoomNumber FROM rooms WHERE Status = '"<< Status <<"'";
     bool qstate = sql.query_check(s1, sql);
     if(qstate) {
         sql.res= mysql_store_result(sql.conn);
@@ -239,23 +243,23 @@ void hotelManager::getAvailableRooms(){
     cout << "\nPress any key to continue:";
     cin.ignore();
     cin.get();
-    //checkIn();
-   mainMenu();
+    //CheckIn();
+   MainMenu();
 }
 
-//This function search the customer detail with their allocated room number
-void hotelManager::searchCustomer(){
+//This function search the Customer detail with their allocated room number
+void HotelManager::SearchCustomer(){
 
     sql sql;
-    string fname;
-    string lname;
-    cout << "\nEnter first name of the customer:";
-    cin >> fname;
-    cout << "\nEnter last name of the customer:";
-    cin >> lname;
+    string FName;
+    string LName;
+    cout << "\nEnter first name of the Customer:";
+    cin >> FName;
+    cout << "\nEnter last name of the Customer:";
+    cin >> LName;
 
     stringstream ss;
-    ss << "SELECT * FROM guests WHERE FirstName = '"<< fname << "' and LastName like '"<< lname << "'";
+    ss << "SELECT * FROM guests WHERE FirstName = '"<< FName << "' and LastName like '"<< LName << "'";
     bool qstate = sql.query_check(ss, sql);
     if(qstate) {
         sql.res= mysql_store_result(sql.conn);
@@ -264,8 +268,8 @@ void hotelManager::searchCustomer(){
         cout << "-----------------------\n";
         while ((sql.row = mysql_fetch_row(sql.res))) {
             cout << "Room Number: " << sql.row[0] << endl;
-            cout << "Firstname: " << sql.row[1] << endl;
-            cout << "Lastname: " << sql.row[2] << endl;
+            cout << "FirstName: " << sql.row[1] << endl;
+            cout << "LastName: " << sql.row[2] << endl;
             cout << "Address: " << sql.row[3] << endl;
             cout << "Phone Number: " << sql.row[4] << endl;
             cout << "Number of days of stay: " << sql.row[5] << endl;
@@ -280,41 +284,41 @@ void hotelManager::searchCustomer(){
         cout << "Query not executed"<< endl;
     }
 
-    mainMenu();
+    MainMenu();
 }
 
 
-void hotelManager::mainMenu(){
-    hotelManager hm;
+void HotelManager::MainMenu(){
+    HotelManager hm;
     createUserPreferenceThread();
    // cout<<"user preference:"<<change;
     if(change==0)
   {
     cout << "\n\t\t Welcome to Hotel Management System\n" << endl;
-    int menu;
-    int roomnumber;
+    int Menu;
+    int RoomNumber;
     cout << "**********************************************************";
     cout << "\n\t1.Manage Rooms"<< endl << "\t2.Check-In Room" << endl << "\t3.Check-out Room" << endl << "\t4.Search Customer" << endl << "\t5.Available Rooms" << endl << "\t6.Exit";
     cout << "\n*********************************************************";
-    cout << "\nEnter the corresponding no. to go the menu:";
-    cin >> menu;
-    switch(menu){
+    cout << "\nEnter the corresponding no. to go the Menu:";
+    cin >> Menu;
+    switch(Menu){
         case 1:
-           hm.manageRooms();
+           hm.ManageRooms();
            break;
          case 2:
-            hm.checkIn();
+            hm.CheckIn();
             break;
          case 3:
             cout << "\nEnter Room Number:";
-            cin >> roomnumber;
-            hm.checkOut(roomnumber);
+            cin >> RoomNumber;
+            hm.CheckOut(RoomNumber);
             break;
         case 4:
-                hm.searchCustomer();
+                hm.SearchCustomer();
             break;
         case 5:
-                hm.getAvailableRooms();
+                hm.GetAvailableRooms();
             break;
         case 6:
             cout<<"\nTHANK YOU FOR USING THIS SOFTWARE";
@@ -328,30 +332,30 @@ void hotelManager::mainMenu(){
 else
 {
 cout << "\n\t\tWelcome to Hotel Management System\n" << endl;
-    int menu;
-    int roomnumber;
+    int Menu;
+    int RoomNumber;
     cout << "=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*";
     cout << "\n\t\t1.Manage Rooms"<< endl <<"\t\t2.Check-In Room" << endl << "\t\t3.Check-out Room" << endl << "\t\t4.Search Customer" << endl << "\t\t5.Available Rooms" << endl << "\t\t6.Exit";
     cout << "\n=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*";
-    cout << "\nEnter the corresponding no. to go the menu:";
-    cin >> menu;
-    switch(menu){
+    cout << "\nEnter the corresponding no. to go the Menu:";
+    cin >> Menu;
+    switch(Menu){
         case 1:
-           hm.manageRooms();
+           hm.ManageRooms();
            break;
          case 2:
- hm.checkIn();
+ hm.CheckIn();
             break;
          case 3:
             cout << "\nEnter Room Number:";
-            cin >> roomnumber;
-            hm.checkOut(roomnumber);
+            cin >> RoomNumber;
+            hm.CheckOut(RoomNumber);
             break;
         case 4:
-                hm.searchCustomer();
+                hm.SearchCustomer();
             break;
         case 5:
-                hm.getAvailableRooms();
+                hm.GetAvailableRooms();
             break;
         case 6:
             cout<<"\nTHANK YOU FOR USING THIS SOFTWARE";

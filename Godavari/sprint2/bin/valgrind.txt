@@ -13,7 +13,7 @@
 ==32338==    by 0x50944B0: __gnu_cxx::stdio_sync_filebuf<char, std::char_traits<char> >::underflow() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
 ==32338==    by 0x50A2B22: std::istream::sentry::sentry(std::istream&, bool) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
 ==32338==    by 0x50A2DA1: std::istream::operator>>(int&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
-==32338==    by 0x10CED8: hotelManager::mainMenu() (hotelManager.cpp:254)
+==32338==    by 0x10CED8: HotelManager::MainMenu() (HotelManager.cpp:254)
 ==32338==    by 0x10A480: main (main.cpp:21)
 ==32338== 
 ==32338== HEAP SUMMARY:
