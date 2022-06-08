@@ -425,9 +425,8 @@ return true on success, return false in case of failure.
 bool Config::DeleteRecordInp(std::string code)
 {
 	bool result = false;
-	for(auto it=records.begin(); it!=records.end(); it++)
+	for(auto it=records.begin(); it!=records.end()+1; it++)
 	{
-		
 		Employee &e = *it;
 		if(e.empCode == code)
 		{
@@ -450,7 +449,7 @@ bool Config::DeleteRecordInp(std::string code)
 
         }
     }
-	SaveRecordinjson();
+			SaveRecordinjson();
 
 return result;
 }

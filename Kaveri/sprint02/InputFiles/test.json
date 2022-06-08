@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E2007",
-         "name" : "renu",
-         "salary" : 20000,
-         "title" : "Fresher"
+         "empCode" : "E1006",
+         "name" : "Rahul Dravid",
+         "salary" : 28000,
+         "title" : "Manager"
       }
    ]
 }

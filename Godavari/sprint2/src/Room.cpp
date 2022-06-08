@@ -4,69 +4,69 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "hotelManager.h"
-#include "Room.h"
-#include "Customer.h"
-#include "sql.h"
+#include "../include/HotelManager.h"
+#include "../include/Room.h"
+#include "../include/Customer.h"
+#include "../include/Sql.h"
 
 using namespace std;
 
 Room::Room(string rt,string c,string ct,int s,int rent)
 {
- roomtype = rt;
- comfort = c;
- capacity = ct;
- status= s;
- rent_per_day=rent;
+ RoomType = rt;
+ Comfort = c;
+ Capacity = ct;
+ Status= s;
+ Rent_Per_Day=rent;
 }
 
 
-void Room::addRoom(int roomnumber){
+void Room::AddRoom(int RoomNumber){
     sql sql;
     Room room;
     cout << "\n***********";
     cout << "\n(Deluxe Suite->D)\n(Non-Deluxe Suite->N)\n(Presidential Suite->P)\n";
     cout << "*********";
     cout << "\nEnter the code for room type:";
-    cin >> room.roomtype;
+    cin >> room.RoomType;
 
     cout << "\n***********";
     cout << "\n(AC->A)\n(Non-AC->N)";
     cout << "\n***********";
-    cout << "\nEnter the code for room comfort:";
-    cin >> room.comfort;
+    cout << "\nEnter the code for room Comfort:";
+    cin >> room.Comfort;
 
     cout << "\n***********";
     cout << "\n(Single->S)\n(Double->D)";
     cout << "\n***********";
-    cout << "\nEnter the code for room capacity:";
-    cin >> room.capacity;
+    cout << "\nEnter the code for room Capacity:";
+    cin >> room.Capacity;
 
     cout << "\nEnter the rent per day:";
-    cin >> room.rent_per_day;
+    cin >> room.Rent_Per_Day;
 
     cout << "\n***********";
     cout << "\n(Available->0)\n(None-Available->1)";
     cout << "\n***********";
     cout << "\nEnter the Status:";
-    cin >> room.status;
+    cin >> room.Status;
 
     stringstream ss;
-    ss << "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, RentPerDay) VALUES('"<< roomnumber <<"','"<< room.roomtype <<"','"<< room.comfort <<"','"<< room.capacity <<"','"<< room.status <<"','"<< room.rent_per_day <<"')";
+    ss << "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, Rent_Per_Day) VALUES('"<< RoomNumber <<"','"<< room.RoomType <<"','"<< room.Comfort <<"','"<< room.Capacity <<"','"<< room.Status <<"','"<< room.Rent_Per_Day <<"')";
     if(sql.query_check(ss, sql)){
         cout << "\nRoom Added Successfully!";
         cout << "\nPress any key to display room:";
         cin.ignore();
         cin.get();
-        displayRoom(roomnumber);
+          DisplayRoom(RoomNumber);
     }
     else{
         cout << "\nQuery Execution Failed!";
     }
     cout << "\nPress any key to continue:";
     cin.get();
-    hotelManager hm;
-    hm.manageRooms();
+    HotelManager hm;
+    hm.ManageRooms();
 }
 
 int Room :: TotalRoomCount()
@@ -86,13 +86,13 @@ int Room :: TotalRoomCount()
         return count;
 }
 
-void Room::displayRoom(int roomnumber){
+void Room::  DisplayRoom(int RoomNumber){
     sql sql;
-    hotelManager hm;
+    HotelManager hm;
     cout << "\n***********\n";
 
             stringstream ss;
-            ss << "SELECT * FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
+            ss << "SELECT * FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
             bool qstate = sql.query_check(ss, sql);
             if(qstate) {
                 sql.res= mysql_store_result(sql.conn);
@@ -100,11 +100,11 @@ void Room::displayRoom(int roomnumber){
                 if(sql.row) {
                     cout << "Details of Roomnumber " << sql.row[0] << " : \n";
                     cout << "Room type: " << sql.row[1] << "\n";
-                    cout << "Room comfort: " << sql.row[2] << "\n";
-                    cout << "Room capacity: " << sql.row[3] << "\n";
-                    cout << "Room status: " << sql.row[4] << "\n";
+                    cout << "Room Comfort: " << sql.row[2] << "\n";
+                    cout << "Room Capacity: " << sql.row[3] << "\n";
+                    cout << "Room Status: " << sql.row[4] << "\n";
                     cout << "Rent per day: " << sql.row[5] << "\n";
-                    cout << "Number of Days: " << sql.row[5] << "\n";
+                    //cout << "Number of Days: " << sql.row[6] << "\n";
                 }
                 else cout << "\nNo record found!!";
             }
@@ -113,20 +113,20 @@ void Room::displayRoom(int roomnumber){
                 cout << "Press any key to go back to manage rooms";
                 cin.ignore();
                 cin.get();
-                hm.manageRooms();
+                hm.ManageRooms();
             }
 }
 
 
-void Room::modifyRoom(int roomnumber){
+void Room::  ModifyRoom(int RoomNumber){
     int opt, index;
     sql sql;
-    hotelManager hm;
+    HotelManager hm;
     string newc;
     stringstream ss;
         cout << "\n***********";
         cout << "\nWhat would you want to modify?";
-        cout << "\nRoom Type - Press 1\nRoom Comfort - Press 2\nRoom capacity - Press 3\nRent per day - Press 4\nFinish - Press 5\n";
+        cout << "\nRoom Type - Press 1\nRoom Comfort - Press 2\nRoom Capacity - Press 3\nRent per day - Press 4\nFinish - Press 5\n";
         cout << "*********";
         cin >> opt;
 
@@ -137,41 +137,41 @@ void Room::modifyRoom(int roomnumber){
             cout << "*********";
             cout << "\nEnter the code for new room type:";
             cin >> newc;
-            ss << "UPDATE rooms SET Type = '"<< newc <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+            ss << "UPDATE rooms SET Type = '"<< newc <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
     }
         else if (opt == 2){
             index = 2;
             cout << "\n***********";
             cout << "\n(AC->A)\n(Non-AC->N)";
             cout << "*********";
-            cout << "\nEnter the code for new room comfort:";
+            cout << "\nEnter the code for new room Comfort:";
             cin >> newc;
-            ss << "UPDATE rooms SET Comfort = '"<< newc <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+            ss << "UPDATE rooms SET Comfort = '"<< newc <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
         }
         else if (opt == 3){
             index = 3;
             cout << "\n***********";
             cout << "\n(Single->S)\n(Double->D)";
             cout << "*********";
-            cout << "\nEnter the code for new  room capacity:";
+            cout << "\nEnter the code for new  room Capacity:";
             cin >> newc;
-            ss << "UPDATE rooms SET Capacity = '"<< newc <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+            ss << "UPDATE rooms SET Capacity = '"<< newc <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
         }
         else if(opt == 4){
             index = 5;
             cout << "\nEnter new rent per day: ";
             cin >> newc;
-            ss << "UPDATE rooms SET RentPerDay = '"<< newc <<"' WHERE RoomNumber = '"<< roomnumber <<"'";
+            ss << "UPDATE rooms SET Rent_Per_Day = '"<< newc <<"' WHERE RoomNumber = '"<< RoomNumber <<"'";
         }
         else if(opt == 5){
-            hm.manageRooms();
+            hm.ManageRooms();
         }
         else{
                cout << "\nInvalid Input";
             cout << "\nPress any key to continue:";
             cin.ignore();
             cin.get();
-            modifyRoom(roomnumber);
+              ModifyRoom(RoomNumber);
         }
 
         if(sql.query_check(ss, sql)) {
@@ -182,29 +182,29 @@ void Room::modifyRoom(int roomnumber){
             cout << "\nPress any key to continue:";
             cin.ignore();
             cin.get();
-            hm.manageRooms();
+            hm.ManageRooms();
         }
 
     cout << "\nPress any key to continue: ";
     cin.ignore();
     cin.get();
-    hm.mainMenu();
+    hm.MainMenu();
 }
 
 
-void Room::searchRoom(int roomnumber){
+void Room:: SearchRoom(int RoomNumber){
     sql sql;
-    hotelManager hm;
+    HotelManager hm;
 
         stringstream ss;
-        ss << "SELECT * FROM rooms WHERE RoomNumber = '"<< roomnumber <<"'";
+        ss << "SELECT * FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
         bool qstate = sql.query_check(ss, sql);
         if(qstate) {
             sql.res= mysql_store_result(sql.conn);
             sql.row = mysql_fetch_row(sql.res);
             if(sql.row) {
-                displayRoom(roomnumber);
-                modifyRoom(roomnumber);
+                  DisplayRoom(RoomNumber);
+                  ModifyRoom(RoomNumber);
             }
             else cout << "\nNo record found!!";
         }
@@ -214,6 +214,6 @@ void Room::searchRoom(int roomnumber){
         cout << "\nPress any key to continue:";
         cin.ignore();
         cin.get();
-        hm.manageRooms();
+        hm.ManageRooms();
 }
 

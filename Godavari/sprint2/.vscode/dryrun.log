@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/pramod/sprint02/April2022/Godavari/sprint2'
+make: Leaving directory '/home/pramod/sprint02/April2022/Godavari/sprint2'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
