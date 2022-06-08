@@ -76,5 +76,24 @@
 			"roll_number" : 21
 		},
 		"total_marks" : 379
+	},
+	{
+		"grade" : "B",
+		"id" : 1004841739,
+		"marks" : 
+		{
+			"english" : 65,
+			"history" : 79,
+			"math" : 87,
+			"science" : 98,
+			"social" : 78
+		},
+		"student" : 
+		{
+			"class" : "9",
+			"name" : "warrior",
+			"roll_number" : 9
+		},
+		"total_marks" : 407
 	}
 ]

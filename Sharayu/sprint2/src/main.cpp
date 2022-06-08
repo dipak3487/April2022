@@ -27,7 +27,7 @@ Json::Value getStudentReport() {
 void setStudentReport(Json::Value root) {
 	// Write the output to a file
 	std::ofstream outFile;
-	outFile.open("reports.json");
+	outFile.open("../data/reports.json");
 	outFile << root;
 	outFile.close();    
 }
