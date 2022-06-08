@@ -2,11 +2,9 @@
 #include "Account.h"
 using namespace std;
 
-void Account ::Create_Account()
+void Account::Create_Account()
 {
-   int acno;
-          char name[50];
-	         int deposit; 
+   
 	cout<<"\n\t\t\tEnter The  Account No. : ";
 	cin>>acno;
 	cout<<"\n\n\t\t\tEnter the Name of the Account holder : ";
@@ -64,7 +62,7 @@ int Account::Retdeposit() const
 }
 
 //		function to write in file
-void Account::Write_Account()
+void Account:: Write_Account()
 {
 	Account ac;
 	ofstream outFile;
@@ -101,7 +99,7 @@ void Account::Display(int n)
 
 
 //      function to modify record of file
-void Account:: Modify_Account(int n)
+void Account::Modify_Account(int n)
 {
 	bool found=false;
 	Account ac;
