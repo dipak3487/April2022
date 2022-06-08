@@ -18,13 +18,6 @@ int getCurrentCarID();
 static int car_id = getCurrentCarID();
 
 class Car {
-    private:
-        int carID;
-    protected:
-        std::string  regNo, company, model;
-        bool isRented;
-        Date doa;
-        double costPerDay;
     public:
         Car();
         Car(const Car &car2);
@@ -44,6 +37,15 @@ class Car {
 		//int modify(int car_id,double cost_per_day);
         friend std::ostream& operator<< (std::ostream& os, const Car& car);
         ~Car();
+
+	protected:
+		std::string regNo, company, model;
+		 bool isRented;
+		 Date doa;
+		 double costPerDay;
+
+	private:
+		 int carID;
 };
 
 Car getCarDetails();

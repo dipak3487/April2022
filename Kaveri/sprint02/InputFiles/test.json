@@ -26,10 +26,10 @@
          "title" : "Assistant Manager"
       },
       {
-         "empCode" : "E1005",
-         "name" : "Renu Shubh",
-         "salary" : 30000,
-         "title" : "Analyst"
+         "empCode" : "E1006",
+         "name" : "Rahul Dravid",
+         "salary" : 28000,
+         "title" : "Manager"
       }
    ]
 }

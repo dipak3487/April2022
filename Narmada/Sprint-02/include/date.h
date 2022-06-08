@@ -13,21 +13,22 @@
 #include <iostream>
 
 class Date {
-    private:
-        int d, m, y;
-        int daysOfMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    public:
-        Date();
-        Date(const Date &d2);
-        Date(int, int, int);
-        std::string returnDate();
-        std::string returnSQLDate();
-        friend int getDifference(Date& , Date&);
-        friend int countLeapYears(Date dt);
-        bool operator!= (Date dt2);
-        bool operator== (Date dt2);
-        friend std::ostream& operator<< (std::ostream& os, const Date& dt);
-        friend std::istream& operator>> (std::istream& is, Date &dt);
+	public:
+		Date();
+		Date(const Date &d2);
+		Date(int, int, int);
+		std::string returnDate();
+		std::string returnSQLDate();
+		friend int getDifference(Date& , Date&);
+		friend int countLeapYears(Date dt);
+		bool operator!= (Date dt2);
+		bool operator== (Date dt2);
+		friend std::ostream& operator<< (std::ostream& os, const Date& dt);
+		friend std::istream& operator>> (std::istream& is, Date &dt);
+
+	private:
+		int d, m, y;
+		int daysOfMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 };
 
 extern Date todayDate;

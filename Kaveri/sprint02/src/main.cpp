@@ -14,6 +14,7 @@
 #include "employee.h"
 #include <pthread.h>
 #include<fcntl.h>
+#define CHECK_FILENAME "../check/change"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ int ParseCommandLine(int argc,char* argv[])
 {
 	if(argc !=2)
 	{
-		cout<<"the employee data is not given"<<endl;
+		cout<<"Employee data is not given"<<endl;
 		exit(0);
 	}
 	if(argv[1]!= NULL)
@@ -49,27 +50,26 @@ void* userPreferenceThread(void *arg) {
 
     while(true) {
         
-        if (access("/tmp/change", F_OK) == 0)
+        if (access(CHECK_FILENAME, F_OK) == 0)
         {
-			change = Config::SetUserPreference(1); //nice menu
-        }
+			change = Config::SetUserPreference(1); 
+		}
         else
         {
-           change = Config::SetUserPreference(0); //normal menu
+           change = Config::SetUserPreference(0); 
         }
 
-        sleep(1);
     }
     return arg;
 }
 
 void createUserPreferenceThread() {
-    static char *thread_input1 = "User preference thread";
+    static char *thread_input = NULL;
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
-    int flag = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+    int flag = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input);
     if(flag != 0) {
         cout<<" thread can not be created, error number = %d\n"<< flag<<endl;
         exit(0);
@@ -84,38 +84,11 @@ int main(int argc,char* argv[])
 	config.ReadConfig();
 	config.ReadRecords();
 	
-/*
-	cout<<"Enter Admin Login Credentials:"<<endl;
-	std::string adminid = "ADMIN";
-    std::string user;
-    std::cout<<"Enter username:"<<std::endl;
-    std::cin>>user;
-	if(adminid == user)
-	{
-     const char *mypass="vista";
-     char *password=getpass("Enter password: "); 
-
-     if(strcmp(password,mypass)==0) 
-	 {
-	 	cout <<"Correct password! \n";
-	 }
-     else
-	 {
-		cout <<"Invalid password!\n";
-	 	exit(0);
-	 }
-	}
-	else
-	{
-		cout<<"Invalid user"<<endl;
-		exit(0);
-	}
-	*/
 	createUserPreferenceThread();
-	cout<<"change value : "<<change<<endl;
 
 	while(1)
 	{
+			cout<<"change value : "<<change<<endl;
 			cout<<"1.Create new Employee details"<<endl;
 			cout<<"2.Edit Employee details"<<endl;
 			cout<<"3.Delete Employee details"<<endl;
@@ -132,7 +105,7 @@ int main(int argc,char* argv[])
 	 }
 	 catch(int x)
 	 {
-		 cout<<"enter positive integers only"<<endl;
+		 cout<<"Please enter positive integers only"<<endl;
 	 }
 		switch(choice)
         {
@@ -163,7 +136,7 @@ int main(int argc,char* argv[])
 			case 6:
 				exit(0);
 			default:
-				cout<<"Please enter 1/2/3/4/5/6 only "<<endl;
+				cout<<"Please enter 1, 2, 3, 4, 5 and 6 only "<<endl;
 		}
 	}
 	
