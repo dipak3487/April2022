@@ -2,9 +2,11 @@
 #include "Account.h"
 using namespace std;
 
-void Account::Create_Account()
+void Account ::Create_Account()
 {
-   
+   int acno;
+          char name[50];
+	         int deposit; 
 	cout<<"\n\t\t\tEnter The  Account No. : ";
 	cin>>acno;
 	cout<<"\n\n\t\t\tEnter the Name of the Account holder : ";
@@ -62,17 +64,17 @@ int Account::Retdeposit() const
 }
 
 //		function to write in file
-void Write_Account()
+void Account::Write_Account()
 {
 	Account ac;
 	ofstream outFile;
-	outFile.open("account.txt",ios::binary);
+	outFile.open("account.txt",ios::binary|ios::app);
 	ac.Create_Account();
 	outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
 	outFile.close();
 }
 //		function to read specific record from file
-void Display(int n)
+void Account::Display(int n)
 {
 	Account ac;
 	bool flag=false;
@@ -99,7 +101,7 @@ void Display(int n)
 
 
 //      function to modify record of file
-void Modify_Account(int n)
+void Account:: Modify_Account(int n)
 {
 	bool found=false;
 	Account ac;
@@ -132,7 +134,7 @@ void Modify_Account(int n)
 
 
 //		function to delete record of file
-void Delete_Account(int n)
+void Account::Delete_Account(int n)
 {
 	Account ac;
 	ifstream inFile;
@@ -159,7 +161,7 @@ void Delete_Account(int n)
 	cout<<"\n\nRecord Deleted ..";
 }
 //		function to display all accounts deposit list
-void Display_All()
+void Account::Display_All()
    {
 	Account ac;
 	ifstream inFile;
@@ -181,7 +183,7 @@ void Display_All()
 }
 
 //		function to deposit and withdraw amounts
-void Deposit_Withdraw(int n, int option)
+void Account::Deposit_Withdraw(int n, int option)
 {
 	int amt;
 	bool found=false;

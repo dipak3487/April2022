@@ -56,17 +56,17 @@ void createUserPreferenceThread()
 		exit(0);
 	}
 }
-
+/*
 void Write_Account();//function to write record in binary file
 void Display(int);//function to display account details given by user
 void Modify_Account(int);//function to modify record of file
 void Delete_Account(int);//function to delete record of file
 void Display_All();//function to display all account details
 void Deposit_Withdraw(int, int); // function to desposit/withdraw amount for given account
-
+*/
 int main()
 {
-
+        Account ac;
 	char ch;
 	int num;
 createUserPreferenceThread();	
@@ -92,20 +92,20 @@ createUserPreferenceThread();
 }
 else
 {
-	cout<<"\n\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
-     cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
+       	cout<<"\n\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
+         cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
 	 cout<<"\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
 
 	 cout<<"\t\t\t\t    ::MAIN MENU::\n";
 	 cout<<"\n\t\t\t\t1. NEW ACCOUNT";
 	 cout<<"\n\t\t\t\t2. DEPOSIT AMOUNT";
 	 cout<<"\n\t\t\t\t3. WITHDRAW AMOUNT";
-     cout<<"\n\t\t\t\t4. BALANCE ENQUIRY";
+         cout<<"\n\t\t\t\t4. BALANCE ENQUIRY";
 	 cout<<"\n\t\t\t\t5. ALL ACCOUNT HOLDER LIST";
-     cout<<"\n\t\t\t\t6. CLOSE AN ACCOUNT";
-     cout<<"\n\t\t\t\t7. MODIFY AN ACCOUNT";
+         cout<<"\n\t\t\t\t6. CLOSE AN ACCOUNT";
+         cout<<"\n\t\t\t\t7. MODIFY AN ACCOUNT";
 	 cout<<"\n\t\t\t\t8. EXIT";
-      cout<<"\n\n\t\t\t\tSelect Your Option (1-8): ";
+         cout<<"\n\n\t\t\t\tSelect Your Option (1-8): ";
 	  cin>>ch;
 	}
 
@@ -113,35 +113,35 @@ else
 		{
 		case '1':
 			system("clear");
-			Write_Account();
+			ac.Write_Account();
 			break;
 		case '2':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
-			Deposit_Withdraw(num, 1);
+			ac.Deposit_Withdraw(num, 1);
 			break;
 		case '3':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
-			Deposit_Withdraw(num, 2);
+			ac.Deposit_Withdraw(num, 2);
 			break;
 		case '4':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
-			Display(num);
+			ac.Display(num);
 			break;
 		case '5':
-			Display_All();
+			ac.Display_All();
 			break;
 		case '6':
 			system("clear");
 			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
-			Delete_Account(num);
+			ac.Delete_Account(num);
 			break;
 		 case '7':
 		 	system("clear");
 			cout<<"\n\n\t\t\tEnter The account No. : "; cin>>num;
-			Modify_Account(num);
+			ac.Modify_Account(num);
 			break;
 		 case '8':
 		 	system("clear");
@@ -152,7 +152,8 @@ else
 		cout<<"\n\n\t\t\tPress Enter to Continue...";
 		cin.ignore();
 		cin.get();
-    }while(ch!='8');
+    }
+	while(ch!='8');
 	return 0;
 }
 
