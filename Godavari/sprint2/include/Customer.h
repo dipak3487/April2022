@@ -3,17 +3,14 @@
 
 using namespace std;
 
-class Customer{
-    public:
+typedef struct Customer{
+    
     string FirstName;
     string LastName;
     string Address;
     string Phone;
     int Num_of_Days;
-    
-
-   
-};
+}Customer;
 
 #endif // Customer_H_INCLUDED
 

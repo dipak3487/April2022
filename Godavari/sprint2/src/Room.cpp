@@ -21,7 +21,7 @@ Room::Room(string rt,string c,string ct,int s,int rent)
 }
 
 
-void Room::AddRoom(int RoomNumber){
+bool Room::AddRoom(int RoomNumber){
     sql sql;
     Room room;
     cout << "\n***********";
@@ -50,6 +50,10 @@ void Room::AddRoom(int RoomNumber){
     cout << "\n***********";
     cout << "\nEnter the Status:";
     cin >> room.Status;
+    if(room.Status!=0 && room.Status!=1){
+        cout<<"\n invalid status";
+        return false;
+    }
 
     stringstream ss;
     ss << "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, Rent_Per_Day) VALUES('"<< RoomNumber <<"','"<< room.RoomType <<"','"<< room.Comfort <<"','"<< room.Capacity <<"','"<< room.Status <<"','"<< room.Rent_Per_Day <<"')";
@@ -67,6 +71,7 @@ void Room::AddRoom(int RoomNumber){
     cin.get();
     HotelManager hm;
     hm.ManageRooms();
+    return true;
 }
 
 int Room :: TotalRoomCount()
@@ -192,7 +197,7 @@ void Room::  ModifyRoom(int RoomNumber){
 }
 
 
-void Room:: SearchRoom(int RoomNumber){
+bool Room:: SearchRoom(int RoomNumber){
     sql sql;
     HotelManager hm;
 

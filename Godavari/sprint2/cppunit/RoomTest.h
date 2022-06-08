@@ -1,7 +1,7 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
-<<<<<<< HEAD
+
 #include "Room.h"
 class RoomTest: public CppUnit::TestFixture{
 public:
@@ -14,7 +14,7 @@ public:
                        string Capacity="S";
                           int Status=0;
                            int Rent_Per_Day=500;
-                        CPPUNIT_ASSERT_EQUAL(save(rm),true);
+                        CPPUNIT_ASSERT_EQUAL(rm.AddRoom(rm),true);
                 }
 /*
   void RoomData()
@@ -46,31 +46,10 @@ public:
                 CPPUNIT_TEST(AddRoomData);
               //  CPPUNIT_TEST(  ModifyRoomData);
                 //CPPUNIT_TEST(RoomData);
-               // CPPUNIT_TEST_SUITE_END();
-
-};
-=======
-#include "../src/Room.h"
-
-
-using namespace std;
-
-class RoomTest : public CppUnit::TestFixture
-{
-        public:
-                 void TestCount ()
-                {
-                        Room r1;
-                       // int count=2;
-                       CPPUNIT_ASSERT_EQUAL(r1.TotalRoomCount(),2);
-                }
-
-
-                
-
-                CPPUNIT_TEST_SUITE(RoomTest);
-                CPPUNIT_TEST(TestCount);
                 CPPUNIT_TEST_SUITE_END();
+
 };
 
->>>>>>> 88fe6df5b1d4fcfbf861b3832ced064ae855c97e
+
+
+

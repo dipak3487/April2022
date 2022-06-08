@@ -21,7 +21,7 @@ class Room
     ~Room() {};
     Customer cust;
     int TotalRoomCount();
-    void AddRoom(int);
+    bool AddRoom(int);
     void SearchRoom(int);
     void  ModifyRoom(int);
     void  DisplayRoom(int);
