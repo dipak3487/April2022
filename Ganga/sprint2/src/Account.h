@@ -24,6 +24,11 @@ public:
 	void Report() const;//function to show data in tabular format
 	int Retacno() const;//function to return account number
 	int Retdeposit() const;//function to return balance amount
-	
+void Write_Account();//function to write record in binary file
+void Display(int);//function to display account details given by user
+void Modify_Account(int);//function to modify record of file
+void Delete_Account(int);//function to delete record of file
+void Display_All();//function to display all account details
+void Deposit_Withdraw(int, int); // function to desposit/withdraw amount for given account
 };
 #endif
