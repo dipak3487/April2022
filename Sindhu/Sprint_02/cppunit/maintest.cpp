@@ -1,18 +1,18 @@
 #include<cppunit/ui/text/TestRunner.h>
 #include<cppunit/TestCaller.h>
-
 #include<iostream>
 #include<fstream>
-#include "studenttest.h"
+#include "vaccineTest.h"
+#include "../include/vaccine.h"
 
-using namespace std;
+//using namespace std;
 
 
 int main(int argc,char* argv[])
 {
 	CppUnit::TextUi::TestRunner runner;
 
-    runner.addTest(StudentTest::suite());
+    runner.addTest(VaccineTest::suite());
 	runner.run();
 	return 0;
 }

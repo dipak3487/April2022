@@ -7,10 +7,7 @@
 #include "CppConsoleTable.h"
 #include "Student.h"
 
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
 
 using tableFormat::ConsoleTable;
 

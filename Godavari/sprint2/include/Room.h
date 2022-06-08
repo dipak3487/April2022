@@ -13,18 +13,24 @@ class Room
     string Comfort;
     string Capacity;
     int Status;
-    int Rent_Per_Day;
+    int RentPerDay;
     
     public:
     Room() {};
     Room(string rt,string c,string ct,int s,int rent);
     ~Room() {};
     Customer cust;
-    int TotalRoomCount();
-    void AddRoom(int);
-    void SearchRoom(int);
-    void  ModifyRoom(int);
-    void  DisplayRoom(int);
+    bool AddRoom(int);
+    bool SearchRoom(int);
+    bool ModifyRoom(int);
+    bool DisplayRoom(int);
+    string getType();
+    string getComfort();
+    string getCapacity();
+    int getStatus();
+    int getRent();
+    int getAvailableRoomsCount();
+
 };
 
 #endif // ROOM_H_INCLUDED

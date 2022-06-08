@@ -4,8 +4,14 @@
 #include <sstream>
 #include <cstring>
 #include <sqlite3.h>
+<<<<<<< HEAD
+#include<memory>
+#include<bits/stdc++.h>
+#include <regex>
+=======
 #include <memory>
 #include <bits/stdc++.h>
+>>>>>>> d808ce161a0f8ea930a0397fa2aa2bd9f4e93b34
 #include "vaccine.h"
 
 using namespace std;
@@ -124,14 +130,26 @@ void Vaccine::getData(){
 
 
 	cout<<"\n\t\t Enter Aadhaar no :-  "; std::getline(std::cin, aadhar_no);
+	  const regex pattern("^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$");
+	 if(regex_match(mobileNumber, pattern))
+	 {
 	while((aadhar_no).length() < 12 || (aadhar_no).length() > 12)
 	{
 		std::cout<<"Aadhaar Card Number can't be lessor more than 12 numbers. Please enter the again"<<std::endl;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		cout<<"\n\t\t Enter Aadhaar no :- ";
 		std::getline(std::cin,aadhar_no);
-	}
+	}}
+	
+	 else{
+	 cout<<"Not valid, Please enter again";
+	 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	 cout<<"\n\t\t Enter Aadhar number :- ";
+	std::getline(std::cin,mobileNumber);
+	 
 
+	}
+	
 	cout<<"\n\t\t Enter the gender (M|F) :-  ";
 	cin>>gender;
 
@@ -149,13 +167,25 @@ void Vaccine::getData(){
 
 	cout<<"\n\t\t Enter the  Mobile number :-  "; 
 	cin>>mobileNumber;
-
-	while((mobileNumber).length() < 10|| (mobileNumber).length()> 10)
+	const regex pattern1("(0|91)?[7-9][0-9]{9}");
+	 if(regex_match(mobileNumber, pattern1))
+	 {
+	 while((((mobileNumber).length() < 10|| (mobileNumber).length()> 10)))
 	{
-		std::cout<<"Mobile Number can't be less or more than 10 numbers. Please enter the again"<<std::endl;
+		std::cout<<"Mobile Number should be 10 digit, valid number. Please enter the again"<<std::endl;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		cout<<"\n\t\t Enter Mobile number :- ";
 		std::getline(std::cin,mobileNumber);
+
+	}	
+	 }
+	 else{
+	 cout<<"Not valid, Please enter again";
+	 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	 cout<<"\n\t\t Enter Mobile number :- ";
+	std::getline(std::cin,mobileNumber);
+	 
+
 	}
 
 
