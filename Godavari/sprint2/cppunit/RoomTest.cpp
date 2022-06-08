@@ -6,7 +6,6 @@
 #include "Customer.h"
 #include "RoomTest.h"
 
-#include "RoomTest.h"
 
 
 using namespace std;
