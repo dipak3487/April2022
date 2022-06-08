@@ -41,6 +41,7 @@ class Vaccine
 		void view_Vaccine();//operations on the vaccine inventory
 		int countRecords();// count the total records in vaccine table of records
 		
+		
 };
 
 #endif

@@ -75,7 +75,7 @@ void* userPreferenceThread(void *arg) {
 
 // creating UserPreference
 void createUserPreferenceThread() {
-	static char *thread_input1 = "User preference thread";
+	const char *thread_input1 = "User preference thread";
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
@@ -148,6 +148,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 //Driver code for Program
 int main(int argc, char** argv)
 {
+	//Vaccine vaccine1;
 	int ch;
 	//Calling the createUserPreference function
 	createUserPreferenceThread();
@@ -207,7 +208,7 @@ int main(int argc, char** argv)
                  break;
          case 2: 
        	    vaccineDB.view_Vaccine();
-       	    vaccineDB.countRecords();
+
                  break;
          case 3:
 		   vaccineDB.view_all();
