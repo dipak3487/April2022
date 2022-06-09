@@ -4,10 +4,11 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "../include/HotelManager.h"
-#include "../include/Room.h"
-#include "../include/Customer.h"
-#include "../include/Sql.h"
+#include <mysql/mysql.h>
+#include "HotelManager.h"
+#include "Room.h"
+#include "Customer.h"
+#include "Sql.h"
 
 using namespace std;
 
@@ -17,11 +18,47 @@ Room::Room(string rt,string c,string ct,int s,int rent)
  Comfort = c;
  Capacity = ct;
  Status= s;
- Rent_Per_Day=rent;
+ RentPerDay=rent;
+}
+string Room::getType()
+{
+return RoomType;
+}
+
+string Room::getComfort()
+{
+return Comfort;
+}
+
+string Room:: getCapacity()
+{
+return Capacity;
+}
+int Room::getStatus()
+{
+return Status;
+}
+int Room::getRent()
+{
+return RentPerDay;
+}
+int Room::getAvailableRoomsCount(){
+    sql sql;
+    int Status = 0;
+    int count=0;
+    stringstream s1;
+    s1 << "SELECT COUNT(RoomNumber) FROM rooms WHERE Status = '"<< Status <<"'";
+    bool qstate = sql.query_check(s1, sql);
+    if(qstate) {
+        sql.res= mysql_store_result(sql.conn);
+        count = mysql_num_rows(sql.res);
+     }
+
+    return count;
 }
 
 
-void Room::AddRoom(int RoomNumber){
+bool Room::AddRoom(int RoomNumber){
     sql sql;
     Room room;
     cout << "\n***********";
@@ -43,16 +80,22 @@ void Room::AddRoom(int RoomNumber){
     cin >> room.Capacity;
 
     cout << "\nEnter the rent per day:";
-    cin >> room.Rent_Per_Day;
+    cin >> room.RentPerDay;
 
     cout << "\n***********";
     cout << "\n(Available->0)\n(None-Available->1)";
     cout << "\n***********";
     cout << "\nEnter the Status:";
     cin >> room.Status;
+    // if(room.Status!=0 && room.Status!=1){
+    //     cout<<"\n invalid status";
+    //     return false;
+    // }
 
     stringstream ss;
-    ss << "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, Rent_Per_Day) VALUES('"<< RoomNumber <<"','"<< room.RoomType <<"','"<< room.Comfort <<"','"<< room.Capacity <<"','"<< room.Status <<"','"<< room.Rent_Per_Day <<"')";
+    ss << "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, RentPerDay) VALUES('"<< RoomNumber <<"','"<< room.RoomType <<"','"<< room.Comfort <<"','"<< room.Capacity <<"','"<< room.Status <<"','"<< room.RentPerDay <<"')";
+    
+    //cout<<"--"<< "INSERT INTO rooms(RoomNumber, Type, Comfort, Capacity, Status, RentPerDay) VALUES('"<< RoomNumber <<"','"<< room.RoomType <<"','"<< room.Comfort <<"','"<< room.Capacity <<"','"<< room.Status <<"','"<< room.RentPerDay <<"')";
     if(sql.query_check(ss, sql)){
         cout << "\nRoom Added Successfully!";
         cout << "\nPress any key to display room:";
@@ -67,26 +110,11 @@ void Room::AddRoom(int RoomNumber){
     cin.get();
     HotelManager hm;
     hm.ManageRooms();
+    return true;
 }
 
-int Room :: TotalRoomCount()
- {
-    sql sql;
-     int count=0;
-   // Room room ;
-        stringstream ss;
-        ss << "SELECT COUNT(*) FROM rooms" ;
-        bool qstate = sql.query_check(ss, sql);
-        if(qstate) {
-             sql.res= mysql_store_result(sql.conn);
-             count = mysql_num_rows(sql.res);
-             // cout<<count;                   
-            }
-            
-        return count;
-}
 
-void Room::  DisplayRoom(int RoomNumber){
+bool Room::  DisplayRoom(int RoomNumber){
     sql sql;
     HotelManager hm;
     cout << "\n***********\n";
@@ -115,10 +143,11 @@ void Room::  DisplayRoom(int RoomNumber){
                 cin.get();
                 hm.ManageRooms();
             }
+            return true;
 }
 
 
-void Room::  ModifyRoom(int RoomNumber){
+bool Room::  ModifyRoom(int RoomNumber){
     int opt, index;
     sql sql;
     HotelManager hm;
@@ -189,10 +218,11 @@ void Room::  ModifyRoom(int RoomNumber){
     cin.ignore();
     cin.get();
     hm.MainMenu();
+    return true;
 }
 
 
-void Room:: SearchRoom(int RoomNumber){
+bool Room:: SearchRoom(int RoomNumber){
     sql sql;
     HotelManager hm;
 
@@ -215,5 +245,6 @@ void Room:: SearchRoom(int RoomNumber){
         cin.ignore();
         cin.get();
         hm.ManageRooms();
+        return true;
 }
 
