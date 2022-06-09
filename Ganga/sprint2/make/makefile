@@ -9,7 +9,7 @@ CFLAG = $(DB) -I$(IN)
 
 
 ../bin/program: ../obj/main.o ../obj/Account.o
-	$(CC) -o ../bin/program  ../obj/main.o ../obj/Account.o $(DB) $(TH)
+	$(CC) -o ../bin/program  ../obj/main.o ../obj/Account.o $(DB)  $(TH) 
 
 ../obj/main.o: ../src/main.cpp
 	#mkdir ../obj/
