@@ -8,7 +8,8 @@ SRCMN = ../src/main.cpp
 SRVAC = ../src/vaccine.cpp
 DB = -lsqlite3
 TH = -lpthread
-SR = -I../include/
+TH = -lpthread;
+SR = -I../src/
 BINPRO = ../bin/program
 
 #makefile for program
