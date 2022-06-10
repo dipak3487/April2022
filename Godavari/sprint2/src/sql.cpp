@@ -6,10 +6,10 @@
 #include <sstream>
 #include <mysql/mysql.h>
 
-#include "HotelManager.h"
-#include "Room.h"
-#include "Customer.h"
-#include "Sql.h"
+#include <HotelManager.h>
+#include <Room.h>
+#include <Customer.h>
+#include <Sql.h>
 
 
 

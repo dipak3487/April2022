@@ -1,0 +1,29 @@
+        -:    0:Source:../src/main.cpp
+        -:    0:Graph:main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#include <iostream>
+        -:    2:#include <vector>
+        -:    3:#include <cstring>
+        -:    4:#include <string>
+        -:    5:#include <fstream>
+        -:    6:#include <sstream>
+        -:    7:#include <mysql/mysql.h>
+        -:    8:#include "Customer.h"
+        -:    9:#include "Room.h"
+        -:   10:#include "HotelManager.h"
+        -:   11:#include "Sql.h"
+        -:   12:
+        -:   13:using namespace std;
+        -:   14:
+    #####:   15:int main()
+        -:   16:{
+    #####:   17:	sql sql;
+    #####:   18:	if(sql.conn) 
+        -:   19:	{
+    #####:   20:		HotelManager hm;
+    #####:   21:		hm.MainMenu();
+        -:   22:	}
+    #####:   23:	else cout << "Not Connected";
+    #####:   24:	return 0;
+        -:   25:}

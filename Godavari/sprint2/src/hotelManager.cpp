@@ -9,10 +9,10 @@
 #include<unistd.h>
 #include<mysql/mysql.h>
 
-#include "Customer.h"
-#include "Room.h"
-#include "HotelManager.h"
-#include "Sql.h"
+#include <Customer.h>
+#include <Room.h>
+#include <HotelManager.h>
+#include <Sql.h>
 
 
 
@@ -139,7 +139,7 @@ bool HotelManager::CheckOut(int RoomNumber){
     int Bill;
     int Num_of_Days;
     stringstream s1, s2, s3, s4;
-    s1 << "SELECT Status, Rent_Per_Day FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
+    s1 << "SELECT Status, RentPerDay FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
     bool qstate = sql.query_check(s1, sql);
     if(qstate){
         sql.res= mysql_store_result(sql.conn);

@@ -1,0 +1,44 @@
+        -:    0:Source:../include/Room.h
+        -:    0:Graph:main.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    1:#ifndef ROOM_H_INCLUDED
+        -:    2:#define ROOM_H_INCLUDED
+        -:    3:
+        -:    4://#include <windows.h>
+        -:    5:#include "Customer.h"
+        -:    6:
+        -:    7:using namespace std;
+        -:    8:
+        -:    9:class Room
+        -:   10:{
+        -:   11:    private:
+        -:   12:    string RoomType;
+        -:   13:    string Comfort;
+        -:   14:    string Capacity;
+        -:   15:    int Status;
+        -:   16:    int RentPerDay;
+        -:   17:    
+        -:   18:    public:
+    #####:   19:    Room() {};
+        -:   20:    Room(string rt,string c,string ct,int s,int rent);
+    #####:   21:    ~Room() {};
+        -:   22:    Customer cust;
+        -:   23:    bool AddRoom(int);
+        -:   24:    bool SearchRoom(int);
+        -:   25:    bool ModifyRoom(int);
+        -:   26:    bool DisplayRoom(int);
+        -:   27:    string getType();
+        -:   28:    string getComfort();
+        -:   29:    string getCapacity();
+        -:   30:    int getStatus();
+        -:   31:    int getRent();
+        -:   32:    int getAvailableRoomsCount();
+        -:   33:
+        -:   34:};
+        -:   35:
+        -:   36:#endif // ROOM_H_INCLUDED
+        -:   37:
+        -:   38:
+        -:   39:
+        -:   40:

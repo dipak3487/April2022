@@ -2,7 +2,7 @@
 #define SQL_H_INCLUDED
 
 #include<iostream>
-#include <mysql/mysql.h>
+#include<mysql/mysql.h>
 
 using namespace std;
 
