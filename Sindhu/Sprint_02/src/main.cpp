@@ -144,7 +144,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 //Driver code for Program
 int main(int argc, char** argv)
 {
-	int ch;
+     	int ch;
 	//Calling the createUserPreference function
 	createUserPreferenceThread();
 
@@ -190,7 +190,7 @@ int main(int argc, char** argv)
 	{
 		
      	    Vaccine vaccineDB;
-     	    int ch;
+
             vaccineDB.Menu();
             cout<<"\n\t\n\tChoose according to your need : ";
             cin>>ch;
