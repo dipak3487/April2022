@@ -18,7 +18,7 @@ class VaccineTest : public CppUnit::TestFixture
 		{	
 			Vaccine vac;
 			vac.countRecords();
-			CPPUNIT_ASSERT_EQUAL(vac.countRecords(),true);
+			CPPUNIT_ASSERT_EQUAL(vac.countRecords(),15);
 
 		}
 		/*
