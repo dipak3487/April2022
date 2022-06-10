@@ -202,15 +202,15 @@ int main(int argc, char** argv)
 	             vaccineDB.ShowData();
                  break;
          case 2: 
-       	    vaccineDB.View_Vaccine();
+       	    vaccineDB.ViewVaccine();
        	    vaccineDB.CountRecords();
                  break;
          case 3:
-		   vaccineDB.View_all();
+		   vaccineDB.Viewall();
                 break;
           
         case 4:  
-		vaccineDB.Search_Citizen_Records();
+		vaccineDB.SearchCitizenRecords();
 		break;
 	case 5:
 		exit(0);
