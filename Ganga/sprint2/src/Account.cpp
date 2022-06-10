@@ -133,31 +133,52 @@ void Account::Modify_Account(int n)
 
 //		function to delete record of file
 void Account::Delete_Account(int n)
-{
-	Account ac;
-	ifstream inFile;
-	ofstream outFile;
-	inFile.open("account.txt",ios::binary);
-	if(!inFile)
-	{
-		cout<<"File could not be open !! Press any Key...";
-		return;
-	}
-	outFile.open("Temp.txt",ios::binary);
-	inFile.seekg(0,ios::beg);
-	while(inFile.read(reinterpret_cast<char *> (&ac), sizeof(Account)))//Dyanamic memory allocation & convert input of binary format to string
-	{
-		if(ac.Retacno()!=n)
-		{
-			outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account));//Dyanamic memory allocation & convert input of binary format to string
-		}
-	}
-    inFile.close();
-	outFile.close();
-	remove("account.txt");
-	rename("Temp.txt","account.txt");
-	cout<<"\n\nRecord Deleted ..";
+{   int pos, flag = 0;
+ Account ac; 
+    ifstream ifs;
+    ifs.open("account.txt", ios::in | ios::binary);
+  
+    ofstream ofs;
+    ofs.open("temp.txt", ios::out | ios::binary);
+  
+    while (!ifs.eof()) {
+  ifs.read(reinterpret_cast<char *> (&ac), sizeof(Account));
+      
+  
+        // if(ifs)checks the buffer record in the file
+        if (ifs) {
+  
+            // comparing the account no           
+            if (ac.Retacno()==n) {
+                flag = 1;
+                cout << "\t\t\tThe deleted record is \n";
+                ac.Show_Account();
+                // display the record
+      
+            }
+            else {
+		    ofs.write(reinterpret_cast<char *> (&ac), sizeof(Account));
+                // copy the record of "account.txt" file to "temp.txt" file
+           
+            }
+        }
+    }
+  
+    ofs.close();
+    ifs.close();
+  
+    // delete the old file
+    remove("account.txt");
+  
+    // rename new file to the older file
+    rename("temp.txt", "account.txt");
+  
+    if (flag == 1)
+        cout << "\nRecord successfully deleted!!! \n";
+    else
+        cout << "\nRecord not found!!! \n";
 }
+    
 //		function to display all accounts deposit list
 void Account::Display_All()
    {
