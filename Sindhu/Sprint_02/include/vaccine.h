@@ -29,17 +29,17 @@ class Vaccine
 		void Menu();//displayed on the command prompt for the user
 		void GetData();//takes Citizen data from the user
 		void AddNewCitizen();//data is added to the  database
-		void AddNew_Vaccine();//data is added to the  database
-		void Get_VaccineData();//takes Vaccine Data from the user
+		void AddNewVaccine();//data is added to the  database
+		void GetVaccineData();//takes Vaccine Data from the user
 		void ShowData();//display data
-		void View_all();//view the entire Citizen records
-		void View_Vac();//view the entire vaccine records
-		void Search_Citizen_Records();//main menu to access the search options for Citizen table
-		void Search_name();//search using name datafield
-		void Search_aadhar();//search using the aadhar card number
-		void Search_mobile(); //search using mobile number
+		void Viewall();//view the entire Citizen records
+		void ViewVac();//view the entire vaccine records
+		void SearchCitizen_Records();//main menu to access the search options for Citizen table
+		void Searchname();//search using name datafield
+		void Searchaadhar();//search using the aadhar card number
+		void Searchmobile(); //search using mobile number
 		void createUserPreferenceThread();// function for multithreading
-		void View_Vaccine();//operations on the vaccine inventory
+		void ViewVaccine();//operations on the vaccine inventory
 		int CountRecords();// count the total records in vaccine table of records
 
 };
