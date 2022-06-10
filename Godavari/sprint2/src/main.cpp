@@ -5,10 +5,10 @@
 #include <fstream>
 #include <sstream>
 #include <mysql/mysql.h>
-#include "Customer.h"
-#include "Room.h"
-#include "HotelManager.h"
-#include "Sql.h"
+#include <Customer.h>
+#include <Room.h>
+#include <HotelManager.h>
+#include <Sql.h>
 
 using namespace std;
 

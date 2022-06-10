@@ -8,7 +8,6 @@ We have seperated functions to get the user input and insert the data into the d
 	void addNewCitizen();//data is added to the  database
 	void addNew_Vaccine();//data is added to the  database
 	void get_VaccineData();//takes Citizen data from the user
-
 Functions for the user menu, showing the inserted data on the console and view data are as follows:
 		void menu();
 		void showData();//display data
@@ -23,9 +22,6 @@ Functions to execute search, the user can search by string name, aadhar card num
 		
 We have also used multithreading, with the help of the function void createUserPreferenceThread(), the fucntion checks the existence of the file /temp/nice/ in bin folder
 if the file is present the loop conditions present an different menu version, if not the regular menu
-
-
-
  */
  
  
@@ -50,11 +46,7 @@ pthread_t pthread1;
 
 // Implementing Thread  
 void* userPreferenceThread(void *arg) {
-<<<<<<< HEAD:Sindhu/Sprint_02/src/oldChanges/vaccine.cpp
-        char *input = (char *)arg;
-=======
 	char *input = (char *)arg;
->>>>>>> 501b7dfab72cb7222f4b080c3ac63d06ffc21eec:Sindhu/Sprint_02/src/main.cpp
 	printf("Started: %s\n", input);
 
 	while(true) {
@@ -79,7 +71,7 @@ void* userPreferenceThread(void *arg) {
 
 // creating UserPreference
 void createUserPreferenceThread() {
-	const char *thread_input1 = "User preference thread";
+	static char *thread_input1 = "User preference thread";
 	pthread_attr_t attr;
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
@@ -91,17 +83,11 @@ void createUserPreferenceThread() {
 	}
 }
 
-<<<<<<< HEAD:Sindhu/Sprint_02/src/oldChanges/vaccine.cpp
-
-//
-//Implemetaion of Function
-=======
 //Program Menu for user inputs
 // Menu choices to display multithreading
->>>>>>> 501b7dfab72cb7222f4b080c3ac63d06ffc21eec:Sindhu/Sprint_02/src/main.cpp
 //
-/*
-void Vaccine::menu()
+
+void Vaccine::Menu()
 {
 
 
@@ -140,7 +126,7 @@ void Vaccine::menu()
 
 }
 
-*/
+
 
 //
 //creating callback
@@ -158,8 +144,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 //Driver code for Program
 int main(int argc, char** argv)
 {
-	//Vaccine vaccine1;
-	int ch;
+     	int ch;
 	//Calling the createUserPreference function
 	createUserPreferenceThread();
 
@@ -202,25 +187,26 @@ int main(int argc, char** argv)
 	//
 	//starting of routine
 	do
-	{		
+	{
+		
      	    Vaccine vaccineDB;
-     	    int ch;;
-            vaccineDB.menu();
+
+            vaccineDB.Menu();
             cout<<"\n\t\n\tChoose according to your need : ";
             cin>>ch;
 
       switch(ch)
        {
          case 1: 
-	             vaccineDB.addNewCitizen();
-	             vaccineDB.showData();
+	             vaccineDB.AddNewCitizen();
+	             vaccineDB.ShowData();
                  break;
          case 2: 
-       	    vaccineDB.view_Vaccine();
-
+       	    vaccineDB.View_Vaccine();
+       	    vaccineDB.CountRecords();
                  break;
          case 3:
-		   vaccineDB.view_all();
+		   vaccineDB.View_all();
                 break;
           
         case 4:  

@@ -1,8 +1,8 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "../include/Room.h"
-#include "../include/HotelManager.h"
+#include "Room.h"
+#include "HotelManager.h"
 
 using namespace std;
 

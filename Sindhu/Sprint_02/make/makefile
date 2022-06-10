@@ -1,0 +1,29 @@
+CC = g++
+CFLAG = -o
+CMP = -c
+OBJPRO = ../bin/program
+OBJMAIN = ../obj/main.o
+OBJVAC = ../obj/vaccine.o
+SRCMN = ../src/main.cpp
+SRVAC = ../src/vaccine.cpp
+DB = -lsqlite3
+TH = -lpthread
+TH = -lpthread;
+SR = -I../src/
+BINPRO = ../bin/program
+
+#makefile for program
+
+$(BINPRO): $(OBJMAIN) $(OBJVAC)
+	$(CC) $(CFLAG) $(OBJMN) $(SRCMN) $(OBJVAC) $(DB) $(TH)
+
+../obj/main.o: $(SRCMN)
+	$(CC) $(CFLAG) $(OBJMAIN) $(SRCMN) $(DB) $(SR)
+
+../obj/vaccine.o: $(SRVAC)
+	$(CC) $(CFLAG) $(OBJVAC) $(SRCVAC) $(DB) $(SR)
+
+clean:
+	$(RM) $(BINPRO) 
+	$(RM) $(OBJMAIN) 
+	$(RM) $(OBJVAC)
