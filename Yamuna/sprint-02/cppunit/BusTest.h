@@ -9,19 +9,15 @@ using namespace std;
 
 class BusTest : public CppUnit::TestFixture
 {
-	public:
-		void TransactionTest ()
-		{
-			Bus ac(acno,name,deposit);
-			ac.Withdraw(100);
-			CPPUNIT_ASSERT_EQUAL(ac.Retdeposit(),1900);
-			ac.Deposit(200);
-			CPPUNIT_ASSERT_EQUAL(ac.Retdeposit(),2100);
+public:
+	void BusDbTest()
+	{
+		readJsonFile("BusTest.json");
+		int busCount = busses.size();
+		CPPUNIT_ASSERT_EQUAL(busCount, 0);
+	}
 
-
-		}
-		
-		CPPUNIT_TEST_SUITE(BusTest);
-		CPPUNIT_TEST(TransactionTest);
-		CPPUNIT_TEST_SUITE_END();
+	CPPUNIT_TEST_SUITE(BusTest);
+	CPPUNIT_TEST(BusDbTest);
+	CPPUNIT_TEST_SUITE_END();
 };
