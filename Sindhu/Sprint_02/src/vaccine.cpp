@@ -17,7 +17,8 @@ using namespace std;
 //
 // Define Menu functionality
 //
-void Vaccine::mainMenu()
+
+void Vaccine::Menu()
 {
     int up;
     if (up == 1)
@@ -148,44 +149,9 @@ void Vaccine::GetData(){
 // Vaccine operations sub menu to add new record, view the datatable
 
 
-	command=temp.str();
 
 
-	sqlite3_exec(db, command.c_str(), callback, NULL, NULL);
-	sqlite3_close(db);
-}	
-
-void Vaccine::get_VaccineData()
-{
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-	cout<<"\n\t\t Enter Vaccine Brand Name :-  ";
-	std::getline (std::cin,v_name);
-
-
-	cout<<"\n\t\t Enter Brand Description  :-  ";
-	getline (std::cin,desc);
-
-
-	cout<<"\n\t\t Enter the Expiry Year :-  ";
-	cin>>date;
-
-	cout<<"\n\t\t Enter the  BATCH Number:- ";
-	cin>>bno;
-
-	cout<<"\n\t\t Enter the Number of Units :-  ";
-	cin>>units;
-
-	cout<<"\n\t\t Enter Backup Stock number if available:-  ";
-	cin>>backup;
-
-	cout<<"\n\t\t Enter total Cost:-  ";
-	cin>>cost;
-
-}
-
-
-
-   void Vaccine::View_Vaccine()
+ void Vaccine::ViewVaccine()
 {
 
 	int ch;
@@ -200,16 +166,17 @@ void Vaccine::get_VaccineData()
 	switch(ch)
 	{
 		case 1:
-			AddNew_Vaccine();
-			View_Vaccine();
+			AddNewVaccine();
+			ViewVaccine();
 			break;
 		case 2:
-			View_Vac();
+			ViewVac();
 			CountRecords();
-			View_Vaccine();
+			ViewVaccine();
 			break;
 		case 3:
 			Menu();
+			break;
 		default:
 
 			cout<<"\nEnter valid option "<<endl;
@@ -248,16 +215,16 @@ void Vaccine::SearchCitizenRecords()
 	{
 		case 1:
 
-			Search_name();
-			Search_Citizen_Records();
+			Searchname();
+			SearchCitizenRecords();
 			break;
 		case 2:
-			Search_aadhar();
-			Search_Citizen_Records();
+			Searchaadhar();
+			SearchCitizenRecords();
 			break;
 		case 3:
-			Search_mobile();
-			Search_Citizen_Records();
+			Searchmobile();
+			SearchCitizenRecords();
 			break;
 		case 4:
 			Menu();
@@ -468,7 +435,7 @@ void Vaccine::AddNewVaccine()
 		fprintf(stderr, "Opened database successfully\n");
 	}
 
-	Get_VaccineData();  
+	GetVaccineData();  
 	temp << "INSERT INTO VACCINE_INVENTORY VALUES ('"<< v_name <<"','" << desc <<"', "<< date <<"," << bno <<","<< units <<","<<backup<<","<<cost<<")";
 
 	command=temp.str();
@@ -628,4 +595,4 @@ void Vaccine::ShowData()
 	cout<<"\t\t vaccine injected : "<<vaccine<<endl;
 
 }
-}
+
