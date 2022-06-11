@@ -7,61 +7,21 @@
 #include<pthread.h>
 #include<fcntl.h>
 #include<unistd.h>
-#include "../include/Customer.h"
-#include "../include/Room.h"
-#include "../include/HotelManager.h"
-#include "../include/Sql.h"
 #include<mysql/mysql.h>
+
+#include <Customer.h>
+#include <Room.h>
+#include <HotelManager.h>
+#include <Sql.h>
+
+
 
 
 using namespace std;
 
-
-
-pthread_t pthread1;
-int change=0;
-
-void* userPreferenceThread(void *arg) {
-    char *input = (char *)arg;
-      //  cout<<"Started: %s\n"<< input;
-
-    while(true) {
-
-                //if /tmp/nice file exists
-        if (access("/tmp/nice", F_OK) == 0)
-        {
-                        // HotelManager::SetUserPreference(1); //nice Menu
-                   change = 1;
- }
-        else
-        {
-           // HotelManager::SetUserPreference(0); //normal Menu
-                        change = 0;
-        }
-
-        sleep(1);
-    }
-    //pthread_exit(arg);
-    return arg;
-}
-
-void createUserPreferenceThread() {
-   const char *thread_input1 = " ";
-    pthread_attr_t attr;
-    pthread_attr_init(&attr);
-     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-
-    int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
-    //int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
-    if(rc != 0) {
-        printf("Error occurred, thread could not be created, errno = %d\n", rc);
-        exit(0);
-    }
-}
-
 //This function manageroom details like add rooms in the system,modify their details.we can add RoomType,Comfort,Capacity,Status,Rent_Per_Day in the room table
 
-void HotelManager::ManageRooms(){
+bool HotelManager::ManageRooms(){
     Room room;
     int Menu, RoomNumber;
     HotelManager hm;
@@ -105,11 +65,12 @@ void HotelManager::ManageRooms(){
         cin.ignore();
         cin.get();
         hm.ManageRooms();
+        return true;
 }
 
 //This function add check-in details in the system.
 
-void HotelManager::CheckIn(){
+bool HotelManager::CheckIn(){
     sql sql;
     int RoomNumber, Again;
     
@@ -169,15 +130,16 @@ void HotelManager::CheckIn(){
     cin.ignore();
     cin.get();
     MainMenu();
+    return true;
 }
 
 //This function used for CheckOut of the Customer
-void HotelManager::CheckOut(int RoomNumber){
+bool HotelManager::CheckOut(int RoomNumber){
     sql sql;
     int Bill;
     int Num_of_Days;
     stringstream s1, s2, s3, s4;
-    s1 << "SELECT Status, Rent_Per_Day FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
+    s1 << "SELECT Status, RentPerDay FROM rooms WHERE RoomNumber = '"<< RoomNumber <<"'";
     bool qstate = sql.query_check(s1, sql);
     if(qstate){
         sql.res= mysql_store_result(sql.conn);
@@ -189,7 +151,7 @@ void HotelManager::CheckOut(int RoomNumber){
                 cout << "\nRoom is empty.";
             }
             else {
-                cout<<"\nEnter number of days room was booked for: ";
+                cout<<"\nEnter Room Number was booked for: ";
                 cin>>Num_of_Days;
                 Bill = Num_of_Days*rent;
                
@@ -218,10 +180,11 @@ void HotelManager::CheckOut(int RoomNumber){
     cin.ignore();
     cin.get();
     MainMenu();
+    return true;
 }
 
 //This function check whether room available or not for allocating to the Customer
-void HotelManager::GetAvailableRooms(){
+bool HotelManager::GetAvailableRooms(){
     sql sql;
     int Status = 0;
     stringstream s1;
@@ -245,10 +208,11 @@ void HotelManager::GetAvailableRooms(){
     cin.get();
     //CheckIn();
    MainMenu();
+   return true;
 }
 
 //This function search the Customer detail with their allocated room number
-void HotelManager::SearchCustomer(){
+bool HotelManager::SearchCustomer(){
 
     sql sql;
     string FName;
@@ -285,10 +249,52 @@ void HotelManager::SearchCustomer(){
     }
 
     MainMenu();
+    return true;
+}
+
+pthread_t pthread1;
+int change=0;
+
+void* userPreferenceThread(void *arg) {
+    char *input = (char *)arg;
+      //  cout<<"Started: %s\n"<< input;
+
+    while(true) {
+
+                //if /tmp/nice file exists
+        if (access("/tmp/nice", F_OK) == 0)
+        {
+                        // HotelManager::SetUserPreference(1); //nice Menu
+                   change = 1;
+ }
+        else
+        {
+           // HotelManager::SetUserPreference(0); //normal Menu
+                        change = 0;
+        }
+
+        sleep(1);
+    }
+    //pthread_exit(arg);
+    return arg;
+}
+
+void createUserPreferenceThread() {
+   const char *thread_input1 = " ";
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+    int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+    //int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
+    if(rc != 0) {
+        printf("Error occurred, thread could not be created, errno = %d\n", rc);
+        exit(0);
+    }
 }
 
 
-void HotelManager::MainMenu(){
+bool HotelManager::MainMenu(){
     HotelManager hm;
     createUserPreferenceThread();
    // cout<<"user preference:"<<change;
@@ -366,4 +372,6 @@ cout << "\n\t\tWelcome to Hotel Management System\n" << endl;
     }
 
 }
+return true;
 }
+

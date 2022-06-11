@@ -4,10 +4,11 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "../include/Customer.h"
-#include "../include/Room.h"
-#include "../include/HotelManager.h"
-#include "../include/Sql.h"
+#include <mysql/mysql.h>
+#include <Customer.h>
+#include <Room.h>
+#include <HotelManager.h>
+#include <Sql.h>
 
 using namespace std;
 

@@ -10,6 +10,7 @@
 #include "Student.h"
 
 using namespace std;
+<<<<<<< HEAD
 
 // using multithreading user preference
 int up = 0;
@@ -53,6 +54,8 @@ void createUserPreferenceThread() {
 		exit(0);
 	}
 }
+=======
+>>>>>>> 78f41b35775b4f7a5f720574d473a0b2d328bd19
 
 using tableFormat::ConsoleTable;
 

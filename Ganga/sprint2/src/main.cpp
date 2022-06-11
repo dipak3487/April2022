@@ -66,7 +66,7 @@ void Deposit_Withdraw(int, int); // function to desposit/withdraw amount for giv
 */
 int main()
 {
-        Account ac;
+Account ac;
 	char ch;
 	int num;
 createUserPreferenceThread();	
@@ -92,20 +92,20 @@ createUserPreferenceThread();
 }
 else
 {
-       	cout<<"\n\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
-         cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
+	cout<<"\n\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
+      cout<<"\t\t\t\tBANK MANAGEMENT SYSTEM";
 	 cout<<"\n\t\t\t\t*~*~*~*~*~*~*~*~*~*~*~\n";
 
-	 cout<<"\t\t\t\t    ::MAIN MENU::\n";
-	 cout<<"\n\t\t\t\t1. NEW ACCOUNT";
-	 cout<<"\n\t\t\t\t2. DEPOSIT AMOUNT";
-	 cout<<"\n\t\t\t\t3. WITHDRAW AMOUNT";
-         cout<<"\n\t\t\t\t4. BALANCE ENQUIRY";
-	 cout<<"\n\t\t\t\t5. ALL ACCOUNT HOLDER LIST";
-         cout<<"\n\t\t\t\t6. CLOSE AN ACCOUNT";
-         cout<<"\n\t\t\t\t7. MODIFY AN ACCOUNT";
-	 cout<<"\n\t\t\t\t8. EXIT";
-         cout<<"\n\n\t\t\t\tSelect Your Option (1-8): ";
+	  cout<<"\t\t\t\t    ::MAIN MENU::\n";
+	  cout<<"\n\t\t\t\t1. NEW ACCOUNT";
+	  cout<<"\n\t\t\t\t2. DEPOSIT AMOUNT";
+	  cout<<"\n\t\t\t\t3. WITHDRAW AMOUNT";
+        cout<<"\n\t\t\t\t4. BALANCE ENQUIRY";
+	  cout<<"\n\t\t\t\t5. ALL ACCOUNT HOLDER LIST";
+        cout<<"\n\t\t\t\t6. CLOSE AN ACCOUNT";
+        cout<<"\n\t\t\t\t7. MODIFY AN ACCOUNT";
+	  cout<<"\n\t\t\t\t8. EXIT";
+        cout<<"\n\n\t\t\t\tSelect Your Option (1-8): ";
 	  cin>>ch;
 	}
 
@@ -152,8 +152,7 @@ else
 		cout<<"\n\n\t\t\tPress Enter to Continue...";
 		cin.ignore();
 		cin.get();
-    }
-	while(ch!='8');
+    }while(ch!='8');
 	return 0;
 }
 
