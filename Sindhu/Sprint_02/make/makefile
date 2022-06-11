@@ -1,29 +1,13 @@
-CC = g++
-CFLAG = -o
-CMP = -c
-OBJPRO = ../bin/program
-OBJMAIN = ../obj/main.o
-OBJVAC = ../obj/vaccine.o
-SRCMN = ../src/main.cpp
-SRVAC = ../src/vaccine.cpp
-DB = -lsqlite3
-TH = -lpthread
-TH = -lpthread;
-SR = -I../src/
-BINPRO = ../bin/program
+../bin/program: ../obj/main.o ../obj/vaccine.o
+	g++  -o ../bin/program ../obj/main.o ../obj/vaccine.o -lsqlite3 -lpthread
 
-#makefile for program
+../obj/main.o: ../src/main.cpp
+	g++  -g -o ../obj/main.o -c ../src/main.cpp -lsqlite3 -I../include/ -I../src/
 
-$(BINPRO): $(OBJMAIN) $(OBJVAC)
-	$(CC) $(CFLAG) $(OBJMN) $(SRCMN) $(OBJVAC) $(DB) $(TH)
-
-../obj/main.o: $(SRCMN)
-	$(CC) $(CFLAG) $(OBJMAIN) $(SRCMN) $(DB) $(SR)
-
-../obj/vaccine.o: $(SRVAC)
-	$(CC) $(CFLAG) $(OBJVAC) $(SRCVAC) $(DB) $(SR)
+../obj/vaccine.o: ../src/vaccine.cpp
+	g++  -g -o ../obj/vaccine.o -c ../src/vaccine.cpp -lsqlite3 -I../include/ -I../src/
 
 clean:
-	$(RM) $(BINPRO) 
-	$(RM) $(OBJMAIN) 
-	$(RM) $(OBJVAC)
+	rm -rf ../bin/program 
+	rm -rf ../obj/main.o 
+	rm -rf ../obj/vaccine.o
