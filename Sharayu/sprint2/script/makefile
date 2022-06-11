@@ -1,5 +1,10 @@
+CC = g++
+TH = -lpthread
+IN = -I../include
+RM = rm -rf
+
 ../bin/program: ../obj/main.o ../obj/Student.o ../obj/jsoncpp.o
-	g++ -o ../bin/program ../obj/main.o ../obj/Student.o ../obj/jsoncpp.o -ljsoncpp
+	g++ -o ../bin/program ../obj/main.o ../obj/Student.o ../obj/jsoncpp.o -ljsoncpp $(TH)
 
 ../obj/main.o: ../src/main.cpp
 	g++ -std=c++17 -g -o ../obj/main.o -c ../src/main.cpp -I../include/ -I../src/

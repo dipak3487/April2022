@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <unistd.h>
+#include <fcntl.h>
 #include <regex>
 #include <typeinfo>
 //#include<jsoncpp/json/json.h>
@@ -7,10 +9,50 @@
 #include "CppConsoleTable.h"
 #include "Student.h"
 
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
+using namespace std;
+
+// using multithreading user preference
+int up = 0;
+pthread_t pthread1;
+
+
+void* userPreferenceThread(void *arg) {
+	char *input = (char *)arg;
+	printf("Started: %s\n", input);
+
+	while(true) {
+
+		//if /tmp/nice file exists
+		if (access("/tmp/nice", F_OK) == 0)
+		{
+			// Config::SetUserPreference(1); //nice menu
+			up = 1;
+		}
+		else
+		{
+			//Config::SetUserPreference(0); //normal menu
+			up = 0;
+		}
+
+		sleep(10);
+	}
+	//pthread_exit(arg);
+	return arg;
+}
+
+void createUserPreferenceThread() {
+	const char *thread_input1 = "User preference thread";
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	int rc = pthread_create(&pthread1, &attr, userPreferenceThread, (void *)thread_input1);
+	//int rc = pthread_create(&pthread1, NULL, userPreferenceThread, (void *)thread_input1);
+	if(rc != 0) {
+		printf("Error occurred, thread could not be created, errno = %d\n", rc);
+		exit(0);
+	}
+}
 
 using tableFormat::ConsoleTable;
 

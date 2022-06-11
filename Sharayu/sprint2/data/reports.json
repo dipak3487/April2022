@@ -95,5 +95,43 @@
 			"roll_number" : 9
 		},
 		"total_marks" : 407
+	},
+	{
+		"grade" : "B",
+		"id" : 850622431,
+		"marks" : 
+		{
+			"english" : 65,
+			"history" : 57,
+			"math" : 76,
+			"science" : 87,
+			"social" : 67
+		},
+		"student" : 
+		{
+			"class" : "11",
+			"name" : "sagar",
+			"roll_number" : 11
+		},
+		"total_marks" : 352
+	},
+	{
+		"grade" : "F",
+		"id" : 765745495,
+		"marks" : 
+		{
+			"english" : 54,
+			"history" : 46,
+			"math" : 34,
+			"science" : 45,
+			"social" : 65
+		},
+		"student" : 
+		{
+			"class" : "01",
+			"name" : "Rathod",
+			"roll_number" : 1
+		},
+		"total_marks" : 244
 	}
 ]
