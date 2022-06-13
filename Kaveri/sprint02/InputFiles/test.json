@@ -14,12 +14,6 @@
          "title" : "Manager"
       },
       {
-         "empCode" : "E1004",
-         "name" : "Mahendrasingh Dhoni",
-         "salary" : 50000,
-         "title" : "SeniorManager"
-      },
-      {
          "empCode" : "E1005",
          "name" : "Virat Kohli",
          "salary" : 24000,
