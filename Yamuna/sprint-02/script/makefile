@@ -1,21 +1,27 @@
-CXX = g++
-CXXFLAGS = -g -I../include/ -I../src/ -ljsoncpp
-LDFLAGS =  -ljsoncpp -lpthread
-OBJFILES = ../obj/main.o ../obj/UI.o ../obj/Bus.o
-PROGRAM = ../bin/program
-RM = rm -rf 
+CC = g++
+TH = -lpthread
+IN = ../include
+DB = -ljsoncpp
+SR = -I../src/
+RM = rm -rf
+CFLAG = $(DB) -I$(IN)
 
-$(PROGRAM): $(OBJFILES)
-	$(CXX) -o $(PROGRAM) $(OBJFILES) $(LDFLAGS)
+#makefile for program
+
+../bin/program: ../obj/main.o ../obj/Bus.o ../obj/UI.o
+	$(CC)  -o ../bin/program ../obj/main.o ../obj/Bus.o ../obj/UI.o $(DB) $(TH)
 
 ../obj/main.o: ../src/main.cpp
-	$(CXX) -o ../obj/main.o -c ../src/main.cpp $(CXXFLAGS)
-
-../obj/UI.o: ../src/UI.cpp
-	$(CXX) -o ../obj/UI.o -c ../src/UI.cpp $(CXXFLAGS)
+	mkdir ../obj
+	$(CC)  -g -o ../obj/main.o -c ../src/main.cpp $(CFLAG) $(SR)
 
 ../obj/Bus.o: ../src/Bus.cpp
-	$(CXX) -o ../obj/Bus.o -c ../src/Bus.cpp $(CXXFLAGS)
+	$(CC)  -g -o ../obj/Bus.o -c ../src/Bus.cpp $(CFLAG) $(SR)
+
+../obj/UI.o: ../src/UI.cpp
+	$(CC)  -g -o ../obj/UI.o -c ../src/UI.cpp $(CFLAG) $(SR)
 
 clean:
-	$(RM) $(OBJFILES) $(PROGRAM)
+	$(RM) ../obj ../bin/program 
+
+
